@@ -28,7 +28,8 @@ function LoginPage() {
       navigate('/Lab')} 
     else if (sessionStorage.getItem('User')=='Doctor'){
       navigate('/Clinic')}
-    else(navigate('/Radiology-Center'))
+    else if (sessionStorage.getItem('User')=='RadCenter'){navigate('/Radiology-Center')}
+    else(navigate('/'))
   }
 
 function doctor(){
@@ -43,11 +44,10 @@ function Rad_Center(){
   
   return (
     <MDBContainer className="my-5 gradient-form">
+      <div className='d-flex align-items-center justify-content-center'>
 
-      <MDBRow>
-
-        <MDBCol col='6' className="mb-5">
-          <div className="d-flex flex-column ms-5">
+        <MDBCol md='6'>
+          <div className="d-flex flex-column ms-8">
 
             <div className="text-center">
               <img src="https://cdn-icons-png.flaticon.com/512/9379/9379978.png"
@@ -74,16 +74,13 @@ function Rad_Center(){
                 <a className="text-muted" href="#!">Forgot password?</a>
             </div>
 
-            <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
-            </div>
 
           </div>  
 
         </MDBCol>
-
+        </div>
         
 
-      </MDBRow>
 
     </MDBContainer>
   );

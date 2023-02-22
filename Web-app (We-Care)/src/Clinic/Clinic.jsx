@@ -11,10 +11,10 @@ import {
   MDBCheckbox
 }
 from 'mdb-react-ui-kit';
-
+import Sidebar from '../Sidebar/Sidebar';
 function Clinic() {
   return (
-   <h1>Clinic page</h1>
+   <Sidebar/>
   );
 }
 

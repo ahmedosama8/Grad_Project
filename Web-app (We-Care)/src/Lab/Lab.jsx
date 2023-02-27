@@ -12,6 +12,7 @@ import {
 } from "mdb-react-ui-kit";
 import Topbar from "../Topbar/Topbar";
 import Sidebar from "../Sidebar/Sidebar";
+import "./lab.css";
 
 // function MouseOver(event) {
 //   event.target.style.background = "red";
@@ -21,6 +22,7 @@ function Lab() {
     <div>
       <Topbar />
       <Sidebar />
+      <div className="labhead" > <h2>We-Care</h2></div>
     </div>
   );
 }

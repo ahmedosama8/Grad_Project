@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   MDBBtn,
   MDBContainer,
@@ -8,13 +8,20 @@ import {
   MDBCardBody,
   MDBSelect,
   MDBInput,
-  MDBCheckbox
-}
-from 'mdb-react-ui-kit';
+  MDBCheckbox,
+} from "mdb-react-ui-kit";
+import Topbar from "../Topbar/Topbar";
+import Sidebar from "../Sidebar/Sidebar";
 
+// function MouseOver(event) {
+//   event.target.style.background = "red";
+// }
 function Lab() {
   return (
-   <h1>Lab page</h1>
+    <div>
+      <Topbar />
+      <Sidebar />
+    </div>
   );
 }
 

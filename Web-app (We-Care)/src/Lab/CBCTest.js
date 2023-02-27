@@ -275,7 +275,7 @@ function CBCTest() {
           </div>
 
           <div className="mb-5">
-            <button type="submit">Create Account</button>
+            <button type="submit">Submit</button>
           </div>
         </form>
       </div>

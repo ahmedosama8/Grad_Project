@@ -26,7 +26,7 @@ function Sidebar() {
             <li className="adminsidebarListItem" >
               <a href="/glucosetest">
                 <ScienceIcon className="adminsidebarIcon" />
-                Glucose(RBG)
+                Glucose
               </a>
             </li>
             <li className="adminsidebarListItem" >

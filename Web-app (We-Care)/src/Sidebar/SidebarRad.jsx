@@ -1,32 +1,31 @@
 import React from 'react';
-import "./SidebarRad.css";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import ScienceIcon from '@mui/icons-material/Science';
-import './SidebarRad.css';
+import './sidebarrad.css';
 
 function SidebarRad() {
     return(
-      <div className="adminsidebar">
-      <div className="adminsidebarWrapper">
-        <div className="adminsidebarMenu">
-          <ul className="adminsidebarList">
-            <li className="adminsidebarListItem">
-              <a href="/" >
-                <BiotechIcon className="adminsidebarIcon" />
+      <div className="sidebarrad">
+      <div className="sidebarradWrapper">
+        <div className="sidebarradMenu">
+          <ul className="sidebarradList">
+            <li className="sidebarradListItem">
+              <a href="/radhome" >
+                <BiotechIcon className="sidebarradIcon" />
                 Home
               </a>
             </li>
-            <li className="adminsidebarListItem" >
-              <a href="/">
-                <ScienceIcon className="adminsidebarIcon" />
+            <li className="sidebarradListItem" >
+              <a href="/addscan">
+                <ScienceIcon className="sidebarradIcon" />
                 Add Scan
               </a>
             </li>
-            <li className="adminsidebarListItem" >
+            <li className="sidebarradListItem" >
               <a href="/">
-                <ScienceIcon className="adminsidebarIcon" />
-                Logout
+                <ScienceIcon className="sidebarradIcon" />
+                Logout           
               </a>
             </li>
           </ul>

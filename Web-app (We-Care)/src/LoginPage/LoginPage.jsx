@@ -25,7 +25,7 @@ function LoginPage() {
   };
   function signIn(){
     if (sessionStorage.getItem('User')=='Lab'){
-      navigate('/Lab')} 
+      navigate('/labhome')} 
     else if (sessionStorage.getItem('User')=='Doctor'){
       navigate('/Clinic')}
     else if (sessionStorage.getItem('User')=='RadCenter'){navigate('/Radiology-Center')}

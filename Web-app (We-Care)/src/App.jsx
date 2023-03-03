@@ -12,6 +12,8 @@ import Radiology from './Radiology/Radiology';
 import CBCTest from './Lab/CBCTest';
 import GlucoseTest from './Lab/GlucoseTest';
 import LiverTest from './Lab/LiverFunctionTest';
+import RadScan from './Radiology/RadScan';
+import PatientClinic from './Clinic/PatientClinic';
 function App() {
   return (
     <Router>
@@ -19,12 +21,17 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />}/>
         <Route path="/Clinic" element={<Clinic/>}/>
-        <Route path="/Lab" element={<Lab/>}/>
+        <Route path="/labhome" element={<Lab/>}/>
         <Route path="/cbctest" element={<CBCTest/>}/>
         <Route path="/glucosetest" element={<GlucoseTest/>}/>
         <Route path="/livertest" element={<LiverTest/>}/>
 
-        <Route path="/Radiology-Center" element={<Radiology/>}/>
+        <Route path="/radhome" element={<Radiology/>}/>
+        <Route path="/addscan" element={<RadScan/>}/>
+
+        <Route path="/clinichome" element={<Clinic/>}/>
+        <Route path="/addpatient" element={<PatientClinic/>}/>
+
       </Routes>
     </div>
     </Router>

@@ -1,34 +1,34 @@
-.adminsidebar {
+.sidebarrad {
     flex: 1;
     height: calc(107vh - 50px);
     background-color: #2565AE;
     position: sticky;
     top: 50px;
-    width: max-content;
+    width: 219.125px;
     box-shadow: 2px 3px 5px #66D3FA;
   
   }
   
-  .adminsidebarWrapper {
+  .sidebarradWrapper {
     padding: 20px;
     color: #555;
   }
   
-  .adminsidebarMenu {
+  .sidebarradMenu {
     margin-bottom: 10px;
   }
   
-  .adminsidebarTitle {
+  .sidebarradTitle {
     font-size: 20px;
     color: rgb(187, 186, 186) ;
   }
   
-  .adminsidebarList {
+  .sidebarradList {
     list-style: none;
     padding: 5px;
   }
   
-  .adminsidebarListItem {
+  .sidebarradListItem {
     padding: 5px;
     cursor: pointer;
     display: flex;
@@ -38,17 +38,17 @@
     
   
   }
-  .adminsidebar ul li a{
+  .sidebarrad ul li a{
     color:white;
     width: 100%;
   }
   
-  .adminsidebarListItem:hover {
+  .sidebarradListItem:hover {
     background-color:#3C99DC;
     
   }
   
-  .adminsidebarIcon{
+  .sidebarradIcon{
       margin-right: 5px;
       font-size: 20px !important;
   }

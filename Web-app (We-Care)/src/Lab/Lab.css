@@ -1,4 +1,27 @@
-.labhead{
-    size: 5rem;
-    margin-left: 2rem;
+
+
+/* title part */
+
+
+.Header {
+  font-family: "Montserrat";
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+/* Navigation bar */
+
+/* download buttons */
+.download-button {
+  margin: 3% 5% 3% 0;
+}
+
+/* title image */
+
+.title-img {
+
+  width: 40rem;
+  position: relative;
+  left:2rem;
+  top:2rem;
+  border-radius: 8px
 }

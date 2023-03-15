@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    container_name: backend
+    restart: always
+    links:
+      - db
+
+  webapp-fe:
+    build: ./Web-app (We-Care)
+    ports:
+      - "80:80"
+    container_name: webapp-frontend
+    restart: always
+    links:
+      - backend
+
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - dev-db-data1:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=habib
+      - POSTGRES_PASSWORD=habib
+      - POSTGRES_DB=habib
+    ports:
+      - "5432:5432"
+
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=ahmed7abib007@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=habib
+    ports:
+      - "5050:80"
+
+volumes:
+  dev-db-data1:

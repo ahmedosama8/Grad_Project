@@ -5,7 +5,6 @@ import 'package:mobile_app/pages/signup.dart';
 
 Widget buildSignupBtn(BuildContext context) {
   return GestureDetector(
-    onTap: () => print('Sign Up Button Pressed'),
     child: RichText(
       text: TextSpan(
         children: [

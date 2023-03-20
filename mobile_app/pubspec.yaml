@@ -37,6 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_login_template: ^1.1.0
   rflutter_alert: ^2.0.4
+  dropdown_button2: ^2.0.0
+  dob_input_field: ^2.0.0
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:

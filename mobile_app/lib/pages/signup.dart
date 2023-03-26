@@ -111,7 +111,7 @@ class _signupState extends State<signup> {
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.home),
-                        labelText: 'Address',
+                        labelText: 'Address (optional)',
                       ),
                       onChanged: (value) {}),
                   SizedBox(height: 20),

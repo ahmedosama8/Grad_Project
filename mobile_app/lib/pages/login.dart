@@ -87,6 +87,8 @@ class _MyWidgetState extends State<Login> {
                               if (passwordfilled == false ||
                                   emailfilled == false) {
                                 _onBasicAlertPressed(context);
+                              } else {
+                                printall();
                               }
                             },
                           ),
@@ -111,5 +113,10 @@ class _MyWidgetState extends State<Login> {
       title: "Log-in Error",
       desc: "please fill the data to log in ",
     ).show();
+  }
+
+  printall() {
+    print(email.text);
+    print(password.text);
   }
 }

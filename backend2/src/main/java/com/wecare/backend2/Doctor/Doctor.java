@@ -1,28 +1,22 @@
-package com.gp.gp.Patient;
+package com.wecare.backend2.Doctor;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gp.gp.Diagnosis.Diagnosis;
+import com.wecare.backend2.Diagnosis.Diagnosis;
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class Patient {
+public class Doctor {
     @Id
     @GeneratedValue
-    private int patient_id;
+    private int doctor_id;
 
     private String gender;
 
     private String phone1;
-
-    @Nullable
-    private String phone2;
 
     private String mail;
 
@@ -35,20 +29,21 @@ public class Patient {
 
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "doctor")
     @JsonIgnore
     private List<Diagnosis> diagnoses;
+
 
     private String nationalIdNumber;
 
     private String city;
     private String street;
 
-    public Patient() {
+    public Doctor() {
     }
 
-    public int getPatient_id() {
-        return patient_id;
+    public int getDoctor_id() {
+        return doctor_id;
     }
 
 
@@ -66,14 +61,6 @@ public class Patient {
 
     public void setPhone1(String phone1) {
         this.phone1 = phone1;
-    }
-
-    public String getPhone2() {
-        return phone2;
-    }
-
-    public void setPhone2(String phone2) {
-        this.phone2 = phone2;
     }
 
     public String getMail() {
@@ -156,11 +143,10 @@ public class Patient {
         this.street = street;
     }
 
-    public Patient(int patient_id, String gender, String phone1, String phone2, String mail, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street) {
-        this.patient_id = patient_id;
+    public Doctor(int doctor_id, String gender, String phone1, String mail, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street) {
+        this.doctor_id = doctor_id;
         this.gender = gender;
         this.phone1 = phone1;
-        this.phone2 = phone2;
         this.mail = mail;
         this.age = age;
         this.firstName = firstName;

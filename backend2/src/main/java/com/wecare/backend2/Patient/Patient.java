@@ -1,7 +1,7 @@
-package com.gp.gp.Doctor;
+package com.wecare.backend2.Patient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.gp.gp.Diagnosis.Diagnosis;
+import com.wecare.backend2.Diagnosis.Diagnosis;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,14 +12,17 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-public class Doctor {
+public class Patient {
     @Id
     @GeneratedValue
-    private int doctor_id;
+    private int patient_id;
 
     private String gender;
 
     private String phone1;
+
+    @Nullable
+    private String phone2;
 
     private String mail;
 
@@ -32,7 +35,7 @@ public class Doctor {
 
     private LocalDate birthDate;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "patient")
     @JsonIgnore
     private List<Diagnosis> diagnoses;
 
@@ -41,11 +44,11 @@ public class Doctor {
     private String city;
     private String street;
 
-    public Doctor() {
+    public Patient() {
     }
 
-    public int getDoctor_id() {
-        return doctor_id;
+    public int getPatient_id() {
+        return patient_id;
     }
 
 
@@ -63,6 +66,14 @@ public class Doctor {
 
     public void setPhone1(String phone1) {
         this.phone1 = phone1;
+    }
+
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
     }
 
     public String getMail() {
@@ -145,10 +156,11 @@ public class Doctor {
         this.street = street;
     }
 
-    public Doctor(int doctor_id, String gender, String phone1, String mail, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street) {
-        this.doctor_id = doctor_id;
+    public Patient(int patient_id, String gender, String phone1, String phone2, String mail, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street) {
+        this.patient_id = patient_id;
         this.gender = gender;
         this.phone1 = phone1;
+        this.phone2 = phone2;
         this.mail = mail;
         this.age = age;
         this.firstName = firstName;

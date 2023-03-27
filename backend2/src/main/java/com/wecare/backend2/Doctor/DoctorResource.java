@@ -1,4 +1,4 @@
-package com.gp.gp.Doctor;
+package com.wecare.backend2.Doctor;
 
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -17,6 +17,10 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class DoctorResource {
 
     private DoctorRepository doctorRepo;
+
+    public DoctorResource(DoctorRepository doctorRepo) {
+        this.doctorRepo = doctorRepo;
+    }
 
     @GetMapping("/list")
     public List<Doctor> list(){

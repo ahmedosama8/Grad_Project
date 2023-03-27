@@ -2,8 +2,20 @@ version: "3.9"
 
 services:
 
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - dev-db-data1:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=habib
+      - POSTGRES_PASSWORD=habib
+      - POSTGRES_DB=habib
+    ports:
+      - "5433:5433"
+
+
   backend:
-    build: ./backend
+    build: ./backend2/
     ports:
       - "8080:8080"
     container_name: backend
@@ -20,16 +32,6 @@ services:
     links:
       - backend
 
-  db:
-    image: postgres:13-alpine
-    volumes:
-      - dev-db-data1:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=habib
-      - POSTGRES_PASSWORD=habib
-      - POSTGRES_DB=habib
-    ports:
-      - "5432:5432"
 
 
   pgadmin:

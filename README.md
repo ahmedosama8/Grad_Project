@@ -4,5 +4,4 @@
 
 # Usage
 
-Run docker-compose --build \n
-Open localhost:80
+Run docker-compose --build 

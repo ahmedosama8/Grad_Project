@@ -81,6 +81,9 @@ class _MyWidgetState extends State<Login> {
                           height: 50, //height of button
                           width: 150,
                           child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color(0XFF66CA98)
+                            ),
                             child: Text("log in ",
                                 style: TextStyle(color: Colors.white)),
                             onPressed: () {
@@ -88,7 +91,7 @@ class _MyWidgetState extends State<Login> {
                                   emailfilled == false) {
                                 _onBasicAlertPressed(context);
                               } else {
-                                printall();
+                                Navigator.pushNamed(context, '/profile');
                               }
                             },
                           ),

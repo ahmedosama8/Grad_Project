@@ -10,7 +10,7 @@ class Login extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<Login> {
-  bool _ishiddenpassword = true;
+  bool ishiddenpassword = true;
   final password = TextEditingController();
   final email = TextEditingController();
   bool emailfilled = false;
@@ -56,14 +56,14 @@ class _MyWidgetState extends State<Login> {
                       ),
                       TextField(
                           controller: password,
-                          obscureText: _ishiddenpassword,
+                          obscureText: ishiddenpassword,
                           decoration: InputDecoration(
                             border: OutlineInputBorder(),
                             prefixIcon: Icon(Icons.lock),
                             suffixIcon: InkWell(
                               onTap: toggleIcon,
                               child: Icon(
-                                _ishiddenpassword
+                                ishiddenpassword
                                     ? Icons.visibility
                                     : Icons.visibility_off,
                               ),
@@ -86,9 +86,10 @@ class _MyWidgetState extends State<Login> {
                             onPressed: () {
                               if (passwordfilled == false ||
                                   emailfilled == false) {
-                                _onBasicAlertPressed(context);
+                                onBasicAlertPressed(context);
                               } else {
                                 printall();
+                                Navigator.pushNamed(context, '/home');
                               }
                             },
                           ),
@@ -103,11 +104,11 @@ class _MyWidgetState extends State<Login> {
 
   void toggleIcon() {
     setState(() {
-      _ishiddenpassword = !_ishiddenpassword;
+      ishiddenpassword = !ishiddenpassword;
     });
   }
 
-  _onBasicAlertPressed(context) {
+  onBasicAlertPressed(context) {
     Alert(
       context: context,
       title: "Log-in Error",

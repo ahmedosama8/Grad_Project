@@ -15,7 +15,7 @@ class _signupState extends State<signup> {
   TextEditingController dateinput = TextEditingController();
   final address = TextEditingController();
   final phonenumber = TextEditingController();
-  bool _ishiddenpassword = true;
+  bool ishiddenpassword = true;
   final password = TextEditingController();
   final email = TextEditingController();
   bool emailfilled = false;
@@ -86,14 +86,14 @@ class _signupState extends State<signup> {
                   SizedBox(height: 20),
                   TextField(
                       controller: password,
-                      obscureText: _ishiddenpassword,
+                      obscureText: ishiddenpassword,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.lock),
                         suffixIcon: InkWell(
                           onTap: toggleIcon,
                           child: Icon(
-                            _ishiddenpassword
+                            ishiddenpassword
                                 ? Icons.visibility
                                 : Icons.visibility_off,
                           ),
@@ -216,7 +216,7 @@ class _signupState extends State<signup> {
                             numberformatcheck == false ||
                             bod == false ||
                             GenderValue == false) {
-                          _onBasicAlertPressed(context);
+                          onBasicAlertPressed(context);
                         } else {
                           printAll();
                         }
@@ -232,11 +232,11 @@ class _signupState extends State<signup> {
 
   void toggleIcon() {
     setState(() {
-      _ishiddenpassword = !_ishiddenpassword;
+      ishiddenpassword = !ishiddenpassword;
     });
   }
 
-  _onBasicAlertPressed(context) {
+  onBasicAlertPressed(context) {
     Alert(
       context: context,
       title: "Sign-up Error",

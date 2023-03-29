@@ -36,8 +36,8 @@ class _SignUpState extends State<SignUp> {
 
 
 
-  void openSignUpScreen(){
-   Navigator.of(context).pushReplacementNamed('signup'); 
+  void openSignInScreen(){
+   Navigator.of(context).pushReplacementNamed('login'); 
   }
 
  @override
@@ -186,7 +186,7 @@ class _SignUpState extends State<SignUp> {
                       fontWeight: FontWeight.bold
                     )),
                     GestureDetector(
-                      onTap: openSignUpScreen,
+                      onTap: openSignInScreen,
                       child: Text(' Sign in here',
                       style: GoogleFonts.robotoCondensed(
                         color: Color(0XFF66CA98),

@@ -1,125 +1,168 @@
-import 'package:flutter/gestures.dart';
+// ignore_for_file: prefer_const_literals_to_create_immutables, unused_field
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_login_template/flutter_login_template.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:mobile_app/Widgets/SignupWidgetBtn.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+
 
 class Login extends StatefulWidget {
+  const Login({super.key});
+
   @override
-  State<Login> createState() => _MyWidgetState();
+  State<Login> createState() => _LoginState();
 }
 
-class _MyWidgetState extends State<Login> {
-  bool _ishiddenpassword = true;
-  final password = TextEditingController();
-  final email = TextEditingController();
-  bool emailfilled = false;
-  bool passwordfilled = false;
+class _LoginState extends State<Login> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  Future signIn() async {
+
+    print('tapped');
+    await FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text.trim(), password: _passwordController.text.trim());
+  }
+
+  void openSignUpScreen(){
+   Navigator.of(context).pushReplacementNamed('signup'); 
+  }
+
+ @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  } 
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            alignment: Alignment.center,
-            width: double.infinity,
-            height: double.infinity,
-            child: SingleChildScrollView(
-              //3ashan el keyboard lma kan yetl3 kan bytl3 errors
-              child: Padding(
-                  padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Center(
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          backgroundImage: AssetImage('assets/lotus.png'),
-                          radius: 40.0,
+      backgroundColor: Colors.grey[200],
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              // image 
+                Image.asset('assets/loggo.png',
+                height: 120,),
+                SizedBox(
+                  height: 20,
+                ),
+                // title 
+                Text('SIGN IN',
+                style: GoogleFonts.robotoCondensed(
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold
+                ),),
+                // subtitle
+                Text('Welocme back! Nice to see you again',
+                style: GoogleFonts.robotoCondensed(
+                  fontSize: 18,
+                ),),
+                SizedBox(
+                  height: 50,
+                ),
+                // Email Text field 
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12)
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        controller: _emailController,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Email'
                         ),
                       ),
-                      SizedBox(height: 50),
-                      TextField(
-                          controller: email,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Username',
-                            prefixIcon: Icon(Icons.email),
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              emailfilled = value.length >= 1 ? true : false;
-                            });
-                          }),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      TextField(
-                          controller: password,
-                          obscureText: _ishiddenpassword,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            prefixIcon: Icon(Icons.lock),
-                            suffixIcon: InkWell(
-                              onTap: toggleIcon,
-                              child: Icon(
-                                _ishiddenpassword
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                              ),
-                            ),
-                            labelText: 'Password',
-                          ),
-                          onChanged: (value) {
-                            setState(() {
-                              passwordfilled = value.length >= 1 ? true : false;
-                            });
-                          }),
-                      SizedBox(height: 20.0),
-                      Center(
-                        child: SizedBox(
-                          height: 50, //height of button
-                          width: 150,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0XFF66CA98)
-                            ),
-                            child: Text("log in ",
-                                style: TextStyle(color: Colors.white)),
-                            onPressed: () {
-                              if (passwordfilled == false ||
-                                  emailfilled == false) {
-                                _onBasicAlertPressed(context);
-                              } else {
-                                Navigator.pushNamed(context, '/profile');
-                              }
-                            },
-                          ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                // password text field
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12)
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        controller: _passwordController,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Password'
                         ),
                       ),
-                      SizedBox(height: 70),
-                      Center(child: buildSignupBtn(context))
-                    ],
-                  )),
-            )));
-  }
+                    ),
+                  ),
+                ),
+                
+                SizedBox(
+                  height: 15,
+                ),
+                // sign in button 
+                
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: GestureDetector(
+                    onTap: signIn,
+                    child: Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Color(0XFF66CA98),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Center(child: Text('Sign in',
+                      style: GoogleFonts.robotoCondensed(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                      ), 
+                      )),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 25,
+                ),
+                
+                // sign up text
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Not yet a member? ',
+                    style: GoogleFonts.robotoCondensed(
+                      fontWeight: FontWeight.bold
+                    )),
+                    GestureDetector(
+                      onTap: openSignUpScreen,
+                      child: Text(' Sign up now',
+                      style: GoogleFonts.robotoCondensed(
+                        color: Color(0XFF66CA98),
+                        fontWeight: FontWeight.bold
+                      ),),
+                    )
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
 
-  void toggleIcon() {
-    setState(() {
-      _ishiddenpassword = !_ishiddenpassword;
-    });
-  }
 
-  _onBasicAlertPressed(context) {
-    Alert(
-      context: context,
-      title: "Log-in Error",
-      desc: "please fill the data to log in ",
-    ).show();
-  }
 
-  printall() {
-    print(email.text);
-    print(password.text);
+    );
   }
 }

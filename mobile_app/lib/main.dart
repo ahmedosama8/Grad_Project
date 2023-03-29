@@ -1,21 +1,46 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
-import 'package:flutter_login_template/flutter_login_template.dart';
+import 'package:mobile_app/auth.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'pages/login.dart';
 import 'pages/signup.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(MaterialApp(
-  debugShowCheckedModeBanner: false,
+void main() async
+{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+
+  runApp(const MyApp());
+
+
+} 
+
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Color(0XFF66CA98),
+        primarySwatch: Colors.green,
       ),
-      initialRoute: '/',
+
+      //home: const WelcomePage(),
+      //initialRoute: '/auth',
       routes: {
-        '/': (context) => HomePage(),
-        '/login': (context) => Login(),
-        '/signup': (context) => signup(),
-        '/profile':(context) => WelcomePage(),
+        '/':(context) => const Auth(),
+        'login': (context) => const Login(),
+        'signup': (context) => const SignUp(),
+        'profile':(context) => const WelcomePage(),
       },
-    ));
+    );
+  }
+}
+
+

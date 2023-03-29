@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/login.dart';
@@ -43,7 +46,7 @@ class _WelcomePageState extends State<WelcomePage> {
         TestPage(),
         HomePage(),
         Login(),
-        signup(),
+        SignUp(),
         Dosh()
       ];
 
@@ -86,12 +89,35 @@ class _WelcomePageState extends State<WelcomePage> {
 }
 
 class TestPage extends StatelessWidget {
-  const TestPage({Key? key}) : super(key: key);
+  TestPage({Key? key}) : super(key: key);
+
+  final user = FirebaseAuth.instance.currentUser;   
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Dosh'),    );
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('hello you are signed in',
+            style: TextStyle(
+              fontSize: 22
+            )),
+            Text(
+            user!.email! ,
+            style: TextStyle(
+              fontSize: 22
+            )),
+            MaterialButton(onPressed: (){
+              FirebaseAuth.instance.signOut();
+            },
+            color: Color(0XFF66CA98),
+            child: Text('sign out'),
+            )
+          ],
+        ),     ),
+    );
  }
 }
 

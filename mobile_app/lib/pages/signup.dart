@@ -32,6 +32,7 @@ class _SignUpState extends State<SignUp> {
       return false;
     }
 
+
   }
 
 
@@ -94,6 +95,8 @@ class _SignUpState extends State<SignUp> {
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: 'Email'
+
+           
                         ),
                       ),
                     ),
@@ -196,12 +199,11 @@ class _SignUpState extends State<SignUp> {
                   ],
                 )
               ],
+
             ),
           ),
         ),
       ),
-
-
 
     );
   }

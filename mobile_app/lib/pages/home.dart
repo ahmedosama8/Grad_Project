@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -44,17 +45,28 @@ class HomePage extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ElevatedButton(onPressed:() {
-                    Navigator.pushNamed(context, '/login');
-                  }, 
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0XFF66CA98),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)
+                   Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'login');
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Color(0XFF66CA98),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Center(child: Text('GET STARTED',
+                      style: GoogleFonts.robotoCondensed(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                      ), 
+                      )),
                     ),
-                  ), 
-                  
-                  child: Text('GET STARTED'),),
+                  ),
+                ),
                 ],
               )
 

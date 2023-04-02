@@ -94,14 +94,9 @@ class _SignUpState extends State<SignUp> {
                         controller: _emailController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-<<<<<<< Updated upstream
                           hintText: 'Email'
 
            
-=======
-                          hintText: 'Email',
-                          icon: Icon(Icons.email)
->>>>>>> Stashed changes
                         ),
                       ),
                     ),

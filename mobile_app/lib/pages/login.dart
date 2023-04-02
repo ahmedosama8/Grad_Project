@@ -31,11 +31,7 @@ class _LoginState extends State<Login> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-<<<<<<< Updated upstream
   } 
-=======
-  }
->>>>>>> Stashed changes
 
   @override
   Widget build(BuildContext context) {
@@ -113,16 +109,10 @@ class _LoginState extends State<Login> {
                         controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
-<<<<<<< Updated upstream
-                          border: InputBorder.none,
-                          hintText: 'Password'
-                 ),
-=======
                             border: InputBorder.none, 
                             hintText: 'Password', 
                             icon: Icon(Icons.lock),
                             ),
->>>>>>> Stashed changes
                       ),
                     ),
                   ),
@@ -183,13 +173,10 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
-<<<<<<< Updated upstream
 
 
 
 
-=======
->>>>>>> Stashed changes
     );
   }
 }

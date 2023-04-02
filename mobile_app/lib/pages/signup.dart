@@ -94,9 +94,14 @@ class _SignUpState extends State<SignUp> {
                         controller: _emailController,
                         decoration: InputDecoration(
                           border: InputBorder.none,
+<<<<<<< Updated upstream
                           hintText: 'Email'
 
            
+=======
+                          hintText: 'Email',
+                          icon: Icon(Icons.email)
+>>>>>>> Stashed changes
                         ),
                       ),
                     ),
@@ -120,7 +125,8 @@ class _SignUpState extends State<SignUp> {
                         obscureText: true,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Password'
+                          hintText: 'Password',
+                          icon: Icon(Icons.lock)
                         ),
                       ),
                     ),
@@ -144,12 +150,14 @@ class _SignUpState extends State<SignUp> {
                         obscureText: true,
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Confirm Password'
+                          hintText: 'Confirm Password',
+                          icon: Icon(Icons.lock)
                         ),
                       ),
                     ),
                   ),
                 ),
+                
                 
                 SizedBox(
                   height: 15,

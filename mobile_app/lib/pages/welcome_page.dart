@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app/navBar.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/login.dart';
 import 'package:mobile_app/pages/signup.dart';
@@ -31,10 +32,6 @@ class _WelcomePageState extends State<WelcomePage> {
         items: navBarsItems() ,
         navBarStyle: NavBarStyle.style3,
         ),  
-
-
-
-      
       
       
       ),
@@ -52,40 +49,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
   }
 
-  List<PersistentBottomNavBarItem> navBarsItems() {
-    return [
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.home),
-        title: ("Home"),
-        activeColorPrimary: Color(0XFF66CA98),
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.search),
-        title: ("Search"),
-        activeColorPrimary:Color(0XFF66CA98) ,
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.chat_bubble),
-        title: ("Chat"),
-        activeColorPrimary: Color(0XFF66CA98),
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.bell),
-        title: ("Notification"),
-        activeColorPrimary: Color(0XFF66CA98),
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-      PersistentBottomNavBarItem(
-        icon: const Icon(CupertinoIcons.person),
-        title: ("Profile"),
-        activeColorPrimary: Color(0XFF66CA98),
-        inactiveColorPrimary: CupertinoColors.systemGrey,
-      ),
-    ];
-  }
+  
 }
 
 class TestPage extends StatelessWidget {

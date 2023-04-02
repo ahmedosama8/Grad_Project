@@ -3,8 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
-
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -15,22 +13,29 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  Future signIn() async {
 
-    print('tapped');
-    await FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text.trim(), password: _passwordController.text.trim());
+  // Future signIn() async {
+  //   await FirebaseAuth.instance.signInWithEmailAndPassword(
+  //       email: _emailController.text.trim(),
+  //       password: _passwordController.text.trim());
+  // }
+
+
+
+  void openSignUpScreen() {
+    Navigator.of(context).pushReplacementNamed('signup');
   }
 
-  void openSignUpScreen(){
-   Navigator.of(context).pushReplacementNamed('signup'); 
-  }
-
- @override
+  @override
   void dispose() {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+<<<<<<< Updated upstream
   } 
+=======
+  }
+>>>>>>> Stashed changes
 
   @override
   Widget build(BuildContext context) {
@@ -42,42 +47,49 @@ class _LoginState extends State<Login> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              // image 
-                Image.asset('assets/loggo.png',
-                height: 120,),
+                // image
+                Image.asset(
+                  'assets/loggo.png',
+                  height: 120,
+                ),
                 SizedBox(
                   height: 20,
                 ),
-                // title 
-                Text('SIGN IN',
-                style: GoogleFonts.robotoCondensed(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold
-                ),),
+                // title
+                Text(
+                  'SIGN IN',
+                  style: GoogleFonts.robotoCondensed(
+                      fontSize: 40, fontWeight: FontWeight.bold),
+                ),
+
+
                 // subtitle
-                Text('Welocme back! Nice to see you again',
-                style: GoogleFonts.robotoCondensed(
-                  fontSize: 18,
-                ),),
+                Text(
+                  'Welocme back! Nice to see you again',
+                  style: GoogleFonts.robotoCondensed(
+                    fontSize: 18,
+                  ),
+                ),
                 SizedBox(
                   height: 50,
                 ),
-                // Email Text field 
+
+
+
+                // Email Text field
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12)
-                    ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextField(
                         controller: _emailController,
                         decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Email'
-                        ),
+                            border: InputBorder.none, hintText: 'Email',
+                            icon: Icon(Icons.email)),
                       ),
                     ),
                   ),
@@ -85,49 +97,61 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 10,
                 ),
+
+
+
                 // password text field
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12)
-                    ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextField(
                         controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
+<<<<<<< Updated upstream
                           border: InputBorder.none,
                           hintText: 'Password'
                  ),
+=======
+                            border: InputBorder.none, 
+                            hintText: 'Password', 
+                            icon: Icon(Icons.lock),
+                            ),
+>>>>>>> Stashed changes
                       ),
                     ),
                   ),
                 ),
-                
+
                 SizedBox(
                   height: 15,
                 ),
-                // sign in button 
-                
+
+                // sign in button
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: GestureDetector(
-                    onTap: signIn,
+                    onTap: () {
+                      Navigator.pushNamed(context, 'profile');
+                    },
                     child: Container(
                       padding: EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: Color(0XFF66CA98),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Center(child: Text('Sign in',
-                      style: GoogleFonts.robotoCondensed(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                      ), 
+                      child: Center(
+                          child: Text(
+                        'Sign in',
+                        style: GoogleFonts.robotoCondensed(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
                       )),
                     ),
                   ),
@@ -135,22 +159,22 @@ class _LoginState extends State<Login> {
                 SizedBox(
                   height: 25,
                 ),
-                
+
                 // sign up text
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Not yet a member? ',
-                    style: GoogleFonts.robotoCondensed(
-                      fontWeight: FontWeight.bold
-                    )),
+                        style: GoogleFonts.robotoCondensed(
+                            fontWeight: FontWeight.bold)),
                     GestureDetector(
                       onTap: openSignUpScreen,
-                      child: Text(' Sign up now',
-                      style: GoogleFonts.robotoCondensed(
-                        color: Color(0XFF66CA98),
-                        fontWeight: FontWeight.bold
-                      ),),
+                      child: Text(
+                        ' Sign up now',
+                        style: GoogleFonts.robotoCondensed(
+                            color: Color(0XFF66CA98),
+                            fontWeight: FontWeight.bold),
+                      ),
                     )
                   ],
                 )
@@ -159,10 +183,13 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
+<<<<<<< Updated upstream
 
 
 
 
+=======
+>>>>>>> Stashed changes
     );
   }
 }

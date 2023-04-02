@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:mobile_app/auth.dart';
+import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/pages/app_screen.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 import 'pages/login.dart';
@@ -28,13 +30,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: primary,
       ),
 
       //home: const WelcomePage(),
       //initialRoute: '/auth',
       routes: {
-        '/':(context) => const Auth(),
+        '/':(context) => const AppScreen(),
         'login': (context) => const Login(),
         'signup': (context) => const SignUp(),
         'profile':(context) => const WelcomePage(),

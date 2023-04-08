@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/auth.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/app_screen.dart';
+import 'package:mobile_app/pages/emergency_info.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 import 'pages/login.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         'login': (context) => const Login(),
         'signup': (context) => const SignUp(),
         'profile':(context) => const WelcomePage(),
+        'emrsignup':(context) => const EmergencyInfoPage(),
 
 
   }

@@ -15,40 +15,18 @@ class _SignUpState extends State<SignUp> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
+
+  void signUpButton() {
+      Navigator.of(context).pushNamed('emrsignup');
+  }
   
-  
-  Future signUp() async {
-    if (passwordConfirmed()) {
-       await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailController.text.trim(), password: _passwordController.text.trim());
-    Navigator.of(context).pushNamed('/');
-    }
-    print('tapped');   
+
+
+  void openSignInScreen() {
+    Navigator.of(context).pushReplacementNamed('login');
   }
 
-  bool passwordConfirmed(){
-    if (_passwordController.text.trim()== _confirmPasswordController.text.trim()) {
-      return true;
-    } else {
-      return false;
-    }
-
-
-  }
-
-
-
-  void openSignInScreen(){
-   Navigator.of(context).pushReplacementNamed('login'); 
-  }
-
- @override
-  void dispose() {
-    super.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-  } 
-
+  @override
 
   @override
   Widget build(BuildContext context) {
@@ -60,44 +38,90 @@ class _SignUpState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              // image 
-                Image.asset('assets/loggo.png',
-                height: 120,),
+                // image
+                Image.asset(
+                  'assets/loggo.png',
+                  height: 100,
+                ),
                 SizedBox(
                   height: 20,
                 ),
-                // title 
-                Text('SIGN UP',
-                style: GoogleFonts.robotoCondensed(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold
-                ),),
-                // subtitle
-                Text('Welocme! Here you can sign up',
-                style: GoogleFonts.robotoCondensed(
-                  fontSize: 18,
-                ),),
-                SizedBox(
-                  height: 50,
+                // title
+                Text(
+                  'SIGN UP',
+                  style: GoogleFonts.robotoCondensed(
+                      fontSize: 40, fontWeight: FontWeight.bold),
                 ),
-                // Email Text field 
+                // subtitle
+                Text(
+                  'Welocme! Here you can sign up',
+                  style: GoogleFonts.robotoCondensed(
+                    fontSize: 18,
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+
+                //full name field
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12)
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Full Name',
+                            icon: Icon(Icons.person_2_outlined)),
+                      ),
                     ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                // Email Text field
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextField(
                         controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Email'
-
-           
-                        ),
+                            border: InputBorder.none,
+                            hintText: 'Email',
+                            icon: Icon(Icons.email)),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                //phone number field
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Phone No',
+                            icon: Icon(Icons.phone_iphone_outlined)),
                       ),
                     ),
                   ),
@@ -110,19 +134,17 @@ class _SignUpState extends State<SignUp> {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12)
-                    ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextField(
                         controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Password',
-                          icon: Icon(Icons.lock)
-                        ),
+                            border: InputBorder.none,
+                            hintText: 'Password',
+                            icon: Icon(Icons.lock)),
                       ),
                     ),
                   ),
@@ -135,46 +157,44 @@ class _SignUpState extends State<SignUp> {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(12)
-                    ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(12)),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextField(
                         controller: _confirmPasswordController,
                         obscureText: true,
                         decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Confirm Password',
-                          icon: Icon(Icons.lock)
-                        ),
+                            border: InputBorder.none,
+                            hintText: 'Confirm Password',
+                            icon: Icon(Icons.lock)),
                       ),
                     ),
                   ),
                 ),
-                
-                
+
                 SizedBox(
                   height: 15,
                 ),
-                // sign in button 
-                
+                // sign in button
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: GestureDetector(
-                    onTap: signUp,
+                    onTap: signUpButton,
                     child: Container(
                       padding: EdgeInsets.all(16),
                       decoration: BoxDecoration(
                         color: Color(0XFF66CA98),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Center(child: Text('Sign up',
-                      style: GoogleFonts.robotoCondensed(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18
-                      ), 
+                      child: Center(
+                          child: Text(
+                        'Continue',
+                        style: GoogleFonts.robotoCondensed(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
                       )),
                     ),
                   ),
@@ -182,32 +202,30 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(
                   height: 25,
                 ),
-                
+
                 // sign up text
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Already a member? ',
-                    style: GoogleFonts.robotoCondensed(
-                      fontWeight: FontWeight.bold
-                    )),
+                        style: GoogleFonts.robotoCondensed(
+                            fontWeight: FontWeight.bold)),
                     GestureDetector(
                       onTap: openSignInScreen,
-                      child: Text(' Sign in here',
-                      style: GoogleFonts.robotoCondensed(
-                        color: Color(0XFF66CA98),
-                        fontWeight: FontWeight.bold
-                      ),),
+                      child: Text(
+                        ' Sign in here',
+                        style: GoogleFonts.robotoCondensed(
+                            color: Color(0XFF66CA98),
+                            fontWeight: FontWeight.bold),
+                      ),
                     )
                   ],
                 )
               ],
-
             ),
           ),
         ),
       ),
-
     );
   }
 }

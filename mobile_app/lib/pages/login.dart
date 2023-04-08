@@ -14,12 +14,6 @@ class _LoginState extends State<Login> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  // Future signIn() async {
-  //   await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //       email: _emailController.text.trim(),
-  //       password: _passwordController.text.trim());
-  // }
-
 
 
   void openSignUpScreen() {
@@ -27,11 +21,7 @@ class _LoginState extends State<Login> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-  } 
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +36,7 @@ class _LoginState extends State<Login> {
                 // image
                 Image.asset(
                   'assets/loggo.png',
-                  height: 120,
+                  height: 100,
                 ),
                 SizedBox(
                   height: 20,
@@ -83,6 +73,7 @@ class _LoginState extends State<Login> {
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: TextField(
                         controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                             border: InputBorder.none, hintText: 'Email',
                             icon: Icon(Icons.email)),

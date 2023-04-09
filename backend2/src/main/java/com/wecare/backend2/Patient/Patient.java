@@ -1,20 +1,20 @@
 package com.wecare.backend2.Patient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wecare.backend2.Allergy.Allergy;
 import com.wecare.backend2.Diagnosis.Diagnosis;
+import com.wecare.backend2.MedicalCondition.MedicalCondition;
 import jakarta.annotation.Nullable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Patient {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int patient_id;
 
     private String gender;
@@ -25,6 +25,15 @@ public class Patient {
     private String phone2;
 
     private String mail;
+
+    private String bloodType;
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Allergy> allergies = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MedicalCondition> medicalConditions = new ArrayList<>();
 
     private int age;
 
@@ -154,6 +163,30 @@ public class Patient {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public String getBloodType() {
+        return bloodType;
+    }
+
+    public void setBloodType(String bloodType) {
+        this.bloodType = bloodType;
+    }
+
+    public List<Allergy> getAllergies() {
+        return allergies;
+    }
+
+    public void setAllergies(List<Allergy> allergies) {
+        this.allergies = allergies;
+    }
+
+    public List<MedicalCondition> getMedicalConditions() {
+        return medicalConditions;
+    }
+
+    public void setMedicalConditions(List<MedicalCondition> medicalConditions) {
+        this.medicalConditions = medicalConditions;
     }
 
     public Patient(int patient_id, String gender, String phone1, String phone2, String mail, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street) {

@@ -25,23 +25,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        initialRoute: 'profile',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: primary,
+        ),
 
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: primary,
-      ),
-
-      //home: const WelcomePage(),
-      //initialRoute: '/auth',
-      routes: {
-        '/':(context) => const AppScreen(),
-        'login': (context) => const Login(),
-        'signup': (context) => const SignUp(),
-        'profile':(context) => const WelcomePage(),
-        'emrsignup':(context) => const EmergencyInfoPage(),
-        'my_medical_records': (context) => const My_Medical_Records(),
-        
-
-
+        //home: const WelcomePage(),
+        //initialRoute: '/auth',
+        routes: {
+          '/': (context) => const AppScreen(),
+          'login': (context) => const Login(),
+          'signup': (context) => const SignUp(),
+          'profile': (context) => const WelcomePage(),
+          'emrsignup': (context) => const EmergencyInfoPage(),
+          'my_medical_records': (context) => const My_Medical_Records(),
+        });
   }
 }

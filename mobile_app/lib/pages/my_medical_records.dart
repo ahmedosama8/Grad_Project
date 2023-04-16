@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:mobile_app/classes/All_menu.dart';
 import 'package:mobile_app/colors.dart';
 
 class My_Medical_Records extends StatefulWidget {
@@ -13,6 +14,13 @@ class My_Medical_Records extends StatefulWidget {
 class _My_Medical_RecordsState extends State<My_Medical_Records> {
   // This controller will store the value of the search bar
   final TextEditingController _searchController = TextEditingController();
+  List<All_menu> all_menu_items = [
+    All_menu(
+        exmination: 'complete blood culture', name: 'alfa lab', pic: 'lab.png'),
+    All_menu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
+    All_menu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
+    All_menu(exmination: 'انف و حنجرة', name: 'Dr.ibraheem', pic: 'doctor.png'),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +72,13 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                     height: 100,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(175, 255, 255, 255)),
+                          backgroundColor: Color.fromARGB(228, 255, 255, 255),
+                          shadowColor: Colors.green,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              side: BorderSide(
+                                  color: Colors.greenAccent)) // elevation color
+                          ),
                       onPressed: () {
                         print('lab results');
                       },
@@ -80,7 +94,9 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                           Text(
                             'Lab results',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 13),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                                color: Colors.black),
                           ),
                         ],
                       ),
@@ -94,7 +110,13 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                     height: 100,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(175, 255, 255, 255)),
+                          backgroundColor: Color.fromARGB(228, 255, 255, 255),
+                          shadowColor: Colors.green,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              side: BorderSide(
+                                  color: Colors.greenAccent)) // elevation color
+                          ),
                       onPressed: () {
                         print('reports');
                       },
@@ -110,7 +132,9 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                           Text(
                             'Rad-Scans',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 13),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 13,
+                                color: Colors.black),
                           ),
                         ],
                       ),
@@ -124,7 +148,13 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                     height: 100,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(175, 255, 255, 255)),
+                          backgroundColor: Color.fromARGB(228, 255, 255, 255),
+                          shadowColor: Colors.green,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              side: BorderSide(
+                                  color: Colors.greenAccent)) // elevation color
+                          ),
                       onPressed: () {
                         print('Doctor');
                       },
@@ -140,7 +170,9 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                           Text(
                             'Doctors Visit',
                             style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 12),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: Colors.black),
                           ),
                         ],
                       ),
@@ -151,6 +183,50 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
             ),
             SizedBox(
               height: 50,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Text(
+                    'All',
+                    style: TextStyle(fontSize: 25),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: all_menu_items.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 1.0, horizontal: 4.0),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            color: Colors.greenAccent,
+                          ),
+                          borderRadius:
+                              BorderRadius.circular(20.0), //<-- SEE HERE
+                        ),
+                        child: ListTile(
+                          onTap: () {
+                            print('${all_menu_items[index].exmination}');
+                          },
+                          title: Text(all_menu_items[index].exmination),
+                          subtitle: Text(all_menu_items[index].name),
+                          leading: CircleAvatar(
+                              backgroundImage: AssetImage(
+                                  'assets/${all_menu_items[index].pic}')),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           ],
         ),

@@ -1,7 +1,7 @@
 .sidebarrad {
     flex: 1;
     height: calc(107vh - 50px);
-    background-color: #2565AE;
+    background-color: #66CA98;
     position: sticky;
     top: 50px;
     width: 219.125px;
@@ -44,7 +44,7 @@
   }
   
   .sidebarradListItem:hover {
-    background-color:#3C99DC;
+    background-color:#051d10;
     
   }
   

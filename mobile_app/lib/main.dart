@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/auth.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/app_screen.dart';
+import 'package:mobile_app/pages/emergency_info.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 import 'pages/login.dart';
@@ -24,20 +25,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialRoute: 'my_medical_records',
-        theme: ThemeData(
-          primarySwatch: primary,
-        ),
 
-        //home: const WelcomePage(),
-        //initialRoute: '/auth',
-        routes: {
-          '/': (context) => const AppScreen(),
-          'login': (context) => const Login(),
-          'signup': (context) => const SignUp(),
-          'profile': (context) => const WelcomePage(),
-          'my_medical_records': (context) => const My_Medical_Records(),
-        });
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: primary,
+      ),
+
+      //home: const WelcomePage(),
+      //initialRoute: '/auth',
+      routes: {
+        '/':(context) => const AppScreen(),
+        'login': (context) => const Login(),
+        'signup': (context) => const SignUp(),
+        'profile':(context) => const WelcomePage(),
+        'emrsignup':(context) => const EmergencyInfoPage(),
+        'my_medical_records': (context) => const My_Medical_Records(),
+        
+
+
   }
 }

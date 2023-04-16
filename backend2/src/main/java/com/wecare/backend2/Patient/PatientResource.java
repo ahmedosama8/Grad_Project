@@ -48,4 +48,36 @@ public class PatientResource {
         return ResponseEntity.created(loc).build();
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Patient> update(@PathVariable Integer id, @RequestBody Patient updatedPatient){
+        Optional<Patient> patient = patientRepo.findById(id);
+        if(patient.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+
+        Patient oldPatient = patient.get();
+
+        oldPatient.setFirstName(updatedPatient.getFirstName());
+        oldPatient.setMiddleName(updatedPatient.getMiddleName());
+        oldPatient.setLastName(updatedPatient.getLastName());
+        oldPatient.setAge(updatedPatient.getAge());
+        oldPatient.setAllergies(updatedPatient.getAllergies());
+        oldPatient.setBloodType(updatedPatient.getBloodType());
+        oldPatient.setMedicalConditions(updatedPatient.getMedicalConditions());
+        oldPatient.setDiagnoses(updatedPatient.getDiagnoses());
+        oldPatient.setCity(updatedPatient.getCity());
+        oldPatient.setPhone1(updatedPatient.getPhone1());
+        oldPatient.setPhone2(updatedPatient.getPhone2());
+        oldPatient.setMail(updatedPatient.getMail());
+        oldPatient.setGender(updatedPatient.getGender());
+        oldPatient.setBirthDate(updatedPatient.getBirthDate());
+        oldPatient.setNationalIdNumber(updatedPatient.getNationalIdNumber());
+        oldPatient.setStreet(updatedPatient.getStreet());
+
+        Patient savedPatient = patientRepo.save(oldPatient);
+        return ResponseEntity.ok(savedPatient);
+
+    }
+
+
 }

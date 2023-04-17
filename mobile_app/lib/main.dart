@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/auth.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/app_screen.dart';
+import 'package:mobile_app/pages/doctor_report.dart';
 import 'package:mobile_app/pages/doctor_visit.dart';
 import 'package:mobile_app/pages/emergency_info.dart';
 import 'package:mobile_app/pages/home.dart';
+import 'package:mobile_app/pages/rad_report.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
-import 'package:mobile_app/rad_scans.dart';
+import 'package:mobile_app/pages/rad_scans.dart';
 import 'pages/login.dart';
 import 'pages/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -49,7 +51,9 @@ class MyApp extends StatelessWidget {
           'my_medical_records': (context) => const My_Medical_Records(),
           'lab_results': (context) => const lab_results(),
           'rad_scans': (context) => const rad_scans(),
-          'doctor_visit': (context) => const doctor_visit()
+          'doctor_visit': (context) => const doctor_visit(),
+          'dr_report': (context) => const dr_report(),
+          'rad_report': (context) => const rad_report(),
         });
   }
 }

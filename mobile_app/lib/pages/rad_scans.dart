@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:mobile_app/pages/rad_report.dart';
 
-import 'classes/All_menu.dart';
+import '../classes/All_menu.dart';
 
 class rad_scans extends StatefulWidget {
   const rad_scans({super.key});
@@ -59,7 +60,11 @@ class _rad_scansState extends State<rad_scans> {
                         ),
                         child: ListTile(
                           onTap: () {
-                            print('${all_menu_items[index].exmination}');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const rad_report()),
+                            );
                           },
                           title: Text(all_menu_items[index].exmination),
                           subtitle: Text(all_menu_items[index].name),

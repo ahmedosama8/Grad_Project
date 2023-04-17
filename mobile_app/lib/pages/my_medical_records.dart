@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/classes/All_menu.dart';
 import 'package:mobile_app/pages/doctor_visit.dart';
 import 'package:mobile_app/pages/lab_results.dart';
-import 'package:mobile_app/rad_scans.dart';
+import 'package:mobile_app/pages/rad_scans.dart';
 
 class My_Medical_Records extends StatefulWidget {
   const My_Medical_Records({super.key});

@@ -52,9 +52,7 @@ class _lab_resultsState extends State<lab_results> {
                               BorderRadius.circular(20.0), //<-- SEE HERE
                         ),
                         child: ListTile(
-                          onTap: () {
-                            print('${all_menu_items[index].exmination}');
-                          },
+                          onTap: () {},
                           title: Text(all_menu_items[index].exmination),
                           subtitle: Text(all_menu_items[index].name),
                           leading: CircleAvatar(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/pages/doctor_report.dart';
 import '../classes/All_menu.dart';
 
 class doctor_visit extends StatefulWidget {
@@ -64,7 +65,11 @@ class _doctor_visitState extends State<doctor_visit> {
                         ),
                         child: ListTile(
                           onTap: () {
-                            print('${all_menu_items[index].exmination}');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const dr_report()),
+                            );
                           },
                           title: Text(all_menu_items[index].exmination),
                           subtitle: Text(all_menu_items[index].name),

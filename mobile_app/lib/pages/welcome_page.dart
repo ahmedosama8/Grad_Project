@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/navBar.dart';
+import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/login.dart';
 import 'package:mobile_app/pages/my_medical_records.dart';
 import 'package:mobile_app/pages/signup.dart';
@@ -39,61 +40,7 @@ class _WelcomePageState extends State<WelcomePage> {
 
 
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
-                  child: Text('Welcome Back, Dosh!',
-                   style: GoogleFonts.robotoCondensed(
-                                fontSize: 28,
-                   )
-                            )
-                ),
-                Spacer(),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
-                  child: Icon(Icons.notifications_sharp),
-                )
-              ],
-            ),
-          Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                  child: Text('Recent',
-                   style: GoogleFonts.robotoCondensed(
-                                fontSize: 18,
-                   )
-                            )
-                ),
-                Spacer(),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                  child: Text('Sea all',
-                   style: GoogleFonts.robotoCondensed(
-                                fontSize: 14,
-                   )
-                   ),
-                )
-              ],
-            ),  
-          ],
-        )
-        ),
-    ); 
-  }
-}
 
 class BarCode extends StatelessWidget {
   const BarCode({super.key});

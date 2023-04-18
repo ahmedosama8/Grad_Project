@@ -2,16 +2,31 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_app/labs_data_model.dart';
+import 'package:mobile_app/labs_detail.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+   HomePage({Key? key}) : super(key: key);
+
+
+  static List <String> labName=['Alfa Lab','Al-Mokhtabar','Cairo Scan','Alfa Scan','Al-Borg','Dokki Scan','El-Ahram Scan'];
+  static List url = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi-sf9GkxgOv6_0kTx0FC6ATbTgNRqLPFBw&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJp43zftj2Rh5vbGQeCBuT5Qe9sLb9BxHx0A&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcLNcRrqgXV9X-ZtHd8kb4WxAe_NECCVwVww&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi-sf9GkxgOv6_0kTx0FC6ATbTgNRqLPFBw&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1dNIjOt_6An16uMqW-dZ5nQbTctV2XW14jg&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYC6guz8gX_0mgWxxqgraIHbafE4PPW0_wUw&usqp=CAU',
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkWOFRgGI2gQ0bM--PbVcrlUMEl0_kAJO33A&usqp=CAU'];
+
+  final List <LabsDataModel> Labdata = List.generate(labName.length,
+  (index) => LabsDataModel(labName[index], '${url[index]}', '${labName[index]} Description....'));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Column(
+        child: Column(
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,6 +46,7 @@ class HomePage extends StatelessWidget {
               )
             ],
           ),
+          
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -331,6 +347,45 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
+          
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 18, 20, 20),
+                  child: Text('Labs & Centers',
+                      style: GoogleFonts.robotoCondensed(
+                        fontSize: 18,
+                      ))),
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(25, 18, 20, 20),
+                child: Text('Sea all',
+                    style: GoogleFonts.robotoCondensed(
+                      fontSize: 14,
+                    )),
+              )
+            ],
+          ),
+
+          Expanded(
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: Labdata.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  child: ListTile(
+                    title:Text(Labdata[index].name),
+                    leading: SizedBox(width: 50,height: 50,
+                    child: Image.network(Labdata[index].imageUrl),),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: Labdata[index])));
+                    },
+          
+                  ),
+                );
+              },),
+          )
           // ignore: sized_box_for_whitespace
           // Container(
           //   height: 110,

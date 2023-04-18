@@ -33,7 +33,7 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   List<Widget> screens() {
-    return [HomePage(), My_Medical_Records(), HomePage(), HomePage(), HomePage()];
+    return [HomePage(), My_Medical_Records(), BarCode(), Pharmacy(), Profile()];
   }
 }
 
@@ -92,5 +92,30 @@ class HomePage extends StatelessWidget {
         )
         ),
     ); 
+  }
+}
+
+class BarCode extends StatelessWidget {
+  const BarCode({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+class Pharmacy extends StatelessWidget {
+  const Pharmacy({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
+  }
+}
+class Profile extends StatelessWidget {
+  const Profile({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold();
   }
 }

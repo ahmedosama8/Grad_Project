@@ -34,40 +34,14 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   List<Widget> screens() {
-    return [TestPage(), My_Medical_Records(), Login(), SignUp(), Dosh()];
+    return [HomePage(), My_Medical_Records(), Login(), SignUp(), HomePage()];
   }
 }
 
-class TestPage extends StatelessWidget {
-  TestPage({Key? key}) : super(key: key);
 
-  final user = FirebaseAuth.instance.currentUser;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('hello you are signed in', style: TextStyle(fontSize: 22)),
-            Text(user!.email!, style: TextStyle(fontSize: 22)),
-            MaterialButton(
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-              },
-              color: Color(0XFF66CA98),
-              child: Text('sign out'),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class Dosh extends StatelessWidget {
-  const Dosh({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

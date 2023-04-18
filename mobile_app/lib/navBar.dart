@@ -23,8 +23,8 @@ List<PersistentBottomNavBarItem> navBarsItems() {
       inactiveColorPrimary: CupertinoColors.systemGrey,
     ),
     PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.bell),
-      title: ("Notification"),
+      icon: const Icon(Icons.local_pharmacy_outlined),
+      title: ("Pharmacy"),
       activeColorPrimary: Color(0XFF66CA98),
       inactiveColorPrimary: CupertinoColors.systemGrey,
     ),

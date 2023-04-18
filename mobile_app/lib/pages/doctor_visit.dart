@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/pages/doctor_report.dart';
-import '../classes/All_menu.dart';
+import '../classes/all_menu.dart';
 
 class doctor_visit extends StatefulWidget {
   const doctor_visit({super.key});
@@ -10,25 +10,23 @@ class doctor_visit extends StatefulWidget {
 }
 
 class _doctor_visitState extends State<doctor_visit> {
-  List<All_menu> all_menu_items = [
-    All_menu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    All_menu(exmination: 'knee injury', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    All_menu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    All_menu(exmination: 'muscles', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    All_menu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    All_menu(exmination: ' brain', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    All_menu(exmination: 'leg', name: 'Dr.fathy', pic: 'doctor.png'),
-    All_menu(
-        exmination: 'lala  lalala', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    All_menu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    All_menu(exmination: 'knee injury', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    All_menu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    All_menu(exmination: 'muscles', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    All_menu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    All_menu(exmination: ' brain', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    All_menu(exmination: 'leg', name: 'Dr.fathy', pic: 'doctor.png'),
-    All_menu(
-        exmination: 'lala  lalala', name: 'Dr.ibraheem', pic: 'doctor.png'),
+  List<Allmenu> Allmenu_items = [
+    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
+    Allmenu(exmination: 'knee injury', name: 'Dr.ibraheem', pic: 'doctor.png'),
+    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
+    Allmenu(exmination: 'muscles', name: 'Dr.ibraheem', pic: 'doctor.png'),
+    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
+    Allmenu(exmination: ' brain', name: 'Dr.ibraheem', pic: 'doctor.png'),
+    Allmenu(exmination: 'leg', name: 'Dr.fathy', pic: 'doctor.png'),
+    Allmenu(exmination: 'lala  lalala', name: 'Dr.ibraheem', pic: 'doctor.png'),
+    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
+    Allmenu(exmination: 'knee injury', name: 'Dr.ibraheem', pic: 'doctor.png'),
+    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
+    Allmenu(exmination: 'muscles', name: 'Dr.ibraheem', pic: 'doctor.png'),
+    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
+    Allmenu(exmination: ' brain', name: 'Dr.ibraheem', pic: 'doctor.png'),
+    Allmenu(exmination: 'leg', name: 'Dr.fathy', pic: 'doctor.png'),
+    Allmenu(exmination: 'lala  lalala', name: 'Dr.ibraheem', pic: 'doctor.png'),
   ];
 
   @override
@@ -50,7 +48,7 @@ class _doctor_visitState extends State<doctor_visit> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   controller: ScrollController(),
-                  itemCount: all_menu_items.length,
+                  itemCount: Allmenu_items.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
@@ -71,11 +69,11 @@ class _doctor_visitState extends State<doctor_visit> {
                                   builder: (context) => const dr_report()),
                             );
                           },
-                          title: Text(all_menu_items[index].exmination),
-                          subtitle: Text(all_menu_items[index].name),
+                          title: Text(Allmenu_items[index].exmination),
+                          subtitle: Text(Allmenu_items[index].name),
                           leading: CircleAvatar(
                               backgroundImage: AssetImage(
-                                  'assets/${all_menu_items[index].pic}')),
+                                  'assets/${Allmenu_items[index].pic}')),
                         ),
                       ),
                     );

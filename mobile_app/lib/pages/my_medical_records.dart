@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/All_menu.dart';
+import 'package:mobile_app/classes/all_menu.dart';
 import 'package:mobile_app/pages/doctor_visit.dart';
 import 'package:mobile_app/pages/lab_results.dart';
 import 'package:mobile_app/pages/rad_scans.dart';
@@ -14,17 +14,17 @@ class My_Medical_Records extends StatefulWidget {
 class _My_Medical_RecordsState extends State<My_Medical_Records> {
   // This controller will store the value of the search bar
   final TextEditingController _searchController = TextEditingController();
-  List<All_menu> all_menu_items = [
-    All_menu(
+  List<Allmenu> Allmenu_items = [
+    Allmenu(
         exmination: 'complete blood culture', name: 'alfa lab', pic: 'lab.png'),
-    All_menu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    All_menu(exmination: 'Leg', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    All_menu(
+    Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
+    Allmenu(exmination: 'Leg', name: 'Dr.ibraheem', pic: 'doctor.png'),
+    Allmenu(
         exmination: 'complete blood culture', name: 'alfa lab', pic: 'lab.png'),
-    All_menu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    All_menu(exmination: 'Leg', name: 'Dr.ibraheem', pic: 'doctor.png'),
+    Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
+    Allmenu(exmination: 'Leg', name: 'Dr.ibraheem', pic: 'doctor.png'),
   ];
   @override
   Widget build(BuildContext context) {
@@ -213,7 +213,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
               child: ListView.builder(
                 shrinkWrap: true,
                 controller: ScrollController(),
-                itemCount: all_menu_items.length,
+                itemCount: Allmenu_items.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
@@ -226,13 +226,14 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: ListTile(
-                        onTap: (  
-                        ) {print('tapped');},
-                        title: Text(all_menu_items[index].exmination),
-                        subtitle: Text(all_menu_items[index].name),
+                        onTap: () {
+                          print('tapped');
+                        },
+                        title: Text(Allmenu_items[index].exmination),
+                        subtitle: Text(Allmenu_items[index].name),
                         leading: CircleAvatar(
                             backgroundImage: AssetImage(
-                                'assets/${all_menu_items[index].pic}')),
+                                'assets/${Allmenu_items[index].pic}')),
                       ),
                     ),
                   );

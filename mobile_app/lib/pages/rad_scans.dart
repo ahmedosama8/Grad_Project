@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:mobile_app/pages/rad_report.dart';
 
-import '../classes/All_menu.dart';
+import '../classes/all_menu.dart';
 
 class rad_scans extends StatefulWidget {
   const rad_scans({super.key});
@@ -13,18 +11,18 @@ class rad_scans extends StatefulWidget {
 }
 
 class _rad_scansState extends State<rad_scans> {
-  List<All_menu> all_menu_items = [
-    All_menu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'leg MRI', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'brain CT', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'HAND MRI', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'lung x-ray', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'mamography ', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'HAND MRI', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'lung x-ray', name: 'alfa scan', pic: 'rad.png'),
-    All_menu(exmination: 'mamography ', name: 'alfa scan', pic: 'rad.png'),
+  List<Allmenu> Allmenu_items = [
+    Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'leg MRI', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'brain CT', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'HAND MRI', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'lung x-ray', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'mamography ', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'HAND MRI', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'lung x-ray', name: 'alfa scan', pic: 'rad.png'),
+    Allmenu(exmination: 'mamography ', name: 'alfa scan', pic: 'rad.png'),
   ];
   @override
   Widget build(BuildContext context) {
@@ -45,7 +43,7 @@ class _rad_scansState extends State<rad_scans> {
                 child: ListView.builder(
                   controller: ScrollController(),
                   shrinkWrap: true,
-                  itemCount: all_menu_items.length,
+                  itemCount: Allmenu_items.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
@@ -66,11 +64,11 @@ class _rad_scansState extends State<rad_scans> {
                                   builder: (context) => const rad_report()),
                             );
                           },
-                          title: Text(all_menu_items[index].exmination),
-                          subtitle: Text(all_menu_items[index].name),
+                          title: Text(Allmenu_items[index].exmination),
+                          subtitle: Text(Allmenu_items[index].name),
                           leading: CircleAvatar(
                               backgroundImage: AssetImage(
-                                  'assets/${all_menu_items[index].pic}')),
+                                  'assets/${Allmenu_items[index].pic}')),
                         ),
                       ),
                     );

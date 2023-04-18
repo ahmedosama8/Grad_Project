@@ -51,8 +51,6 @@ class MyApp extends StatelessWidget {
           'lab_results': (context) => const lab_results(),
           'rad_scans': (context) => const rad_scans(),
           'doctor_visit': (context) => const doctor_visit(),
-          'dr_report': (context) => const dr_report(),
-          'rad_report': (context) => const rad_report(),
         });
   }
 }

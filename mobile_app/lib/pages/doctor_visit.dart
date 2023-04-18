@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/pages/doctor_report.dart';
-import '../classes/all_menu.dart';
+import 'package:mobile_app/classes/doc_form.dart';
 
 class doctor_visit extends StatefulWidget {
   const doctor_visit({super.key});
@@ -10,25 +10,26 @@ class doctor_visit extends StatefulWidget {
 }
 
 class _doctor_visitState extends State<doctor_visit> {
-  List<Allmenu> Allmenu_items = [
-    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    Allmenu(exmination: 'knee injury', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    Allmenu(exmination: 'muscles', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    Allmenu(exmination: ' brain', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    Allmenu(exmination: 'leg', name: 'Dr.fathy', pic: 'doctor.png'),
-    Allmenu(exmination: 'lala  lalala', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    Allmenu(exmination: 'knee injury', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    Allmenu(exmination: 'muscles', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    Allmenu(exmination: ' brain', name: 'Dr.ibraheem', pic: 'doctor.png'),
-    Allmenu(exmination: 'leg', name: 'Dr.fathy', pic: 'doctor.png'),
-    Allmenu(exmination: 'lala  lalala', name: 'Dr.ibraheem', pic: 'doctor.png'),
+  static List<String> exminName = ['Lung', 'hand', 'Brain '];
+  static List drname = ['andraw tate', 'benzema', 'Ga3fr el3omda'];
+  static List meds = [
+    'moov',
+    'panadol',
+    'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled (and possibly unstyled) text that follow it. You can use an empty string for text if you want to start with styled text',
   ];
-
+  static List report = [
+    'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled (and possibly unstyled) text that follow it. You can use an empty string for text if you want to start with styled text',
+    'very well',
+    'need to go to doctor',
+  ];
+  final List<Docform> docdata = List.generate(
+      exminName.length,
+      (index) => Docform(
+          exminName: exminName[index],
+          report: '${report[index]}',
+          meds: '${meds[index]}',
+          drname: '${drname[index]}',
+          pic: 'doctor.png'));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +49,7 @@ class _doctor_visitState extends State<doctor_visit> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   controller: ScrollController(),
-                  itemCount: Allmenu_items.length,
+                  itemCount: docdata.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
@@ -63,17 +64,16 @@ class _doctor_visitState extends State<doctor_visit> {
                         ),
                         child: ListTile(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const dr_report()),
-                            );
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => dr_report(
+                                      docform: docdata[index],
+                                    )));
                           },
-                          title: Text(Allmenu_items[index].exmination),
-                          subtitle: Text(Allmenu_items[index].name),
+                          title: Text(docdata[index].exminName),
+                          subtitle: Text(docdata[index].drname),
                           leading: CircleAvatar(
-                              backgroundImage: AssetImage(
-                                  'assets/${Allmenu_items[index].pic}')),
+                              backgroundImage:
+                                  AssetImage('assets/${docdata[index].pic}')),
                         ),
                       ),
                     );

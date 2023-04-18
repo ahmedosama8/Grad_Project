@@ -14,12 +14,7 @@ class My_Medical_Records extends StatefulWidget {
 class _My_Medical_RecordsState extends State<My_Medical_Records> {
   // This controller will store the value of the search bar
   final TextEditingController _searchController = TextEditingController();
-  List<Allmenu> Allmenu_items = [
-    Allmenu(
-        exmination: 'complete blood culture', name: 'alfa lab', pic: 'lab.png'),
-    Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    Allmenu(exmination: 'Leg', name: 'Dr.ibraheem', pic: 'doctor.png'),
+  List<Allmenu> all_menu_items = [
     Allmenu(
         exmination: 'complete blood culture', name: 'alfa lab', pic: 'lab.png'),
     Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
@@ -33,7 +28,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+          padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
           child: Text(
             'Medical Records',
             style: TextStyle(
@@ -213,7 +208,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
               child: ListView.builder(
                 shrinkWrap: true,
                 controller: ScrollController(),
-                itemCount: Allmenu_items.length,
+                itemCount: all_menu_items.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
@@ -229,11 +224,11 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                         onTap: () {
                           print('tapped');
                         },
-                        title: Text(Allmenu_items[index].exmination),
-                        subtitle: Text(Allmenu_items[index].name),
+                        title: Text(all_menu_items[index].exmination),
+                        subtitle: Text(all_menu_items[index].name),
                         leading: CircleAvatar(
                             backgroundImage: AssetImage(
-                                'assets/${Allmenu_items[index].pic}')),
+                                'assets/${all_menu_items[index].pic}')),
                       ),
                     ),
                   );

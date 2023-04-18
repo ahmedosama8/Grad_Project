@@ -29,10 +29,10 @@ class _rad_reportState extends State<rad_report> {
                   clipBehavior: Clip.antiAlias,
                   shadowColor: Colors.greenAccent,
                   child: Column(
-                    children: [
+                    children: const [
                       ListTile(
                         leading: Icon(Icons.local_hospital),
-                        title: const Text('Radiology Center: name'),
+                        title: Text('Radiology Center: name'),
                       ),
                     ],
                   ),
@@ -65,13 +65,13 @@ class _rad_reportState extends State<rad_report> {
                   clipBehavior: Clip.antiAlias,
                   shadowColor: Colors.greenAccent,
                   child: Column(
-                    children: [
+                    children: const [
                       ListTile(
                         leading: CircleAvatar(
                           radius: 20,
                           backgroundImage: AssetImage('assets/doctor.png'),
                         ),
-                        title: const Text('perfromed by: name'),
+                        title: Text('perfromed by: name'),
                       ),
                     ],
                   ),

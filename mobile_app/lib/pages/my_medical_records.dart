@@ -33,7 +33,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
+          padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
           child: Text(
             'Medical Records',
             style: TextStyle(

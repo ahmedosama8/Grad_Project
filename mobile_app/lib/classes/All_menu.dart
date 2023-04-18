@@ -1,7 +1,13 @@
 class Allmenu {
-  String exmination = '';
-  String name = '';
+  String exminName = '';
+  String byname = '';
   String pic = ''; //el mafruud tkon el eh???
-
-  Allmenu({required this.exmination, required this.name, required this.pic});
+  String report = '';
+  String others = '';
+  Allmenu(
+      {required this.exminName,
+      required this.byname,
+      required this.pic,
+      required this.others,
+      required this.report});
 }

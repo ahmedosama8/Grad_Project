@@ -1,6 +1,5 @@
 import React from "react";
 import "./Sidebar.css";
-import AcUnitIcon from "@mui/icons-material/AcUnit";
 import BiotechIcon from "@mui/icons-material/Biotech";
 import ScienceIcon from "@mui/icons-material/Science";
 import "./Sidebar.css";
@@ -33,6 +32,12 @@ function Sidebar() {
               <a href="/livertest">
                 <ScienceIcon className="adminsidebarIcon" />
                 Liver Function Test
+              </a>
+            </li>
+            <li className="adminsidebarListItem">
+              <a href="/clinicalchemistry">
+                <ScienceIcon className="adminsidebarIcon" />
+                Lipid Profile
               </a>
             </li>
           </ul>

@@ -2,6 +2,9 @@ import React from "react";
 import SidebarClinic from "../Sidebar/SidebarClinic";
 import Topbar from "../Topbar/Topbar";
 import "./patientclinic.css";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+//editor rich text
 
 export default function PatientClinic() {
   const Input = () => {
@@ -12,6 +15,7 @@ export default function PatientClinic() {
   const onAddBtnClick = (event) => {
     setInputList(inputList.concat(<Input key={inputList.length} />));
   };
+
   return (
     <div>
       <Topbar />
@@ -68,7 +72,13 @@ export default function PatientClinic() {
 
           <h3>Visit Result</h3>
           <div>
-            <label for="comments">Findings</label>
+            {/* <Editor
+              toolbarClassName="toolbarClassName"
+              wrapperClassName="wrapperClassName"
+              editorClassName="editorClassName"
+              onEditorStateChange={this.onEditorStateChange}
+            /> */}
+            ;<label for="comments">Findings</label>
             <textarea
               className="findingbox"
               id="comments"

@@ -226,7 +226,8 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: ListTile(
-                        onTap: () {},
+                        onTap: (  
+                        ) {print('tapped');},
                         title: Text(all_menu_items[index].exmination),
                         subtitle: Text(all_menu_items[index].name),
                         leading: CircleAvatar(

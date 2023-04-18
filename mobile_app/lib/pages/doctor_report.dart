@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/classes/doc_form.dart';
 
-class dr_report extends StatefulWidget {
-  const dr_report({super.key});
+class dr_report extends StatelessWidget {
+  final Docform docform;
+  const dr_report({Key? key, required this.docform}) : super(key: key);
 
-  @override
-  State<dr_report> createState() => _dr_reportState();
-}
-
-class _dr_reportState extends State<dr_report> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Exmination name'),
+        title: Text(docform.exminName),
         centerTitle: true,
         backgroundColor: Colors.greenAccent,
         shadowColor: Colors.greenAccent,
@@ -35,7 +32,7 @@ class _dr_reportState extends State<dr_report> {
                           radius: 20,
                           backgroundImage: AssetImage('assets/doctor.png'),
                         ),
-                        title: const Text('Doctor: name'),
+                        title: Text('Doctor: ${docform.drname}'),
                       ),
                     ],
                   ),
@@ -54,7 +51,7 @@ class _dr_reportState extends State<dr_report> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'panadol,adol,moov',
+                            docform.meds,
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),
@@ -78,7 +75,7 @@ class _dr_reportState extends State<dr_report> {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'Patients may require portable suction machines in their home if they are unable to clear their own secretions for a variety of reasons. This includes patients who are receiving palliative care and find it difficult or impossible to clear their own secretions, individuals with chronic illnesses (COPD, ALS, cystic fibrosis, bronchiectasis, etc.), or patients who have undergone a tracheostomy.Patients may require portable suction machines in their home if they are unable to clear their own secretions for a variety of reasons. This includes patients who are receiving palliative care and find it difficult or impossible to clear their own secretions, individuals with chronic illnesses (COPD, ALS, cystic fibrosis, bronchiectasis, etc.), or patients who have undergone a tracheostomy',
+                            docform.report,
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

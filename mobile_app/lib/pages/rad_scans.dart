@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/pages/rad_report.dart';
-
-import '../classes/all_menu.dart';
+import 'package:mobile_app/classes/rad_form.dart';
 
 class rad_scans extends StatefulWidget {
   const rad_scans({super.key});
@@ -11,19 +10,26 @@ class rad_scans extends StatefulWidget {
 }
 
 class _rad_scansState extends State<rad_scans> {
-  List<Allmenu> Allmenu_items = [
-    Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'leg MRI', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'brain CT', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'HAND MRI', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'lung x-ray', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'mamography ', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'HAND MRI', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'lung x-ray', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'mamography ', name: 'alfa scan', pic: 'rad.png'),
+  static List<String> exminName = ['Lung', 'hand', 'Brain CT'];
+  static List byname = ['andraw tate', 'benzema', 'Ga3fr el3omda'];
+  static List report = [
+    'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled (and possibly unstyled) text that follow it. You can use an empty string for text if you want to start with styled text',
+    'very well',
+    'need to go to doctor',
   ];
+  static List radname = [
+    'alfa scan',
+    'nile scan',
+    'scan by us',
+  ];
+  final List<Radform> raddata = List.generate(
+      exminName.length,
+      (index) => Radform(
+          exminName: exminName[index],
+          report: '${report[index]}',
+          radname: '${radname[index]}',
+          byname: '${byname[index]}',
+          pic: 'rad.png'));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +49,7 @@ class _rad_scansState extends State<rad_scans> {
                 child: ListView.builder(
                   controller: ScrollController(),
                   shrinkWrap: true,
-                  itemCount: Allmenu_items.length,
+                  itemCount: raddata.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
@@ -58,17 +64,16 @@ class _rad_scansState extends State<rad_scans> {
                         ),
                         child: ListTile(
                           onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const rad_report()),
-                            );
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => rad_report(
+                                      radform: raddata[index],
+                                    )));
                           },
-                          title: Text(Allmenu_items[index].exmination),
-                          subtitle: Text(Allmenu_items[index].name),
+                          title: Text(raddata[index].exminName),
+                          subtitle: Text(raddata[index].radname),
                           leading: CircleAvatar(
-                              backgroundImage: AssetImage(
-                                  'assets/${Allmenu_items[index].pic}')),
+                              backgroundImage:
+                                  AssetImage('assets/${raddata[index].pic}')),
                         ),
                       ),
                     );

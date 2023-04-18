@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/classes/all_menu.dart';
+import 'package:mobile_app/pages/all_menu.dart';
 import 'package:mobile_app/pages/doctor_visit.dart';
 import 'package:mobile_app/pages/lab_results.dart';
 import 'package:mobile_app/pages/rad_scans.dart';
@@ -14,13 +15,32 @@ class My_Medical_Records extends StatefulWidget {
 class _My_Medical_RecordsState extends State<My_Medical_Records> {
   // This controller will store the value of the search bar
   final TextEditingController _searchController = TextEditingController();
-  List<Allmenu> all_menu_items = [
-    Allmenu(
-        exmination: 'complete blood culture', name: 'alfa lab', pic: 'lab.png'),
-    Allmenu(exmination: 'Knee MRI', name: 'alfa scan', pic: 'rad.png'),
-    Allmenu(exmination: 'heart', name: 'Dr.fathy', pic: 'doctor.png'),
-    Allmenu(exmination: 'Leg', name: 'Dr.ibraheem', pic: 'doctor.png'),
+  static List<String> exminName = [
+    'Complete blood culture',
+    'Knee MRI',
+    'Heart'
   ];
+  static List byname = ['alfa lab', 'alfa scan', 'Ga3fr el3omda'];
+  static List pic = ['lab.png', 'rad.png', 'doctor.png'];
+  static List report = [
+    '',
+    'TextSpan is a little strange',
+    'TextSpan is a little strange'
+  ];
+  static List others = [
+    'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled',
+    'very good',
+    'pruffen'
+  ];
+  final List<Allmenu> alldata = List.generate(
+      exminName.length,
+      (index) => Allmenu(
+            exminName: exminName[index],
+            report: '${report[index]}',
+            pic: '${pic[index]}',
+            byname: '${byname[index]}',
+            others: '${others[index]}',
+          ));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -208,7 +228,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
               child: ListView.builder(
                 shrinkWrap: true,
                 controller: ScrollController(),
-                itemCount: all_menu_items.length,
+                itemCount: alldata.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(
@@ -222,13 +242,16 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                       ),
                       child: ListTile(
                         onTap: () {
-                          print('tapped');
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => all_menu(
+                                    allmenu: alldata[index],
+                                  )));
                         },
-                        title: Text(all_menu_items[index].exmination),
-                        subtitle: Text(all_menu_items[index].name),
+                        title: Text(alldata[index].exminName),
+                        subtitle: Text(alldata[index].byname),
                         leading: CircleAvatar(
-                            backgroundImage: AssetImage(
-                                'assets/${all_menu_items[index].pic}')),
+                            backgroundImage:
+                                AssetImage('assets/${alldata[index].pic}')),
                       ),
                     ),
                   );

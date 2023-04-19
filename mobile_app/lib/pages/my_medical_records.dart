@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/Allmenu_form.dart';
+import 'package:mobile_app/classes/allmenu_form.dart';
 import 'package:mobile_app/pages/all_menu.dart';
 import 'package:mobile_app/pages/doctor_visit.dart';
 import 'package:mobile_app/pages/lab_results.dart';

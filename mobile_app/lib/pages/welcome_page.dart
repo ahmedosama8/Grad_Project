@@ -5,7 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/navBar.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/login.dart';
+import 'package:mobile_app/pages/medicine.dart';
 import 'package:mobile_app/pages/my_medical_records.dart';
+import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/signup.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -34,7 +36,7 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   List<Widget> screens() {
-    return [HomePage(), My_Medical_Records(), BarCode(), Pharmacy(), Profile()];
+    return [HomePage(), My_Medical_Records(), BarCode(), MedicineListPage(), Profile()];
   }
 }
 

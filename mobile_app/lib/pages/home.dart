@@ -33,9 +33,10 @@ class HomePage extends StatelessWidget {
             children: [
               Padding(
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
-                  child: Text('Welcome Back, Dosh!',
+                  child: Text('Welcome Back, Ga3far ElOmda!',
                       style: GoogleFonts.robotoCondensed(
-                        fontSize: 28,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
                       )
                       )
                       ),
@@ -67,35 +68,62 @@ class HomePage extends StatelessWidget {
             ],
           ),
           // ignore: sized_box_for_whitespace
-          Container(
-            height: 140,
-            child: Column(
-              children: [
-                Expanded(
-                  child: ListView(
-                    scrollDirection: Axis.vertical,
+          SizedBox(
+            height: 220,
+            child: ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 1,
+              itemBuilder: (context, index) {
+                return Card(
+                  elevation: 0,
+                  child: Column(
                     children: [
-                      buildCard(),
-                      SizedBox(width: 12,),
-                      buildCard(),
-                      SizedBox(width: 12,),
-                      buildCard(), 
-                      SizedBox(width: 12,),
-                      buildCard(),
-                
-                      
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(25, 0, 20, 5),
+                        child: Container(
+                          decoration: BoxDecoration(color: Color(0XFF6295E2),
+                          borderRadius: BorderRadius.circular(12)),
+                          child: ListTile(
+                            title:Text('Recent Doctor Visited'),
+                            subtitle: Text('Doctor name'),
+                            leading: SizedBox(width: 50,height: 50,
+                            child: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkmoJXrt6LyiMzXnR-Cceorv4Uw-MtLmIf2Q&usqp=CAU'),),
+                            onTap: () {
+                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: Labdata[index])));
+                            },
+                                  
+                          ),
+                        ),
+                      ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(25, 0, 20, 5),
+                          child: Container(
+                            decoration: BoxDecoration(color: Color(0XFFFF6C52),
+                            borderRadius: BorderRadius.circular(12)),
+                            child: ListTile( 
+                            title:Text('Recent Test'),
+                            subtitle: Text('Test name'),
+                            leading: SizedBox(width: 50,height: 50,
+                            child: Image.network(Labdata[index].imageUrl),),
+                            onTap: () {
+                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: Labdata[index])));
+                            },
+                                    
+                                                ),
+                          ),
+                        ),
                     ],
                   ),
-                ),
-              ],
-            ),
+                );
+              },),
           ),
-          
+          //SizedBox(height: 10,),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 20, 20, 10),
+                  padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
                   child: Text('Pharmacies',
                       style: GoogleFonts.robotoCondensed(
                         fontSize: 18,
@@ -110,16 +138,14 @@ class HomePage extends StatelessWidget {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [
-                SizedBox(
-                  width: 150,
-                  height: 100,
+                                SizedBox(
+                  width: 200,
+                  height: 200,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
+                      elevation: 0,
                         backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        shadowColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(color: Colors.greenAccent))),
+                        ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -130,9 +156,50 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         SizedBox(height: 5),
-                        Image(
-                          image: NetworkImage('https://cms.suse.net/sites/default/files/logo_images/El-Ezaby_logo-resized.png',
-                          scale: 8),
+                        Expanded(
+                          child: Center(
+                            child: Image(
+                              image: AssetImage('assets/loggo.png'),),
+                            ),
+                        ),
+                        SizedBox(height: 10),
+                        Text(
+                          'Our Pharmacy',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                              color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                SizedBox(
+                  width: 200,
+                  height: 200,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 0,
+                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
+                        ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Pharmacy()),
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        SizedBox(height: 5),
+                        Center(
+                          child: Image(
+                            image: NetworkImage('https://elezabypharmacy.com/themes/Elezaby/images/logo_ar3.png',
+                            scale: 1),
+                          ),
                         ),
                         SizedBox(height: 10),
                         // Text(
@@ -155,10 +222,8 @@ class HomePage extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        shadowColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(color: Colors.greenAccent))),
+                        elevation: 0
+                        ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -170,8 +235,8 @@ class HomePage extends StatelessWidget {
                       children: [
                         SizedBox(height: 20),
                          Image(
-                          image: NetworkImage('https://m.edarabia.com/wp-content/uploads/2020/04/misr-pharmacies-giza-egypt-300x300.jpg',
-                          scale: 5),
+                          image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2B1qwmkRG3BxXkkw7P1_gTRffVlGciT3ePg&usqp=CAU',
+                          scale: 4),
                         ),
                         SizedBox(height: 10),
                         // Text(
@@ -194,10 +259,7 @@ class HomePage extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        shadowColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(color: Colors.greenAccent))),
+                        elevation: 0,),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -209,7 +271,7 @@ class HomePage extends StatelessWidget {
                       children: [
                         SizedBox(height: 20),
                         Image(
-                          image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUo3eMtavzWPwydUS4lbehJZUoASyFwcBpVW7h6cRMTMkGkWYwnub29R4EIe0vqodGV6Y&usqp=CAU',
+                          image: NetworkImage('http://rofayda.org/wp-content/uploads/2015/05/index-1.jpg',
                           scale: 4 ),
                         ),
                       
@@ -235,10 +297,7 @@ class HomePage extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        shadowColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(color: Colors.greenAccent))),
+                        elevation: 0),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -274,10 +333,7 @@ class HomePage extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        shadowColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(color: Colors.greenAccent))),
+                        elevation: 0),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -313,10 +369,7 @@ class HomePage extends StatelessWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        shadowColor: Colors.green,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            side: BorderSide(color: Colors.greenAccent))),
+                        elevation: 0),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -374,6 +427,7 @@ class HomePage extends StatelessWidget {
               itemCount: Labdata.length,
               itemBuilder: (context, index) {
                 return Card(
+                  elevation: 0,
                   child: ListTile(
                     title:Text(Labdata[index].name),
                     leading: SizedBox(width: 50,height: 50,
@@ -386,41 +440,9 @@ class HomePage extends StatelessWidget {
                 );
               },),
           )
-          // ignore: sized_box_for_whitespace
-          // Container(
-          //   height: 110,
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(8.0),
-          //     child: Column(
-          //       children: [
-          //         Expanded(
-          //           child: ListView(
-          //             scrollDirection: Axis.horizontal,
-          //             children: [
-          //               buildCard(),
-          //               SizedBox(width: 12,),
-          //               buildCard(),
-          //               SizedBox(width: 12,),
-          //               buildCard(), 
-          //               SizedBox(width: 12,),
-          //               buildCard(),
-                  
-                        
-          //             ],
-          //           ),
-          //         ),
-          //       ],
-          //     ),
-          //   ),
-          // ),
         ],
       )),
     );
   }
 }
 
-Widget buildCard() => Container(
-  width: 200,
-  height: 200,
-  color: Colors.green,
-); 

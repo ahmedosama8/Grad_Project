@@ -11,16 +11,25 @@ services:
       - POSTGRES_PASSWORD=habib
       - POSTGRES_DB=habib
     ports:
-      - "5433:5433"
+      - "5432:5432"
+
+  mydb:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=myodoo
+      - POSTGRES_USER=odoo
+    ports:
+      - "5433:5432"
 
   web:
       image: odoo:14.0
       depends_on:
-        - db
+        - mydb
       ports:
         - "8069:8069"
       environment:
-        - HOST=db
+        - HOST=mydb
         - USER=odoo
         - PASSWORD=myodoo
 

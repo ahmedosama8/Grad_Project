@@ -123,7 +123,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 10, 20, 10),
+                  padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
                   child: Text('Pharmacies',
                       style: GoogleFonts.robotoCondensed(
                         fontSize: 18,

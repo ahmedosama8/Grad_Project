@@ -13,6 +13,17 @@ services:
     ports:
       - "5433:5433"
 
+  web:
+      image: odoo:14.0
+      depends_on:
+        - db
+      ports:
+        - "8069:8069"
+      environment:
+        - HOST=db
+        - USER=odoo
+        - PASSWORD=myodoo
+
 
   backend:
     build: ./backend2/

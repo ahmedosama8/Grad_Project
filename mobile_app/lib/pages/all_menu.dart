@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/all_menu.dart';
+import 'package:mobile_app/classes/Allmenu_form.dart';
 
 class all_menu extends StatelessWidget {
   final Allmenu allmenu;

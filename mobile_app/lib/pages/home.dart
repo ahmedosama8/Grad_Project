@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
                   child: Text('Welcome Back, Ga3far ElOmda!',
                       style: GoogleFonts.robotoCondensed(
-                        fontSize: 23,
+                        fontSize: 20,
                         fontWeight: FontWeight.bold
                       )
                       )
@@ -69,7 +69,7 @@ class HomePage extends StatelessWidget {
           ),
           // ignore: sized_box_for_whitespace
           SizedBox(
-            height: 160,
+            height: 220,
             child: ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,

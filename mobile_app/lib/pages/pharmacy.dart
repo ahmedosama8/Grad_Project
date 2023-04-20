@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/colors.dart';
 
 class Medicine {
   String name;
@@ -17,36 +18,45 @@ class MedicineListPage extends StatefulWidget {
 class _MedicineListPageState extends State<MedicineListPage> {
   final List<Medicine> _medicines = [
     Medicine(
-        name: 'Medicine 1',
-        description: 'Description for Medicine 1',
+        name: 'Aspirin',
+        description: 'Pain Reliever',
         image: 'https://via.placeholder.com/150'),
     Medicine(
-        name: 'Medicine 2',
-        description: 'Description for Medicine 2',
+        name: 'Ibuprofen',
+        description: 'Pain Reliever/Fever Reducer',
         image: 'https://via.placeholder.com/150'),
     Medicine(
-        name: 'Medicine 3',
-        description: 'Description for Medicine 3',
+        name: 'Panadol',
+        description: 'Pain Reliever/Fever Reducer',
         image: 'https://via.placeholder.com/150'),
     Medicine(
-        name: 'Medicine 4',
-        description: 'Description for Medicine 4',
+        name: 'Antinal',
+        description: 'treatment of diarrhea & gastroenteritis.',
         image: 'https://via.placeholder.com/150'),
     Medicine(
         name: 'Medicine 5',
-        description: 'Description for Medicine 5',
+        description: 'Allergy Relief',
         image: 'https://via.placeholder.com/150'),
   ];
 
   List<Medicine> _cart = [];
-
+  List<Medicine> _filteredMedicines = [];
+  
   TextEditingController _searchController = TextEditingController();
+    @override
+  void initState() {
+    super.initState();
+    // Initialize the filtered list with all medicines
+    _filteredMedicines = List.from(_medicines);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text('Medicines'),
+        backgroundColor: primary,
         actions: [
           IconButton(
             onPressed: () {
@@ -91,36 +101,52 @@ class _MedicineListPageState extends State<MedicineListPage> {
         children: [
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Search',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    _searchController.clear();
-                  },
-                  icon: Icon(Icons.clear),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextField(
+                controller: _searchController,
+                onChanged: (text) {
+                  // Filter the list based on the text entered in the search bar
+                  setState(() {
+                    _filteredMedicines = _medicines
+                        .where((medicine) => medicine.name
+                            .toLowerCase()
+                            .contains(text.toLowerCase()))
+                        .toList();
+                  });
+                },
+                decoration: InputDecoration(
+                  hintText: 'Search',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      _searchController.clear();
+                      setState(() {
+                        _filteredMedicines = List.from(_medicines);
+                      });
+                    },
+                    icon: Icon(Icons.clear),
+                  ),
                 ),
               ),
             ),
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: _medicines.length,
+              itemCount: _filteredMedicines.length,
               itemBuilder: (context, index) {
                 return ListTile(
                   leading: CircleAvatar(
-                    backgroundImage: NetworkImage(_medicines[index].image),
+                    backgroundImage: NetworkImage(_filteredMedicines[index].image),
                   ),
-                  title: Text(_medicines[index].name),
-                  subtitle: Text(_medicines[index].description),
+                  title: Text(_filteredMedicines[index].name),
+                  subtitle: Text(_filteredMedicines[index].description),
                   trailing: IconButton(
                     onPressed: () {
                       setState(() {
-                        _cart.add(_medicines[index]);
+                        _cart.add(_filteredMedicines[index]);
                       });
                     },
                     icon: Icon(Icons.add_shopping_cart),
@@ -144,7 +170,9 @@ class CheckoutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text('Checkout'),
+        backgroundColor: primary,
       ),
       body: Column(
         children: [
@@ -162,34 +190,49 @@ class CheckoutPage extends StatelessWidget {
               },
             ),
           ),
-          ElevatedButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: Text('Clear Cart?'),
-                    content: Text('Are you sure you want to clear the cart?'),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Cancel'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                          Navigator.pop(context, true);
-                        },
-                        child: Text('Clear'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            child: Text('Clear Cart'),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: primary,
+              ),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text('Clear Cart?'),
+                      content: Text('Are you sure you want to clear the cart?'),
+                      actions: [
+                        TextButton(
+                          style: TextButton.styleFrom(
+                            foregroundColor: primary
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('Cancel'),
+                        ),
+                        TextButton(
+                            style: TextButton.styleFrom(
+                            foregroundColor: primary
+                          ),
+                          onPressed: () {
+                            //Navigator.pop(context);
+                             Navigator.push(
+                            context,
+                           MaterialPageRoute(
+                      builder: (context) => MedicineListPage()),);
+                          },
+                          child: Text('Clear'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: Text('Clear Cart'),
+            ),
           ),
         ],
       ),

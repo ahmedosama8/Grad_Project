@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/pages/all_menu.dart';
 import 'allmenu_form.dart';
+// ignore: deprecated_member_use
 import 'package:collection/iterable_zip.dart';
 
 class CustomSearchDelegate extends SearchDelegate {

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/pages/all_menu.dart';
 import 'allmenu_form.dart';
+import 'package:collection/iterable_zip.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   @override
-  List<String> exminName = ['Complete blood culture', 'Knee MRI', 'Heart'];
-  static List byname = ['alfa lab', 'alfa scan', 'Ga3fr el3omda'];
+  final List<String> exminName = [
+    'Complete blood culture',
+    'Knee MRI',
+    'Heart'
+  ];
+  final List byname = ['alfa lab', 'alfa scan', 'Ga3fr el3omda'];
   static List pic = ['lab.png', 'rad.png', 'doctor.png'];
   static List report = [
     '',
@@ -40,6 +45,8 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     List<String> matchquery = [];
+    List<String> matchedName = [];
+
     final List<Allmenu> alldata = List.generate(
         exminName.length,
         (index) => Allmenu(
@@ -49,17 +56,16 @@ class CustomSearchDelegate extends SearchDelegate {
               byname: '${byname[index]}',
               others: '${others[index]}',
             ));
-    for (var element in exminName) {
-      if (element.toLowerCase().contains(query.toLowerCase())) {
-        matchquery.add(element);
-        print(matchquery);
+    for (final pairs in IterableZip([exminName, byname])) {
+      if (pairs[0].toLowerCase().contains(query.toLowerCase())) {
+        matchquery.add(pairs[0]);
+        matchedName.add(pairs[1]);
       }
     }
-
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
         title: Text(matchquery[index]),
-        subtitle: Text(alldata[index].byname),
+        subtitle: Text(matchedName[index]),
         onTap: () {
           close(context, alldata[index].exminName);
           Navigator.of(context).push(MaterialPageRoute(
@@ -75,6 +81,7 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<String> matchquery = [];
+    List<String> matchedName = [];
     final List<Allmenu> alldata = List.generate(
         exminName.length,
         (index) => Allmenu(
@@ -84,16 +91,23 @@ class CustomSearchDelegate extends SearchDelegate {
               byname: '${byname[index]}',
               others: '${others[index]}',
             ));
-    for (var element in exminName) {
-      if (element.toLowerCase().contains(query.toLowerCase())) {
-        matchquery.add(element);
+    // for (final pairs in exminName) {
+    //   if (element.toLowerCase().contains(query.toLowerCase())) {
+    //     // matchquery.add(element);
+    //     print(matchquery[element]);
+    //   }
+    // }
+    for (final pairs in IterableZip([exminName, byname, others])) {
+      if (pairs[0].toLowerCase().contains(query.toLowerCase())) {
+        matchquery.add(pairs[0]);
+        matchedName.add(pairs[1]);
       }
     }
 
     return ListView.builder(
       itemBuilder: (context, index) => ListTile(
         title: Text(matchquery[index]),
-        subtitle: Text(alldata[index].byname),
+        subtitle: Text(matchedName[index]),
         onTap: () {
           close(context, alldata[index].exminName);
           Navigator.of(context).push(MaterialPageRoute(

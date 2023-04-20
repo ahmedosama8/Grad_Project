@@ -5,6 +5,8 @@ import 'package:mobile_app/pages/doctor_visit.dart';
 import 'package:mobile_app/pages/lab_results.dart';
 import 'package:mobile_app/pages/rad_scans.dart';
 
+import '../classes/customSearchDelegate.dart';
+
 class My_Medical_Records extends StatefulWidget {
   const My_Medical_Records({super.key});
 
@@ -49,12 +51,28 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
       appBar: AppBar(
         title: Padding(
           padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
-          child: Text(
-            'Medical Records',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 35,
-            ),
+          child: Row(
+            children: [
+              Text(
+                'Medical Records',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 35,
+                ),
+              ),
+              SizedBox(
+                width: 65,
+              ),
+              IconButton(
+                onPressed: () {
+                  showSearch(
+                      context: context, delegate: CustomSearchDelegate());
+                },
+                icon: Icon(Icons.search),
+                color: Colors.black,
+                iconSize: 35,
+              )
+            ],
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -66,23 +84,6 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(5.0),
-              child: TextField(
-                onSubmitted: (value) {
-                  print(_searchController.text);
-                },
-                controller: _searchController,
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.clear),
-                    onPressed: () => _searchController.clear(),
-                  ),
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-              ),
             ),
           ),
           Padding(

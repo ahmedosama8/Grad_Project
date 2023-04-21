@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/labs_data_model.dart';
 import 'package:mobile_app/labs_detail.dart';
+import 'package:mobile_app/pages/pharm_details.dart';
+import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
+import 'package:mobile_app/pharm_data_model.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
    HomePage({Key? key}) : super(key: key);
 
 
@@ -19,8 +22,30 @@ class HomePage extends StatelessWidget {
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYC6guz8gX_0mgWxxqgraIHbafE4PPW0_wUw&usqp=CAU',
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkWOFRgGI2gQ0bM--PbVcrlUMEl0_kAJO33A&usqp=CAU'];
 
-  final List <LabsDataModel> Labdata = List.generate(labName.length,
-  (index) => LabsDataModel(labName[index], '${url[index]}', '${labName[index]} Description....'));
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final List <LabsDataModel> Labdata = List.generate(HomePage.labName.length,
+  (index) => LabsDataModel(HomePage.labName[index], '${HomePage.url[index]}', '${HomePage.labName[index]} Description....'));
+
+  List<CardItem> items =[
+    CardItem(urlImage: 'https://i.ibb.co/gwNvBkP/loggo.png'
+    ,title: 'El-Ezaby'),
+    CardItem(urlImage: 'https://elezabypharmacy.com/themes/Elezaby/images/logo_ar3.png'
+    , title: 'El-Ezaby'),
+    CardItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2B1qwmkRG3BxXkkw7P1_gTRffVlGciT3ePg&usqp=CAU'
+    , title: 'Masr Pharmacy'),
+    CardItem(urlImage: 'http://rofayda.org/wp-content/uploads/2015/05/index-1.jpg'
+    , title: 'Roshdy Pharmacy'),
+    CardItem(urlImage: 'https://luxmedicard-storage.s3.amazonaws.com/files/public/LOGO_FOUDA_PHARMACY-2.png'
+    , title: 'Fouda Pharmacy'),
+    CardItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ37z-m3txhQNhCbzLx0a7ekxn6XTfl9zKcig&usqp=CAU'
+    , title: 'Zekry Pharmacy'),
+    CardItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5HjSvdRxnMsDOFUUZUIyZh4-KAt_J40NNGA&usqp=CAU'
+    , title: 'Seif Pharmacy'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -69,7 +94,7 @@ class HomePage extends StatelessWidget {
           ),
           // ignore: sized_box_for_whitespace
           SizedBox(
-            height: 220,
+            height: 180,
             child: ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -97,7 +122,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(25, 0, 20, 5),
+                          padding: const EdgeInsets.fromLTRB(25, 0, 20, 0),
                           child: Container(
                             decoration: BoxDecoration(color: Color(0XFFFF6C52),
                             borderRadius: BorderRadius.circular(12)),
@@ -131,276 +156,18 @@ class HomePage extends StatelessWidget {
             
             ],
           ),
-          
           Container(
-            padding: EdgeInsets.only(left: 20),
-            height: 100,
-            child: ListView(
+            height: 130,
+            child: ListView.separated(
+              padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
               scrollDirection: Axis.horizontal,
-              children: [
-                                SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Profile()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5),
-                        Expanded(
-                          child: Center(
-                            child: Image(
-                              image: AssetImage('assets/loggo.png'),),
-                            ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'Our Pharmacy',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
-                              color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Pharmacy()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5),
-                        Center(
-                          child: Image(
-                            image: NetworkImage('https://elezabypharmacy.com/themes/Elezaby/images/logo_ar3.png',
-                            scale: 1),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'El Ezaby',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 13,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        elevation: 0
-                        ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BarCode()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                         Image(
-                          image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2B1qwmkRG3BxXkkw7P1_gTRffVlGciT3ePg&usqp=CAU',
-                          scale: 4),
-                        ),
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'Rad-Scans',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 13,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        elevation: 0,),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Pharmacy()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Image(
-                          image: NetworkImage('http://rofayda.org/wp-content/uploads/2015/05/index-1.jpg',
-                          scale: 4 ),
-                        ),
-                      
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'Doctors Visit',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 12,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-                
-                SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        elevation: 0),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Pharmacy()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Image(
-                          image: NetworkImage('https://luxmedicard-storage.s3.amazonaws.com/files/public/LOGO_FOUDA_PHARMACY-2.png',
-                          scale:4 ),
-                        ),
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'Doctors Visit',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 12,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-                 SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        elevation: 0),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Pharmacy()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Image(
-                          image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ37z-m3txhQNhCbzLx0a7ekxn6XTfl9zKcig&usqp=CAU',
-                          scale:4 ),
-                        ),
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'Doctors Visit',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 12,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-                                 SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        elevation: 0),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Pharmacy()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Image(
-                          image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5HjSvdRxnMsDOFUUZUIyZh4-KAt_J40NNGA&usqp=CAU',
-                          scale:4 ),
-                        ),
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'Doctors Visit',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 12,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                )
-                
-              ],
+              itemCount: items.length,
+              separatorBuilder: (context, _) => SizedBox(width: 10,),
+              itemBuilder: (context, index) => buildCard(item: items[index]), 
+
             ),
           ),
-          
+      
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -444,5 +211,32 @@ class HomePage extends StatelessWidget {
       )),
     );
   }
+
+  Widget buildCard({required CardItem item}) => Container(
+    width: 120,
+    child: Column(
+      children: [
+        Expanded(
+          child: AspectRatio(
+            aspectRatio: 4 / 3,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Material(
+                child: Ink.image(
+                  image: NetworkImage(item.urlImage),
+                  child: InkWell(
+                    onTap: () =>   Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => PharmPage(item: item,)))
+                  ),
+                )
+              ),
+            ),
+          ),
+          ),
+          const SizedBox(height: 4,),
+          //Text(item.title),
+      ],
+    ),
+  );
 }
 

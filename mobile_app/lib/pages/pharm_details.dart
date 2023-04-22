@@ -37,80 +37,154 @@ final CardItem item;
           //fit: BoxFit.cover,
           ),
           ),
-          SizedBox(height: 1,),
-          Text(item.title,
-          style:GoogleFonts.robotoCondensed(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold
-                      ),),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Icon(Icons.web_outlined,
-                size: 36,
-                color: primary,),
-                SizedBox(width: 8,),
-                SelectableText(item.urlWeb,style:GoogleFonts.robotoCondensed(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        ),
-                        ),
-          
-                SizedBox(width: 8,),        
-                ElevatedButton(
-                  onPressed: () async {
-                  final url =item.urlWeb;
-                  final Uri uri= Uri(scheme: 'https',host: url);
-                  if (!await launchUrl(uri, mode:
-                  LaunchMode.externalApplication)) {
-                    throw "Can not launch url";
-                  }
-                }
-                ,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: primary,
-                ),
-                 child: Text('Go'),
+         
+          Expanded(
+            child:Card(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: primary,
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 25),
+                    child: ListTile(
+                      title: Text(item.urlWeb),
+                      leading: Icon(Icons.web_outlined,
+                      size: 36,
+                      color: primary,),
+                      trailing: ElevatedButton(
+                      onPressed: () async {
+                      final url =item.urlWeb;
+                      final Uri uri= Uri(scheme: 'https',host: url);
+                      if (!await launchUrl(uri, mode:
+                      LaunchMode.externalApplication)) {
+                        throw "Can not launch url";
+                      }
+                    }
+                    ,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primary,
+                    ),
+                    child: Text('Go'),
+                      
+                    ),
                   
-                ),
-              ],
+                    ),
+                  ),
+                )
+              
+          
+          ),
+
+            Expanded(
+            child: Card(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: primary,
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 25),
+                    child: ListTile(
+                      title: Text(item.phone),
+                      leading: Icon(Icons.call,
+                      size: 36,
+                      color: primary,),
+                      trailing: ElevatedButton(
+                      onPressed: () async {
+                      final url =item.phone;
+                      final Uri uri= Uri(scheme: 'https',host: url);
+                      if (!await launchUrl(uri, mode:
+                      LaunchMode.externalApplication)) {
+                        throw "Can not launch url";
+                      }
+                    }
+                    ,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primary,
+                    ),
+                    child: Text('Call'),
+                      
+                    ),
+                  
+                    
+                                  ),
+                  )
+              
             ),
           ),
+
+
+          // Padding(
+          //   padding: const EdgeInsets.all(10.0),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //     children: [
+          //       Icon(Icons.web_outlined,
+          //       size: 36,
+          //       color: primary,),
+          //       SizedBox(width: 8,),
+          //       SelectableText(item.urlWeb,style:GoogleFonts.robotoCondensed(
+          //                 fontSize: 20,
+          //                 fontWeight: FontWeight.bold
+          //               ),
+          //               ),
+          
+          //       SizedBox(width: 8,),        
+          //       ElevatedButton(
+          //         onPressed: () async {
+          //         final url =item.urlWeb;
+          //         final Uri uri= Uri(scheme: 'https',host: url);
+          //         if (!await launchUrl(uri, mode:
+          //         LaunchMode.externalApplication)) {
+          //           throw "Can not launch url";
+          //         }
+          //       }
+          //       ,
+          //       style: ElevatedButton.styleFrom(
+          //         backgroundColor: primary,
+          //       ),
+          //        child: Text('Go'),
+                  
+          //       ),
+          //     ],
+          //   ),
+          // ),
             
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [              
-                Icon(Icons.call,
-                size: 36,
-                color: primary,),
-                SizedBox(width: 8,),
-                SelectableText(item.phone,style:GoogleFonts.robotoCondensed(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                ),
-                ),
+            // Padding(
+            //   padding: const EdgeInsets.all(10.0),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //     children: [              
+            //     Icon(Icons.call,
+            //     size: 36,
+            //     color: primary,),
+            //     SizedBox(width: 8,),
+            //     SelectableText(item.phone,style:GoogleFonts.robotoCondensed(
+            //               fontSize: 20,
+            //               fontWeight: FontWeight.bold
+            //     ),
+            //     ),
             
-                SizedBox(width: 8,),   
+            //     SizedBox(width: 8,),   
             
-                  ElevatedButton(onPressed: () async {
-                  final phoneNum =item.phone;
-                  final Uri uri= Uri(scheme: 'tel',path: phoneNum);
-                  if (!await launchUrl(uri, mode:
-                  LaunchMode.externalApplication)) {
-                    throw "Can not launch url";
-                  }
-                      }, 
-                      style: ElevatedButton.styleFrom(
-                  backgroundColor: primary,
-                      ), 
-                      child: Text('Call')),
-                ],
-              ),
-            )
+            //       ElevatedButton(onPressed: () async {
+            //       final phoneNum =item.phone;
+            //       final Uri uri= Uri(scheme: 'tel',path: phoneNum);
+            //       if (!await launchUrl(uri, mode:
+            //       LaunchMode.externalApplication)) {
+            //         throw "Can not launch url";
+            //       }
+            //           }, 
+            //           style: ElevatedButton.styleFrom(
+            //       backgroundColor: primary,
+            //           ), 
+            //           child: Text('Call')),
+            //     ],
+            //   ),
+            // )
 
         ],
       ),

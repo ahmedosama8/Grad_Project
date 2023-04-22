@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
    HomePage({Key? key}) : super(key: key);
 
 
-  static List <String> labName=['Alfa Lab','Al-Mokhtabar','Cairo Scan','Alfa Scan','Al-Borg','Dokki Scan','El-Ahram Scan'];
+  static List <String> labName = ['Alfa Lab','Al-Mokhtabar','Cairo Scan','Alfa Scan','Al-Borg','Dokki Scan','El-Ahram Scan'];
   static List url = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi-sf9GkxgOv6_0kTx0FC6ATbTgNRqLPFBw&usqp=CAU',
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJp43zftj2Rh5vbGQeCBuT5Qe9sLb9BxHx0A&usqp=CAU',
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcLNcRrqgXV9X-ZtHd8kb4WxAe_NECCVwVww&usqp=CAU',
@@ -22,18 +22,22 @@ class HomePage extends StatefulWidget {
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYC6guz8gX_0mgWxxqgraIHbafE4PPW0_wUw&usqp=CAU',
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkWOFRgGI2gQ0bM--PbVcrlUMEl0_kAJO33A&usqp=CAU'];
 
+  static List labWeb = ['www.alfalaboratory.com','www.almokhtabar.com','www.cairoscan.com.eg','www.alfascan.com.eg','www.alborgscan.com','aaa','www.ahramscan.com'];
+  static List labPhone = ['16191','19014','19144','16171','19911','6','02 21 29 2000'];
+
+
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   final List <LabsDataModel> Labdata = List.generate(HomePage.labName.length,
-  (index) => LabsDataModel(HomePage.labName[index], '${HomePage.url[index]}', '${HomePage.labName[index]} Description....'));
+  (index) => LabsDataModel(HomePage.labName[index], '${HomePage.url[index]}', '${HomePage.labName[index]} Description....','${HomePage.labWeb[index]}','${HomePage.labPhone[index]}'));
 
   List<CardItem> items =[
     
     CardItem(urlImage: 'https://elezabypharmacy.com/themes/Elezaby/images/logo_ar3.png'
-    , title: 'El-Ezaby',urlWeb:'elezabypharmacy.com' ,phone:'19600'),
+    , title: 'ElEzaby Pharmacy',urlWeb:'elezabypharmacy.com' ,phone:'19600'),
     CardItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2B1qwmkRG3BxXkkw7P1_gTRffVlGciT3ePg&usqp=CAU'
     , title: 'Masr Pharmacy',urlWeb:'misr-online.com' ,phone:'19110'),
     CardItem(urlImage: 'http://rofayda.org/wp-content/uploads/2015/05/index-1.jpg'
@@ -84,7 +88,7 @@ class _HomePageState extends State<HomePage> {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                child: Text('Sea all',
+                child: Text('See all',
                     style: GoogleFonts.robotoCondensed(
                       fontSize: 14,
                     )),
@@ -179,7 +183,7 @@ class _HomePageState extends State<HomePage> {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 18, 20, 20),
-                child: Text('Sea all',
+                child: Text('See all',
                     style: GoogleFonts.robotoCondensed(
                       fontSize: 14,
                     )),

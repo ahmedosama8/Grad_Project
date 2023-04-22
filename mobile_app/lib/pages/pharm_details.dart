@@ -26,6 +26,7 @@ final CardItem item;
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: primary,
         title: Text(item.title),
       ),

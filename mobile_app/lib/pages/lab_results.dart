@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/classes/Test_form.dart';
+import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/test_page.dart';
 
 class lab_results extends StatefulWidget {
@@ -70,7 +71,7 @@ class _lab_resultsState extends State<lab_results> {
       appBar: AppBar(
         title: Text('Lab results'),
         centerTitle: true,
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: primary,
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),

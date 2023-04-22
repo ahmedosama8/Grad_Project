@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/classes/doc_form.dart';
+import 'package:mobile_app/colors.dart';
 
 class dr_report extends StatelessWidget {
   final Docform docform;
@@ -11,7 +12,7 @@ class dr_report extends StatelessWidget {
       appBar: AppBar(
         title: Text(docform.exminName),
         centerTitle: true,
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: primary,
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),

@@ -31,20 +31,19 @@ class _HomePageState extends State<HomePage> {
   (index) => LabsDataModel(HomePage.labName[index], '${HomePage.url[index]}', '${HomePage.labName[index]} Description....'));
 
   List<CardItem> items =[
-    CardItem(urlImage: 'https://i.ibb.co/gwNvBkP/loggo.png'
-    ,title: 'El-Ezaby'),
+    
     CardItem(urlImage: 'https://elezabypharmacy.com/themes/Elezaby/images/logo_ar3.png'
-    , title: 'El-Ezaby'),
+    , title: 'El-Ezaby',urlWeb:'elezabypharmacy.com' ,phone:'19600'),
     CardItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2B1qwmkRG3BxXkkw7P1_gTRffVlGciT3ePg&usqp=CAU'
-    , title: 'Masr Pharmacy'),
+    , title: 'Masr Pharmacy',urlWeb:'misr-online.com' ,phone:'19110'),
     CardItem(urlImage: 'http://rofayda.org/wp-content/uploads/2015/05/index-1.jpg'
-    , title: 'Roshdy Pharmacy'),
+    , title: 'Roshdy Pharmacy',urlWeb:'' ,phone:''),
     CardItem(urlImage: 'https://luxmedicard-storage.s3.amazonaws.com/files/public/LOGO_FOUDA_PHARMACY-2.png'
-    , title: 'Fouda Pharmacy'),
+    , title: 'Fouda Pharmacy',urlWeb:'fouda.com' ,phone:'19395'),
     CardItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ37z-m3txhQNhCbzLx0a7ekxn6XTfl9zKcig&usqp=CAU'
-    , title: 'Zekry Pharmacy'),
+    , title: 'Zekry Pharmacy',urlWeb:'zikrypharmacies.com' ,phone:'19029'),
     CardItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5HjSvdRxnMsDOFUUZUIyZh4-KAt_J40NNGA&usqp=CAU'
-    , title: 'Seif Pharmacy'),
+    , title: 'Seif Pharmacy',urlWeb:'seif-online.com' ,phone:'19199'),
   ];
 
   @override

@@ -416,4 +416,15 @@
           //     ],
           //   ),
           // ),
+          ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
           
+          
+  // List<LabsDataModel> labs =[
+  //   LabsDataModel(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi-sf9GkxgOv6_0kTx0FC6ATbTgNRqLPFBw&usqp=CAU', name: 'Alfa Lab', urlWeb: 'urlWeb', phone: 'phone'),
+  //   LabsDataModel(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJp43zftj2Rh5vbGQeCBuT5Qe9sLb9BxHx0A&usqp=CAU', name: 'Al-Mokhtabar', urlWeb: 'urlWeb', phone: 'phone'),
+  //   LabsDataModel(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcLNcRrqgXV9X-ZtHd8kb4WxAe_NECCVwVww&usqp=CAU', name: 'Cairo Scan', urlWeb: 'urlWeb', phone: 'phone'),
+  //   LabsDataModel(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi-sf9GkxgOv6_0kTx0FC6ATbTgNRqLPFBw&usqp=CAU', name: 'Alfa Scan', urlWeb: 'urlWeb', phone: 'phone'),
+  //   LabsDataModel(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1dNIjOt_6An16uMqW-dZ5nQbTctV2XW14jg&usqp=CAU', name: 'Al-Borg', urlWeb: 'urlWeb', phone: 'phone'),
+  //   LabsDataModel(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYC6guz8gX_0mgWxxqgraIHbafE4PPW0_wUw&usqp=CAU', name: 'Dokki Scan', urlWeb: 'urlWeb', phone: 'phone'),
+  //   LabsDataModel(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkWOFRgGI2gQ0bM--PbVcrlUMEl0_kAJO33A&usqp=CAU', name: 'El-Ahram Scan', urlWeb: 'urlWeb', phone: 'phone')
+  // ];

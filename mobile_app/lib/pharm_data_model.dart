@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class CardItem {
   final String urlImage;

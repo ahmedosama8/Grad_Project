@@ -39,46 +39,8 @@ final CardItem item;
           ),
           ),
          
-          Expanded(
-            child:Card(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: primary,
-                    ),
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 25),
-                    child: ListTile(
-                      title: Text(item.urlWeb),
-                      leading: Icon(Icons.web_outlined,
-                      size: 36,
-                      color: primary,),
-                      trailing: ElevatedButton(
-                      onPressed: () async {
-                      final url =item.urlWeb;
-                      final Uri uri= Uri(scheme: 'https',host: url);
-                      if (!await launchUrl(uri, mode:
-                      LaunchMode.externalApplication)) {
-                        throw "Can not launch url";
-                      }
-                    }
-                    ,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: primary,
-                    ),
-                    child: Text('Go'),
-                      
-                    ),
-                  
-                    ),
-                  ),
-                )
-              
-          
-          ),
-
-            Expanded(
+          SizedBox(
+            height: 70,
             child: Card(
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
@@ -86,8 +48,41 @@ final CardItem item;
                     ),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 25),
+                  child: ListTile(
+                    title: Text(item.urlWeb),
+                    leading: Icon(Icons.web_outlined,
+                    size: 36,
+                    color: primary,),
+                    trailing: ElevatedButton(
+                    onPressed: () async {
+                    final url =item.urlWeb;
+                    final Uri uri= Uri(scheme: 'https',host: url);
+                    if (!await launchUrl(uri, mode:
+                    LaunchMode.externalApplication)) {
+                      throw "Can not launch url";
+                    }
+                  }
+                  ,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primary,
+                  ),
+                  child: Text('Go'),
+                    
+                  ),
+                  
+                  ),
+                ),
+          ),
+            SizedBox(height: 20,),
+            SizedBox(
+              height: 70,
+              child: Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: primary,
+                      ),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                     child: ListTile(
                       title: Text(item.phone),
                       leading: Icon(Icons.call,
@@ -95,8 +90,8 @@ final CardItem item;
                       color: primary,),
                       trailing: ElevatedButton(
                       onPressed: () async {
-                      final url =item.phone;
-                      final Uri uri= Uri(scheme: 'https',host: url);
+                      final phoneNumber =item.phone;
+                      final Uri uri= Uri(scheme: 'tel',path: phoneNumber);
                       if (!await launchUrl(uri, mode:
                       LaunchMode.externalApplication)) {
                         throw "Can not launch url";
@@ -109,13 +104,12 @@ final CardItem item;
                     child: Text('Call'),
                       
                     ),
-                  
                     
-                                  ),
-                  )
-              
+                    
+                                  )
+                
+              ),
             ),
-          ),
 
 
           // Padding(

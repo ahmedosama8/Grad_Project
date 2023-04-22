@@ -24,46 +24,8 @@ class LabDetail extends StatelessWidget {
           ),
           ),
          
-          Expanded(
-            child:Card(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: primary,
-                    ),
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 25),
-                    child: ListTile(
-                      title: Text(labsDataModel.urlWeb),
-                      leading: Icon(Icons.web_outlined,
-                      size: 36,
-                      color: primary,),
-                      trailing: ElevatedButton(
-                      onPressed: () async {
-                      final url =labsDataModel.urlWeb;
-                      final Uri uri= Uri(scheme: 'https',host: url);
-                      if (!await launchUrl(uri, mode:
-                      LaunchMode.externalApplication)) {
-                        throw "Can not launch url";
-                      }
-                    }
-                    ,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: primary,
-                    ),
-                    child: Text('Go'),
-                      
-                    ),
-                  
-                    ),
-                  ),
-                )
-              
-          
-          ),
-
-            Expanded(
+          SizedBox(
+            height: 70,
             child: Card(
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
@@ -71,8 +33,41 @@ class LabDetail extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(20.0),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 25),
+                  child: ListTile(
+                    title: Text(labsDataModel.urlWeb),
+                    leading: Icon(Icons.web_outlined,
+                    size: 36,
+                    color: primary,),
+                    trailing: ElevatedButton(
+                    onPressed: () async {
+                    final url =labsDataModel.urlWeb;
+                    final Uri uri= Uri(scheme: 'https',host: url);
+                    if (!await launchUrl(uri, mode:
+                    LaunchMode.externalApplication)) {
+                      throw "Can not launch url";
+                    }
+                  }
+                  ,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primary,
+                  ),
+                  child: Text('Go'),
+                    
+                  ),
+                  
+                  ),
+                ),
+          ),
+
+            SizedBox(
+              height: 70,
+              child: Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: primary,
+                      ),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                     child: ListTile(
                       title: Text(labsDataModel.phone),
                       leading: Icon(Icons.call,
@@ -80,8 +75,8 @@ class LabDetail extends StatelessWidget {
                       color: primary,),
                       trailing: ElevatedButton(
                       onPressed: () async {
-                      final url =labsDataModel.phone;
-                      final Uri uri= Uri(scheme: 'https',host: url);
+                      final phoneNumber =labsDataModel.phone;
+                      final Uri uri= Uri(scheme: 'tel',path: phoneNumber);
                       if (!await launchUrl(uri, mode:
                       LaunchMode.externalApplication)) {
                         throw "Can not launch url";
@@ -94,13 +89,12 @@ class LabDetail extends StatelessWidget {
                     child: Text('Call'),
                       
                     ),
-                  
                     
-                                  ),
-                  )
-              
+                    
+                                  )
+                
+              ),
             ),
-          ),
 
 
           // Padding(

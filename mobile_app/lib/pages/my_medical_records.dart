@@ -107,6 +107,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                       );
                     },
                     child: Column(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         SizedBox(height: 20),
                         Icon(
@@ -147,6 +148,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                       );
                     },
                     child: Column(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         SizedBox(height: 20),
                         Icon(
@@ -187,6 +189,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                       );
                     },
                     child: Column(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         SizedBox(height: 20),
                         Icon(
@@ -215,6 +218,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 1, 50, 0),
             child: Row(
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 Text(
                   'All',

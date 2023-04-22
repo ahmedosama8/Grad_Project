@@ -49,32 +49,29 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
       backgroundColor: Color.fromARGB(201, 244, 246, 245),
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: Expanded(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-            child: Row(
-              children: [
-                Text(
+        title: Padding(
+          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
                   'Medical Records',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 35,
                   ),
                 ),
-                SizedBox(
-                  width: 65,
-                ),
-                IconButton(
-                  onPressed: () {
-                    showSearch(
-                        context: context, delegate: CustomSearchDelegate());
-                  },
-                  icon: Icon(Icons.search),
-                  color: Colors.black,
-                  iconSize: 35,
-                )
-              ],
-            ),
+              ),
+              IconButton(
+                onPressed: () {
+                  showSearch(
+                      context: context, delegate: CustomSearchDelegate());
+                },
+                icon: Icon(Icons.search),
+                color: Colors.black,
+                iconSize: 35,
+              )
+            ],
           ),
         ),
         backgroundColor: Colors.transparent,

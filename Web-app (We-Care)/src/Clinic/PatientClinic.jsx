@@ -2,8 +2,10 @@ import React from "react";
 import SidebarClinic from "../Sidebar/SidebarClinic";
 import Topbar from "../Topbar/Topbar";
 import "./patientclinic.css";
-import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+// import CKEditor from "@ckeditor/ckeditor5-react";
+// import Editor from "@juniyadi/ckeditor5-custom-build";
+
 //editor rich text
 
 export default function PatientClinic() {
@@ -72,13 +74,8 @@ export default function PatientClinic() {
 
           <h3>Visit Result</h3>
           <div>
-            {/* <Editor
-              toolbarClassName="toolbarClassName"
-              wrapperClassName="wrapperClassName"
-              editorClassName="editorClassName"
-              onEditorStateChange={this.onEditorStateChange}
-            /> */}
-            ;<label for="comments">Findings</label>
+            <label for="comments">Findings</label>
+            {/* <CKEditor editor={Editor} data="<p>Hello from CKEditor 5!</p>" /> */}
             <textarea
               className="findingbox"
               id="comments"

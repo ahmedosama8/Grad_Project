@@ -3,10 +3,24 @@
   background: #fccb90;
 
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, #3C99DC, #66D3FA, #D5F3FE, #2565AE,#0F5298);
+  background: -webkit-linear-gradient(
+    to right,
+    #3cdc57,
+    #55d784,
+    #aad5b3,
+    #17b41f,
+    #187a0b
+  );
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, #3C99DC, #66D3FA, #D5F3FE, #2565AE,#0F5298);
+  background: linear-gradient(
+    to right,
+    #3cdc57,
+    #55d784,
+    #aad5b3,
+    #17b41f,
+    #187a0b
+  );
 }
 
 @media (min-width: 768px) {
@@ -16,7 +30,11 @@
 }
 @media (min-width: 769px) {
   .gradient-custom-2 {
-    border-top-right-radius: .3rem;
-    border-bottom-right-radius: .3rem;
+    border-top-right-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
   }
+}
+/* background-color: #66ca98; */
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+  background-color: #50585b;
 }

@@ -24,7 +24,7 @@ function Lab() {
             </button>
             <button
               type="button"
-              class="btn btn-outline-secondary btn-lg download-button"
+              class="btn btn-dark btn-lg download-button"
             >
               <i class="fa-brands fa-google-play"></i> Download
             </button>

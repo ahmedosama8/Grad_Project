@@ -28,7 +28,7 @@ function LoginPage() {
       navigate('/labhome')} 
     else if (sessionStorage.getItem('User')=='Doctor'){
       navigate('/Clinic')}
-    else if (sessionStorage.getItem('User')=='RadCenter'){navigate('/Radiology-Center')}
+    else if (sessionStorage.getItem('User')=='RadCenter'){navigate('/radhome')}
     else(navigate('/'))
   }
 

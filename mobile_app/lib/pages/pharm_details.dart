@@ -73,7 +73,6 @@ final CardItem item;
                   ),
                 ),
           ),
-            SizedBox(height: 20,),
             SizedBox(
               height: 70,
               child: Card(

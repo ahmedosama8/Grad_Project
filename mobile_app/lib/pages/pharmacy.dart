@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/pages/welcome_page.dart';
 
 class Medicine {
   String name;
@@ -170,8 +171,9 @@ class CheckoutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         elevation: 0,
-        title: Text('Checkout'),
+        title: Center(child: Text('Checkout')),
         backgroundColor: primary,
       ),
       body: Column(
@@ -218,11 +220,15 @@ class CheckoutPage extends StatelessWidget {
                             foregroundColor: primary
                           ),
                           onPressed: () {
-                            //Navigator.pop(context);
+                            Navigator.pop(context);
                              Navigator.push(
                             context,
                            MaterialPageRoute(
-                      builder: (context) => MedicineListPage()),);
+                          builder: (context) => WillPopScope(
+                            onWillPop: () async {
+                            // disable back button by returning false
+                            return false;       },
+                            child: WelcomePage())),);
                           },
                           child: Text('Clear'),
                         ),

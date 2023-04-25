@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SidebarClinic from "../Sidebar/SidebarClinic";
 import Topbar from "../Topbar/Topbar";
 import "./patientclinic.css";
@@ -9,14 +9,24 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 //editor rich text
 
 export default function PatientClinic() {
-  const Input = () => {
-    return <input placeholder="Your input here" />;
-  };
-  const [inputList, setInputList] = React.useState([]);
+  const [inputBoxes, setInputBoxes] = useState([]);
 
-  const onAddBtnClick = (event) => {
-    setInputList(inputList.concat(<Input key={inputList.length} />));
-  };
+  const handleAddInputBox = (event) => {
+    event.preventDefault();
+    setInputBoxes([...inputBoxes, '']);
+  }
+
+  const handleInputChange = (event, index) => {
+    const updatedInputBoxes = [...inputBoxes];
+    updatedInputBoxes[index] = event.target.value;
+    setInputBoxes(updatedInputBoxes);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Do something with the input values
+    console.log(inputBoxes);
+  }
 
   return (
     <div>
@@ -85,14 +95,20 @@ export default function PatientClinic() {
           </div>
           <label for="comments">Medications</label>
           <div className="row mb-3">
-            <button onClick={onAddBtnClick}>Add Medicine</button>
-            {inputList}
+            <button onClick={handleAddInputBox}>Add Input Box</button>
+            <form onSubmit={handleSubmit}>
+              {inputBoxes.map((value, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  value={value}
+                  onChange={(event) => handleInputChange(event, index)}
+                />
+              ))}
+              <button type="submit">Submit</button>
+            </form>
           </div>
           <div />
-
-          <div className="mb-5">
-            <button type="submit">Submit</button>
-          </div>
         </form>
       </div>
     </div>

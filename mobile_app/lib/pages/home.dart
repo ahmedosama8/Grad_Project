@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/labs_data_model.dart';
-import 'package:mobile_app/labs_detail.dart';
+import 'package:mobile_app/pages/labs_detail.dart';
 import 'package:mobile_app/pages/pharm_details.dart';
 import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/welcome_page.dart';

@@ -58,7 +58,7 @@ class LabDetail extends StatelessWidget {
                   ),
                 ),
           ),
-
+    
             SizedBox(
               height: 70,
               child: Card(

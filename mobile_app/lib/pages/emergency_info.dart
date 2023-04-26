@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:mobile_app/colors.dart';
 
 class EmergencyInfoPage extends StatefulWidget {
   const EmergencyInfoPage({super.key});
@@ -434,8 +435,10 @@ class _DatePickerFieldState extends State<DatePickerField> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        border: Border.all(color: primary),
         borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+        //borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),

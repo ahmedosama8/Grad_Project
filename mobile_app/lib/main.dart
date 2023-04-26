@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        initialRoute: 'profile',
+        initialRoute: 'emrsignup',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primary,

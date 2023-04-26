@@ -14,43 +14,52 @@ import java.util.List;
 @Entity
 public class Patient {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private int patient_id;
 
+    @Nullable
     private String gender;
 
+    @Nullable
     private String phone1;
 
     @Nullable
     private String phone2;
 
+    @Nullable
     private String mail;
 
+    @Nullable
     private String bloodType;
 
+    @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Allergy> allergies = new ArrayList<>();
 
-
+    @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MedicalCondition> medicalConditions = new ArrayList<>();
-
+    @Nullable
     private int age;
-
+    @Nullable
     private String firstName;
     @Nullable
     private String MiddleName;
+    @Nullable
     private String LastName;
-
+    @Nullable
     private LocalDate birthDate;
-
+    @Nullable
     @OneToMany(mappedBy = "patient")
     @JsonIgnore
     private List<Diagnosis> diagnoses;
 
+    @Nullable
     private String nationalIdNumber;
 
+    @Nullable
     private String city;
+    @Nullable
     private String street;
 
     public Patient() {

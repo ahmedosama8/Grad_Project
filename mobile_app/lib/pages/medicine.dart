@@ -428,3 +428,73 @@
   //   LabsDataModel(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYC6guz8gX_0mgWxxqgraIHbafE4PPW0_wUw&usqp=CAU', name: 'Dokki Scan', urlWeb: 'urlWeb', phone: 'phone'),
   //   LabsDataModel(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkWOFRgGI2gQ0bM--PbVcrlUMEl0_kAJO33A&usqp=CAU', name: 'El-Ahram Scan', urlWeb: 'urlWeb', phone: 'phone')
   // ];
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // Padding(
+          //   padding: const EdgeInsets.all(10.0),
+          //   child: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //     children: [
+          //       Icon(Icons.web_outlined,
+          //       size: 36,
+          //       color: primary,),
+          //       SizedBox(width: 8,),
+          //       SelectableText(item.urlWeb,style:GoogleFonts.robotoCondensed(
+          //                 fontSize: 20,
+          //                 fontWeight: FontWeight.bold
+          //               ),
+          //               ),
+          
+          //       SizedBox(width: 8,),        
+          //       ElevatedButton(
+          //         onPressed: () async {
+          //         final url =item.urlWeb;
+          //         final Uri uri= Uri(scheme: 'https',host: url);
+          //         if (!await launchUrl(uri, mode:
+          //         LaunchMode.externalApplication)) {
+          //           throw "Can not launch url";
+          //         }
+          //       }
+          //       ,
+          //       style: ElevatedButton.styleFrom(
+          //         backgroundColor: primary,
+          //       ),
+          //        child: Text('Go'),
+                  
+          //       ),
+          //     ],
+          //   ),
+          // ),
+            
+            // Padding(
+            //   padding: const EdgeInsets.all(10.0),
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //     children: [              
+            //     Icon(Icons.call,
+            //     size: 36,
+            //     color: primary,),
+            //     SizedBox(width: 8,),
+            //     SelectableText(item.phone,style:GoogleFonts.robotoCondensed(
+            //               fontSize: 20,
+            //               fontWeight: FontWeight.bold
+            //     ),
+            //     ),
+            
+            //     SizedBox(width: 8,),   
+            
+            //       ElevatedButton(onPressed: () async {
+            //       final phoneNum =item.phone;
+            //       final Uri uri= Uri(scheme: 'tel',path: phoneNum);
+            //       if (!await launchUrl(uri, mode:
+            //       LaunchMode.externalApplication)) {
+            //         throw "Can not launch url";
+            //       }
+            //           }, 
+            //           style: ElevatedButton.styleFrom(
+            //       backgroundColor: primary,
+            //           ), 
+            //           child: Text('Call')),
+            //     ],
+            //   ),
+            // )

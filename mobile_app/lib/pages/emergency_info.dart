@@ -135,7 +135,11 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                   height: 10,
                 ),
                 // Date Text field
-                dateBox(context),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25),
+                  child: DatePickerField(labelText: 'Enter your birth date')
+                ),
+                //dateBox(context),
                 SizedBox(
                   height: 10,
                 ),
@@ -402,6 +406,65 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                 onChanged: dropDownCallBack,
               ),
             )),
+      ),
+    );
+  }
+}
+
+
+class DatePickerField extends StatefulWidget {
+  final String labelText;
+
+  const DatePickerField({Key? key, required this.labelText}) : super(key: key);
+
+  @override
+  _DatePickerFieldState createState() => _DatePickerFieldState();
+}
+
+class _DatePickerFieldState extends State<DatePickerField> {
+  final dateinput = TextEditingController();
+
+  @override
+  void dispose() {
+    dateinput.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: TextField(
+          controller: dateinput,
+          decoration: InputDecoration(
+            icon: Icon(Icons.calendar_month_outlined),
+            labelText: widget.labelText,
+            border: InputBorder.none,
+          ),
+          readOnly: true,
+          onTap: () async {
+            DateTime? pickedDate = await showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime(1930),
+              lastDate: DateTime.now(),
+            );
+
+            if (pickedDate != null) {
+              String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+              setState(() {
+                dateinput.text = formattedDate;
+              });
+            } else {
+              print("Date is not selected");
+            }
+          },
+        ),
       ),
     );
   }

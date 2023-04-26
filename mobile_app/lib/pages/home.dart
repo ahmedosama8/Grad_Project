@@ -103,204 +103,205 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        body: SafeArea(
+            child: Column(
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
+                    child: Text('Welcome Back, Ga3far ElOmda!',
+                        style: GoogleFonts.robotoCondensed(
+                            fontSize: 20, fontWeight: FontWeight.bold))),
+                Spacer(),
+                Padding(
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
-                  child: Text('Welcome Back, Ga3far ElOmda!',
-                      style: GoogleFonts.robotoCondensed(
-                          fontSize: 20, fontWeight: FontWeight.bold))),
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
-                child: Icon(Icons.settings),
-              )
-            ],
-          ),
-
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
+                  child: Icon(Icons.settings),
+                )
+              ],
+            ),
+    
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
+                    child: Text('Appointments',
+                        style: GoogleFonts.robotoCondensed(
+                          fontSize: 18,
+                        ))),
+                Spacer(),
+                Padding(
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                  child: Text('Appointments',
-                      style: GoogleFonts.robotoCondensed(
-                        fontSize: 18,
-                      ))),
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                child: GestureDetector(
-                  onTap: () {
-                    //Navigator.pop(context);
-                    //Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => My_Medical_Records()),
-                    );
-                  },
-                  child: Text('See all',
-                      style: GoogleFonts.robotoCondensed(
-                        fontSize: 14,
-                      )),
-                ),
-              )
-            ],
-          ),
-          // ignore: sized_box_for_whitespace
-          SizedBox(
-            height: 180,
-            child: ListView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 1,
-              itemBuilder: (context, index) {
-                return Card(
-                  elevation: 0,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(25, 0, 20, 5),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: primary),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: ListTile(
-                            title: Text('Book an appointment'),
-                            leading: SizedBox(
-                              width: 50,
-                              height: 50,
-                              child: Icon(
-                                Icons.add_box_sharp,
-                                size: 30,
-                              ),
-                            ),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Book_appoint()),
-                              );
-                            },
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(25, 0, 20, 0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(color: primary),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: ListTile(
-                            title: Text('View my appointments'),
-                            leading: SizedBox(
-                                width: 50, height: 50, child: Icon(Icons.list)),
-                            onTap: () {
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
-                            },
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-          ),
-          //SizedBox(height: 10,),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
-                  child: Text('Pharmacies',
-                      style: GoogleFonts.robotoCondensed(
-                        fontSize: 18,
-                      ))),
-            ],
-          ),
-          SizedBox(
-            height: 130,
-            child: ListView.separated(
-              padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
-              scrollDirection: Axis.horizontal,
-              itemCount: items.length,
-              separatorBuilder: (context, _) => SizedBox(
-                width: 10,
-              ),
-              itemBuilder: (context, index) => buildCard(item: items[index]),
-            ),
-          ),
-
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 18, 20, 20),
-                  child: Text('Labs & Centers',
-                      style: GoogleFonts.robotoCondensed(
-                        fontSize: 18,
-                      ))),
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(25, 18, 20, 20),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => LabList()),
-                    );
-                  },
-                  child: Text('See all',
-                      style: GoogleFonts.robotoCondensed(
-                        fontSize: 14,
-                      )),
-                ),
-              )
-            ],
-          ),
-
-          Expanded(
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: labData.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Colors.greenAccent,
-                    ),
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                  elevation: 0,
-                  child: ListTile(
-                    title: Text(labData[index].name),
-                    leading: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: Image.asset('assets/${labData[index].imageUrl}'),
-                    ),
+                  child: GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              LabDetail(labsDataModel: labData[index])));
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => My_Medical_Records()),
+                      );
                     },
+                    child: Text('See all',
+                        style: GoogleFonts.robotoCondensed(
+                          fontSize: 14,
+                        )),
                   ),
-                );
-              },
+                )
+              ],
             ),
-          )
-        ],
-      )),
+            // ignore: sized_box_for_whitespace
+            SizedBox(
+              height: 180,
+              child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: 1,
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 0,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(25, 0, 20, 5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: primary),
+                                borderRadius: BorderRadius.circular(12)),
+                            child: ListTile(
+                              title: Text('Book an appointment'),
+                              leading: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: Icon(
+                                  Icons.add_box_sharp,
+                                  size: 30,
+                                ),
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Book_appoint()),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(25, 0, 20, 0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                border: Border.all(color: primary),
+                                borderRadius: BorderRadius.circular(12)),
+                            child: ListTile(
+                              title: Text('View my appointments'),
+                              leading: SizedBox(
+                                  width: 50, height: 50, child: Icon(Icons.list)),
+                              onTap: () {
+                                //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            //SizedBox(height: 10,),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
+                    child: Text('Pharmacies',
+                        style: GoogleFonts.robotoCondensed(
+                          fontSize: 18,
+                        ))),
+              ],
+            ),
+            SizedBox(
+              height: 130,
+              child: ListView.separated(
+                padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
+                scrollDirection: Axis.horizontal,
+                itemCount: items.length,
+                separatorBuilder: (context, _) => SizedBox(
+                  width: 10,
+                ),
+                itemBuilder: (context, index) => buildCard(item: items[index]),
+              ),
+            ),
+    
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(25, 18, 20, 20),
+                    child: Text('Labs & Centers',
+                        style: GoogleFonts.robotoCondensed(
+                          fontSize: 18,
+                        ))),
+                Spacer(),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 18, 20, 20),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LabList()),
+                      );
+                    },
+                    child: Text('See all',
+                        style: GoogleFonts.robotoCondensed(
+                          fontSize: 14,
+                        )),
+                  ),
+                )
+              ],
+            ),
+    
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: labData.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Colors.greenAccent,
+                      ),
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    elevation: 0,
+                    child: ListTile(
+                      title: Text(labData[index].name),
+                      leading: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: Image.asset('assets/${labData[index].imageUrl}'),
+                      ),
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                LabDetail(labsDataModel: labData[index])));
+                      },
+                    ),
+                  );
+                },
+              ),
+            )
+          ],
+        )),
+      ),
     );
   }
 

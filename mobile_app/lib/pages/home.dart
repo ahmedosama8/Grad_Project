@@ -2,31 +2,110 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/labs_data_model.dart';
-import 'package:mobile_app/labs_detail.dart';
+import 'package:mobile_app/pages/book_appointment.dart';
+import 'package:mobile_app/pages/labList.dart';
+import 'package:mobile_app/pages/labs_detail.dart';
+import 'package:mobile_app/pages/my_medical_records.dart';
+import 'package:mobile_app/pages/pharm_details.dart';
+import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
+import 'package:mobile_app/pharm_data_model.dart';
 
-class HomePage extends StatelessWidget {
-   HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key? key}) : super(key: key);
 
+  static List<String> labName = [
+    'Alfa Lab',
+    'Al-Mokhtabar',
+    'Cairo Scan',
+    'Alfa Scan',
+    'Al-Borg',
+    'Nile Scan',
+    'El-Ahram Scan'
+  ];
+  static List pic = [
+    'alfalab.png',
+    'almokhtabar.png',
+    'cairoScan.png',
+    'alfascan.png',
+    'alborg.png',
+    'NileScan.png',
+    'alahramScan.png'
+  ];
 
-  static List <String> labName=['Alfa Lab','Al-Mokhtabar','Cairo Scan','Alfa Scan','Al-Borg','Dokki Scan','El-Ahram Scan'];
-  static List url = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi-sf9GkxgOv6_0kTx0FC6ATbTgNRqLPFBw&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJp43zftj2Rh5vbGQeCBuT5Qe9sLb9BxHx0A&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcLNcRrqgXV9X-ZtHd8kb4WxAe_NECCVwVww&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi-sf9GkxgOv6_0kTx0FC6ATbTgNRqLPFBw&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1dNIjOt_6An16uMqW-dZ5nQbTctV2XW14jg&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYC6guz8gX_0mgWxxqgraIHbafE4PPW0_wUw&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkWOFRgGI2gQ0bM--PbVcrlUMEl0_kAJO33A&usqp=CAU'];
+  static List labWeb = [
+    'www.alfalaboratory.com',
+    'www.almokhtabar.com',
+    'www.cairoscan.com.eg',
+    'www.alfascan.com.eg',
+    'www.alborgscan.com',
+    'www.nilescanandlabs.net',
+    'www.ahramscan.com'
+  ];
+  static List labPhone = [
+    '16191',
+    '19014',
+    '19144',
+    '16171',
+    '19911',
+    '19656',
+    '02 21 29 2000'
+  ];
 
-  final List <LabsDataModel> Labdata = List.generate(labName.length,
-  (index) => LabsDataModel(labName[index], '${url[index]}', '${labName[index]} Description....'));
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final List<LabsDataModel> labData = List.generate(
+      HomePage.labName.length,
+      (index) => LabsDataModel(
+          HomePage.labName[index],
+          '${HomePage.pic[index]}',
+          '${HomePage.labName[index]} Description....',
+          '${HomePage.labWeb[index]}',
+          '${HomePage.labPhone[index]}'));
+
+  List<CardItem> items = [
+    CardItem(
+        urlImage: 'assets/elezaby.png',
+        title: 'ElEzaby Pharmacy',
+        urlWeb: 'elezabypharmacy.com',
+        phone: '19600'),
+    CardItem(
+        urlImage: 'assets/masr.png',
+        title: 'Masr Pharmacy',
+        urlWeb: 'misr-online.com',
+        phone: '19110'),
+    CardItem(
+        urlImage: 'assets/care.png',
+        title: 'Care Pharmacy',
+        urlWeb: 'care-pharmacies.com',
+        phone: '19757'),
+    CardItem(
+        urlImage: 'assets/fouda.png',
+        title: 'Fouda Pharmacy',
+        urlWeb: 'fouda.com',
+        phone: '19395'),
+    CardItem(
+        urlImage: 'assets/zekry.png',
+        title: 'Zekry Pharmacy',
+        urlWeb: 'zikrypharmacies.com',
+        phone: '19029'),
+    CardItem(
+        urlImage: 'assets/seif.png',
+        title: 'Seif Pharmacy',
+        urlWeb: 'seif-online.com',
+        phone: '19199'),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
+          child: Column(
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,41 +114,48 @@ class HomePage extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
                   child: Text('Welcome Back, Ga3far ElOmda!',
                       style: GoogleFonts.robotoCondensed(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold
-                      )
-                      )
-                      ),
+                          fontSize: 20, fontWeight: FontWeight.bold))),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
-                child: Icon(Icons.notifications_sharp),
+                child: Icon(Icons.settings),
               )
             ],
           ),
-          
+
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                  child: Text('Recent',
+                  child: Text('Appointments',
                       style: GoogleFonts.robotoCondensed(
                         fontSize: 18,
                       ))),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                child: Text('Sea all',
-                    style: GoogleFonts.robotoCondensed(
-                      fontSize: 14,
-                    )),
+                child: GestureDetector(
+                  onTap: () {
+                    //Navigator.pop(context);
+                    //Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => My_Medical_Records()),
+                    );
+                  },
+                  child: Text('See all',
+                      style: GoogleFonts.robotoCondensed(
+                        fontSize: 14,
+                      )),
+                ),
               )
             ],
           ),
           // ignore: sized_box_for_whitespace
           SizedBox(
-            height: 220,
+            height: 180,
             child: ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
@@ -82,41 +168,53 @@ class HomePage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(25, 0, 20, 5),
                         child: Container(
-                          decoration: BoxDecoration(color: Color(0XFF6295E2),
-                          borderRadius: BorderRadius.circular(12)),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: primary),
+                              borderRadius: BorderRadius.circular(12)),
                           child: ListTile(
-                            title:Text('Recent Doctor Visited'),
-                            subtitle: Text('Doctor name'),
-                            leading: SizedBox(width: 50,height: 50,
-                            child: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkmoJXrt6LyiMzXnR-Cceorv4Uw-MtLmIf2Q&usqp=CAU'),),
+                            title: Text('Book an appointment'),
+                            leading: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: Icon(
+                                Icons.add_box_sharp,
+                                size: 30,
+                              ),
+                            ),
                             onTap: () {
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: Labdata[index])));
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Book_appoint()),
+                              );
                             },
-                                  
                           ),
                         ),
                       ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(25, 0, 20, 5),
-                          child: Container(
-                            decoration: BoxDecoration(color: Color(0XFFFF6C52),
-                            borderRadius: BorderRadius.circular(12)),
-                            child: ListTile( 
-                            title:Text('Recent Test'),
-                            subtitle: Text('Test name'),
-                            leading: SizedBox(width: 50,height: 50,
-                            child: Image.network(Labdata[index].imageUrl),),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(25, 0, 20, 0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: primary),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: ListTile(
+                            title: Text('View my appointments'),
+                            leading: SizedBox(
+                                width: 50, height: 50, child: Icon(Icons.list)),
                             onTap: () {
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: Labdata[index])));
+                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
                             },
-                                    
-                                                ),
                           ),
                         ),
+                      ),
                     ],
                   ),
                 );
-              },),
+              },
+            ),
           ),
           //SizedBox(height: 10,),
           Row(
@@ -128,279 +226,21 @@ class HomePage extends StatelessWidget {
                       style: GoogleFonts.robotoCondensed(
                         fontSize: 18,
                       ))),
-            
             ],
           ),
-          
-          Container(
-            padding: EdgeInsets.only(left: 20),
-            height: 100,
-            child: ListView(
+          SizedBox(
+            height: 130,
+            child: ListView.separated(
+              padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
               scrollDirection: Axis.horizontal,
-              children: [
-                                SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Profile()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5),
-                        Expanded(
-                          child: Center(
-                            child: Image(
-                              image: AssetImage('assets/loggo.png'),),
-                            ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'Our Pharmacy',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
-                              color: Colors.black),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 200,
-                  height: 200,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      elevation: 0,
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Pharmacy()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 5),
-                        Center(
-                          child: Image(
-                            image: NetworkImage('https://elezabypharmacy.com/themes/Elezaby/images/logo_ar3.png',
-                            scale: 1),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'El Ezaby',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 13,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        elevation: 0
-                        ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BarCode()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                         Image(
-                          image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2B1qwmkRG3BxXkkw7P1_gTRffVlGciT3ePg&usqp=CAU',
-                          scale: 4),
-                        ),
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'Rad-Scans',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 13,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        elevation: 0,),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Pharmacy()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Image(
-                          image: NetworkImage('http://rofayda.org/wp-content/uploads/2015/05/index-1.jpg',
-                          scale: 4 ),
-                        ),
-                      
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'Doctors Visit',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 12,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-                
-                SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        elevation: 0),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Pharmacy()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Image(
-                          image: NetworkImage('https://luxmedicard-storage.s3.amazonaws.com/files/public/LOGO_FOUDA_PHARMACY-2.png',
-                          scale:4 ),
-                        ),
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'Doctors Visit',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 12,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-                 SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        elevation: 0),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Pharmacy()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Image(
-                          image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ37z-m3txhQNhCbzLx0a7ekxn6XTfl9zKcig&usqp=CAU',
-                          scale:4 ),
-                        ),
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'Doctors Visit',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 12,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                ),
-                                 SizedBox(
-                  width: 20,
-                ),
-                SizedBox(
-                  width: 110,
-                  height: 100,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Color.fromARGB(228, 255, 255, 255),
-                        elevation: 0),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Pharmacy()),
-                      );
-                    },
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Image(
-                          image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5HjSvdRxnMsDOFUUZUIyZh4-KAt_J40NNGA&usqp=CAU',
-                          scale:4 ),
-                        ),
-                        SizedBox(height: 10),
-                        // Text(
-                        //   'Doctors Visit',
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.bold,
-                        //       fontSize: 12,
-                        //       color: Colors.black),
-                        // ),
-                      ],
-                    ),
-                  ),
-                )
-                
-              ],
+              itemCount: items.length,
+              separatorBuilder: (context, _) => SizedBox(
+                width: 10,
+              ),
+              itemBuilder: (context, index) => buildCard(item: items[index]),
             ),
           ),
-          
+
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -413,10 +253,18 @@ class HomePage extends StatelessWidget {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 18, 20, 20),
-                child: Text('Sea all',
-                    style: GoogleFonts.robotoCondensed(
-                      fontSize: 14,
-                    )),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => LabList()),
+                    );
+                  },
+                  child: Text('See all',
+                      style: GoogleFonts.robotoCondensed(
+                        fontSize: 14,
+                      )),
+                ),
               )
             ],
           ),
@@ -424,25 +272,66 @@ class HomePage extends StatelessWidget {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: Labdata.length,
+              itemCount: labData.length,
               itemBuilder: (context, index) {
                 return Card(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: Colors.greenAccent,
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                   elevation: 0,
                   child: ListTile(
-                    title:Text(Labdata[index].name),
-                    leading: SizedBox(width: 50,height: 50,
-                    child: Image.network(Labdata[index].imageUrl),),
+                    title: Text(labData[index].name),
+                    leading: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: Image.asset('assets/${labData[index].imageUrl}'),
+                    ),
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: Labdata[index])));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              LabDetail(labsDataModel: labData[index])));
                     },
-          
                   ),
                 );
-              },),
+              },
+            ),
           )
         ],
       )),
     );
   }
-}
 
+  Widget buildCard({required CardItem item}) => SizedBox(
+        width: 120,
+        child: Column(
+          children: [
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 4 / 3,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Material(
+                      child: Ink.image(
+                    image: AssetImage(item.urlImage),
+                    child: InkWell(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PharmPage(
+                                      item: item,
+                                    )))),
+                  )),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 4,
+            ),
+            //Text(item.title),
+          ],
+        ),
+      );
+}

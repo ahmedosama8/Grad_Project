@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/doctor_report.dart';
 import 'package:mobile_app/classes/doc_form.dart';
 
@@ -36,7 +37,7 @@ class _doctor_visitState extends State<doctor_visit> {
       appBar: AppBar(
         title: Text('Doctor Visits'),
         centerTitle: true,
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: primary,
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),

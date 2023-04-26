@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/classes/allmenu_form.dart';
+import 'package:mobile_app/colors.dart';
 
 class all_menu extends StatelessWidget {
   final Allmenu allmenu;
@@ -11,7 +12,7 @@ class all_menu extends StatelessWidget {
       appBar: AppBar(
         title: Text(allmenu.exminName),
         centerTitle: true,
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: primary,
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),

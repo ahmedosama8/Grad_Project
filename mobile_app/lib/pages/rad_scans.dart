@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/rad_report.dart';
 import 'package:mobile_app/classes/rad_form.dart';
 
@@ -36,7 +37,7 @@ class _rad_scansState extends State<rad_scans> {
       appBar: AppBar(
         title: Text('Radiology Scans'),
         centerTitle: true,
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: primary,
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),

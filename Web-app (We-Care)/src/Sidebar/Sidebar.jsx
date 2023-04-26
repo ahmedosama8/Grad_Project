@@ -2,6 +2,8 @@ import React from "react";
 import "./Sidebar.css";
 import BiotechIcon from "@mui/icons-material/Biotech";
 import ScienceIcon from "@mui/icons-material/Science";
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+
 import "./Sidebar.css";
 
 function Sidebar() {
@@ -38,6 +40,12 @@ function Sidebar() {
               <a href="/clinicalchemistry">
                 <ScienceIcon className="adminsidebarIcon" />
                 Lipid Profile
+              </a>
+            </li>
+            <li className="sidebarradListItem">
+              <a href="/">
+                <LeaderboardIcon className="sidebarradIcon" />
+                My patients
               </a>
             </li>
           </ul>

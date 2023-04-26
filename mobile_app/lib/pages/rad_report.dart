@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/classes/rad_form.dart';
+import 'package:mobile_app/colors.dart';
 
 class rad_report extends StatelessWidget {
   final Radform radform;
@@ -11,7 +12,7 @@ class rad_report extends StatelessWidget {
       appBar: AppBar(
         title: Text(radform.exminName),
         centerTitle: true,
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: primary,
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),

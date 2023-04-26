@@ -4,6 +4,9 @@ import 'package:mobile_app/pages/all_menu.dart';
 import 'package:mobile_app/pages/doctor_visit.dart';
 import 'package:mobile_app/pages/lab_results.dart';
 import 'package:mobile_app/pages/rad_scans.dart';
+import 'package:mobile_app/main.dart';
+
+import '../classes/customSearchDelegate.dart';
 
 class My_Medical_Records extends StatefulWidget {
   const My_Medical_Records({super.key});
@@ -44,17 +47,31 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(201, 244, 246, 245),
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
-          child: Text(
-            'Medical Records',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 35,
-            ),
+          padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  'Medical Records',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 35,
+                  ),
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  showSearch(
+                      context: context, delegate: CustomSearchDelegate());
+                },
+                icon: Icon(Icons.search),
+                color: Colors.black,
+                iconSize: 35,
+              )
+            ],
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -66,23 +83,6 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
           SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(5.0),
-              child: TextField(
-                onSubmitted: (value) {
-                  print(_searchController.text);
-                },
-                controller: _searchController,
-                decoration: InputDecoration(
-                  hintText: 'Search...',
-                  suffixIcon: IconButton(
-                    icon: Icon(Icons.clear),
-                    onPressed: () => _searchController.clear(),
-                  ),
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
-                ),
-              ),
             ),
           ),
           Padding(
@@ -107,6 +107,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                       );
                     },
                     child: Column(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         SizedBox(height: 20),
                         Icon(
@@ -147,6 +148,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                       );
                     },
                     child: Column(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         SizedBox(height: 20),
                         Icon(
@@ -187,6 +189,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                       );
                     },
                     child: Column(
+                      // ignore: prefer_const_literals_to_create_immutables
                       children: [
                         SizedBox(height: 20),
                         Icon(
@@ -215,6 +218,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
           Padding(
             padding: const EdgeInsets.fromLTRB(15, 1, 50, 0),
             child: Row(
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 Text(
                   'All',

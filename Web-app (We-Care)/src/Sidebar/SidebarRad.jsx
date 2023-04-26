@@ -2,6 +2,8 @@ import React from 'react';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import BiotechIcon from '@mui/icons-material/Biotech';
 import ScienceIcon from '@mui/icons-material/Science';
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+
 import './sidebarrad.css';
 
 function SidebarRad() {
@@ -20,6 +22,12 @@ function SidebarRad() {
               <a href="/addscan">
                 <ScienceIcon className="sidebarradIcon" />
                 Add Scan
+              </a>
+            </li>
+            <li className="sidebarradListItem">
+              <a href="/">
+                <LeaderboardIcon className="sidebarradIcon" />
+                My patients
               </a>
             </li>
             <li className="sidebarradListItem" >

@@ -28,7 +28,7 @@ function LoginPage() {
       navigate('/labhome')} 
     else if (sessionStorage.getItem('User')=='Doctor'){
       navigate('/Clinic')}
-    else if (sessionStorage.getItem('User')=='RadCenter'){navigate('/Radiology-Center')}
+    else if (sessionStorage.getItem('User')=='RadCenter'){navigate('/radhome')}
     else(navigate('/'))
   }
 
@@ -50,7 +50,7 @@ function Rad_Center(){
           <div className="d-flex flex-column ms-8">
 
             <div className="text-center">
-              <img src="https://cdn-icons-png.flaticon.com/512/9379/9379978.png"
+              <img src="https://media.discordapp.net/attachments/795560684120834061/1090738184377348216/loggo.png?width=146&height=142"
                 style={{width: '185px'}} alt="logo" />
               <h4 className="mt-1 mb-5 pb-1">We Care</h4>
             </div>
@@ -67,10 +67,10 @@ function Rad_Center(){
               <MDBBtn onClick={()=>lab()}>Lab</MDBBtn>
               <MDBBtn onClick={()=>Rad_Center()}>Rad-Center</MDBBtn>
             </MDBBtnGroup>
-            <br></br>
+            <br></br> 
 
-            <div className="text-center pt-1 mb-5 pb-1">
-              <MDBBtn className="mb-4 w-100 gradient-custom-2" disabled={!email || !password}onClick={()=>signIn() } >Sign in </MDBBtn>
+            <div className=" text-center pt-1 mb-5 pb-1">
+              <MDBBtn className=" mb-4 w-100 gradient-custom-2" disabled={!email || !password}onClick={()=>signIn() } >Sign in </MDBBtn>
                 <a className="text-muted" href="#!">Forgot password?</a>
             </div>
 

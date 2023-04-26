@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import Topbar from "../Topbar/Topbar";
 import Sidebar from "../Sidebar/Sidebar";
 import "./CBCTest.css";
@@ -6,36 +6,17 @@ import "./CBCTest.css";
 // function MouseOver(event) {
 //   event.target.style.background = "red";
 // }
-const onButtonClick = () => {
-  // using Java Script method to get PDF file
-  fetch("SamplePDF.pdf").then((response) => {
-    response.blob().then((blob) => {
-      // Creating new object of PDF file
-      const fileURL = window.URL.createObjectURL(blob);
-      // Setting various property values
-      let alink = document.createElement("a");
-      alink.href = fileURL;
-      alink.download = "SamplePDF.pdf";
-      alink.click();
-    });
-  });
-};
-class Files extends Component {
-  state = {
-    pdfText: {
-      fileName: "",
-      heading: "",
-      text: "",
-    },
-  };
 
-  updateState = (e) => {
-    const pdfText = { ...this.state.pdfText };
-    pdfText[e.currentTarget.name] = e.currentTarget.value;
-    this.setState({ pdfText });
-  };
-}
 function CBCTest() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3500/posts")
+      .then((res) => res.json())
+      .then((result) => {
+        setPosts(result);
+      });
+  }, []);
   return (
     <div>
       <Topbar />
@@ -304,10 +285,14 @@ function CBCTest() {
           </div>
 
           <div className="mb-5">
-            <button onClick={onButtonClick} type="submit">
-              Submit
-            </button>
+            <button type="submit">Submit</button>
           </div>
+          <ul>
+          <li>Hello</li>
+            {posts.map((post) => (
+              <li key={post.id}>{post.title}</li>
+            ))}
+          </ul>
         </form>
       </div>
     </div>

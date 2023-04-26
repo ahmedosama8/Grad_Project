@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/classes/Test_form.dart';
+import 'package:mobile_app/colors.dart';
 
 class Testpage extends StatelessWidget {
   final Testform testform;
@@ -11,7 +12,7 @@ class Testpage extends StatelessWidget {
       appBar: AppBar(
         title: Text(testform.testname),
         centerTitle: true,
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: primary,
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),

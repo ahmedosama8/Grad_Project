@@ -13,15 +13,15 @@ import {
 import Sidebar from "../Sidebar/Sidebar";
 import Topbar from "../Topbar/Topbar";
 import SidebarClinic from "../Sidebar/SidebarClinic";
+import "./Clinic.css"
 function Clinic() {
   return (
     <div>
       <Topbar />
-
       <SidebarClinic />
       <div
         className="App container"
-        style={{ position: "relative", bottom: 700, width: 1000 }}
+        style={{ position: "relative", bottom: 950,right:100, width: 1000 }}
       >
         <div class="row">
           <div class="col-lg-6">

@@ -1,5 +1,5 @@
 import React from "react";
-import AcUnitIcon from "@mui/icons-material/AcUnit";
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import BiotechIcon from "@mui/icons-material/Biotech";
 import ScienceIcon from "@mui/icons-material/Science";
 import PersonIcon from '@mui/icons-material/Person';
@@ -20,6 +20,12 @@ export default function SidebarClinic() {
               <a href="/addpatient">
                 <PersonIcon  className="sidebarradIcon" />
                 Add Pateint
+              </a>
+            </li>
+            <li className="sidebarradListItem">
+              <a href="/">
+                <LeaderboardIcon className="sidebarradIcon" />
+                My patients
               </a>
             </li>
             <li className="sidebarradListItem">

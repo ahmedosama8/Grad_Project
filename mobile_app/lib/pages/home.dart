@@ -3,50 +3,54 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/labs_data_model.dart';
+import 'package:mobile_app/pages/labList.dart';
 import 'package:mobile_app/pages/labs_detail.dart';
+import 'package:mobile_app/pages/my_medical_records.dart';
 import 'package:mobile_app/pages/pharm_details.dart';
 import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 import 'package:mobile_app/pharm_data_model.dart';
 
+
 class HomePage extends StatefulWidget {
    HomePage({Key? key}) : super(key: key);
 
 
-  static List <String> labName = ['Alfa Lab','Al-Mokhtabar','Cairo Scan','Alfa Scan','Al-Borg','Dokki Scan','El-Ahram Scan'];
-  static List url = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi-sf9GkxgOv6_0kTx0FC6ATbTgNRqLPFBw&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJp43zftj2Rh5vbGQeCBuT5Qe9sLb9BxHx0A&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcLNcRrqgXV9X-ZtHd8kb4WxAe_NECCVwVww&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAi-sf9GkxgOv6_0kTx0FC6ATbTgNRqLPFBw&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1dNIjOt_6An16uMqW-dZ5nQbTctV2XW14jg&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYC6guz8gX_0mgWxxqgraIHbafE4PPW0_wUw&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkWOFRgGI2gQ0bM--PbVcrlUMEl0_kAJO33A&usqp=CAU'];
+  static List <String> labName = ['Alfa Lab','Al-Mokhtabar','Cairo Scan','Alfa Scan','Al-Borg','Nile Scan','El-Ahram Scan'];
+  static List pic = ['alfalab.png',
+  'almokhtabar.png',
+  'cairoScan.png',
+  'alfascan.png',
+  'alborg.png',
+  'NileScan.png',
+  'alahramScan.png'];
 
-  static List labWeb = ['www.alfalaboratory.com','www.almokhtabar.com','www.cairoscan.com.eg','www.alfascan.com.eg','www.alborgscan.com','aaa','www.ahramscan.com'];
-  static List labPhone = ['16191','19014','19144','16171','19911','6','02 21 29 2000'];
+  static List labWeb = ['www.alfalaboratory.com','www.almokhtabar.com','www.cairoscan.com.eg','www.alfascan.com.eg','www.alborgscan.com','www.nilescanandlabs.net','www.ahramscan.com'];
+  static List labPhone = ['16191','19014','19144','16171','19911','19656','02 21 29 2000'];
 
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
+
 class _HomePageState extends State<HomePage> {
-  final List <LabsDataModel> Labdata = List.generate(HomePage.labName.length,
-  (index) => LabsDataModel(HomePage.labName[index], '${HomePage.url[index]}', '${HomePage.labName[index]} Description....','${HomePage.labWeb[index]}','${HomePage.labPhone[index]}'));
+  final List <LabsDataModel> labData = List.generate(HomePage.labName.length,
+  (index) => LabsDataModel(HomePage.labName[index], '${HomePage.pic[index]}', '${HomePage.labName[index]} Description....','${HomePage.labWeb[index]}','${HomePage.labPhone[index]}'));
 
   List<CardItem> items =[
     
-    CardItem(urlImage: 'https://elezabypharmacy.com/themes/Elezaby/images/logo_ar3.png'
+    CardItem(urlImage: 'assets/elezaby.png'
     , title: 'ElEzaby Pharmacy',urlWeb:'elezabypharmacy.com' ,phone:'19600'),
-    CardItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2B1qwmkRG3BxXkkw7P1_gTRffVlGciT3ePg&usqp=CAU'
+    CardItem(urlImage: 'assets/masr.png'
     , title: 'Masr Pharmacy',urlWeb:'misr-online.com' ,phone:'19110'),
-    CardItem(urlImage: 'http://rofayda.org/wp-content/uploads/2015/05/index-1.jpg'
-    , title: 'Roshdy Pharmacy',urlWeb:'' ,phone:''),
-    CardItem(urlImage: 'https://luxmedicard-storage.s3.amazonaws.com/files/public/LOGO_FOUDA_PHARMACY-2.png'
+    CardItem(urlImage: 'assets/care.png'
+    , title: 'Care Pharmacy',urlWeb:'care-pharmacies.com',phone:'19757'),
+    CardItem(urlImage: 'assets/fouda.png'
     , title: 'Fouda Pharmacy',urlWeb:'fouda.com' ,phone:'19395'),
-    CardItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ37z-m3txhQNhCbzLx0a7ekxn6XTfl9zKcig&usqp=CAU'
+    CardItem(urlImage: 'assets/zekry.png'
     , title: 'Zekry Pharmacy',urlWeb:'zikrypharmacies.com' ,phone:'19029'),
-    CardItem(urlImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5HjSvdRxnMsDOFUUZUIyZh4-KAt_J40NNGA&usqp=CAU'
+    CardItem(urlImage: 'assets/seif.png'
     , title: 'Seif Pharmacy',urlWeb:'seif-online.com' ,phone:'19199'),
   ];
 
@@ -71,7 +75,7 @@ class _HomePageState extends State<HomePage> {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
-                child: Icon(Icons.notifications_sharp),
+                child: Icon(Icons.settings),
               )
             ],
           ),
@@ -81,17 +85,27 @@ class _HomePageState extends State<HomePage> {
             children: [
               Padding(
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                  child: Text('Recent',
+                  child: Text('Recent results',
                       style: GoogleFonts.robotoCondensed(
                         fontSize: 18,
                       ))),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                child: Text('See all',
-                    style: GoogleFonts.robotoCondensed(
-                      fontSize: 14,
-                    )),
+                child: GestureDetector(
+                  onTap: () { //Navigator.pop(context);
+                        //Navigator.pop(context);
+                        Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => My_Medical_Records()),
+                      );
+                  },
+                  child: Text('See all',
+                      style: GoogleFonts.robotoCondensed(
+                        fontSize: 14,
+                      )),
+                ),
               )
             ],
           ),
@@ -116,9 +130,9 @@ class _HomePageState extends State<HomePage> {
                             title:Text('Recent Doctor Visited'),
                             subtitle: Text('Doctor name'),
                             leading: SizedBox(width: 50,height: 50,
-                            child: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkmoJXrt6LyiMzXnR-Cceorv4Uw-MtLmIf2Q&usqp=CAU'),),
+                            child: CircleAvatar(backgroundImage: AssetImage('assets/doctor.png')),),
                             onTap: () {
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: Labdata[index])));
+                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
                             },
                                   
                           ),
@@ -133,12 +147,12 @@ class _HomePageState extends State<HomePage> {
                             title:Text('Recent Test'),
                             subtitle: Text('Test name'),
                             leading: SizedBox(width: 50,height: 50,
-                            child: Image.network(Labdata[index].imageUrl),),
+                            child: Image.asset('assets/${labData[index].imageUrl}'),),
                             onTap: () {
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: Labdata[index])));
+                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
                             },
                                     
-                                                ),
+                            ),
                           ),
                         ),
                     ],
@@ -159,7 +173,7 @@ class _HomePageState extends State<HomePage> {
             
             ],
           ),
-          Container(
+          SizedBox(
             height: 130,
             child: ListView.separated(
               padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
@@ -183,10 +197,19 @@ class _HomePageState extends State<HomePage> {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 18, 20, 20),
-                child: Text('See all',
-                    style: GoogleFonts.robotoCondensed(
-                      fontSize: 14,
-                    )),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LabList()),
+                      );
+                  },
+                  child: Text('See all',
+                      style: GoogleFonts.robotoCondensed(
+                        fontSize: 14,
+                      )),
+                ),
               )
             ],
           ),
@@ -194,16 +217,16 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: Labdata.length,
+              itemCount: labData.length,
               itemBuilder: (context, index) {
                 return Card(
                   elevation: 0,
                   child: ListTile(
-                    title:Text(Labdata[index].name),
+                    title:Text(labData[index].name),
                     leading: SizedBox(width: 50,height: 50,
-                    child: Image.network(Labdata[index].imageUrl),),
+                    child: Image.asset('assets/${labData[index].imageUrl}'),),
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: Labdata[index])));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
                     },
           
                   ),
@@ -215,7 +238,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget buildCard({required CardItem item}) => Container(
+  Widget buildCard({required CardItem item}) => SizedBox(
     width: 120,
     child: Column(
       children: [
@@ -226,7 +249,7 @@ class _HomePageState extends State<HomePage> {
               borderRadius: BorderRadius.circular(20),
               child: Material(
                 child: Ink.image(
-                  image: NetworkImage(item.urlImage),
+                  image: AssetImage(item.urlImage),
                   child: InkWell(
                     onTap: () =>   Navigator.push(context,
                     MaterialPageRoute(builder: (context) => PharmPage(item: item,)))

@@ -19,8 +19,8 @@ class LabDetail extends StatelessWidget {
         // ignore: prefer_const_literals_to_create_immutables
         children: [
           AspectRatio(aspectRatio: 4/3,
-          child: Image.network(labsDataModel.imageUrl,
-          //fit: BoxFit.cover,
+          child: Image.asset('assets/${labsDataModel.imageUrl}'
+          
           ),
           ),
          

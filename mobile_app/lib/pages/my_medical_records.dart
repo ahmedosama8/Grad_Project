@@ -4,6 +4,7 @@ import 'package:mobile_app/pages/all_menu.dart';
 import 'package:mobile_app/pages/doctor_visit.dart';
 import 'package:mobile_app/pages/lab_results.dart';
 import 'package:mobile_app/pages/rad_scans.dart';
+import 'package:mobile_app/main.dart';
 
 import '../classes/customSearchDelegate.dart';
 
@@ -46,7 +47,6 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(201, 244, 246, 245),
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Padding(

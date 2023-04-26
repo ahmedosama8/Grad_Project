@@ -29,14 +29,11 @@ void main() async {
 
   runApp(const MyApp());
 
-    Uri baseUrl = Uri.base;
-  
-  print(baseUrl.toString());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -48,17 +45,19 @@ class MyApp extends StatelessWidget {
 
         //home: const WelcomePage(),
         //initialRoute: '/auth',
+
         routes: {
           '/': (context) => const AppScreen(),
           'login': (context) => const Login(),
           'signup': (context) => const SignUp(),
           'profile': (context) => const WelcomePage(),
           'emrsignup': (context) => const EmergencyInfoPage(),
-          'my_medical_records': (context) => const My_Medical_Records(),
+          'my_medical_records': (context) =>  My_Medical_Records(),
           'lab_results': (context) => const lab_results(),
           'rad_scans': (context) => const rad_scans(),
           'doctor_visit': (context) => const doctor_visit(),
           'pharmacy':(context) => MedicineListPage(),
-        });
+        }
+        );
   }
 }

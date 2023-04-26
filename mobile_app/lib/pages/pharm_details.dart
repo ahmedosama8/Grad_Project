@@ -34,7 +34,7 @@ final CardItem item;
         // ignore: prefer_const_literals_to_create_immutables
         children: [
           AspectRatio(aspectRatio: 4/3,
-          child: Image.network(item.urlImage,
+          child: Image.asset(item.urlImage,
           //fit: BoxFit.cover,
           ),
           ),

@@ -25,17 +25,11 @@ class _WelcomePageState extends State<WelcomePage> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.white,
-        body: WillPopScope(
-          onWillPop: () async {
-          // disable back button by returning false
-          return false;
-        },
-          child: PersistentTabView(
-            context,
-            screens: screens(),
-            items: navBarsItems(),
-            navBarStyle: NavBarStyle.style3,
-          ),
+        body: PersistentTabView(
+          context,
+          screens: screens(),
+          items: navBarsItems(),
+          navBarStyle: NavBarStyle.style3,
         ),
       ),
     );

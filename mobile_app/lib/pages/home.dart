@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-    
+
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -162,6 +162,7 @@ class _HomePageState extends State<HomePage> {
                 itemCount: 1,
                 itemBuilder: (context, index) {
                   return Card(
+                    color: Colors.white12,
                     elevation: 0,
                     child: Column(
                       children: [
@@ -185,7 +186,7 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const Book_appoint()),
+                                      builder: (context) => Bookappoint()),
                                 );
                               },
                             ),
@@ -203,7 +204,9 @@ class _HomePageState extends State<HomePage> {
                             child: ListTile(
                               title: Text('View my appointments'),
                               leading: SizedBox(
-                                  width: 50, height: 50, child: Icon(Icons.list)),
+                                  width: 50,
+                                  height: 50,
+                                  child: Icon(Icons.list)),
                               onTap: () {
                                 //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
                               },
@@ -240,7 +243,7 @@ class _HomePageState extends State<HomePage> {
                 itemBuilder: (context, index) => buildCard(item: items[index]),
               ),
             ),
-    
+
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -268,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                 )
               ],
             ),
-    
+
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,

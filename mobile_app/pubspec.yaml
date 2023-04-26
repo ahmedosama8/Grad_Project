@@ -41,6 +41,8 @@ dependencies:
   firebase_auth: ^4.1.4
   smooth_page_indicator: ^1.0.1
   url_launcher: ^6.1.10
+  flutter_datetime_picker: ^1.5.1
+  quickalert: ^1.0.1
 
   
 

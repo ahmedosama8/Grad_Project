@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/labs_data_model.dart';
+import 'package:mobile_app/pages/book_appointment.dart';
 import 'package:mobile_app/pages/labList.dart';
 import 'package:mobile_app/pages/labs_detail.dart';
 import 'package:mobile_app/pages/my_medical_records.dart';
@@ -11,54 +13,99 @@ import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 import 'package:mobile_app/pharm_data_model.dart';
 
-
 class HomePage extends StatefulWidget {
-   HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
+  static List<String> labName = [
+    'Alfa Lab',
+    'Al-Mokhtabar',
+    'Cairo Scan',
+    'Alfa Scan',
+    'Al-Borg',
+    'Nile Scan',
+    'El-Ahram Scan'
+  ];
+  static List pic = [
+    'alfalab.png',
+    'almokhtabar.png',
+    'cairoScan.png',
+    'alfascan.png',
+    'alborg.png',
+    'NileScan.png',
+    'alahramScan.png'
+  ];
 
-  static List <String> labName = ['Alfa Lab','Al-Mokhtabar','Cairo Scan','Alfa Scan','Al-Borg','Nile Scan','El-Ahram Scan'];
-  static List pic = ['alfalab.png',
-  'almokhtabar.png',
-  'cairoScan.png',
-  'alfascan.png',
-  'alborg.png',
-  'NileScan.png',
-  'alahramScan.png'];
-
-  static List labWeb = ['www.alfalaboratory.com','www.almokhtabar.com','www.cairoscan.com.eg','www.alfascan.com.eg','www.alborgscan.com','www.nilescanandlabs.net','www.ahramscan.com'];
-  static List labPhone = ['16191','19014','19144','16171','19911','19656','02 21 29 2000'];
-
+  static List labWeb = [
+    'www.alfalaboratory.com',
+    'www.almokhtabar.com',
+    'www.cairoscan.com.eg',
+    'www.alfascan.com.eg',
+    'www.alborgscan.com',
+    'www.nilescanandlabs.net',
+    'www.ahramscan.com'
+  ];
+  static List labPhone = [
+    '16191',
+    '19014',
+    '19144',
+    '16171',
+    '19911',
+    '19656',
+    '02 21 29 2000'
+  ];
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-
 class _HomePageState extends State<HomePage> {
-  final List <LabsDataModel> labData = List.generate(HomePage.labName.length,
-  (index) => LabsDataModel(HomePage.labName[index], '${HomePage.pic[index]}', '${HomePage.labName[index]} Description....','${HomePage.labWeb[index]}','${HomePage.labPhone[index]}'));
+  final List<LabsDataModel> labData = List.generate(
+      HomePage.labName.length,
+      (index) => LabsDataModel(
+          HomePage.labName[index],
+          '${HomePage.pic[index]}',
+          '${HomePage.labName[index]} Description....',
+          '${HomePage.labWeb[index]}',
+          '${HomePage.labPhone[index]}'));
 
-  List<CardItem> items =[
-    
-    CardItem(urlImage: 'assets/elezaby.png'
-    , title: 'ElEzaby Pharmacy',urlWeb:'elezabypharmacy.com' ,phone:'19600'),
-    CardItem(urlImage: 'assets/masr.png'
-    , title: 'Masr Pharmacy',urlWeb:'misr-online.com' ,phone:'19110'),
-    CardItem(urlImage: 'assets/care.png'
-    , title: 'Care Pharmacy',urlWeb:'care-pharmacies.com',phone:'19757'),
-    CardItem(urlImage: 'assets/fouda.png'
-    , title: 'Fouda Pharmacy',urlWeb:'fouda.com' ,phone:'19395'),
-    CardItem(urlImage: 'assets/zekry.png'
-    , title: 'Zekry Pharmacy',urlWeb:'zikrypharmacies.com' ,phone:'19029'),
-    CardItem(urlImage: 'assets/seif.png'
-    , title: 'Seif Pharmacy',urlWeb:'seif-online.com' ,phone:'19199'),
+  List<CardItem> items = [
+    CardItem(
+        urlImage: 'assets/elezaby.png',
+        title: 'ElEzaby Pharmacy',
+        urlWeb: 'elezabypharmacy.com',
+        phone: '19600'),
+    CardItem(
+        urlImage: 'assets/masr.png',
+        title: 'Masr Pharmacy',
+        urlWeb: 'misr-online.com',
+        phone: '19110'),
+    CardItem(
+        urlImage: 'assets/care.png',
+        title: 'Care Pharmacy',
+        urlWeb: 'care-pharmacies.com',
+        phone: '19757'),
+    CardItem(
+        urlImage: 'assets/fouda.png',
+        title: 'Fouda Pharmacy',
+        urlWeb: 'fouda.com',
+        phone: '19395'),
+    CardItem(
+        urlImage: 'assets/zekry.png',
+        title: 'Zekry Pharmacy',
+        urlWeb: 'zikrypharmacies.com',
+        phone: '19029'),
+    CardItem(
+        urlImage: 'assets/seif.png',
+        title: 'Seif Pharmacy',
+        urlWeb: 'seif-online.com',
+        phone: '19199'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
+          child: Column(
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,11 +114,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
                   child: Text('Welcome Back, Ga3far ElOmda!',
                       style: GoogleFonts.robotoCondensed(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold
-                      )
-                      )
-                      ),
+                          fontSize: 20, fontWeight: FontWeight.bold))),
               Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
@@ -79,13 +122,13 @@ class _HomePageState extends State<HomePage> {
               )
             ],
           ),
-          
+
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                  child: Text('Recent results',
+                  child: Text('Appointments',
                       style: GoogleFonts.robotoCondensed(
                         fontSize: 18,
                       ))),
@@ -93,13 +136,14 @@ class _HomePageState extends State<HomePage> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
                 child: GestureDetector(
-                  onTap: () { //Navigator.pop(context);
-                        //Navigator.pop(context);
-                        Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => My_Medical_Records()),
-                      );
+                  onTap: () {
+                    //Navigator.pop(context);
+                    //Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => My_Medical_Records()),
+                    );
                   },
                   child: Text('See all',
                       style: GoogleFonts.robotoCondensed(
@@ -124,41 +168,53 @@ class _HomePageState extends State<HomePage> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(25, 0, 20, 5),
                         child: Container(
-                          decoration: BoxDecoration(color: Color(0XFF6295E2),
-                          borderRadius: BorderRadius.circular(12)),
+                          decoration: BoxDecoration(
+                              border: Border.all(color: primary),
+                              borderRadius: BorderRadius.circular(12)),
                           child: ListTile(
-                            title:Text('Recent Doctor Visited'),
-                            subtitle: Text('Doctor name'),
-                            leading: SizedBox(width: 50,height: 50,
-                            child: CircleAvatar(backgroundImage: AssetImage('assets/doctor.png')),),
+                            title: Text('Book an appointment'),
+                            leading: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: Icon(
+                                Icons.add_box_sharp,
+                                size: 30,
+                              ),
+                            ),
                             onTap: () {
-                              //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Book_appoint()),
+                              );
                             },
-                                  
                           ),
                         ),
                       ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(25, 0, 20, 0),
-                          child: Container(
-                            decoration: BoxDecoration(color: Color(0XFFFF6C52),
-                            borderRadius: BorderRadius.circular(12)),
-                            child: ListTile( 
-                            title:Text('Recent Test'),
-                            subtitle: Text('Test name'),
-                            leading: SizedBox(width: 50,height: 50,
-                            child: Image.asset('assets/${labData[index].imageUrl}'),),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(25, 0, 20, 0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border.all(color: primary),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: ListTile(
+                            title: Text('View my appointments'),
+                            leading: SizedBox(
+                                width: 50, height: 50, child: Icon(Icons.list)),
                             onTap: () {
                               //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
                             },
-                                    
-                            ),
                           ),
                         ),
+                      ),
                     ],
                   ),
                 );
-              },),
+              },
+            ),
           ),
           //SizedBox(height: 10,),
           Row(
@@ -170,7 +226,6 @@ class _HomePageState extends State<HomePage> {
                       style: GoogleFonts.robotoCondensed(
                         fontSize: 18,
                       ))),
-            
             ],
           ),
           SizedBox(
@@ -179,12 +234,13 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
               scrollDirection: Axis.horizontal,
               itemCount: items.length,
-              separatorBuilder: (context, _) => SizedBox(width: 10,),
-              itemBuilder: (context, index) => buildCard(item: items[index]), 
-
+              separatorBuilder: (context, _) => SizedBox(
+                width: 10,
+              ),
+              itemBuilder: (context, index) => buildCard(item: items[index]),
             ),
           ),
-      
+
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -200,10 +256,9 @@ class _HomePageState extends State<HomePage> {
                 child: GestureDetector(
                   onTap: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LabList()),
-                      );
+                      context,
+                      MaterialPageRoute(builder: (context) => LabList()),
+                    );
                   },
                   child: Text('See all',
                       style: GoogleFonts.robotoCondensed(
@@ -220,18 +275,29 @@ class _HomePageState extends State<HomePage> {
               itemCount: labData.length,
               itemBuilder: (context, index) {
                 return Card(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: Colors.greenAccent,
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                   elevation: 0,
                   child: ListTile(
-                    title:Text(labData[index].name),
-                    leading: SizedBox(width: 50,height: 50,
-                    child: Image.asset('assets/${labData[index].imageUrl}'),),
+                    title: Text(labData[index].name),
+                    leading: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: Image.asset('assets/${labData[index].imageUrl}'),
+                    ),
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              LabDetail(labsDataModel: labData[index])));
                     },
-          
                   ),
                 );
-              },),
+              },
+            ),
           )
         ],
       )),
@@ -239,30 +305,33 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget buildCard({required CardItem item}) => SizedBox(
-    width: 120,
-    child: Column(
-      children: [
-        Expanded(
-          child: AspectRatio(
-            aspectRatio: 4 / 3,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Material(
-                child: Ink.image(
-                  image: AssetImage(item.urlImage),
-                  child: InkWell(
-                    onTap: () =>   Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => PharmPage(item: item,)))
-                  ),
-                )
+        width: 120,
+        child: Column(
+          children: [
+            Expanded(
+              child: AspectRatio(
+                aspectRatio: 4 / 3,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Material(
+                      child: Ink.image(
+                    image: AssetImage(item.urlImage),
+                    child: InkWell(
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PharmPage(
+                                      item: item,
+                                    )))),
+                  )),
+                ),
               ),
             ),
-          ),
-          ),
-          const SizedBox(height: 4,),
-          //Text(item.title),
-      ],
-    ),
-  );
+            const SizedBox(
+              height: 4,
+            ),
+            //Text(item.title),
+          ],
+        ),
+      );
 }
-

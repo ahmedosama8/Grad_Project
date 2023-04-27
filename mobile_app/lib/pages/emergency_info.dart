@@ -137,9 +137,8 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                 ),
                 // Date Text field
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: DatePickerField(labelText: 'Enter your birth date')
-                ),
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: DatePickerField(labelText: 'Enter your birth date')),
                 //dateBox(context),
                 SizedBox(
                   height: 10,
@@ -412,7 +411,6 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
   }
 }
 
-
 class DatePickerField extends StatefulWidget {
   final String labelText;
 
@@ -442,7 +440,13 @@ class _DatePickerFieldState extends State<DatePickerField> {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: TextField(
+        child: TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter a date';
+            }
+            return null;
+          },
           controller: dateinput,
           decoration: InputDecoration(
             icon: Icon(Icons.calendar_month_outlined),
@@ -454,12 +458,13 @@ class _DatePickerFieldState extends State<DatePickerField> {
             DateTime? pickedDate = await showDatePicker(
               context: context,
               initialDate: DateTime.now(),
-              firstDate: DateTime(1930),
-              lastDate: DateTime.now(),
+              firstDate: DateTime.now(),
+              lastDate: DateTime(2024),
             );
 
             if (pickedDate != null) {
-              String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+              String formattedDate =
+                  DateFormat('yyyy-MM-dd').format(pickedDate);
               setState(() {
                 dateinput.text = formattedDate;
               });

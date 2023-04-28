@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/navBar.dart';
+import 'package:mobile_app/pages/barcode.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/login.dart';
 import 'package:mobile_app/pages/medicine.dart';
@@ -36,22 +37,16 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 
   List<Widget> screens() {
-    return [HomePage(), My_Medical_Records(), BarCode(), MedicineListPage(), Profile()];
+    return [
+      HomePage(),
+      My_Medical_Records(),
+      BarCode(),
+      MedicineListPage(),
+      Profile()
+    ];
   }
 }
 
-
-
-
-
-class BarCode extends StatelessWidget {
-  const BarCode({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
 class Pharmacy extends StatelessWidget {
   const Pharmacy({super.key});
 
@@ -60,6 +55,7 @@ class Pharmacy extends StatelessWidget {
     return Scaffold();
   }
 }
+
 class Profile extends StatelessWidget {
   const Profile({super.key});
 

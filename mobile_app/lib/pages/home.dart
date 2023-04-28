@@ -10,6 +10,7 @@ import 'package:mobile_app/pages/labs_detail.dart';
 import 'package:mobile_app/pages/my_medical_records.dart';
 import 'package:mobile_app/pages/pharm_details.dart';
 import 'package:mobile_app/pages/pharmacy.dart';
+import 'package:mobile_app/pages/view_appointment.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 import 'package:mobile_app/pharm_data_model.dart';
 
@@ -208,7 +209,26 @@ class _HomePageState extends State<HomePage> {
                                   height: 50,
                                   child: Icon(Icons.list)),
                               onTap: () {
-                                //Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labData[index])));
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          PatientScheduleTable(
+                                            schedules: [
+                                              PatientSchedule(
+                                                  doctorName: 'John Doe',
+                                                  facility: 'ABC Hospital',
+                                                  bookedDate: '2022-05-01',
+                                                  notes:
+                                                      'Follow-up appointment'),
+                                              PatientSchedule(
+                                                  doctorName: 'Jane Smith',
+                                                  facility: 'XYZ Clinic',
+                                                  bookedDate: '2022-05-02',
+                                                  notes: 'Annual check-up'),
+                                            ],
+                                          )),
+                                );
                               },
                             ),
                           ),

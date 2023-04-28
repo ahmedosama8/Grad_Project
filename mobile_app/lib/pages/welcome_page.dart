@@ -24,13 +24,35 @@ class _WelcomePageState extends State<WelcomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: PersistentTabView(
-          context,
-          screens: screens(),
-          items: navBarsItems(),
-          navBarStyle: NavBarStyle.style3,
+      home: WillPopScope(
+        onWillPop: () async {
+          final confirmed = await showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+              title: Text('Do you want to exit the app?',
+              style: GoogleFonts.robotoCondensed()),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(false),
+                  child: Text('No'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.of(context).pop(true),
+                  child: Text('Yes'),
+                ),
+              ],
+            ),
+          );
+          return confirmed ?? false;
+        },
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: PersistentTabView(
+            context,
+            screens: screens(),
+            items: navBarsItems(),
+            navBarStyle: NavBarStyle.style3,
+          ),
         ),
       ),
     );

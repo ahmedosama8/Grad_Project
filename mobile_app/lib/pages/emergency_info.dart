@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/pages/welcome_page.dart';
 
 class EmergencyInfoPage extends StatefulWidget {
   const EmergencyInfoPage({super.key});
@@ -79,7 +80,11 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
   }
 
   void signUpButton() {
-    Navigator.of(context).pushNamed('/');
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => WelcomePage(),
+      ),
+    );
   }
 
   void openSignInScreen() {
@@ -153,6 +158,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
+                        border: Border.all(color: primary),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12)),
                     child: Padding(
@@ -175,6 +181,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
+                        border: Border.all(color: primary),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12)),
                     child: Padding(
@@ -210,6 +217,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
+                        border: Border.all(color: primary),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12)),
                     child: Padding(
@@ -245,6 +253,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 25),
                   child: Container(
                     decoration: BoxDecoration(
+                        border: Border.all(color: primary),
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12)),
                     child: Padding(
@@ -320,7 +329,9 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(12)),
+            border: Border.all(color: primary),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: TextField(
@@ -335,56 +346,14 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
     );
   }
 
-  Padding dateBox(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25),
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(12)),
-        child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextField(
-              controller: dateinput,
-              decoration: InputDecoration(
-                  icon: Icon(Icons.calendar_month_outlined),
-                  labelText: 'Enter your birth date',
-                  border: InputBorder.none),
-              readOnly: true,
-              onTap: () async {
-                DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(1930),
-                    lastDate: DateTime.now());
-
-                if (pickedDate != null) {
-                  print(
-                      pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                  String formattedDate =
-                      DateFormat('yyyy-MM-dd').format(pickedDate);
-                  print(
-                      formattedDate); //formatted date output using intl package =>  2021-03-16
-                  //you can implement different kind of Date Format here according to your requirement
-
-                  setState(() {
-                    dateinput.text =
-                        formattedDate; //set output date to TextField value.
-                  });
-                } else {
-                  print("Date is not selected");
-                }
-              },
-            )),
-      ),
-    );
-  }
-
   Padding genderBox() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(12)),
+            border: Border.all(color: primary),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12)),
         child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SizedBox(

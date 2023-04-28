@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/login.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 
 class AppModel{
   final String image;
@@ -34,9 +33,9 @@ class _AppScreenState extends State<AppScreen> {
   var homeScreenController = PageController();
 
   List<AppModel> pages= [
-    AppModel(title: 'Manage your health and happy future', image: 'assets/background.png', body: 'On board 1 body'),
-    AppModel(title: 'Emergency', image: 'assets/emergency.png', body: 'On board 2 body'),
-    AppModel(title: 'All your data in your mobile', image: 'assets/emr.png', body: 'On board 3 body')
+    AppModel(title: 'Manage your health and happy future', image: 'assets/background.png', body: 'Your health card all in one place easy access'),
+    AppModel(title: 'Emergency Barcode', image: 'assets/emergency.png', body: 'By using your barcode no more waiting time & medication errors'),
+    AppModel(title: 'All your data in your mobile', image: 'assets/emr.png', body: 'No more hardcopy all data in your hands everywhere everytime')
 
   ];
   bool isLast = false;
@@ -160,7 +159,8 @@ class _AppScreenState extends State<AppScreen> {
             ),
             Text(
               '${model.body}',
-              style: TextStyle(
+              textAlign: TextAlign.center,
+              style: TextStyle( 
                  fontWeight: FontWeight.w600,
                   fontSize: 15.0,
                   color: Colors.black

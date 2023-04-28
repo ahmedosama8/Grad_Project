@@ -38,10 +38,14 @@ class _BookappointState extends State<Bookappoint> {
             // wrap content in flutter
             children: <Widget>[
               Text('your booking details'),
+              SizedBox(
+                height: 5,
+              ),
               Text('Name :${_nameController.text}'),
-              Text('Notes :${_notesController.text}'),
               Text('Facility :$selectedFacility'),
-              Text('Data :${dateinput.text}'),
+              Text('Date :${dateinput.text}'),
+              Text('Notes :${_notesController.text}'),
+
               //Text('Data :$  )
               TextButton(
                   onPressed: () {
@@ -207,12 +211,12 @@ class _BookappointState extends State<Bookappoint> {
                   lastDate: DateTime(2024));
 
               if (pickedDate != null) {
-                print(
-                    pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
+                // print(
+                //     pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
                 String formattedDate =
                     DateFormat('yyyy-MM-dd').format(pickedDate);
-                print(
-                    formattedDate); //formatted date output using intl package =>  2021-03-16
+                // print(
+                //     formattedDate); //formatted date output using intl package =>  2021-03-16
                 //you can implement different kind of Date Format here according to your requirement
 
                 setState(() {

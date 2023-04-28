@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/navBar.dart';
 import 'package:mobile_app/pages/barcode.dart';
 import 'package:mobile_app/pages/home.dart';
@@ -26,7 +27,7 @@ class _WelcomePageState extends State<WelcomePage> {
             context: context,
             builder: (context) => AlertDialog(
               title: Text('Do you want to exit the app?',
-              style: GoogleFonts.robotoCondensed()),
+                  style: GoogleFonts.robotoCondensed()),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(false),

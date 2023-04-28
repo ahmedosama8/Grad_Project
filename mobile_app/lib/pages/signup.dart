@@ -1,7 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobile_app/colors.dart';
+
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -79,6 +80,7 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
                       decoration: BoxDecoration(
+                          border: Border.all(color: primary),
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(
@@ -108,7 +110,9 @@ class _SignUpState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
+                      
                       decoration: BoxDecoration(
+                          border: Border.all(color: primary),
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(
@@ -140,6 +144,7 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
                       decoration: BoxDecoration(
+                        border: Border.all(color: primary),
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(
@@ -173,6 +178,7 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
                       decoration: BoxDecoration(
+                        border: Border.all(color: primary),
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(
@@ -204,6 +210,7 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
                       decoration: BoxDecoration(
+                        border: Border.all(color: primary),
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(

@@ -15,20 +15,35 @@ import LiverTest from "./Lab/LiverFunctionTest";
 import RadScan from "./Radiology/RadScan";
 import PatientClinic from "./Clinic/PatientClinic";
 import ClinicalChemistryTest from "./Lab/ClinicalChemistryTest";
+import PatitentsPage from "./Lab/PatitentsPage";
+import AllPatientsPage from "./Lab/AllPatientsPage";
+import PatientResultPage from "./Lab/PatientResultPage";
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/Clinic" element={<Clinic />} />
+          {/* Routes for lab page */}
           <Route path="/labhome" element={<Lab />} />
           <Route path="/cbctest" element={<CBCTest />} />
           <Route path="/glucosetest" element={<GlucoseTest />} />
           <Route path="/livertest" element={<LiverTest />} />
-          <Route path="/clinicalchemistry"element={<ClinicalChemistryTest />} />
+          <Route
+            path="/clinicalchemistry"
+            element={<ClinicalChemistryTest />}
+          />
+          <Route path="/patientspage" element={<PatitentsPage />} />
+          <Route path="/allpatientspage" element={<AllPatientsPage />} />
+          <Route path="/patientresultpage" element={<PatientResultPage />} />
+
+          {/* Routes for radiology center */}
+
           <Route path="/radhome" element={<Radiology />} />
           <Route path="/addscan" element={<RadScan />} />
+
+          {/* Routes for clinic page */}
+
           <Route path="/clinichome" element={<Clinic />} />
           <Route path="/addpatient" element={<PatientClinic />} />
         </Routes>

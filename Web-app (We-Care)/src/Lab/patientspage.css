@@ -1,0 +1,53 @@
+.blocksWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block1,
+.block2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  width: auto;
+  margin: 20px;
+  position: relative;
+  bottom: 700px;
+  background-color: #efefef;
+  border-radius: 10px;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+}
+
+.blockContent {
+  display: flex;
+  margin: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.block1 {
+  background-color: #66ca98;
+}
+
+.block1:hover {
+  background-color: #056b43;
+}
+.block1:hover .blockContent {
+  color: #ffffff;
+}
+.block2:hover .blockContent {
+    color: #ffffff;
+  }
+
+.block2 {
+  background-color: #ffb347;
+}
+
+.block2:hover {
+  background-color: #c86c00;
+}

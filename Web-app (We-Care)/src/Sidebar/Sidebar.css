@@ -1,10 +1,9 @@
 .adminsidebar {
-  flex: 1;
   height: calc(107vh - 50px);
   background-color: #66CA98;
-  position: sticky;
   top: 50px;
-  width: max-content;
+  position: sticky;
+  width: 219.13px;
 
 }
 

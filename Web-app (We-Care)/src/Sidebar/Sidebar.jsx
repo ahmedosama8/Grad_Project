@@ -43,7 +43,7 @@ function Sidebar() {
               </a>
             </li>
             <li className="sidebarradListItem">
-              <a href="/">
+              <a href="/patientspage">
                 <LeaderboardIcon className="sidebarradIcon" />
                 My patients
               </a>

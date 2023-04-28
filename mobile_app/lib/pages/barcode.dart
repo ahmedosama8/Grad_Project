@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:qr_flutter/qr_flutter.dart';
 
 class BarCode extends StatelessWidget {
   const BarCode({super.key});
@@ -9,7 +12,7 @@ class BarCode extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 200,
               child: Card(
                 clipBehavior: Clip.antiAlias,
@@ -39,7 +42,7 @@ class BarCode extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 40,
             ),
             Center(
               child: Text(
@@ -55,7 +58,17 @@ class BarCode extends StatelessWidget {
                 '659485-9857498-122',
                 style: TextStyle(fontSize: 20),
               ),
-            )
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            Center(
+              child: QrImage(
+                data: 'https://jsonplaceholder.typicode.com/posts/4',
+                version: QrVersions.auto,
+                size: 300.0,
+              ),
+            ),
           ],
         ),
       ),

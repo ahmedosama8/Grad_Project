@@ -45,6 +45,11 @@ dependencies:
   quickalert: ^1.0.1
   auto_size_text: ^3.0.0
   qr_flutter: ^4.0.0
+  image_picker: ^0.8.7+4
+  http: ^0.13.3
+  date_field: ^3.0.5
+
+
 
   
 

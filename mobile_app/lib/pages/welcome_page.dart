@@ -7,6 +7,7 @@ import 'package:mobile_app/pages/barcode.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/my_medical_records.dart';
 import 'package:mobile_app/pages/pharmacy.dart';
+import 'package:mobile_app/pages/profile.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -61,7 +62,7 @@ class _WelcomePageState extends State<WelcomePage> {
       My_Medical_Records(),
       BarCode(),
       MedicineListPage(),
-      Profile()
+      PatientProfilePage()
     ];
   }
 }

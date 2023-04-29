@@ -17,6 +17,7 @@ class _BookappointState extends State<Bookappoint> {
   TextEditingController dateinput = TextEditingController();
   List<String> facilities = ['Dr.Ga3fr el 3omda', 'Nile Scan', 'Alfa lab'];
   String? selectedFacility;
+
   void facilityCallBack(String? selectedFacVal) {
     if (selectedFacVal is String) {
       setState(() {
@@ -31,34 +32,37 @@ class _BookappointState extends State<Bookappoint> {
         context: context,
         builder: (context) {
           return AlertDialog(
-              content: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            //position
-            mainAxisSize: MainAxisSize.min,
-            // wrap content in flutter
-            children: <Widget>[
-              Text('your booking details'),
-              SizedBox(
-                height: 5,
-              ),
-              Text('Name :${_nameController.text}'),
-              Text('Facility :$selectedFacility'),
-              Text('Date :${dateinput.text}'),
-              Text('Notes :${_notesController.text}'),
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              //position
+              mainAxisSize: MainAxisSize.min,
+              // wrap content in flutter
+              children: <Widget>[
+                Text('your booking details'),
+                SizedBox(
+                  height: 5,
+                ),
+                Text('Name :${_nameController.text}'),
+                Text('Facility :$selectedFacility'),
+                Text('Date :${dateinput.text}'),
+                Text('Notes :${_notesController.text}'),
 
-              //Text('Data :$  )
-              TextButton(
+                //Text('Data :$  )
+                TextButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const WelcomePage()),
+                        builder: (context) => const WelcomePage(),
+                      ),
                     );
                   },
-                  child: Text('Ok'))
-              //Text('Date :${dateinput.text}'),
-            ],
-          ));
+                  child: Text('Ok'),
+                )
+                //Text('Date :${dateinput.text}'),
+              ],
+            ),
+          );
         },
       );
     }
@@ -72,18 +76,23 @@ class _BookappointState extends State<Bookappoint> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Book now'),
         centerTitle: true,
         backgroundColor: primary,
       ),
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.of(context).size.width * 0.05,
+                  vertical: MediaQuery.of(context).size.height * 0.02,
+                ),
                 child: TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -93,17 +102,19 @@ class _BookappointState extends State<Bookappoint> {
                   },
                   controller: _nameController,
                   decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderSide:
-                            BorderSide(width: 2, color: Colors.greenAccent),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      hintText: 'Full Name',
-                      prefixIcon: Icon(Icons.person_2_outlined)),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(width: 2, color: Colors.greenAccent),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    hintText: 'Full Name',
+                    prefixIcon: Icon(Icons.person_2_outlined),
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.05),
                 child: SizedBox(
                   width: double.infinity,
                   child: DropdownButtonFormField(
@@ -134,11 +145,13 @@ class _BookappointState extends State<Bookappoint> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: MediaQuery.of(context).size.height * 0.02,
               ),
               dateBox(context),
               Padding(
-                padding: const EdgeInsets.all(20),
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.05,
+                    vertical: MediaQuery.of(context).size.height * 0.02),
                 child: TextFormField(
                   minLines: 1,
                   maxLines: 5,
@@ -156,23 +169,23 @@ class _BookappointState extends State<Bookappoint> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shadowColor: Colors.greenAccent,
-                          side: BorderSide(color: primary),
-                          backgroundColor: primary,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12.0))),
-                      onPressed: submitButton,
-                      child: Text('Submit'),
-                    ),
-                  ],
+                padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.05,
+                    vertical: MediaQuery.of(context).size.height * 0.02),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        shadowColor: Colors.greenAccent,
+                        side: BorderSide(color: primary),
+                        backgroundColor: primary,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12.0))),
+                    onPressed: submitButton,
+                    child: Text('Submit'),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),

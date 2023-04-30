@@ -50,11 +50,16 @@ class _BookappointState extends State<Bookappoint> {
                 //Text('Data :$  )
                 TextButton(
                   onPressed: () {
+                    Navigator.pop(context);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const WelcomePage(),
-                      ),
+                          builder: (context) => WillPopScope(
+                              onWillPop: () async {
+                                // disable back button by returning false
+                                return false;
+                              },
+                              child: WelcomePage())),
                     );
                   },
                   child: Text('Ok'),

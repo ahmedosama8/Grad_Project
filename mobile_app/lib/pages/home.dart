@@ -136,22 +136,6 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 18,
                         ))),
                 Spacer(),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => My_Medical_Records()),
-                      );
-                    },
-                    child: Text('See all',
-                        style: GoogleFonts.robotoCondensed(
-                          fontSize: 14,
-                        )),
-                  ),
-                )
               ],
             ),
             // ignore: sized_box_for_whitespace

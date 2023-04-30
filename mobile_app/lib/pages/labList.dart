@@ -6,13 +6,16 @@ import 'package:mobile_app/labs_data_model.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/labs_detail.dart';
 
-
-
 class LabList extends StatelessWidget {
-   LabList({super.key});
-    final List <LabsDataModel> labdata = List.generate(HomePage.labName.length,
-  (index) => LabsDataModel(HomePage.labName[index], '${HomePage.pic[index]}', '${HomePage.labName[index]} Description....','${HomePage.labWeb[index]}','${HomePage.labPhone[index]}'));
-
+  LabList({super.key});
+  final List<LabsDataModel> labdata = List.generate(
+      HomePage.labName.length,
+      (index) => LabsDataModel(
+          HomePage.labName[index],
+          '${HomePage.pic[index]}',
+          '${HomePage.labName[index]} Description....',
+          '${HomePage.labWeb[index]}',
+          '${HomePage.labPhone[index]}'));
 
   @override
   Widget build(BuildContext context) {
@@ -24,27 +27,37 @@ class LabList extends StatelessWidget {
       ),
       body: Column(
         children: [
-           Expanded(
+          Expanded(
             child: ListView.builder(
               shrinkWrap: true,
               itemCount: labdata.length,
               itemBuilder: (context, index) {
                 return Card(
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: Colors.greenAccent,
+                    ),
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
                   elevation: 0,
                   child: ListTile(
-                    title:Text(labdata[index].name),
-                    leading: SizedBox(width: 50,height: 50,
-                    child: Image.asset('assets/${labdata[index].imageUrl}'),),
+                    title: Text(labdata[index].name),
+                    leading: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: Image.asset('assets/${labdata[index].imageUrl}'),
+                    ),
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => LabDetail(labsDataModel: labdata[index])));
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              LabDetail(labsDataModel: labdata[index])));
                     },
-          
                   ),
                 );
-              },),
+              },
+            ),
           )
         ],
-      
       ),
     );
   }

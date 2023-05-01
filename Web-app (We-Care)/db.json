@@ -245,5 +245,105 @@
       "referringDoctor": "Dr. Smith",
       "branch": "Dokki"
     }
+  ],
+  "medicalLabTests": [
+    {
+      "id": 1,
+      "patientName": "John Doe",
+      "testType": "Blood Test",
+      "date": "2022-04-20",
+      "result": "Normal"
+    },
+    {
+      "id": 2,
+      "patientName": "Jane Smith",
+      "testType": "Urinalysis",
+      "date": "2022-03-15",
+      "result": "Abnormal (high protein levels)"
+    },
+    {
+      "id": 3,
+      "patientName": "Bob Johnson",
+      "testType": "Stool Test",
+      "date": "2022-02-10",
+      "result": "Normal"
+    },
+    {
+      "id": 4,
+      "patientName": "Sarah Lee",
+      "testType": "Pap Smear",
+      "date": "2022-01-05",
+      "result": "Normal"
+    },
+    {
+      "id": 5,
+      "patientName": "Tom Jackson",
+      "testType": "Prostate-Specific Antigen (PSA) Test",
+      "date": "2021-12-01",
+      "result": "Abnormal (high PSA levels)"
+    },
+    {
+      "id": 6,
+      "patientName": "Emily Chen",
+      "testType": "Blood Test",
+      "date": "2021-11-11",
+      "result": "Abnormal (low iron levels)"
+    },
+    {
+      "id": 7,
+      "patientName": "David Kim",
+      "testType": "HIV Test",
+      "date": "2021-10-26",
+      "result": "Negative"
+    },
+    {
+      "id": 8,
+      "patientName": "Amy Jones",
+      "testType": "Blood Test",
+      "date": "2021-09-30",
+      "result": "Abnormal (high cholesterol levels)"
+    },
+    {
+      "id": 9,
+      "patientName": "Jack Wilson",
+      "testType": "Thyroid Function Test",
+      "date": "2021-08-15",
+      "result": "Abnormal (low thyroid hormone levels)"
+    },
+    {
+      "id": 10,
+      "patientName": "Lily Chen",
+      "testType": "Mammogram",
+      "date": "2021-07-02",
+      "result": "Normal"
+    },
+    {
+      "id": 11,
+      "patientName": "Mike Brown",
+      "testType": "Blood Test",
+      "date": "2021-06-18",
+      "result": "Normal"
+    },
+    {
+      "id": 12,
+      "patientName": "Catherine Lee",
+      "testType": "Pregnancy Test",
+      "date": "2021-05-24",
+      "result": "Positive"
+    },
+    {
+      "id": 13,
+      "patientName": "Steve Johnson",
+      "testType": "Blood Test",
+      "date": "2021-04-30",
+      "result": "Abnormal (high glucose levels)"
+    },
+    {
+      "id": 14,
+      "patientName": "Jenny Smith",
+      "testType": "Liver Function Test",
+      "date": "2021-03-15",
+      "result": "Abnormal (high liver enzyme levels)"
+    }
   ]
 }

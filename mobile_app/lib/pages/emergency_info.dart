@@ -131,6 +131,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                       fontSize: 18,
                     ),
                   ),
+
                   SizedBox(
                     height: 30,
                   ),
@@ -226,6 +227,8 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                           child: SizedBox(
                             width: double.infinity,
                             child: MultiSelectFormField(
+                              border: InputBorder.none,
+                              fillColor: Color.fromARGB(255, 255, 255, 255),
                               autovalidate: AutovalidateMode.disabled,
                               dialogTextStyle:
                                   TextStyle(fontWeight: FontWeight.bold),
@@ -310,6 +313,8 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                           child: SizedBox(
                             width: double.infinity,
                             child: MultiSelectFormField(
+                              border: InputBorder.none,
+                              fillColor: Color.fromARGB(255, 255, 255, 255),
                               autovalidate: AutovalidateMode.disabled,
                               dialogTextStyle:
                                   TextStyle(fontWeight: FontWeight.bold),

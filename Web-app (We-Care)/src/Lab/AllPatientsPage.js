@@ -128,6 +128,9 @@ function ResultsMenu({ patientId }) {
         <MenuItem onClick={handleMenuClose}>
           <Link to={`/clinicalchemistry`}>Lipid Profile</Link>
         </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Link to={`/urinetest`}>Urine Test </Link>
+        </MenuItem>
       </Menu>
     </div>
   );

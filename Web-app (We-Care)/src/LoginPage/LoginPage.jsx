@@ -14,6 +14,8 @@ from 'mdb-react-ui-kit';
 import { json, useNavigate } from 'react-router-dom';
 
 function LoginPage() {
+  document.title = "Sign-in / Self-care";
+
   const navigate = useNavigate();
   const [password, setPassword] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -27,7 +29,7 @@ function LoginPage() {
     if (sessionStorage.getItem('User')=='Lab'){
       navigate('/labhome')} 
     else if (sessionStorage.getItem('User')=='Doctor'){
-      navigate('/Clinic')}
+      navigate('/clinichome')}
     else if (sessionStorage.getItem('User')=='RadCenter'){navigate('/radhome')}
     else(navigate('/'))
   }

@@ -18,11 +18,8 @@ import ClinicalChemistryTest from "./Lab/ClinicalChemistryTest";
 import PatitentsPage from "./Lab/PatitentsPage";
 import AllPatientsPage from "./Lab/AllPatientsPage";
 import PatientResultPage from "./Lab/PatientResultPage";
-<<<<<<< Updated upstream
 import UrineExamTest from "./Lab/UrineExamTest";
-=======
 import NewPatient from "./Lab/NewPatient";
->>>>>>> Stashed changes
 function App() {
   return (
     <Router>

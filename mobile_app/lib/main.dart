@@ -13,15 +13,12 @@ import 'package:mobile_app/pages/welcome_page.dart';
 import 'package:mobile_app/pages/rad_scans.dart';
 import 'pages/login.dart';
 import 'pages/signup.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'pages/my_medical_records.dart';
 import 'pages/lab_results.dart';
 import 'package:flutter/services.dart';
 import 'dart:core';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);

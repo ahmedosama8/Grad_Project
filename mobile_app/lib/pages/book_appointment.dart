@@ -90,108 +90,111 @@ class _BookappointState extends State<Bookappoint> {
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width * 0.05,
-                  vertical: MediaQuery.of(context).size.height * 0.02,
-                ),
-                child: TextFormField(
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your name';
-                    }
-                    return null;
-                  },
-                  controller: _nameController,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          BorderSide(width: 2, color: Colors.greenAccent),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    hintText: 'Full Name',
-                    prefixIcon: Icon(Icons.person_2_outlined),
+          child: Theme(
+            data: ThemeData(primarySwatch: primary),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: MediaQuery.of(context).size.width * 0.05,
+                    vertical: MediaQuery.of(context).size.height * 0.02,
                   ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.05),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: DropdownButtonFormField(
-                    decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.local_hospital_outlined),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.greenAccent),
-                          borderRadius: BorderRadius.circular(12),
-                        )),
-                    hint: Text('Facility'),
-                    isExpanded: true,
-                    items: facilities
-                        .map<DropdownMenuItem<String>>((String selectedFacVal) {
-                      return DropdownMenuItem<String>(
-                        value: selectedFacVal,
-                        child: Text(selectedFacVal),
-                      );
-                    }).toList(),
+                  child: TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please select a facility';
+                        return 'Please enter your name';
                       }
+                      return null;
                     },
-                    value: selectedFacility,
-                    onChanged: facilityCallBack,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
-              ),
-              dateBox(context),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.05,
-                    vertical: MediaQuery.of(context).size.height * 0.02),
-                child: TextFormField(
-                  minLines: 1,
-                  maxLines: 5,
-                  controller: _notesController,
-                  decoration: InputDecoration(
+                    controller: _nameController,
+                    decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                         borderSide:
                             BorderSide(width: 2, color: Colors.greenAccent),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      hintText: 'Notes',
-                      contentPadding: const EdgeInsets.symmetric(
-                          vertical: 25.0, horizontal: 10.0),
-                      prefixIcon: Icon(Icons.notes)),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width * 0.05,
-                    vertical: MediaQuery.of(context).size.height * 0.02),
-                child: SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        shadowColor: Colors.greenAccent,
-                        side: BorderSide(color: primary),
-                        backgroundColor: primary,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0))),
-                    onPressed: submitButton,
-                    child: Text('Submit'),
+                      hintText: 'Full Name',
+                      prefixIcon: Icon(Icons.person_2_outlined),
+                    ),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: DropdownButtonFormField(
+                      decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.local_hospital_outlined),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.greenAccent),
+                            borderRadius: BorderRadius.circular(12),
+                          )),
+                      hint: Text('Facility'),
+                      isExpanded: true,
+                      items: facilities
+                          .map<DropdownMenuItem<String>>((String selectedFacVal) {
+                        return DropdownMenuItem<String>(
+                          value: selectedFacVal,
+                          child: Text(selectedFacVal),
+                        );
+                      }).toList(),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please select a facility';
+                        }
+                      },
+                      value: selectedFacility,
+                      onChanged: facilityCallBack,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                dateBox(context),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05,
+                      vertical: MediaQuery.of(context).size.height * 0.02),
+                  child: TextFormField(
+                    minLines: 1,
+                    maxLines: 5,
+                    controller: _notesController,
+                    decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: Colors.greenAccent),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        hintText: 'Notes',
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 25.0, horizontal: 10.0),
+                        prefixIcon: Icon(Icons.notes)),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05,
+                      vertical: MediaQuery.of(context).size.height * 0.02),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          shadowColor: Colors.greenAccent,
+                          side: BorderSide(color: primary),
+                          backgroundColor: primary,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0))),
+                      onPressed: submitButton,
+                      child: Text('Submit',style: TextStyle(color: Colors.white),),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

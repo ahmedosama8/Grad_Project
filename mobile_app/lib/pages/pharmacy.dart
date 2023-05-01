@@ -103,7 +103,7 @@ class _MedicineListPageState extends State<MedicineListPage> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.only(top:10.0,bottom: 10),
               child: TextField(
                 controller: _searchController,
                 onChanged: (text) {
@@ -138,19 +138,31 @@ class _MedicineListPageState extends State<MedicineListPage> {
             child: ListView.builder(
               itemCount: _filteredMedicines.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(_filteredMedicines[index].image),
-                  ),
-                  title: Text(_filteredMedicines[index].name),
-                  subtitle: Text(_filteredMedicines[index].description),
-                  trailing: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        _cart.add(_filteredMedicines[index]);
-                      });
-                    },
-                    icon: Icon(Icons.add_shopping_cart),
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(25, 0, 20, 0),
+                  child: Card(
+                        shape: RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: Colors.greenAccent,
+                        ),
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      elevation: 0,
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(_filteredMedicines[index].image),
+                      ),
+                      title: Text(_filteredMedicines[index].name),
+                      subtitle: Text(_filteredMedicines[index].description),
+                      trailing: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _cart.add(_filteredMedicines[index]);
+                          });
+                        },
+                        icon: Icon(Icons.add_shopping_cart),
+                      ),
+                    ),
                   ),
                 );
               },

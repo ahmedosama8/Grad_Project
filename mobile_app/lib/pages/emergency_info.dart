@@ -1,6 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -64,12 +62,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
     }
   }
 
-  List<String> martialItems = [
-    'Married',
-    'Divorced',
-    'Separeted or Widowed',
-    'Single'
-  ];
+  List<String> martialItems = ['Single', 'Married', 'Divorced', 'Widowed'];
   String? selectedStatus;
   void martialCallBack(String? selectedStatusVal) {
     if (selectedStatusVal is String) {

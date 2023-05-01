@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/labs_data_model.dart';
+import 'package:mobile_app/pages/book_appointment.dart';
+import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class LabDetail extends StatelessWidget {
@@ -86,6 +89,32 @@ class LabDetail extends StatelessWidget {
                     child: Text('Call'),
                   ),
                 )),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Bookappoint()),
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Color(0XFF66CA98),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                    child: Text(
+                  'Book now',
+                  style: GoogleFonts.robotoCondensed(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                )),
+              ),
+            ),
           ),
         ],
       ),

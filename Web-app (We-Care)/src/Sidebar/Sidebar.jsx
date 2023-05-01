@@ -3,6 +3,7 @@ import "./Sidebar.css";
 import BiotechIcon from "@mui/icons-material/Biotech";
 import ScienceIcon from "@mui/icons-material/Science";
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 import "./Sidebar.css";
 
@@ -18,7 +19,7 @@ function Sidebar() {
                 Home
               </a>
             </li>
-            <li className="adminsidebarListItem">
+            {/* <li className="adminsidebarListItem">
               <a href="/cbctest">
                 <ScienceIcon className="adminsidebarIcon" />
                 CBC
@@ -41,11 +42,17 @@ function Sidebar() {
                 <ScienceIcon className="adminsidebarIcon" />
                 Lipid Profile
               </a>
-            </li>
+            </li> */}
             <li className="sidebarradListItem">
               <a href="/patientspage">
                 <LeaderboardIcon className="sidebarradIcon" />
                 My patients
+              </a>
+            </li>
+            <li className="sidebarradListItem">
+              <a href="/">
+                <LogoutIcon className="sidebarradIcon" />
+                Logout
               </a>
             </li>
           </ul>

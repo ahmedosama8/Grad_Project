@@ -14,7 +14,7 @@ function Lab() {
       <Sidebar />
       <div
         className="App container"
-        style={{ position: "relative", bottom: 700, width: 1000 }} 
+        style={{ position: "relative",top:"50px", width: 1000 }} 
       >
         <div class="row">
           <div class="col-lg-6">

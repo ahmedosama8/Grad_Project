@@ -9,65 +9,34 @@ import "./CBCTest.css";
 
 function CBCTest() {
   const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3500/posts")
-      .then((res) => res.json())
-      .then((result) => {
-        setPosts(result);
-      });
-  }, []);
   return (
     <div>
       <Topbar />
       <Sidebar />
       <div
-        className="App container col-6"
-        style={{ position: "relative", bottom: 730, width: 1000 }}
+        className="App container"
+        style={{ position: "relative",top:"50px", width: 1000 }}
       >
         <h3>Patient Demoghraphics</h3>
         <form noValidate>
           <div className="row mb-3">
             <div className="col-md-6">
               <label htmlFor="firstName">First Name</label>
-              <input
-                // onMouseOver={MouseOver}
-                className="form-control"
-                placeholder="First Name"
-                type="text"
-                name="firstName"
-                noValidate
-              />
+              <p className="patientdata">Mahmoud </p>
             </div>
             <div className="col-md-6">
               <label htmlFor="lastName">Last Name</label>
-              <input
-                className="form-control"
-                placeholder="Last Name"
-                type="text"
-                name="lastName"
-                noValidate
-              />
+              <p className="patientdata">Ahmed </p>
             </div>
           </div>
           <div className="row mb-3">
             <div className="col md-6">
               <label htmlFor="email">Patient's ID</label>
-              <input
-                className="form-control"
-                placeholder="ID"
-                type="number"
-                noValidate
-              />
+              <p className="patientdata">HOSP-12345</p>
             </div>
             <div className="col md-6">
               <label htmlFor="email">Examination Date</label>
-              <input
-                className="form-control"
-                placeholder="date"
-                type="date"
-                noValidate
-              />
+              <p className="patientdata">3/2/2022</p>
             </div>
           </div>
 
@@ -287,12 +256,6 @@ function CBCTest() {
           <div className="mb-5">
             <button type="submit">Submit</button>
           </div>
-          <ul>
-          <li>Hello</li>
-            {posts.map((post) => (
-              <li key={post.id}>{post.title}</li>
-            ))}
-          </ul>
         </form>
       </div>
     </div>

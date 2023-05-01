@@ -1,0 +1,249 @@
+{
+  "fakeusers": [
+    {
+      "id": 1,
+      "name": "Mahmoud Ahmed",
+      "image": "https://scontent.fcai27-1.fna.fbcdn.net/v/t39.30808-6/236785599_3035825320021503_7464080102625445644_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=w2ifp6RM8nYAX9xJ7qD&_nc_ht=scontent.fcai27-1.fna&oh=00_AfCWSb3BMfNq_BZedFz1jvODg3uSlL2PVyC7prIKdDRUIg&oe=64500E9B",
+      "age": 35,
+      "gender": "Male",
+      "last_test_date": "2022-01-01",
+      "status": "Inpatient",
+      "referring_physician": "Dr.Mohamed Smair"
+    },
+    {
+      "id": 2,
+      "name": "Mohamed Fathy",
+      "image": "https://scontent.fcai27-1.fna.fbcdn.net/v/t39.30808-6/328508635_1033640334279842_4094297382222328941_n.jpg?stp=cp6_dst-jpg&_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=xi5LB39nKicAX9uuFWD&_nc_ht=scontent.fcai27-1.fna&oh=00_AfBXWwMMLlQQ1oOrZok0spEvHfhj_owyw37_jy3iGondlQ&oe=645074D2",
+      "age": 45,
+      "gender": "Male",
+      "last_test_date": "2022-01-02",
+      "status": "Outpatient",
+      "referring_physician": "Dr.Mohamed Ahmed"
+    },
+    {
+      "id": 3,
+      "name": "Omar Ahmed Abuelshakh",
+      "image": "https://scontent.fcai19-4.fna.fbcdn.net/v/t1.6435-9/47688984_10211910140180455_7570878069729132544_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=pRHd_tXo-2AAX-ffh49&_nc_ht=scontent.fcai19-4.fna&oh=00_AfBAdEOI1Qqnx9ERT_NUQR-SKbJyVapNKz1jDM1Ps43wTA&oe=64778775",
+      "age": 25,
+      "gender": "Male",
+      "last_test_date": "2022-01-03",
+      "status": "Inpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 4,
+      "name": "Alice Lee",
+      "age": 55,
+      "gender": "Female",
+      "last_test_date": "2022-01-04",
+      "status": "Outpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 5,
+      "name": "Michael Davis",
+      "age": 42,
+      "gender": "Male",
+      "last_test_date": "2022-01-05",
+      "status": "Inpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 6,
+      "name": "Samantha Williams",
+      "age": 28,
+      "gender": "Female",
+      "last_test_date": "2022-01-06",
+      "status": "Outpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 7,
+      "name": "David Brown",
+      "age": 67,
+      "gender": "Male",
+      "last_test_date": "2022-01-07",
+      "status": "Inpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 8,
+      "name": "Emily Johnson",
+      "age": 32,
+      "gender": "Female",
+      "last_test_date": "2022-01-08",
+      "status": "Outpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 9,
+      "name": "William Baker",
+      "age": 49,
+      "gender": "Male",
+      "last_test_date": "2022-01-09",
+      "status": "Inpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 10,
+      "name": "Olivia Smith",
+      "age": 22,
+      "gender": "Female",
+      "last_test_date": "2022-01-10",
+      "status": "Outpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 11,
+      "name": "George Johnson",
+      "age": 31,
+      "gender": "Male",
+      "last_test_date": "2022-01-11",
+      "status": "Inpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 12,
+      "name": "Sophia Davis",
+      "age": 39,
+      "gender": "Female",
+      "last_test_date": "2022-01-12",
+      "status": "Outpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 13,
+      "name": "Christopher Wilson",
+      "age": 54,
+      "gender": "Male",
+      "last_test_date": "2022-01-13",
+      "status": "Inpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 14,
+      "name": "Emma Martinez",
+      "age": 47,
+      "gender": "Female",
+      "last_test_date": "2022-01-14",
+      "status": "Outpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 15,
+      "name": "Daniel Jackson",
+      "age": 59,
+      "gender": "Male",
+      "last_test_date": "2022-01-15",
+      "status": "Inpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    },
+    {
+      "id": 16,
+      "name": "Ava Garcia",
+      "age": 26,
+      "gender": "Female",
+      "last_test_date": "2022-01-15",
+      "status": "Inpatient",
+      "referring_physician": "Dr.Mohamed Samy"
+    }
+  ],
+  "radiologyScans": [
+    {
+      "id": 1,
+      "patientName": "John Doe",
+      "age": 42,
+      "gender": "Male",
+      "scanType": "X-Ray",
+      "bodyPart": "Chest",
+      "date": "2022-04-20",
+      "result": "No significant findings",
+      "referringDoctor": "Dr. Smith",
+      "branch": "Nasr City"
+    },
+    {
+      "id": 2,
+      "patientName": "Jane Smith",
+      "age": 35,
+      "gender": "Female",
+      "scanType": "CT",
+      "bodyPart": "Abdomen",
+      "date": "2022-03-15",
+      "result": "Small mass detected, further testing recommended",
+      "referringDoctor": "Dr. Johnson",
+      "branch": "Manial"
+    },
+    {
+      "id": 3,
+      "patientName": "Bob Johnson",
+      "age": 57,
+      "gender": "Male",
+      "scanType": "MRI",
+      "bodyPart": "Brain",
+      "date": "2022-02-10",
+      "result": "No abnormalities detected",
+      "referringDoctor": "Dr. Lee",
+      "branch": "Maadi"
+    },
+    {
+      "id": 4,
+      "patientName": "Sarah Lee",
+      "age": 28,
+      "gender": "Female",
+      "scanType": "Ultrasound",
+      "bodyPart": "Pelvis",
+      "date": "2022-01-05",
+      "result": "Possible cyst detected, follow-up recommended",
+      "referringDoctor": "Dr. Kim",
+      "branch": "Maadi"
+    },
+    {
+      "id": 5,
+      "patientName": "Tom Jackson",
+      "age": 45,
+      "gender": "Male",
+      "scanType": "Mammogram",
+      "bodyPart": "Breast",
+      "date": "2021-12-01",
+      "result": "No suspicious findings",
+      "referringDoctor": "Dr. Chen",
+      "branch": "Fifth Settelment"
+    },
+    {
+      "id": 6,
+      "patientName": "Emily Chen",
+      "age": 23,
+      "gender": "Female",
+      "scanType": "X-Ray",
+      "bodyPart": "Arm",
+      "date": "2021-11-11",
+      "result": "Fracture detected, treatment recommended",
+      "referringDoctor": "Dr. Lee",
+      "branch": "October"
+    },
+    {
+      "id": 7,
+      "patientName": "David Kim",
+      "age": 68,
+      "gender": "Male",
+      "scanType": "CT",
+      "bodyPart": "Chest",
+      "date": "2021-10-26",
+      "result": "Multiple nodules detected, further testing recommended",
+      "referringDoctor": "Dr. Johnson",
+      "branch": "Maadi"
+    },
+    {
+      "id": 8,
+      "patientName": "Amy Jones",
+      "age": 39,
+      "gender": "Female",
+      "scanType": "MRI",
+      "bodyPart": "Knee",
+      "date": "2021-09-30",
+      "result": "Torn ligament detected, surgery recommended",
+      "referringDoctor": "Dr. Smith",
+      "branch": "Dokki"
+    }
+  ]
+}

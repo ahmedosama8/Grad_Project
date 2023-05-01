@@ -1,9 +1,8 @@
 .MuiDataGrid-root {
   margin-left: 250px;
-  margin-right: 20px    ;
+  margin-right: 20px;
   height: calc(107vh - 50px - 60px);
 }
-
 
 .MuiDataGrid-colCellWrapper {
   border-right: 1px solid rgba(224, 224, 224, 1);
@@ -65,8 +64,6 @@
   align-items: center;
 }
 
-
-
 .MuiDataGrid-noResults {
   display: flex;
   justify-content: center;
@@ -75,6 +72,9 @@
 }
 
 .custom-header {
-    background-color:  #9866CA;
-    color: white;
-  }
+  background-color: #66ca98;
+  color: white;
+}
+.buttongrid {
+  background-color: black;
+}

@@ -1,0 +1,32 @@
+.wholepage {
+  height: calc(107vh - 50px);
+  display: flex;
+  flex-direction: column;
+}
+
+.app__main {
+  display: flex;
+  flex: 1; /* add this line to make the main content fill the available space */
+}
+
+.app__Sidebar {
+  flex: 0 0 200px; /* set a fixed width for the sidebar */
+  background-color: #f1f1f1;
+  height: 100%; /* make the sidebar take the height of its container */
+  overflow-y: auto; /* add scrollbars if necessary */
+}
+
+.app__container {
+  height: calc(100vh - 60px);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.app__content {
+  flex: 1; /* make the content take the remaining vertical space */
+  overflow-y: auto; /* add scrollbars if necessary */
+}
+.buttongrid{
+    color: black;
+}

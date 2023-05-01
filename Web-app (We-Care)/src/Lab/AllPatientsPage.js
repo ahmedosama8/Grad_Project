@@ -4,15 +4,10 @@ import Sidebar from "../Sidebar/Sidebar";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Menu, MenuItem } from "@mui/material";
 import "./allpatientspage.css";
 
 const columns = [
-  {
-    field: "id",
-    headerName: "ID",
-    width: 90,
-    headerClassName: "custom-header",
-  },
   {
     field: "name",
     headerName: "Name",
@@ -23,6 +18,7 @@ const columns = [
     title: "Avatar",
     sortable: false,
     field: "image",
+    width: 100,
     headerName: "Image",
     renderCell: (params) => (
       <img
@@ -49,13 +45,13 @@ const columns = [
   {
     field: "last_test_date",
     headerName: "Last Visit Date",
-    width: 200,
+    width: 150,
     headerClassName: "custom-header",
   },
   {
     field: "status",
     headerName: "Status",
-    width: 150,
+    width: 100,
     headerClassName: "custom-header",
   },
   {
@@ -64,7 +60,6 @@ const columns = [
     width: 200,
     headerClassName: "custom-header",
   },
-
   {
     field: "Results",
     headerName: "Results",
@@ -75,7 +70,8 @@ const columns = [
           variant="outlined"
           size="small"
           color="secondary"
-          onClick={() => console.log(`Selected patient ID: ${params.row.id}`)}
+          style={{ color: "#00000098" }}
+
         >
           View
         </Button>
@@ -83,14 +79,66 @@ const columns = [
     ),
     headerClassName: "custom-header",
   },
+  {
+    field: "actions",
+    headerName: "Tests",
+    sortable: false,
+    width: 120,
+    renderCell: (params) => <ResultsMenu row={params.row} />,
+    headerClassName: "custom-header",
+  },
 ];
+
+function ResultsMenu({ patientId }) {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleMenuClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <Button
+        variant="outlined"
+        size="small"
+        style={{ color: "#00000098" }}
+        color="secondary"
+        onClick={handleMenuClick}
+      >
+        Add Test
+      </Button>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleMenuClose}>
+          <Link to={`/cbctest`}>CBC</Link>
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Link to={`/livertest`}>Liver Function Test</Link>
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Link to={`/glucosetest`}>Glucose</Link>
+        </MenuItem>
+        <MenuItem onClick={handleMenuClose}>
+          <Link to={`/clinicalchemistry`}>Lipid Profile</Link>
+        </MenuItem>
+      </Menu>
+    </div>
+  );
+}
 
 export default function AllPatientsPage() {
   const [rows, setRows] = useState([]);
 
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch("http://localhost:3002/fakeusers");
+      const response = await fetch("http://localhost:3001/fakeusers");
       const data = await response.json();
       setRows(data);
     }
@@ -102,7 +150,7 @@ export default function AllPatientsPage() {
       <Sidebar />
       <div>
         <DataGrid
-          style={{ position: "relative", bottom: "720px" }}
+          style={{ position: "relative",top:"20px" }}
           className="customDataGridStyle"
           rows={rows}
           columns={columns}

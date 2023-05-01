@@ -1,8 +1,8 @@
 .adminsidebar {
-  height: calc(107vh - 50px);
+  height: 100vh;
   background-color: #66CA98;
   top: 50px;
-  position: sticky;
+  position: fixed;
   width: 219.13px;
 
 }

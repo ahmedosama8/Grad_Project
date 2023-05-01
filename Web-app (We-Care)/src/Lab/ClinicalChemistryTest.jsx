@@ -14,46 +14,25 @@ export default function ClinicalChemistryTest() {
         <h3>Patient Demoghraphics</h3>
         <form noValidate>
           <div className="row mb-3">
-            <div className="col-md-6">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                // onMouseOver={MouseOver}
-                className="form-control"
-                placeholder="First Name"
-                type="text"
-                name="firstName"
-                noValidate
-              />
+            <div className="row mb-3">
+              <div className="col-md-6">
+                <label htmlFor="firstName">First Name</label>
+                <p className="patientdata">Mahmoud </p>
+              </div>
+              <div className="col-md-6">
+                <label htmlFor="lastName">Last Name</label>
+                <p className="patientdata">Ahmed </p>
+              </div>
             </div>
-            <div className="col-md-6">
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                className="form-control"
-                placeholder="Last Name"
-                type="text"
-                name="lastName"
-                noValidate
-              />
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col md-6">
-              <label htmlFor="email">Patient's ID</label>
-              <input
-                className="form-control"
-                placeholder="ID"
-                type="number"
-                noValidate
-              />
-            </div>
-            <div className="col md-6">
-              <label htmlFor="email">Examination Date</label>
-              <input
-                className="form-control"
-                placeholder="date"
-                type="date"
-                noValidate
-              />
+            <div className="row mb-3">
+              <div className="col md-6">
+                <label htmlFor="email">Patient's ID</label>
+                <p className="patientdata">HOSP-12345</p>
+              </div>
+              <div className="col md-6">
+                <label htmlFor="email">Examination Date</label>
+                <p className="patientdata">3/2/2022</p>
+              </div>
             </div>
           </div>
 
@@ -145,7 +124,10 @@ export default function ClinicalChemistryTest() {
               <label className="col md-3">mg/dL</label>
               <label className="col md-3">
                 Desirable: &lt; 100 mg/dL <br />
-                Above Desirable: 100-129 mg/dl <br/>Borderline High: 130-159 mg/dL<br />High: 160-189 mg/dL
+                Above Desirable: 100-129 mg/dl <br />
+                Borderline High: 130-159 mg/dL
+                <br />
+                High: 160-189 mg/dL
                 <br /> Very High: &gt; or =190 mg/dL
               </label>
             </div>
@@ -160,7 +142,10 @@ export default function ClinicalChemistryTest() {
               />
               <label className="col md-3">mg/dL</label>
               <label className="col md-3">
-              &lt; 150 Desirable<br/> 150-199 Border High Line <br/> 200-499 High<br/>&gt;=500 Very High 
+                &lt; 150 Desirable
+                <br /> 150-199 Border High Line <br /> 200-499 High
+                <br />
+                &gt;=500 Very High
               </label>
             </div>
           </div>

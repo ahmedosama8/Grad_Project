@@ -35,7 +35,7 @@ function App() {
           />
           <Route path="/patientspage" element={<PatitentsPage />} />
           <Route path="/allpatientspage" element={<AllPatientsPage />} />
-          <Route path="/patientresultpage" element={<PatientResultPage />} />
+          <Route path="/allpatientspage/patientresultpage" element={<PatientResultPage />} />
 
           {/* Routes for radiology center */}
 

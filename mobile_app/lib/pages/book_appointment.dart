@@ -51,15 +51,9 @@ class _BookappointState extends State<Bookappoint> {
                 TextButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => WillPopScope(
-                              onWillPop: () async {
-                                // disable back button by returning false
-                                return false;
-                              },
-                              child: WelcomePage())),
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      'home',
+                      (Route<dynamic> route) => false,
                     );
                   },
                   child: Text('Ok'),
@@ -134,8 +128,8 @@ class _BookappointState extends State<Bookappoint> {
                           )),
                       hint: Text('Facility'),
                       isExpanded: true,
-                      items: facilities
-                          .map<DropdownMenuItem<String>>((String selectedFacVal) {
+                      items: facilities.map<DropdownMenuItem<String>>(
+                          (String selectedFacVal) {
                         return DropdownMenuItem<String>(
                           value: selectedFacVal,
                           child: Text(selectedFacVal),
@@ -189,7 +183,10 @@ class _BookappointState extends State<Bookappoint> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12.0))),
                       onPressed: submitButton,
-                      child: Text('Submit',style: TextStyle(color: Colors.white),),
+                      child: Text(
+                        'Submit',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   ),
                 ),

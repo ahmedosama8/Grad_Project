@@ -7,7 +7,6 @@ class BarCode extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    final double cardHeight = size.height * 0.25;
     final double qrSize = size.width * 0.6;
 
     return Scaffold(
@@ -15,27 +14,30 @@ class BarCode extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: cardHeight,
+              width: double.infinity,
               child: Card(
                 clipBehavior: Clip.antiAlias,
                 shadowColor: Colors.greenAccent,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: const [
+                  child: Column(
+                    // ignore: prefer_const_literals_to_create_immutables
+                    children:  [
                       CircleAvatar(
                         radius: 60,
                         backgroundImage: AssetImage('assets/elm3lm_ga3fr.png'),
                       ),
                       SizedBox(
-                        width: 30,
+                        height: 30,
                       ),
                       SizedBox(
                         width: 230,
-                        child: Text(
-                          'جعفر العمدة',
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
+                        child: Center(
+                          child: Text(
+                            'جعفر العمدة',
+                            style: TextStyle(
+                                fontSize: 22, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ],

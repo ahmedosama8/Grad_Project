@@ -204,7 +204,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                     ),
                   ],
                 ),
-                SizedBox(width: 10),
+                SizedBox(width: 40),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: primary,

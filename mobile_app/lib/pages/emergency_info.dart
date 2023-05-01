@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/pages/home.dart';
 // ignore: unused_import
 import 'package:multiselect_formfield/multiselect_formfield.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
@@ -74,12 +75,11 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
         print(selectedDiseasesResult);
         print(selectedAllergyResult);
         print(selectedGender);
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(
-            builder: (context) => WelcomePage(),
-          ),
-        );
       });
+Navigator.of(context).pushNamedAndRemoveUntil(
+  'home',
+  (Route<dynamic> route) => false,
+);
     }
   }
 

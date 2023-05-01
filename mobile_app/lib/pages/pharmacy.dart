@@ -42,9 +42,9 @@ class _MedicineListPageState extends State<MedicineListPage> {
 
   List<Medicine> _cart = [];
   List<Medicine> _filteredMedicines = [];
-  
+
   TextEditingController _searchController = TextEditingController();
-    @override
+  @override
   void initState() {
     super.initState();
     // Initialize the filtered list with all medicines
@@ -103,7 +103,7 @@ class _MedicineListPageState extends State<MedicineListPage> {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16),
             child: Padding(
-              padding: const EdgeInsets.only(top:10.0,bottom: 10),
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10),
               child: TextField(
                 controller: _searchController,
                 onChanged: (text) {
@@ -141,16 +141,17 @@ class _MedicineListPageState extends State<MedicineListPage> {
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(25, 0, 20, 0),
                   child: Card(
-                        shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                          color: Colors.greenAccent,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(
+                        color: Colors.greenAccent,
                       ),
-                      elevation: 0,
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    elevation: 0,
                     child: ListTile(
                       leading: CircleAvatar(
-                        backgroundImage: NetworkImage(_filteredMedicines[index].image),
+                        backgroundImage:
+                            NetworkImage(_filteredMedicines[index].image),
                       ),
                       title: Text(_filteredMedicines[index].name),
                       subtitle: Text(_filteredMedicines[index].description),
@@ -219,28 +220,20 @@ class CheckoutPage extends StatelessWidget {
                       content: Text('Are you sure you want to clear the cart?'),
                       actions: [
                         TextButton(
-                          style: TextButton.styleFrom(
-                            foregroundColor: primary
-                          ),
+                          style: TextButton.styleFrom(foregroundColor: primary),
                           onPressed: () {
                             Navigator.pop(context);
                           },
                           child: Text('Cancel'),
                         ),
                         TextButton(
-                            style: TextButton.styleFrom(
-                            foregroundColor: primary
-                          ),
+                          style: TextButton.styleFrom(foregroundColor: primary),
                           onPressed: () {
                             Navigator.pop(context);
-                             Navigator.push(
-                            context,
-                           MaterialPageRoute(
-                          builder: (context) => WillPopScope(
-                            onWillPop: () async {
-                            // disable back button by returning false
-                            return false;       },
-                            child: WelcomePage())),);
+                            Navigator.of(context).pushNamedAndRemoveUntil(
+                              'home',
+                              (Route<dynamic> route) => false,
+                            );
                           },
                           child: Text('Clear'),
                         ),

@@ -17,31 +17,25 @@ class _LoginState extends State<Login> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-
-
   void openSignUpScreen() {
     Navigator.of(context).pushReplacementNamed('signup');
   }
-  
-  void loginButton(){
-    if(_formKey.currentState!.validate())
-    {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => WelcomePage(),
-        ),
-);
 
+  void loginButton() {
+    if (_formKey.currentState!.validate()) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        'home',
+        (Route<dynamic> route) => false,
+      );
     }
   }
 
   @override
-  void dispose(){
+  void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -69,8 +63,7 @@ class _LoginState extends State<Login> {
                     style: GoogleFonts.robotoCondensed(
                         fontSize: 40, fontWeight: FontWeight.bold),
                   ),
-            
-            
+
                   // subtitle
                   Text(
                     'Welocme back! Nice to see you again',
@@ -81,33 +74,32 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 50,
                   ),
-            
-            
-            
+
                   // Email Text field
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
                       decoration: BoxDecoration(
-                        border: Border.all(color: primary),
+                          border: Border.all(color: primary),
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
                           validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your email address';
-                                } else if (!value.contains('@') ||
-                                    !value.contains('.')) {
-                                  return 'Please enter valid email address';
-                                }
-                                return null;
-                              },
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your email address';
+                            } else if (!value.contains('@') ||
+                                !value.contains('.')) {
+                              return 'Please enter valid email address';
+                            }
+                            return null;
+                          },
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                              border: InputBorder.none, hintText: 'Email',
+                              border: InputBorder.none,
+                              hintText: 'Email',
                               icon: Icon(Icons.email)),
                         ),
                       ),
@@ -116,9 +108,7 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 10,
                   ),
-            
-            
-            
+
                   // password text field
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -131,27 +121,27 @@ class _LoginState extends State<Login> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
                           validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter a password ';
-                              } 
-                              return null;
-                            },
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter a password ';
+                            }
+                            return null;
+                          },
                           controller: _passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
-                              border: InputBorder.none, 
-                              hintText: 'Password', 
-                              icon: Icon(Icons.lock),
-                              ),
+                            border: InputBorder.none,
+                            hintText: 'Password',
+                            icon: Icon(Icons.lock),
+                          ),
                         ),
                       ),
                     ),
                   ),
-            
+
                   SizedBox(
                     height: 15,
                   ),
-            
+
                   // sign in button
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -177,7 +167,7 @@ class _LoginState extends State<Login> {
                   SizedBox(
                     height: 25,
                   ),
-            
+
                   // sign up text
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -202,10 +192,6 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
-
-
-
-
     );
   }
 }

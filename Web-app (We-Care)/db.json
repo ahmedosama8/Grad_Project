@@ -252,98 +252,140 @@
       "patientName": "John Doe",
       "testType": "Blood Test",
       "date": "2022-04-20",
-      "result": "Normal"
+      "result": "Normal",
+      "branch":"Manial",
+      "testID":"1234",
+      "referringDoctor": "Dr. Smith"
     },
     {
       "id": 2,
       "patientName": "Jane Smith",
       "testType": "Urinalysis",
       "date": "2022-03-15",
-      "result": "Abnormal (high protein levels)"
+      "result": "Abnormal (high protein levels)",
+      "branch":"Maadi",
+      "testID":"4567",
+      "referringDoctor": "Dr. Mohamed"
     },
     {
       "id": 3,
       "patientName": "Bob Johnson",
       "testType": "Stool Test",
       "date": "2022-02-10",
-      "result": "Normal"
+      "result": "Normal",
+      "branch":"Maadi",
+      "referringDoctor": "Dr. Ahmed",
+      "testID":"9890"
     },
     {
       "id": 4,
       "patientName": "Sarah Lee",
       "testType": "Pap Smear",
       "date": "2022-01-05",
-      "result": "Normal"
+      "result": "Normal",
+      "branch":"Maadi",
+      "referringDoctor": "Drs. Salma",
+      "testID":"1234"
     },
     {
       "id": 5,
       "patientName": "Tom Jackson",
       "testType": "Prostate-Specific Antigen (PSA) Test",
       "date": "2021-12-01",
-      "result": "Abnormal (high PSA levels)"
+      "result": "Abnormal (high PSA levels)",
+      "branch":"Maadi",
+      "referringDoctor": "Dr. Sameh",
+      "testID":"8787"
     },
     {
       "id": 6,
       "patientName": "Emily Chen",
       "testType": "Blood Test",
       "date": "2021-11-11",
-      "result": "Abnormal (low iron levels)"
+      "result": "Abnormal (low iron levels)",
+      "branch":"Maadi",
+      "referringDoctor": "Dr. Farah",
+      "testID":"4591"
     },
     {
       "id": 7,
       "patientName": "David Kim",
       "testType": "HIV Test",
       "date": "2021-10-26",
-      "result": "Negative"
+      "result": "Negative",
+      "branch":"Maadi",
+      "referringDoctor": "Dr. Samar",
+      "testID":"0981"
     },
     {
       "id": 8,
       "patientName": "Amy Jones",
       "testType": "Blood Test",
       "date": "2021-09-30",
-      "result": "Abnormal (high cholesterol levels)"
+      "result": "Abnormal (high cholesterol levels)",
+      "branch":"Maadi",
+      "referringDoctor": "Dr. Nermeen",
+      "testID":"1276"
     },
     {
       "id": 9,
       "patientName": "Jack Wilson",
       "testType": "Thyroid Function Test",
       "date": "2021-08-15",
-      "result": "Abnormal (low thyroid hormone levels)"
+      "result": "Abnormal (low thyroid hormone levels)",
+      "branch":"Maadi",
+      "referringDoctor": "Dr. Pakinam",
+      "testID":"6545"
     },
     {
       "id": 10,
       "patientName": "Lily Chen",
       "testType": "Mammogram",
       "date": "2021-07-02",
-      "result": "Normal"
+      "result": "Normal",
+      "branch":"Maadi",
+      "referringDoctor": "Dr. Ahmed Ashraf",
+      "testID":"0989"
     },
     {
       "id": 11,
       "patientName": "Mike Brown",
       "testType": "Blood Test",
       "date": "2021-06-18",
-      "result": "Normal"
+      "result": "Normal",
+      "branch":"Dokki",
+      "referringDoctor": "Dr. Farida",
+      "testID":"4523"
     },
     {
       "id": 12,
       "patientName": "Catherine Lee",
       "testType": "Pregnancy Test",
       "date": "2021-05-24",
-      "result": "Positive"
+      "result": "Positive",
+      "branch":"Fifth Settelment",
+      "referringDoctor": "Dr. Yasmine",
+      "testID":"6762"
     },
     {
       "id": 13,
       "patientName": "Steve Johnson",
       "testType": "Blood Test",
       "date": "2021-04-30",
-      "result": "Abnormal (high glucose levels)"
+      "result": "Abnormal (high glucose levels)",
+      "branch":"October",
+      "referringDoctor": "Dr. Mariam",
+      "testID":"8765"
     },
     {
       "id": 14,
       "patientName": "Jenny Smith",
       "testType": "Liver Function Test",
       "date": "2021-03-15",
-      "result": "Abnormal (high liver enzyme levels)"
+      "result": "Abnormal (high liver enzyme levels)",
+      "branch":"Nas City",
+      "referringDoctor": "Dr. Shimaa",
+      "testID":"5152"
     }
   ]
 }

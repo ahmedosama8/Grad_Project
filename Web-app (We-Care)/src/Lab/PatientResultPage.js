@@ -12,15 +12,14 @@ function RadiologyScans() {
     // { field: "patientName", headerName: "Patient Name", width: 200 },
     // { field: "age", headerName: "Age", width: 90 },
     // { field: "gender", headerName: "Gender", width: 120 },
-    { field: "scanType", headerName: "Scan Type", width: 150 },
-    { field: "bodyPart", headerName: "Body Part", width: 150 },
+    { field: "testType", headerName: "Test Type", width: 150 },
     { field: "date", headerName: "Date", width: 120 },
     { field: "referringDoctor", headerName: "Referring Doctor", width: 150 },
     { field: "branch", headerName: "Branch", width: 150 },
-    { field: "result", headerName: "Result", width: 400 },
+    { field: "testID", headerName: "Test ID", width: 150 },
+    { field: "result", headerName: "Result", width: 300 },
     {
-      field: "Results",
-      headerName: "Results",
+      headerName: "Whole Test",
       width: 140,
       renderCell: () => (
         <Link to={`patientresultpage`}>
@@ -38,7 +37,7 @@ function RadiologyScans() {
   ];
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch("http://localhost:3001/radiologyScans");
+      const response = await fetch("http://localhost:3001/medicalLabTests");
       const data = await response.json();
       setRows(data);
     }
@@ -63,6 +62,14 @@ function RadiologyScans() {
 }
 
 export default RadiologyScans;
+
+
+// { field: "scanType", headerName: "Scan Type", width: 150 },
+// { field: "bodyPart", headerName: "Body Part", width: 150 },
+// { field: "date", headerName: "Date", width: 120 },
+// { field: "referringDoctor", headerName: "Referring Doctor", width: 150 },
+// { field: "branch", headerName: "Branch", width: 150 },
+// { field: "result", headerName: "Result", width: 400 },
 
 // import Grid from "@mui/material/Grid";
 // import Paper from "@mui/material/Paper";

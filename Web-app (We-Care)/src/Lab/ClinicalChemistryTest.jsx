@@ -9,7 +9,7 @@ export default function ClinicalChemistryTest() {
       <Sidebar />
       <div
         className="App container col-6"
-        style={{ position: "relative", bottom: 730, width: 1000 }}
+        style={{ position: "relative", top:20, width: 1000 }}
       >
         <h3>Patient Demoghraphics</h3>
         <form noValidate>

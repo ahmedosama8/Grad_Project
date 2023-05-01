@@ -18,7 +18,11 @@ import ClinicalChemistryTest from "./Lab/ClinicalChemistryTest";
 import PatitentsPage from "./Lab/PatitentsPage";
 import AllPatientsPage from "./Lab/AllPatientsPage";
 import PatientResultPage from "./Lab/PatientResultPage";
+<<<<<<< Updated upstream
 import UrineExamTest from "./Lab/UrineExamTest";
+=======
+import NewPatient from "./Lab/NewPatient";
+>>>>>>> Stashed changes
 function App() {
   return (
     <Router>
@@ -35,9 +39,13 @@ function App() {
             path="/clinicalchemistry"
             element={<ClinicalChemistryTest />}
           />
+          <Route path="/newpatient" element={<NewPatient />} />
           <Route path="/patientspage" element={<PatitentsPage />} />
           <Route path="/allpatientspage" element={<AllPatientsPage />} />
-          <Route path="/allpatientspage/patientresultpage" element={<PatientResultPage />} />
+          <Route
+            path="/allpatientspage/patientresultpage"
+            element={<PatientResultPage />}
+          />
 
           {/* Routes for radiology center */}
 

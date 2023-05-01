@@ -12,7 +12,7 @@ export default function PatitentsPage() {
       <Topbar />
       <Sidebar />
       <div className="blocksWrapper">
-        <Link to="/" className="block1">
+        <Link to="/newpatient" className="block1">
           <div className="blockContent">
             <h1>Add New Patient</h1>
             <AddIcon style={{ fontSize: "100px" }} />

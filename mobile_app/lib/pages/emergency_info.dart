@@ -1,8 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
-<<<<<<< Updated upstream
-=======
 
->>>>>>> Stashed changes
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // ignore: depend_on_referenced_packages

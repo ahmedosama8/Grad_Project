@@ -20,6 +20,7 @@ import AllPatientsPage from "./Lab/AllPatientsPage";
 import PatientResultPage from "./Lab/PatientResultPage";
 import UrineExamTest from "./Lab/UrineExamTest";
 import NewPatient from "./Lab/NewPatient";
+import WholeTest from "./Lab/WholeTest";
 function App() {
   return (
     <Router>
@@ -31,7 +32,7 @@ function App() {
           <Route path="/cbctest" element={<CBCTest />} />
           <Route path="/glucosetest" element={<GlucoseTest />} />
           <Route path="/livertest" element={<LiverTest />} />
-          <Route path="/urinetest" element={<UrineExamTest/>}/>
+          <Route path="/urinetest" element={<UrineExamTest />} />
           <Route
             path="/clinicalchemistry"
             element={<ClinicalChemistryTest />}
@@ -42,6 +43,10 @@ function App() {
           <Route
             path="/allpatientspage/patientresultpage"
             element={<PatientResultPage />}
+          />
+          <Route
+            path="/allpatientspage/patientresultpage/wholetest"
+            element={<WholeTest />}
           />
 
           {/* Routes for radiology center */}

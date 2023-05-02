@@ -7,7 +7,7 @@
       "age": 35,
       "gender": "Male",
       "last_test_date": "2022-01-01",
-      "status": "Inpatient",
+      "insurance": "Tricare",
       "referring_physician": "Dr.Mohamed Smair"
     },
     {
@@ -17,7 +17,7 @@
       "age": 45,
       "gender": "Male",
       "last_test_date": "2022-01-02",
-      "status": "Outpatient",
+      "insurance": "Medicaid",
       "referring_physician": "Dr.Mohamed Ahmed"
     },
     {
@@ -27,7 +27,7 @@
       "age": 25,
       "gender": "Male",
       "last_test_date": "2022-01-03",
-      "status": "Inpatient",
+      "insurance": "Tricare",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -36,7 +36,7 @@
       "age": 55,
       "gender": "Female",
       "last_test_date": "2022-01-04",
-      "status": "Outpatient",
+      "insurance": "Medicaid",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -45,7 +45,7 @@
       "age": 42,
       "gender": "Male",
       "last_test_date": "2022-01-05",
-      "status": "Inpatient",
+      "insurance": "Tricare",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -54,7 +54,7 @@
       "age": 28,
       "gender": "Female",
       "last_test_date": "2022-01-06",
-      "status": "Outpatient",
+      "insurance": "Medicaid",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -63,7 +63,7 @@
       "age": 67,
       "gender": "Male",
       "last_test_date": "2022-01-07",
-      "status": "Inpatient",
+      "insurance": "Tricare",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -72,7 +72,7 @@
       "age": 32,
       "gender": "Female",
       "last_test_date": "2022-01-08",
-      "status": "Outpatient",
+      "insurance": "Medicaid",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -81,7 +81,7 @@
       "age": 49,
       "gender": "Male",
       "last_test_date": "2022-01-09",
-      "status": "Inpatient",
+      "insurance": "Tricare",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -90,7 +90,7 @@
       "age": 22,
       "gender": "Female",
       "last_test_date": "2022-01-10",
-      "status": "Outpatient",
+      "insurance": "Medicaid",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -99,7 +99,7 @@
       "age": 31,
       "gender": "Male",
       "last_test_date": "2022-01-11",
-      "status": "Inpatient",
+      "insurance": "Tricare",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -108,7 +108,7 @@
       "age": 39,
       "gender": "Female",
       "last_test_date": "2022-01-12",
-      "status": "Outpatient",
+      "insurance": "Medicaid",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -117,7 +117,7 @@
       "age": 54,
       "gender": "Male",
       "last_test_date": "2022-01-13",
-      "status": "Inpatient",
+      "insurance": "Tricare",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -126,7 +126,7 @@
       "age": 47,
       "gender": "Female",
       "last_test_date": "2022-01-14",
-      "status": "Outpatient",
+      "insurance": "Medicaid",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -135,7 +135,7 @@
       "age": 59,
       "gender": "Male",
       "last_test_date": "2022-01-15",
-      "status": "Inpatient",
+      "insurance": "Tricare",
       "referring_physician": "Dr.Mohamed Samy"
     },
     {
@@ -144,7 +144,7 @@
       "age": 26,
       "gender": "Female",
       "last_test_date": "2022-01-15",
-      "status": "Inpatient",
+      "insurance": "Tricare",
       "referring_physician": "Dr.Mohamed Samy"
     }
   ],

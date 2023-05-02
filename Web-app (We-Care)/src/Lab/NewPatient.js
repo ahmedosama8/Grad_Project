@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Topbar from "../Topbar/Topbar";
 import Sidebar from "../Sidebar/Sidebar";
+import axios from 'axios';
 
 export default function NewPatient() {
   const [name, setName] = useState("");
@@ -26,7 +27,8 @@ export default function NewPatient() {
     <div>
       <Topbar />
       <Sidebar />
-      <div
+      
+      <form onSubmit={handleSubmit}
         className="App container"
         style={{ position: "relative", top: "50px", width: 1000 }}
       >
@@ -172,7 +174,13 @@ export default function NewPatient() {
             />
           </div>
         </div>
-      </div>
+
+        <div className="mb-5">
+          <button  type="submit">
+            Submit
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

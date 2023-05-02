@@ -21,8 +21,8 @@ function RadiologyScans() {
     {
       headerName: "Whole Test",
       width: 140,
-      renderCell: () => (
-        <Link to={`patientresultpage`}>
+      renderCell: (params) => (
+        <Link to={`/allpatientspage/patientresultpage/wholetest`}>
           <Button
             variant="outlined"
             size="small"
@@ -43,7 +43,6 @@ function RadiologyScans() {
     }
     fetchRows();
   }, []);
-
   return (
     <div>
       <Topbar />
@@ -62,7 +61,6 @@ function RadiologyScans() {
 }
 
 export default RadiologyScans;
-
 
 // { field: "scanType", headerName: "Scan Type", width: 150 },
 // { field: "bodyPart", headerName: "Body Part", width: 150 },

@@ -49,8 +49,8 @@ const columns = [
     headerClassName: "custom-header",
   },
   {
-    field: "status",
-    headerName: "Status",
+    field: "insurance",
+    headerName: "Insurance",
     width: 100,
     headerClassName: "custom-header",
   },
@@ -135,9 +135,8 @@ function ResultsMenu({ patientId }) {
     </div>
   );
 }
-
 export default function AllPatientsPage() {
-  const [rows, setRows] = useState([]);
+  const[rows, setRows] = useState([]);
 
   useEffect(() => {
     async function fetchRows() {
@@ -165,3 +164,4 @@ export default function AllPatientsPage() {
     </div>
   );
 }
+// export { rows };

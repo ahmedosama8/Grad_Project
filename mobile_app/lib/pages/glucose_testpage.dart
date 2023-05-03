@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/cbc_form.dart';
+import 'package:mobile_app/classes/glucose_form.dart';
 import 'package:mobile_app/colors.dart';
 
-class CbcTestpage extends StatelessWidget {
-  final Cbcform cbcform;
-  const CbcTestpage({Key? key, required this.cbcform}) : super(key: key);
+class GluTestpage extends StatelessWidget {
+  final Gluform gluform;
+  const GluTestpage({Key? key, required this.gluform}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(cbcform.testname),
+        title: Text(gluform.testname_Glu),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -31,8 +31,8 @@ class CbcTestpage extends StatelessWidget {
                       ListTile(
                         leading: CircleAvatar(
                             backgroundImage:
-                                AssetImage('assets/${cbcform.pic}')),
-                        title: Text('Lab name: ${cbcform.labname}'),
+                                AssetImage('assets/${gluform.pic_Glu}')),
+                        title: Text('Lab name: ${gluform.labname_Glu}'),
                       ),
                     ],
                   ),
@@ -51,7 +51,7 @@ class CbcTestpage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 490,
+                  height: 100,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
@@ -59,9 +59,10 @@ class CbcTestpage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: ListView(
-                            children: cbcform.testAtts.map((item) {
+                            children: gluform.testAtts_Glu.map((item) {
                               return Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
                                 child: Text(
                                   item,
                                   style: TextStyle(
@@ -74,7 +75,7 @@ class CbcTestpage extends StatelessWidget {
                         ),
                         Expanded(
                           child: ListView(
-                            children: cbcform.result.map((item) {
+                            children: gluform.result_Glu.map((item) {
                               return Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(70, 15, 0, 0),
@@ -85,7 +86,7 @@ class CbcTestpage extends StatelessWidget {
                         ),
                         Expanded(
                           child: ListView(
-                            children: cbcform.unit.map((item) {
+                            children: gluform.unit_Glu.map((item) {
                               return Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(20, 15, 0, 0),
@@ -96,7 +97,7 @@ class CbcTestpage extends StatelessWidget {
                         ),
                         Expanded(
                           child: ListView(
-                            children: cbcform.range.map((item) {
+                            children: gluform.range_Glu.map((item) {
                               return Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(20, 15, 0, 0),
@@ -121,7 +122,7 @@ class CbcTestpage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            cbcform.notes,
+                            gluform.notes_Glu,
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

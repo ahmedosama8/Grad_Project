@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/cbc_form.dart';
+import 'package:mobile_app/classes/lipid_form.dart';
 import 'package:mobile_app/colors.dart';
 
-class CbcTestpage extends StatelessWidget {
-  final Cbcform cbcform;
-  const CbcTestpage({Key? key, required this.cbcform}) : super(key: key);
+class LipTestpage extends StatelessWidget {
+  final Lipform lipform;
+  const LipTestpage({Key? key, required this.lipform}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(cbcform.testname),
+        title: Text(lipform.testname_Lip),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -31,8 +31,8 @@ class CbcTestpage extends StatelessWidget {
                       ListTile(
                         leading: CircleAvatar(
                             backgroundImage:
-                                AssetImage('assets/${cbcform.pic}')),
-                        title: Text('Lab name: ${cbcform.labname}'),
+                                AssetImage('assets/${lipform.pic_Lip}')),
+                        title: Text('Lab name: ${lipform.labname_Lip}'),
                       ),
                     ],
                   ),
@@ -51,7 +51,7 @@ class CbcTestpage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 490,
+                  height: 420,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
@@ -59,9 +59,10 @@ class CbcTestpage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: ListView(
-                            children: cbcform.testAtts.map((item) {
+                            children: lipform.testAtts_Lip.map((item) {
                               return Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
                                 child: Text(
                                   item,
                                   style: TextStyle(
@@ -74,10 +75,10 @@ class CbcTestpage extends StatelessWidget {
                         ),
                         Expanded(
                           child: ListView(
-                            children: cbcform.result.map((item) {
+                            children: lipform.result_Lip.map((item) {
                               return Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(70, 15, 0, 0),
+                                    const EdgeInsets.fromLTRB(70, 30, 0, 0),
                                 child: Text(item),
                               );
                             }).toList(),
@@ -85,10 +86,10 @@ class CbcTestpage extends StatelessWidget {
                         ),
                         Expanded(
                           child: ListView(
-                            children: cbcform.unit.map((item) {
+                            children: lipform.unit_Lip.map((item) {
                               return Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                                    const EdgeInsets.fromLTRB(20, 30, 0, 0),
                                 child: Text(item),
                               );
                             }).toList(),
@@ -96,11 +97,14 @@ class CbcTestpage extends StatelessWidget {
                         ),
                         Expanded(
                           child: ListView(
-                            children: cbcform.range.map((item) {
+                            children: lipform.range_Lip.map((item) {
                               return Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                child: Text(item),
+                                    const EdgeInsets.fromLTRB(20, 30, 0, 0),
+                                child: Text(
+                                  item,
+                                  style: TextStyle(fontSize: 6.7),
+                                ),
                               );
                             }).toList(),
                           ),
@@ -121,7 +125,7 @@ class CbcTestpage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            cbcform.notes,
+                            lipform.notes_Lip,
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

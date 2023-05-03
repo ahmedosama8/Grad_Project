@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/cbc_form.dart';
+import 'package:mobile_app/classes/urine_form.dart';
 import 'package:mobile_app/colors.dart';
 
-class CbcTestpage extends StatelessWidget {
-  final Cbcform cbcform;
-  const CbcTestpage({Key? key, required this.cbcform}) : super(key: key);
+class UriTestpage extends StatelessWidget {
+  final Urineform uriform;
+  const UriTestpage({Key? key, required this.uriform}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(cbcform.testname),
+        title: Text(uriform.testname_Ur),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -31,8 +31,8 @@ class CbcTestpage extends StatelessWidget {
                       ListTile(
                         leading: CircleAvatar(
                             backgroundImage:
-                                AssetImage('assets/${cbcform.pic}')),
-                        title: Text('Lab name: ${cbcform.labname}'),
+                                AssetImage('assets/${uriform.pic_Ur}')),
+                        title: Text('Lab name: ${uriform.labname_Ur}'),
                       ),
                     ],
                   ),
@@ -51,7 +51,7 @@ class CbcTestpage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 490,
+                  height: 520,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
@@ -59,13 +59,14 @@ class CbcTestpage extends StatelessWidget {
                       children: [
                         Expanded(
                           child: ListView(
-                            children: cbcform.testAtts.map((item) {
+                            children: uriform.testAtts_Ur.map((item) {
                               return Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
+                                padding:
+                                    const EdgeInsets.fromLTRB(10, 15, 0, 0),
                                 child: Text(
                                   item,
                                   style: TextStyle(
-                                    fontSize: 13.5,
+                                    fontSize: 13,
                                   ),
                                 ),
                               );
@@ -74,7 +75,7 @@ class CbcTestpage extends StatelessWidget {
                         ),
                         Expanded(
                           child: ListView(
-                            children: cbcform.result.map((item) {
+                            children: uriform.result_Ur.map((item) {
                               return Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(70, 15, 0, 0),
@@ -85,7 +86,7 @@ class CbcTestpage extends StatelessWidget {
                         ),
                         Expanded(
                           child: ListView(
-                            children: cbcform.unit.map((item) {
+                            children: uriform.unit_Ur.map((item) {
                               return Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(20, 15, 0, 0),
@@ -96,10 +97,10 @@ class CbcTestpage extends StatelessWidget {
                         ),
                         Expanded(
                           child: ListView(
-                            children: cbcform.range.map((item) {
+                            children: uriform.range_Ur.map((item) {
                               return Padding(
                                 padding:
-                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
+                                    const EdgeInsets.fromLTRB(10, 15, 0, 0),
                                 child: Text(item),
                               );
                             }).toList(),
@@ -121,7 +122,7 @@ class CbcTestpage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            cbcform.notes,
+                            uriform.notes_Ur,
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

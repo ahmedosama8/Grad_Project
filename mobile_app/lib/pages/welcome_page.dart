@@ -20,16 +20,42 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
+    PersistentTabController controller;
+    controller = PersistentTabController(initialIndex: 0);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: PersistentTabView(
-          context,
-          screens: screens(),
-          items: navBarsItems(),
-          navBarStyle: NavBarStyle.style3,
+      home: PersistentTabView(
+        context,
+        screens:screens(),
+        items: navBarsItems(),
+        controller: controller,
+        confineInSafeArea: true,
+        
+        //backgroundColor: Colors.white,
+        handleAndroidBackButtonPress: true,
+        resizeToAvoidBottomInset: true,
+        stateManagement: true,
+        hideNavigationBarWhenKeyboardShows: true,
+        decoration: NavBarDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          colorBehindNavBar: Colors.white,
         ),
+        popAllScreensOnTapOfSelectedTab: true,
+        popActionScreens: PopActionScreensType.all,
+        itemAnimationProperties: const ItemAnimationProperties(
+          duration: Duration(milliseconds: 200),
+          curve: Curves.ease,
+        ),
+        screenTransitionAnimation: const ScreenTransitionAnimation(
+          animateTabTransition: true,
+          curve: Curves.ease,
+          duration: Duration(milliseconds: 200),
+        ),
+        navBarStyle:
+        NavBarStyle.style15,
+
+    
+    
       ),
     );
   }
@@ -45,20 +71,3 @@ class _WelcomePageState extends State<WelcomePage> {
   }
 }
 
-class Pharmacy extends StatelessWidget {
-  const Pharmacy({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}
-
-class Profile extends StatelessWidget {
-  const Profile({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
-  }
-}

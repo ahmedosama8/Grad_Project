@@ -17,7 +17,7 @@ List<PersistentBottomNavBarItem> navBarsItems() {
       inactiveColorPrimary: CupertinoColors.systemGrey,
     ),
     PersistentBottomNavBarItem(
-      icon: const Icon(CupertinoIcons.barcode_viewfinder),
+      icon: const Icon(CupertinoIcons.barcode_viewfinder,color: Colors.white,),
       title: ("My QR"),
       activeColorPrimary: Color(0XFF66CA98),
       inactiveColorPrimary: CupertinoColors.systemGrey,

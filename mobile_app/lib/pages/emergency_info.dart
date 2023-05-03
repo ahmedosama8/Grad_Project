@@ -178,6 +178,30 @@ Navigator.of(context).pushNamedAndRemoveUntil(
                   SizedBox(
                     height: 10,
                   ),
+                    //address
+                    Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: primary),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Address',
+                              icon: Icon(Icons.location_on)),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+
                   //Blood type text field
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),

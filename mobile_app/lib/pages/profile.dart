@@ -12,10 +12,12 @@ class PatientProfilePage extends StatefulWidget {
 class _PatientProfilePageState extends State<PatientProfilePage> {
   File? _image;
   final _formKey = GlobalKey<FormState>();
-  String _username = "JohnDoe"; // default username
-  String _fullName = "John Doe"; // default full name
+  String _fullName = "John Doe"; // default name
+  String _userName = "John Doe"; // default username
+  String _email = "JohnDoe@dosh.com"; // default full name
   String _gender = "Male"; // default gender
   String _dob = "01/01/1970"; // default date of birth
+  String _address = "Al-Haram";
   String _emergencyContactNumber = "01117880524"; // default emergency contact number
   String _identityNumber = "12345678912345"; // default identity number
   String _bloodType = "O+"; // default blood type
@@ -63,18 +65,6 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                     Expanded(
                       child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: 'Username',
-                          contentPadding: EdgeInsets.symmetric(vertical: 16.0),
-                        ),
-                        controller: TextEditingController(text: _username),
-                        enabled: false,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
-                      child: TextFormField(
-                        decoration: InputDecoration(
                           labelText: 'Full name',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
@@ -83,9 +73,52 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Email',
+                          contentPadding: EdgeInsets.symmetric(vertical: 16.0),
+                        ),
+                        controller: TextEditingController(text: _email),
+                        enabled: false,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                   ],
                 ),
                 SizedBox(height: 10),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Username',
+                          contentPadding: EdgeInsets.symmetric(vertical: 16.0),
+                        ),
+                        controller: TextEditingController(text: _userName),
+                        enabled: false,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Address',
+                          contentPadding: EdgeInsets.symmetric(vertical: 16.0),
+                        ),
+                        controller: TextEditingController(text: _address),
+                        enabled: false,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -115,6 +148,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                   ],
                 ),
                 SizedBox(height: 10),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -214,8 +248,10 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => EditProfilePage(
-                            username: _username,
                             fullName: _fullName,
+                            email: _email,
+                            address: _address,
+                            username: _userName,
                             dob: _dob,
                             gender: _gender,
                             emergencyContactNumber: _emergencyContactNumber,

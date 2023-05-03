@@ -5,10 +5,12 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 
 class EditProfilePage extends StatefulWidget {
-  final String username;
   final String fullName;
+  final String email;
   final String gender;
   final String dob;
+  final String username;
+  final String address;
   final String emergencyContactNumber;
   final String identityNumber;
   final String bloodType;
@@ -18,10 +20,12 @@ class EditProfilePage extends StatefulWidget {
   final File? profileImage;
 
   EditProfilePage({
-    required this.username,
     required this.fullName,
+    required this.email,
     required this.gender,
     required this.dob,
+    required this.username,
+    required this.address,
     required this.emergencyContactNumber,
     required this.identityNumber,
     required this.bloodType,
@@ -38,10 +42,12 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   File? _imageFile;
   final _formKey = GlobalKey<FormState>();
-  late TextEditingController _usernameController;
   late TextEditingController _fullNameController;
+  late TextEditingController _emailController;
   late TextEditingController _genderController;
   late TextEditingController _dobController;
+  late TextEditingController _userNameController;
+  late TextEditingController _addressController;
   late TextEditingController _emergencyContactNumberController;
   late TextEditingController _identityNumberController;
   late TextEditingController _bloodTypeController;
@@ -52,10 +58,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
   @override
   void initState() {
     super.initState();
-    _usernameController = TextEditingController(text: widget.username);
     _fullNameController = TextEditingController(text: widget.fullName);
+    _emailController = TextEditingController(text: widget.email);
     _genderController = TextEditingController(text: widget.gender);
     _dobController = TextEditingController(text: widget.dob);
+    _userNameController = TextEditingController(text: widget.username);
+    _addressController = TextEditingController(text: widget.address);
     _emergencyContactNumberController =
         TextEditingController(text: widget.emergencyContactNumber);
     _identityNumberController =
@@ -70,10 +78,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   @override
   void dispose() {
-    _usernameController.dispose();
     _fullNameController.dispose();
+    _emailController.dispose();
     _genderController.dispose();
+    _userNameController.dispose();
     _dobController.dispose();
+    _addressController.dispose();
     _emergencyContactNumberController.dispose();
     _identityNumberController.dispose();
     _bloodTypeController.dispose();
@@ -101,19 +111,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   children: [
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: 'Username',
-                      ),
-                      controller: _usernameController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter a username';
-                        }
-                        return null;
-                      },
-                    ),
-                    
-                    TextFormField(
-                      decoration: InputDecoration(
                         labelText: 'Full Name',
                       ),
                       controller: _fullNameController,
@@ -124,7 +121,43 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         return null;
                       },
                     ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Email',
+                      ),
+                      controller: _emailController,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your email';
+                        }
+                        return null;
+                      },
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Username',
+                      ),
+                      controller: _userNameController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please your username';
+                        }
+                        return null;
+                      },
+                    ),
 
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: 'Address',
+                      ),
+                      controller: _addressController,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a valid address';
+                        }
+                        return null;
+                      },
+                    ),
                     DropdownButtonFormField<String>(
                       decoration: InputDecoration(
                         labelText: 'Gender',
@@ -304,8 +337,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                           if (_formKey.currentState!.validate()) {
                             // TODO: Save the updated patient information to the database or some other storage
                             // For now, we can just print the information to the console
-                            String username = _usernameController.text;
                             String fullName = _fullNameController.text;
+                            String email = _emailController.text;
+                            String userName = _userNameController.text;
+                            String address = _addressController.text;
                             String gender = _genderController.text;
                             String dateOfBirth = _dobController.text;
                             String emergencyContactNumber =
@@ -320,8 +355,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             String allergies = _allergiesController.text;
 
                             // Print the updated values to the console
-                            print('Username: $username');
                             print('Full Name: $fullName');
+                            print('Email: $email');
+                            print('Username: $userName');
+                            print('Address: $address');
                             print('Gender: $gender');
                             print('Date of Birth: $dateOfBirth');
                             print(

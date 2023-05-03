@@ -13,6 +13,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
+  final _userNameController = TextEditingController();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -89,13 +90,44 @@ class _SignUpState extends State<SignUp> {
                           controller: _nameController,
                           decoration: InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Full Name',
+                              hintText: 'Full name',
                               icon: Icon(Icons.person_2_outlined)),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return 'Please write your full name ';
                             } else if (value.length < 4) {
                               return "Too short write your full name";
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                    //username text field
+                    Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: primary),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: TextFormField(
+                          controller: _userNameController,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Username',
+                              icon: Icon(Icons.person_pin_rounded)),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please write your username ';
+                            } else if (value.length < 4) {
+                              return "Too short write your username";
                             }
                             return null;
                           },
@@ -242,7 +274,6 @@ class _SignUpState extends State<SignUp> {
                     height: 15,
                   ),
                   // sign in button
-
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: GestureDetector(

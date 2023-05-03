@@ -14,7 +14,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
+  final _userNameController = TextEditingController();
   final _passwordController = TextEditingController();
 
   void openSignUpScreen() {
@@ -27,12 +27,14 @@ class _LoginState extends State<Login> {
         'home',
         (Route<dynamic> route) => false,
       );
+      print(_userNameController.text);
+      print(_passwordController.text);
     }
   }
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _userNameController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -75,8 +77,9 @@ class _LoginState extends State<Login> {
                     height: 50,
                   ),
 
-                  // Email Text field
-                  Padding(
+
+                  // userName Text field
+                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
                       decoration: BoxDecoration(
@@ -86,21 +89,19 @@ class _LoginState extends State<Login> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
+                          controller: _userNameController,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Username',
+                              icon: Icon(Icons.person_pin_rounded)),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter your email address';
-                            } else if (!value.contains('@') ||
-                                !value.contains('.')) {
-                              return 'Please enter valid email address';
+                              return 'Please write your username ';
+                            } else if (value.length < 4) {
+                              return "Too short write your username";
                             }
                             return null;
                           },
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                              border: InputBorder.none,
-                              hintText: 'Email',
-                              icon: Icon(Icons.email)),
                         ),
                       ),
                     ),

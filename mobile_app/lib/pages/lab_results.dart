@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/Test_form.dart';
+import 'package:mobile_app/classes/cbc_form.dart';
 import 'package:mobile_app/colors.dart';
-import 'package:mobile_app/pages/test_page.dart';
+import 'package:mobile_app/pages/cbc_testpage.dart';
 
+// ignore: camel_case_types
 class lab_results extends StatefulWidget {
   const lab_results({super.key});
 
@@ -10,61 +11,79 @@ class lab_results extends StatefulWidget {
   State<lab_results> createState() => _lab_resultsState();
 }
 
+// ignore: camel_case_types
 class _lab_resultsState extends State<lab_results> {
-  static List<String> testname = [
-    'CBC',
-    'Glucose',
-    'liver function',
-    'lipid Profile'
+  ////////CBC/////////////////////////
+  static List<String> testname = ['CBC'];
+  static List testAtts = [
+    'Haemoglobin :',
+    'Hematocrit :',
+    'Red Cell Count :',
+    'MCV :',
+    'MCH :',
+    'MCHC :',
+    'RDW :',
+    'Platelet Count :',
+    'T.L.C :',
+    'Basophils :',
+    'Eosinophils :',
+    'Stab :',
+    'Segmented :',
+    'Lymphocytes :',
+    'Monocytes :',
   ];
-  static List testAtt = [
-    'WBC\n RBC\n Hemoglobin\n Hematocrit\n platelates\n',
-    'R B G\n R B S\n ',
-    'ALT\n AST\n ALB\n DBIL\n TBIL\n ALP\n',
-    'ALT (SGPT),serum\n AST (SGOT),serum\n Albumin,serum\n Cholestrol Total, serum\n  HDL-C, serum\n LDL-C,serum\n Triglycerides,serum\n'
-  ];
-  static List results = [
-    '36\n 34\n 12\n 33\n 30\n',
-    '20\n 10\n ',
-    '20\n 10\n 20\n 10\n 23\n 45\n',
-    '20\n 10\n 20\n 10\n 23\n 45\n 123\n'
+  static List results = [];
+  static List range = [
+    '13-17',
+    '40-50',
+    '4.5-6.2',
+    '78-96',
+    '26-32',
+    '31-36',
+    '11.5-14.5',
+    '150-450',
+    '4-11',
+    '0-1',
+    '0-6',
+    '0-7',
+    '40-75',
+    '20-45',
+    '1-10'
   ];
   static List unit = [
-    'g/dL\n g/dL\n g/dL\n g/dL\n g/dL\n',
-    'mg/dl\n mg/dl\n',
-    'U/L\n U/L\n g/dl\n mg/dl\n mg/dl\n U/L\n',
-    'U/L\n U/L\n g/dl\n mg/dl\n mg/dl\n mg/dl\n mg/dl\n'
+    'g/dL',
+    '%',
+    'x10^6/uL',
+    'fL',
+    'fL',
+    'pg',
+    'g/dl',
+    '%',
+    'x10^3/uL',
+    'x10^3/uL',
+    '%',
+    '%',
+    '%',
+    '%',
+    '%'
   ];
-  static List range = [
-    '13 - 17\n 13 - 17\n 13 - 17\n 13 - 17\n 13 - 17\n 13 - 17\n',
-    '13 - 17\n 13 - 17\n',
-    '13 - 17\n 13 - 17\n 13 - 17\n 13 - 17\n 13 - 17\n 13 - 17\n',
-    '13 - 17\n 13 - 17\n 13 - 17\n 13 - 17\n 13 - 17\n 13 - 17\n 13 - 17\n',
-  ];
-  static List notes = [
-    'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled (and possibly unstyled) text that follow it. You can use an empty string for text if you want to start with styled text',
-    'very well',
-    'need to go to doctor',
-    'good',
-  ];
-  static List labname = [
-    'alfa lab',
-    'alfa lab',
-    'elmokhtabar',
-    'trust lab',
-  ];
+  static List notes = [];
+  static List labname = ['alfa lab'];
+  static List<String> date = ['19/12/2022'];
 
-  final List<Testform> testdata = List.generate(
+  final List<Cbcform> cbcdata = List.generate(
       testname.length,
-      (index) => Testform(
+      (index) => Cbcform(
           testname: testname[index],
-          testAtt: '${testAtt[index]}',
-          range: '${range[index]}',
-          result: '${results[index]}',
-          unit: '${unit[index]}',
-          notes: '${notes[index]}',
-          labname: '${labname[index]}',
+          testAtts: testAtts,
+          range: range,
+          result: results,
+          unit: unit,
+          notes: '$notes',
+          labname: '$labname',
+          date: date[index],
           pic: 'lab.png'));
+///////////////////////////////////////////////////////////
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,7 +103,7 @@ class _lab_resultsState extends State<lab_results> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   controller: ScrollController(),
-                  itemCount: testdata.length,
+                  itemCount: cbcdata.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
@@ -100,15 +119,24 @@ class _lab_resultsState extends State<lab_results> {
                         child: ListTile(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Testpage(
-                                      testform: testdata[index],
-                                    )));
+                                builder: (context) =>
+                                    CbcTestpage(cbcform: cbcdata[index])));
                           },
-                          title: Text(testdata[index].testname),
-                          subtitle: Text(testdata[index].labname),
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(cbcdata[index].testname),
+                              Text(
+                                cbcdata[index].date,
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.black54),
+                              ),
+                            ],
+                          ),
+                          subtitle: Text(cbcdata[index].labname),
                           leading: CircleAvatar(
                               backgroundImage:
-                                  AssetImage('assets/${testdata[index].pic}')),
+                                  AssetImage('assets/${cbcdata[index].pic}')),
                         ),
                       ),
                     );

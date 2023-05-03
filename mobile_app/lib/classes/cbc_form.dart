@@ -1,20 +1,21 @@
-class Testform {
+class Cbcform {
   String testname;
-  String testAtt;
-  String result;
-  String unit;
-  String range;
+  List testAtts;
+  List result;
+  List unit;
+  List range;
   String notes;
   String labname;
   String pic;
-
-  Testform(
+  String date;
+  Cbcform(
       {required this.testname,
-      required this.testAtt,
+      required this.testAtts,
       required this.range,
       required this.result,
       required this.unit,
       required this.notes,
       required this.labname,
-      required this.pic});
+      required this.pic,
+      required this.date});
 }

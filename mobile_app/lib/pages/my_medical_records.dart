@@ -18,32 +18,32 @@ class My_Medical_Records extends StatefulWidget {
 class _My_Medical_RecordsState extends State<My_Medical_Records> {
   // This controller will store the value of the search bar
   final TextEditingController _searchController = TextEditingController();
-  static List<String> exminName = [
-    'Complete blood culture',
-    'Knee MRI',
-    'Heart'
-  ];
-  static List byname = ['alfa lab', 'alfa scan', 'Ga3fr el3omda'];
-  static List pic = ['lab.png', 'rad.png', 'doctor.png'];
-  static List report = [
-    '',
-    'TextSpan is a little strange',
-    'TextSpan is a little strange'
-  ];
-  static List others = [
-    'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled',
-    'very good',
-    'pruffen'
-  ];
-  final List<Allmenu> alldata = List.generate(
-      exminName.length,
-      (index) => Allmenu(
-            exminName: exminName[index],
-            report: '${report[index]}',
-            pic: '${pic[index]}',
-            byname: '${byname[index]}',
-            others: '${others[index]}',
-          ));
+  // static List<String> exminName = [
+  //   'Complete blood culture',
+  //   'Knee MRI',
+  //   'Heart'
+  // ];
+  // static List byname = ['alfa lab', 'alfa scan', 'Ga3fr el3omda'];
+  // static List pic = ['lab.png', 'rad.png', 'doctor.png'];
+  // static List report = [
+  //   '',
+  //   'TextSpan is a little strange',
+  //   'TextSpan is a little strange'
+  // ];
+  // static List others = [
+  //   'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled',
+  //   'very good',
+  //   'pruffen'
+  // ];
+  // final List<Allmenu> alldata = List.generate(
+  //     exminName.length,
+  //     (index) => Allmenu(
+  //           exminName: exminName[index],
+  //           report: '${report[index]}',
+  //           pic: '${pic[index]}',
+  //           byname: '${byname[index]}',
+  //           others: '${others[index]}',
+  //         ));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -221,48 +221,48 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 Text(
-                  'All',
+                  'To be decided later',
                   style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
           ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: ListView.builder(
-                shrinkWrap: true,
-                controller: ScrollController(),
-                itemCount: alldata.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 1.0, horizontal: 4.0),
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                          color: Colors.greenAccent,
-                        ),
-                        borderRadius: BorderRadius.circular(20.0),
-                      ),
-                      child: ListTile(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => all_menu(
-                                    allmenu: alldata[index],
-                                  )));
-                        },
-                        title: Text(alldata[index].exminName),
-                        subtitle: Text(alldata[index].byname),
-                        leading: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/${alldata[index].pic}')),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
+          //Expanded(
+          // child: SingleChildScrollView(
+          //   child: ListView.builder(
+          //     shrinkWrap: true,
+          //     controller: ScrollController(),
+          //     itemCount: alldata.length,
+          //     itemBuilder: (context, index) {
+          //       return Padding(
+          //         padding: const EdgeInsets.symmetric(
+          //             vertical: 1.0, horizontal: 4.0),
+          //         child: Card(
+          //           shape: RoundedRectangleBorder(
+          //             side: BorderSide(
+          //               color: Colors.greenAccent,
+          //             ),
+          //             borderRadius: BorderRadius.circular(20.0),
+          //           ),
+          //           child: ListTile(
+          //             onTap: () {
+          //               Navigator.of(context).push(MaterialPageRoute(
+          //                   builder: (context) => all_menu(
+          //                         allmenu: alldata[index],
+          //                       )));
+          //             },
+          //             title: Text(alldata[index].exminName),
+          //             subtitle: Text(alldata[index].byname),
+          //             leading: CircleAvatar(
+          //                 backgroundImage:
+          //                     AssetImage('assets/${alldata[index].pic}')),
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
+          //0 ),
         ],
       ),
     );

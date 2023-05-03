@@ -50,6 +50,7 @@ dependencies:
   multi_select_flutter: ^4.1.3
   flutter_multiselect: ^1.0.0
   multiselect_formfield: ^0.1.7
+  mockito: ^5.4.0
 
 
 

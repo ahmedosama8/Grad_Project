@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
+@Entity
 public class CBC {
 
 	
@@ -21,17 +21,9 @@ public class CBC {
 
     private LocalDate Examination_Date;
 
-	@ManyToOne
-	@JoinColumn(name="patient_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Patient patient;
-
-	public Patient getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
 
 	@Nullable
     private int Haemoglobin;
@@ -84,6 +76,14 @@ public class CBC {
     public CBC() {
     	
     }
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
 	public int getCbc_id() {
 		return cbc_id;
@@ -231,7 +231,6 @@ public class CBC {
 			int hematocrit, int redCellCount, int mCV, int mCH, int mCHC, int rDW, int plateletCount, int tLC,
 			int basophils, int eosinophils, int stab, int segmented, int lymphocytes, int monocytes, String comments) {
 		this.cbc_id = cbc_id;
-
 		this.Examination_Date = examination_Date;
 		this.patient = patient;
 		this.Haemoglobin = haemoglobin;

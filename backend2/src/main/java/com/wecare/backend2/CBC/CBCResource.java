@@ -17,6 +17,8 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RequestMapping("/CBC")
 public class CBCResource {
 
+    
+
 	
 	
 }

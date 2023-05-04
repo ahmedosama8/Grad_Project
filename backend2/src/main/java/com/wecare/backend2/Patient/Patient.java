@@ -53,7 +53,8 @@ public class Patient {
     private List<MedicalCondition> medicalConditions = new ArrayList<>();
     
     @Nullable
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "patient")
+    @JsonIgnore
     private List<CBC> CBCTests = new ArrayList<>();
     
     @Nullable

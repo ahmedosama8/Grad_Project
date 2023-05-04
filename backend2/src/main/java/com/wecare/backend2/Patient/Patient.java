@@ -2,13 +2,15 @@ package com.wecare.backend2.Patient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wecare.backend2.Allergy.Allergy;
-<<<<<<< Updated upstream
-=======
 import com.wecare.backend2.Appointment.Appointment;
 import com.wecare.backend2.CBC.CBC;
->>>>>>> Stashed changes
 import com.wecare.backend2.Diagnosis.Diagnosis;
+import com.wecare.backend2.Glucose.Glucose;
+import com.wecare.backend2.LipidProfile.LipidProfile;
+import com.wecare.backend2.LiverFunc.LiverFunc;
 import com.wecare.backend2.MedicalCondition.MedicalCondition;
+import com.wecare.backend2.UrineTest.UrineTest;
+
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
@@ -49,6 +51,27 @@ public class Patient {
     @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MedicalCondition> medicalConditions = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CBC> CBCTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Glucose> GlucoseTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LipidProfile> LipidProfileTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LiverFunc> LiverFuncTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UrineTest> UrineTests = new ArrayList<>();
+    
     @Nullable
     private int age;
     @Nullable
@@ -229,9 +252,6 @@ public class Patient {
         this.medicalConditions = medicalConditions;
     }
 
-<<<<<<< Updated upstream
-    public Patient(int patient_id, String gender, String phone1, String phone2, String mail, String bloodType, List<Allergy> allergies, List<MedicalCondition> medicalConditions, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street, boolean maritalStatus) {
-=======
     public List<CBC> getCBCTests() {
 		return CBCTests;
 	}
@@ -272,17 +292,20 @@ public class Patient {
 		UrineTests = urineTests;
 	}
 
-    public Patient(int patient_id, String gender, String phone1, String phone2, String mail, String bloodType, List<Appointment> appointments, List<Allergy> allergies, List<MedicalCondition> medicalConditions, List<CBC> CBCTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street, boolean maritalStatus) {
->>>>>>> Stashed changes
+    public Patient(int patient_id, @Nullable String gender, @Nullable String phone1, @Nullable String phone2, @Nullable String mail, @Nullable String bloodType, @Nullable List<Allergy> allergies, @Nullable List<MedicalCondition> medicalConditions, @Nullable List<CBC> CBCTests, @Nullable List<Glucose> glucoseTests, @Nullable List<LipidProfile> lipidProfileTests, @Nullable List<LiverFunc> liverFuncTests, @Nullable List<UrineTest> urineTests, int age, @Nullable String firstName, @Nullable String middleName, @Nullable String lastName, @Nullable LocalDate birthDate, @Nullable List<Diagnosis> diagnoses, @Nullable String nationalIdNumber, @Nullable String city, @Nullable String street, boolean maritalStatus) {
         this.patient_id = patient_id;
         this.gender = gender;
         this.phone1 = phone1;
         this.phone2 = phone2;
         this.mail = mail;
         this.bloodType = bloodType;
-        this.appointments = appointments;
         this.allergies = allergies;
         this.medicalConditions = medicalConditions;
+        this.CBCTests = CBCTests;
+        GlucoseTests = glucoseTests;
+        LipidProfileTests = lipidProfileTests;
+        LiverFuncTests = liverFuncTests;
+        UrineTests = urineTests;
         this.age = age;
         this.firstName = firstName;
         MiddleName = middleName;
@@ -293,5 +316,9 @@ public class Patient {
         this.city = city;
         this.street = street;
         this.maritalStatus = maritalStatus;
+        this.appointments = appointments;
     }
+
+
 }
+

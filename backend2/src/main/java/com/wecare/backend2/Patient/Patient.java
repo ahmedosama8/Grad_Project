@@ -2,6 +2,11 @@ package com.wecare.backend2.Patient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wecare.backend2.Allergy.Allergy;
+<<<<<<< Updated upstream
+=======
+import com.wecare.backend2.Appointment.Appointment;
+import com.wecare.backend2.CBC.CBC;
+>>>>>>> Stashed changes
 import com.wecare.backend2.Diagnosis.Diagnosis;
 import com.wecare.backend2.MedicalCondition.MedicalCondition;
 import jakarta.annotation.Nullable;
@@ -31,6 +36,11 @@ public class Patient {
 
     @Nullable
     private String bloodType;
+
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Appointment> appointments = new ArrayList<>();
+
 
     @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -75,6 +85,15 @@ public class Patient {
     }
 
     public Patient() {
+    }
+
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
 
     public int getPatient_id() {
@@ -210,13 +229,58 @@ public class Patient {
         this.medicalConditions = medicalConditions;
     }
 
+<<<<<<< Updated upstream
     public Patient(int patient_id, String gender, String phone1, String phone2, String mail, String bloodType, List<Allergy> allergies, List<MedicalCondition> medicalConditions, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street, boolean maritalStatus) {
+=======
+    public List<CBC> getCBCTests() {
+		return CBCTests;
+	}
+
+	public void setCBCTests(List<CBC> cBCTests) {
+		CBCTests = cBCTests;
+	}
+
+	public List<Glucose> getGlucoseTests() {
+		return GlucoseTests;
+	}
+
+	public void setGlucoseTests(List<Glucose> glucoseTests) {
+		GlucoseTests = glucoseTests;
+	}
+
+	public List<LipidProfile> getLipidProfileTests() {
+		return LipidProfileTests;
+	}
+
+	public void setLipidProfileTests(List<LipidProfile> lipidProfileTests) {
+		LipidProfileTests = lipidProfileTests;
+	}
+
+	public List<LiverFunc> getLiverFuncTests() {
+		return LiverFuncTests;
+	}
+
+	public void setLiverFuncTests(List<LiverFunc> liverFuncTests) {
+		LiverFuncTests = liverFuncTests;
+	}
+
+	public List<UrineTest> getUrineTests() {
+		return UrineTests;
+	}
+
+	public void setUrineTests(List<UrineTest> urineTests) {
+		UrineTests = urineTests;
+	}
+
+    public Patient(int patient_id, String gender, String phone1, String phone2, String mail, String bloodType, List<Appointment> appointments, List<Allergy> allergies, List<MedicalCondition> medicalConditions, List<CBC> CBCTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street, boolean maritalStatus) {
+>>>>>>> Stashed changes
         this.patient_id = patient_id;
         this.gender = gender;
         this.phone1 = phone1;
         this.phone2 = phone2;
         this.mail = mail;
         this.bloodType = bloodType;
+        this.appointments = appointments;
         this.allergies = allergies;
         this.medicalConditions = medicalConditions;
         this.age = age;

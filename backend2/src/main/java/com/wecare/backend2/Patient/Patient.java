@@ -237,7 +237,6 @@ public class Patient {
         this.medicalConditions = medicalConditions;
     }
 
-<<<<<<< HEAD
     public List<CBC> getCBCTests() {
 		return CBCTests;
 	}
@@ -278,10 +277,7 @@ public class Patient {
 		UrineTests = urineTests;
 	}
 
-	public Patient(int patient_id, String gender, String phone1, String phone2, String mail, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses,List<CBC> cBCTests,List<Glucose> glucoseTests,List<LipidProfile> lipidProfileTests,List<LiverFunc> liverFuncTests,List<UrineTest> urineTests, String nationalIdNumber, String city, String street) {
-=======
-    public Patient(int patient_id, String gender, String phone1, String phone2, String mail, String bloodType, List<Allergy> allergies, List<MedicalCondition> medicalConditions, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street, boolean maritalStatus) {
->>>>>>> 83069714d9ee0bcb619685965e03aad399b88af3
+    public Patient(int patient_id, @Nullable String gender, @Nullable String phone1, @Nullable String phone2, @Nullable String mail, @Nullable String bloodType, @Nullable List<Allergy> allergies, @Nullable List<MedicalCondition> medicalConditions, @Nullable List<CBC> CBCTests, @Nullable List<Glucose> glucoseTests, @Nullable List<LipidProfile> lipidProfileTests, @Nullable List<LiverFunc> liverFuncTests, @Nullable List<UrineTest> urineTests, int age, @Nullable String firstName, @Nullable String middleName, @Nullable String lastName, @Nullable LocalDate birthDate, @Nullable List<Diagnosis> diagnoses, @Nullable String nationalIdNumber, @Nullable String city, @Nullable String street, boolean maritalStatus) {
         this.patient_id = patient_id;
         this.gender = gender;
         this.phone1 = phone1;
@@ -290,17 +286,17 @@ public class Patient {
         this.bloodType = bloodType;
         this.allergies = allergies;
         this.medicalConditions = medicalConditions;
+        this.CBCTests = CBCTests;
+        GlucoseTests = glucoseTests;
+        LipidProfileTests = lipidProfileTests;
+        LiverFuncTests = liverFuncTests;
+        UrineTests = urineTests;
         this.age = age;
         this.firstName = firstName;
         MiddleName = middleName;
         LastName = lastName;
         this.birthDate = birthDate;
         this.diagnoses = diagnoses;
-        this.CBCTests = cBCTests;
-        this.GlucoseTests = glucoseTests;
-        this.LipidProfileTests = lipidProfileTests;
-        this.LiverFuncTests = liverFuncTests;
-        this.UrineTests = urineTests;
         this.nationalIdNumber = nationalIdNumber;
         this.city = city;
         this.street = street;

@@ -50,7 +50,7 @@ public class CBCResource {
             throw new Exception("not found");
         }
         cbc.setPatient(patient.get());
-        CBC newCBC = cbcRepository.save(cbc);
+        CBC newCBC = (CBC) cbcRepository.save(cbc);
         String cbcid = String.valueOf(newCBC.getCbc_id());
         URI loc = URI.create("/"+id+"/"+cbcid);
         return ResponseEntity.created(loc).build();

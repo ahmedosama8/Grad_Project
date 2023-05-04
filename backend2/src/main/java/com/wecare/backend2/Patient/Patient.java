@@ -2,8 +2,14 @@ package com.wecare.backend2.Patient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wecare.backend2.Allergy.Allergy;
+import com.wecare.backend2.CBC.CBC;
 import com.wecare.backend2.Diagnosis.Diagnosis;
+import com.wecare.backend2.Glucose.Glucose;
+import com.wecare.backend2.LipidProfile.LipidProfile;
+import com.wecare.backend2.LiverFunc.LiverFunc;
 import com.wecare.backend2.MedicalCondition.MedicalCondition;
+import com.wecare.backend2.UrineTest.UrineTest;
+
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
@@ -39,6 +45,27 @@ public class Patient {
     @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MedicalCondition> medicalConditions = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CBC> CBCTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Glucose> GlucoseTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LipidProfile> LipidProfileTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LiverFunc> LiverFuncTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UrineTest> UrineTests = new ArrayList<>();
+    
     @Nullable
     private int age;
     @Nullable
@@ -210,7 +237,51 @@ public class Patient {
         this.medicalConditions = medicalConditions;
     }
 
+<<<<<<< HEAD
+    public List<CBC> getCBCTests() {
+		return CBCTests;
+	}
+
+	public void setCBCTests(List<CBC> cBCTests) {
+		CBCTests = cBCTests;
+	}
+
+	public List<Glucose> getGlucoseTests() {
+		return GlucoseTests;
+	}
+
+	public void setGlucoseTests(List<Glucose> glucoseTests) {
+		GlucoseTests = glucoseTests;
+	}
+
+	public List<LipidProfile> getLipidProfileTests() {
+		return LipidProfileTests;
+	}
+
+	public void setLipidProfileTests(List<LipidProfile> lipidProfileTests) {
+		LipidProfileTests = lipidProfileTests;
+	}
+
+	public List<LiverFunc> getLiverFuncTests() {
+		return LiverFuncTests;
+	}
+
+	public void setLiverFuncTests(List<LiverFunc> liverFuncTests) {
+		LiverFuncTests = liverFuncTests;
+	}
+
+	public List<UrineTest> getUrineTests() {
+		return UrineTests;
+	}
+
+	public void setUrineTests(List<UrineTest> urineTests) {
+		UrineTests = urineTests;
+	}
+
+	public Patient(int patient_id, String gender, String phone1, String phone2, String mail, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses,List<CBC> cBCTests,List<Glucose> glucoseTests,List<LipidProfile> lipidProfileTests,List<LiverFunc> liverFuncTests,List<UrineTest> urineTests, String nationalIdNumber, String city, String street) {
+=======
     public Patient(int patient_id, String gender, String phone1, String phone2, String mail, String bloodType, List<Allergy> allergies, List<MedicalCondition> medicalConditions, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street, boolean maritalStatus) {
+>>>>>>> 83069714d9ee0bcb619685965e03aad399b88af3
         this.patient_id = patient_id;
         this.gender = gender;
         this.phone1 = phone1;
@@ -225,6 +296,11 @@ public class Patient {
         LastName = lastName;
         this.birthDate = birthDate;
         this.diagnoses = diagnoses;
+        this.CBCTests = cBCTests;
+        this.GlucoseTests = glucoseTests;
+        this.LipidProfileTests = lipidProfileTests;
+        this.LiverFuncTests = liverFuncTests;
+        this.UrineTests = urineTests;
         this.nationalIdNumber = nationalIdNumber;
         this.city = city;
         this.street = street;

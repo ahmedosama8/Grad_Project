@@ -62,6 +62,18 @@ public class Patient {
     @Nullable
     private String street;
 
+    @Nullable
+    private boolean maritalStatus;
+
+
+    public boolean isMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public void setMaritalStatus(boolean maritalStatus) {
+        this.maritalStatus = maritalStatus;
+    }
+
     public Patient() {
     }
 
@@ -198,12 +210,15 @@ public class Patient {
         this.medicalConditions = medicalConditions;
     }
 
-    public Patient(int patient_id, String gender, String phone1, String phone2, String mail, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street) {
+    public Patient(int patient_id, String gender, String phone1, String phone2, String mail, String bloodType, List<Allergy> allergies, List<MedicalCondition> medicalConditions, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street, boolean maritalStatus) {
         this.patient_id = patient_id;
         this.gender = gender;
         this.phone1 = phone1;
         this.phone2 = phone2;
         this.mail = mail;
+        this.bloodType = bloodType;
+        this.allergies = allergies;
+        this.medicalConditions = medicalConditions;
         this.age = age;
         this.firstName = firstName;
         MiddleName = middleName;
@@ -213,5 +228,6 @@ public class Patient {
         this.nationalIdNumber = nationalIdNumber;
         this.city = city;
         this.street = street;
+        this.maritalStatus = maritalStatus;
     }
 }

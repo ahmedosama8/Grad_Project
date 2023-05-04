@@ -1,6 +1,7 @@
 package com.wecare.backend2.LipidProfile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wecare.backend2.Patient.Patient;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
@@ -14,12 +15,20 @@ public class LipidProfile {
     @Id
     @GeneratedValue
     private int LipidProfile_id;
-    
-    private String First_Name;
-    
-    private String Last_Name;
-    
-    private LocalDate Examination_Date;
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	private LocalDate Examination_Date;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Patient patient;
     
     @Nullable
     private int ALT;
@@ -53,22 +62,6 @@ public class LipidProfile {
 		return LipidProfile_id;
 	}
 
-
-	public String getFirst_Name() {
-		return First_Name;
-	}
-
-	public void setFirst_Name(String first_Name) {
-		First_Name = first_Name;
-	}
-
-	public String getLast_Name() {
-		return Last_Name;
-	}
-
-	public void setLast_Name(String last_Name) {
-		Last_Name = last_Name;
-	}
 
 	public LocalDate getExamination_Date() {
 		return Examination_Date;
@@ -142,12 +135,11 @@ public class LipidProfile {
 		Comments = comments;
 	}
 
-	public LipidProfile(int lipidProfile_id, String first_Name, String last_Name, LocalDate examination_Date, int aLT,
+	public LipidProfile(int lipidProfile_id,Patient patient, LocalDate examination_Date, int aLT,
 			int aST, int albumin, int cholestrolTotal, int hDL_C, int lDL_C, int triglycerides, String comments) {
 		this.LipidProfile_id = lipidProfile_id;
-		this.First_Name = first_Name;
-		this.Last_Name = last_Name;
 		this.Examination_Date = examination_Date;
+		this.patient = patient;
 		this.ALT = aLT;
 		this.AST = aST;
 		this.Albumin = albumin;

@@ -1,6 +1,7 @@
 package com.wecare.backend2.UrineTest;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wecare.backend2.Patient.Patient;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
@@ -15,12 +16,13 @@ public class UrineTest {
     @GeneratedValue
     private int UrineTest_id;
     
-    private String First_Name;
-    
-    private String Last_Name;
-    
     private LocalDate Examination_Date;
-    
+
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Patient patient;
+
     @Nullable
     private String Color;
     
@@ -83,21 +85,12 @@ public class UrineTest {
 		return UrineTest_id;
 	}
 
-
-	public String getFirst_Name() {
-		return First_Name;
+	public Patient getPatient() {
+		return patient;
 	}
 
-	public void setFirst_Name(String first_Name) {
-		First_Name = first_Name;
-	}
-
-	public String getLast_Name() {
-		return Last_Name;
-	}
-
-	public void setLast_Name(String last_Name) {
-		Last_Name = last_Name;
+	public void setPatient(Patient patient) {
+		this.patient = patient;
 	}
 
 	public LocalDate getExamination_Date() {
@@ -252,14 +245,13 @@ public class UrineTest {
 		Comments = comments;
 	}
 
-	public UrineTest(int urineTest_id, String first_Name, String last_Name, LocalDate examination_Date, String color,
+	public UrineTest(int urineTest_id,Patient patient, LocalDate examination_Date, String color,
 			String clarity, int specific_Gravity, int pH, String protein, String glucose, String ketone,
 			String urobilinogen, String bilirubin, String nitrite, int pus_Cells, int red_Cells,
 			String epithelial_Cells, String amorphous, String crystals, String casts, String others, String comments) {
 		this.UrineTest_id = urineTest_id;
-		this.First_Name = first_Name;
-		this.Last_Name = last_Name;
 		this.Examination_Date = examination_Date;
+		this.patient = patient;
 		this.Color = color;
 		this.Clarity = clarity;
 		this.Specific_Gravity = specific_Gravity;

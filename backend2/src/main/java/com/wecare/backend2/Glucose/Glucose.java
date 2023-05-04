@@ -13,12 +13,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Glucose {
+
+
 	@Id
     @GeneratedValue
     private int Glucose_id;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="patient_id")
+	@JsonIgnore
 	private Patient patient;
 
 	public Patient getPatient() {

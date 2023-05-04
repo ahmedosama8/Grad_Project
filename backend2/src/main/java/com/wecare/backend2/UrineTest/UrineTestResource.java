@@ -1,4 +1,5 @@
-package com.wecare.backend2.CBC;
+package com.wecare.backend2.UrineTest;
+
 
 import com.wecare.backend2.Patient.Patient;
 import com.wecare.backend2.Patient.PatientRepository;
@@ -14,58 +15,55 @@ import java.util.Optional;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-
 @RestController
-@RequestMapping("/CBC")
-public class CBCResource {
+@RequestMapping("/UrineTest")
+public class UrineTestResource {
 
     private PatientRepository patientRepo;
-    private CBCRepository cbcRepository;
+    private UrineTestRepository urineTestRepository;
 
-    public CBCResource(PatientRepository patientRepo, CBCRepository cbcRepository) {
+    public UrineTestResource(PatientRepository patientRepo, UrineTestRepository urineTestRepository) {
         this.patientRepo = patientRepo;
-        this.cbcRepository = cbcRepository;
+        this.urineTestRepository = urineTestRepository;
     }
 
     @GetMapping("/list")
-    public List<CBC> list(){return cbcRepository.findAll();}
+    public List<UrineTest> list(){return urineTestRepository.findAll();}
 
 
     @GetMapping("/{id}")
-    public EntityModel<CBC> show(@PathVariable int id) throws Exception{
-        Optional<CBC> cbc = cbcRepository.findById(id);
-        if(cbc.isEmpty()){
+    public EntityModel<UrineTest> show(@PathVariable int id) throws Exception{
+        Optional<UrineTest> urineTest = urineTestRepository.findById(id);
+        if(urineTest.isEmpty()){
             throw new Exception("not found");
         }
-        EntityModel<CBC> cbcEntityModel = EntityModel.of(cbc.get());
+        EntityModel<UrineTest> urineTestEntityModel = EntityModel.of(urineTest.get());
         WebMvcLinkBuilder link = WebMvcLinkBuilder.linkTo(methodOn(this.getClass()));
-        cbcEntityModel.add(link.withRel("list"));
-        return cbcEntityModel;
+        urineTestEntityModel.add(link.withRel("list"));
+        return urineTestEntityModel;
     }
 
     @PostMapping("/{pid}/new")
-    public ResponseEntity<CBC> create(@RequestBody CBC cbc, @PathVariable int id) throws Exception{
+    public ResponseEntity<UrineTest> create(@RequestBody UrineTest urineTest, @PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){
             throw new Exception("not found");
         }
-        cbc.setPatient(patient.get());
-        CBC newCBC = (CBC) cbcRepository.save(cbc);
-        String cbcid = String.valueOf(newCBC.getCbc_id());
-        URI loc = URI.create("/"+id+"/"+cbcid);
+        urineTest.setPatient(patient.get());
+        UrineTest newUrineTest = (UrineTest) urineTestRepository.save(urineTest);
+        String urineTestid = String.valueOf(newUrineTest.getUrineTest_id());
+        URI loc = URI.create("/"+id+"/"+urineTestid);
         return ResponseEntity.created(loc).build();
     }
 
 
     @GetMapping("/{pid}")
-    public List<CBC> getCBCForPatient(@PathVariable int id) throws Exception{
+    public List<UrineTest> getUrineTestForPatient(@PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){
             throw new Exception("not found");
         }
-        return patient.get().getCBCTests();
+        return patient.get().getUrineTests();
     }
-
-
 
 }

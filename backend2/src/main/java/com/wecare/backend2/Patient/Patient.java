@@ -205,6 +205,12 @@ public class Patient {
         this.diagnoses = diagnoses;
     }
 
+    public void updateDiagnoses(Diagnosis diagnosis){
+        List<Diagnosis> current = this.getDiagnoses();
+        current.add(diagnosis);
+        this.setDiagnoses(current);
+    }
+
     public String getNationalIdNumber() {
         return nationalIdNumber;
     }
@@ -257,6 +263,12 @@ public class Patient {
 		return CBCTests;
 	}
 
+    public void updateCBCTests(CBC cbcTests){
+        List<CBC> current = this.getCBCTests();
+        current.add(cbcTests);
+        this.setCBCTests(current);
+    }
+
 	public void setCBCTests(List<CBC> cBCTests) {
 		CBCTests = cBCTests;
 	}
@@ -265,6 +277,11 @@ public class Patient {
 		return GlucoseTests;
 	}
 
+    public void updateGlucose(Glucose glucose){
+        List<Glucose> current = this.getGlucoseTests();
+        current.add(glucose);
+        this.setGlucoseTests(current);
+    }
 	public void setGlucoseTests(List<Glucose> glucoseTests) {
 		GlucoseTests = glucoseTests;
 	}
@@ -273,6 +290,11 @@ public class Patient {
 		return LipidProfileTests;
 	}
 
+    public void updateLipid(LipidProfile lipid){
+        List<LipidProfile> current = this.getLipidProfileTests();
+        current.add(lipid);
+        this.setLipidProfileTests(current);
+    }
 	public void setLipidProfileTests(List<LipidProfile> lipidProfileTests) {
 		LipidProfileTests = lipidProfileTests;
 	}
@@ -280,6 +302,12 @@ public class Patient {
 	public List<LiverFunc> getLiverFuncTests() {
 		return LiverFuncTests;
 	}
+
+    public void updateLiverFuncTests(LiverFunc liver){
+        List<LiverFunc> current = this.getLiverFuncTests();
+        current.add(liver);
+        this.setLiverFuncTests(current);
+    }
 
 	public void setLiverFuncTests(List<LiverFunc> liverFuncTests) {
 		LiverFuncTests = liverFuncTests;
@@ -289,11 +317,17 @@ public class Patient {
 		return UrineTests;
 	}
 
+    public void updateUrineTests(UrineTest urine){
+        List<UrineTest> current = this.getUrineTests();
+        current.add(urine);
+        this.setUrineTests(current);
+    }
+
 	public void setUrineTests(List<UrineTest> urineTests) {
 		UrineTests = urineTests;
 	}
 
-    public Patient(int patient_id, @Nullable String gender, @Nullable String phone1, @Nullable String phone2, @Nullable String mail, @Nullable String bloodType, @Nullable List<Allergy> allergies, @Nullable List<MedicalCondition> medicalConditions, @Nullable List<CBC> CBCTests, @Nullable List<Glucose> glucoseTests, @Nullable List<LipidProfile> lipidProfileTests, @Nullable List<LiverFunc> liverFuncTests, @Nullable List<UrineTest> urineTests, int age, @Nullable String firstName, @Nullable String middleName, @Nullable String lastName, @Nullable LocalDate birthDate, @Nullable List<Diagnosis> diagnoses, @Nullable String nationalIdNumber, @Nullable String city, @Nullable String street, boolean maritalStatus) {
+    public Patient(int patient_id, @Nullable String gender, @Nullable List<Appointment>appointments, @Nullable String phone1, @Nullable String phone2, @Nullable String mail, @Nullable String bloodType, @Nullable List<Allergy> allergies, @Nullable List<MedicalCondition> medicalConditions, @Nullable List<CBC> CBCTests, @Nullable List<Glucose> glucoseTests, @Nullable List<LipidProfile> lipidProfileTests, @Nullable List<LiverFunc> liverFuncTests, @Nullable List<UrineTest> urineTests, int age, @Nullable String firstName, @Nullable String middleName, @Nullable String lastName, @Nullable LocalDate birthDate, @Nullable List<Diagnosis> diagnoses, @Nullable String nationalIdNumber, @Nullable String city, @Nullable String street, boolean maritalStatus) {
         this.patient_id = patient_id;
         this.gender = gender;
         this.phone1 = phone1;
@@ -303,14 +337,14 @@ public class Patient {
         this.allergies = allergies;
         this.medicalConditions = medicalConditions;
         this.CBCTests = CBCTests;
-        GlucoseTests = glucoseTests;
-        LipidProfileTests = lipidProfileTests;
-        LiverFuncTests = liverFuncTests;
-        UrineTests = urineTests;
+        this.GlucoseTests = glucoseTests;
+        this.LipidProfileTests = lipidProfileTests;
+        this.LiverFuncTests = liverFuncTests;
+        this.UrineTests = urineTests;
         this.age = age;
         this.firstName = firstName;
-        MiddleName = middleName;
-        LastName = lastName;
+        this.MiddleName = middleName;
+        this.LastName = lastName;
         this.birthDate = birthDate;
         this.diagnoses = diagnoses;
         this.nationalIdNumber = nationalIdNumber;

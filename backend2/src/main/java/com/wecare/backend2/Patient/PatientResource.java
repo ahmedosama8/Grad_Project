@@ -73,6 +73,8 @@ public class PatientResource {
         oldPatient.setBirthDate(updatedPatient.getBirthDate());
         oldPatient.setNationalIdNumber(updatedPatient.getNationalIdNumber());
         oldPatient.setStreet(updatedPatient.getStreet());
+        oldPatient.setMaritalStatus(updatedPatient.isMaritalStatus());
+
 
         Patient savedPatient = patientRepo.save(oldPatient);
         return ResponseEntity.ok(savedPatient);

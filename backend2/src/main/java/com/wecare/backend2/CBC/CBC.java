@@ -18,7 +18,6 @@ public class CBC {
     @GeneratedValue
     private int cbc_id;
 
-
     private LocalDate Examination_Date;
 
 	@ManyToOne(fetch = FetchType.LAZY)

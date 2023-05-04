@@ -1,12 +1,14 @@
 package com.wecare.backend2.Patient;
 
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.hateoas.EntityModel;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -46,6 +48,18 @@ public class PatientResource {
         String id = String.valueOf(newPatient.getPatient_id());
         URI loc = URI.create("/"+id);
         return ResponseEntity.created(loc).build();
+    }
+
+
+    @PostMapping("/login")
+    public ResponseEntity login(String username, String password){
+         Optional<Patient> patient = patientRepo.findByUsername(username);
+         if(patient.isPresent()){
+             if (Objects.equals(patient.get().getPassword(), password)){
+                 return (ResponseEntity) ResponseEntity.ok();
+             }
+    }
+        return (ResponseEntity) ResponseEntity.notFound();
     }
 
     @PutMapping("/{id}")

@@ -1,13 +1,19 @@
 package com.wecare.backend2.Patient;
 
+import com.wecare.backend2.Backend2Application;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -49,17 +55,24 @@ public class PatientResource {
         URI loc = URI.create("/"+id);
         return ResponseEntity.created(loc).build();
     }
+    private static final Logger logger = LoggerFactory.getLogger(Backend2Application.class);
 
 
     @PostMapping("/login")
-    public ResponseEntity login(String username, String password){
+    public EntityModel<Patient> login(@RequestBody Map<String, String> json) throws Exception {
+        String username = json.get("username");
+        String password = json.get("password");
          Optional<Patient> patient = patientRepo.findByUsername(username);
+         logger.warn(username);
+         logger.warn(password);
          if(patient.isPresent()){
              if (Objects.equals(patient.get().getPassword(), password)){
-                 return (ResponseEntity) ResponseEntity.ok();
+                 Integer id = patient.get().getPatient_id();
+                 return this.show(id);
              }
     }
-        return (ResponseEntity) ResponseEntity.notFound();
+       throw new ResponseStatusException(HttpStatus.NOT_FOUND, "patient not found");
+
     }
 
     @PutMapping("/{id}")

@@ -30,8 +30,7 @@ class GluTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/${gluform.pic_Glu}')),
+                            backgroundImage: AssetImage('assets/lab.png')),
                         title: Text('Lab name: ${gluform.labname_Glu}'),
                       ),
                     ],

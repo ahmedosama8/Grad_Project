@@ -6,7 +6,6 @@ class Gluform {
   List range_Glu;
   String notes_Glu;
   String labname_Glu;
-  String pic_Glu;
   String date_Glu;
   Gluform(
       {required this.testname_Glu,
@@ -16,6 +15,5 @@ class Gluform {
       required this.unit_Glu,
       required this.notes_Glu,
       required this.labname_Glu,
-      required this.pic_Glu,
       required this.date_Glu});
 }

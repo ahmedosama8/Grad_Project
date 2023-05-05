@@ -45,7 +45,7 @@ function App() {
             element={<PatientResultPage />}
           />
           <Route
-            path="/allpatientspage/patientresultpage/wholetest"
+            path="/selected-row/:id"
             element={<WholeTest />}
           />
 

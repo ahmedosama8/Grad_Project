@@ -6,8 +6,6 @@ import 'package:mobile_app/pages/lab_results.dart';
 import 'package:mobile_app/pages/rad_scans.dart';
 import 'package:mobile_app/main.dart';
 
-import '../classes/customSearchDelegate.dart';
-
 class My_Medical_Records extends StatefulWidget {
   const My_Medical_Records({super.key});
 
@@ -17,33 +15,8 @@ class My_Medical_Records extends StatefulWidget {
 
 class _My_Medical_RecordsState extends State<My_Medical_Records> {
   // This controller will store the value of the search bar
-  final TextEditingController _searchController = TextEditingController();
-  // static List<String> exminName = [
-  //   'Complete blood culture',
-  //   'Knee MRI',
-  //   'Heart'
-  // ];
-  // static List byname = ['alfa lab', 'alfa scan', 'Ga3fr el3omda'];
-  // static List pic = ['lab.png', 'rad.png', 'doctor.png'];
-  // static List report = [
-  //   '',
-  //   'TextSpan is a little strange',
-  //   'TextSpan is a little strange'
-  // ];
-  // static List others = [
-  //   'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled',
-  //   'very good',
-  //   'pruffen'
-  // ];
-  // final List<Allmenu> alldata = List.generate(
-  //     exminName.length,
-  //     (index) => Allmenu(
-  //           exminName: exminName[index],
-  //           report: '${report[index]}',
-  //           pic: '${pic[index]}',
-  //           byname: '${byname[index]}',
-  //           others: '${others[index]}',
-  //         ));
+  //final TextEditingController _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +25,7 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
         title: Padding(
           padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
           child: Row(
-            children: [
+            children: const [
               Expanded(
                 child: Text(
                   'Medical Records',
@@ -62,15 +35,6 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                   ),
                 ),
               ),
-              IconButton(
-                onPressed: () {
-                  showSearch(
-                      context: context, delegate: CustomSearchDelegate());
-                },
-                icon: Icon(Icons.search),
-                color: Colors.black,
-                iconSize: 35,
-              )
             ],
           ),
         ),
@@ -85,12 +49,14 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
               padding: const EdgeInsets.all(5.0),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(15, 8, 0, 0),
-            child: Row(
+          Center(
+            child: Column(
               children: [
                 SizedBox(
-                  width: 110,
+                  height: 90,
+                ),
+                SizedBox(
+                  width: 200,
                   height: 100,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -128,10 +94,10 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                   ),
                 ),
                 SizedBox(
-                  width: 20,
+                  height: 70,
                 ),
                 SizedBox(
-                  width: 110,
+                  width: 200,
                   height: 100,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -169,10 +135,10 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
                   ),
                 ),
                 SizedBox(
-                  width: 20,
+                  height: 70,
                 ),
                 SizedBox(
-                  width: 110,
+                  width: 200,
                   height: 100,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -215,18 +181,18 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
           SizedBox(
             height: 20,
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(15, 1, 50, 0),
-            child: Row(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                Text(
-                  'To be decided later',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.fromLTRB(15, 1, 50, 0),
+          //   child: Row(
+          //     // ignore: prefer_const_literals_to_create_immutables
+          //     children: [
+          //       Text(
+          //         'To be decided later',
+          //         style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           //Expanded(
           // child: SingleChildScrollView(
           //   child: ListView.builder(

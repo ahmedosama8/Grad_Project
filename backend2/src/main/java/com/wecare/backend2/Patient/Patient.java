@@ -115,17 +115,17 @@ public class Patient {
     @Nullable
     private String street;
 
-    @Nullable
-    private boolean maritalStatus;
+    // @Nullable
+    // private boolean maritalStatus;
 
 
-    public boolean isMaritalStatus() {
-        return maritalStatus;
-    }
+    // public boolean isMaritalStatus() {
+    //     return maritalStatus;
+    // }
 
-    public void setMaritalStatus(boolean maritalStatus) {
-        this.maritalStatus = maritalStatus;
-    }
+    // public void setMaritalStatus(boolean maritalStatus) {
+    //     this.maritalStatus = maritalStatus;
+    // }
 
     public Patient() {
     }
@@ -347,7 +347,7 @@ public class Patient {
 	}
 
 
-    public Patient(int patient_id, String username, String password, String gender, String phone1, String phone2, String mail, String bloodType, List<Appointment> appointments, List<Allergy> allergies, List<MedicalCondition> medicalConditions, List<CBC> CBCTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street, boolean maritalStatus) {
+    public Patient(int patient_id, String username, String password, String gender, String phone1, String phone2, String mail, String bloodType, List<Appointment> appointments, List<Allergy> allergies, List<MedicalCondition> medicalConditions, List<CBC> CBCTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street) {
         this.patient_id = patient_id;
         this.username = username;
         this.password = password;
@@ -373,7 +373,7 @@ public class Patient {
         this.nationalIdNumber = nationalIdNumber;
         this.city = city;
         this.street = street;
-        this.maritalStatus = maritalStatus;
+       // this.maritalStatus = maritalStatus;
     }
 }
 

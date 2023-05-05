@@ -30,7 +30,7 @@ public class GlucoseResource {
     @GetMapping("/list")
     public List<Glucose> list(){return glucoseRepo.findAll();}
 
-    @GetMapping("/{id}")
+    @GetMapping("/test/{id}")
     public EntityModel<Glucose> show(@PathVariable int id) throws Exception{
         Optional<Glucose> glucose = glucoseRepo.findById(id);
         if(glucose.isEmpty()){
@@ -42,7 +42,7 @@ public class GlucoseResource {
         return glucoseEntityModel;
     }
 
-    @PostMapping("/{pid}/new")
+    @PostMapping("/{id}/new")
     public ResponseEntity<Glucose> create(@RequestBody Glucose glucose, @PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){
@@ -55,7 +55,7 @@ public class GlucoseResource {
         return ResponseEntity.created(loc).build();
     }
 
-    @GetMapping("/{pid}")
+    @GetMapping("/patient/{id}")
     public List<Glucose> getGlucoseForPatient(@PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){

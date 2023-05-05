@@ -38,72 +38,46 @@ class GluTestpage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 60),
-                    child: Text(
-                      'Results    Unit    Range',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                      textAlign: TextAlign.left,
-                      // Add left padding
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 100,
+                  height: 140,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
-                    child: Row(
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: ListView(
-                            children: gluform.testAtts_Glu.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                child: Text(
-                                  item,
-                                  style: TextStyle(
-                                    fontSize: 13.5,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Test'),
+                              Text('Result'),
+                              Text('Unit'),
+                              Text('Range'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: gluform.result_Glu.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(70, 15, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('R B G'),
+                              Text(''),
+                              Text('mg/dL'),
+                              Text('--'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: gluform.unit_Glu.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                        Expanded(
-                          child: ListView(
-                            children: gluform.range_Glu.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('R B S'),
+                              Text(''),
+                              Text('mg/dL'),
+                              Text('--'),
+                            ],
                           ),
                         )
                       ],

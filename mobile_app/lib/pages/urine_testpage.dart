@@ -38,74 +38,204 @@ class UriTestpage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 60),
-                    child: Text(
-                      'Results    Unit    Range',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                      textAlign: TextAlign.left,
-                      // Add left padding
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 520,
+                  height: 700,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
-                    child: Row(
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: ListView(
-                            children: uriform.testAtts_Ur.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 15, 0, 0),
-                                child: Text(
-                                  item,
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Test'),
+                              Text('Result'),
+                              Text('Unit'),
+                              Text('Range'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: uriform.result_Ur.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(70, 15, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Color'),
+                              Text(''),
+                              Text('--'),
+                              Text('Amberyellow'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: uriform.unit_Ur.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Clarity'),
+                              Text(''),
+                              Text('--'),
+                              Text('Clear'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: uriform.range_Ur.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(10, 15, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Specific\nGravity'),
+                              Text(''),
+                              Text('--'),
+                              Text('2015-1025'),
+                            ],
                           ),
-                        )
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('PH'),
+                              Text(''),
+                              Text('--'),
+                              Text('4.5-6.5'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Protein'),
+                              Text(''),
+                              Text('--'),
+                              Text('Negative'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Glucose'),
+                              Text(''),
+                              Text('--'),
+                              Text('Negative'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Ketone'),
+                              Text(''),
+                              Text('--'),
+                              Text('Negative'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Urobilinogen'),
+                              Text(''),
+                              Text('--'),
+                              Text('Normal Trace'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Bilirubin'),
+                              Text(''),
+                              Text('--'),
+                              Text('Negative'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Nitrite'),
+                              Text(''),
+                              Text('--'),
+                              Text('Negative'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Pus Cells'),
+                              Text(''),
+                              Text('/HBF'),
+                              Text('0:1'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Red Cells'),
+                              Text(''),
+                              Text('/HBF'),
+                              Text('0:1'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Epithelial'),
+                              Text(''),
+                              Text('/HBF'),
+                              Text('Negative'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Amorphous'),
+                              Text(''),
+                              Text('/HBF'),
+                              Text('Negative'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Crystals'),
+                              Text(''),
+                              Text('/HBF'),
+                              Text('Negative'),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),

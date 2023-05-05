@@ -38,71 +38,202 @@ class CbcTestpage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 60),
-                    child: Text(
-                      'Results    Unit    Range',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                      textAlign: TextAlign.left,
-                      // Add left padding
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 490,
+                  height: 675,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
-                    child: Row(
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: ListView(
-                            children: cbcform.testAtts.map((item) {
-                              return Padding(
-                                padding: const EdgeInsets.fromLTRB(0, 15, 0, 0),
-                                child: Text(
-                                  item,
-                                  style: TextStyle(
-                                    fontSize: 13.5,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Test'),
+                              Text('Result'),
+                              Text('Unit'),
+                              Text('Range'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: cbcform.result.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(70, 15, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Heamoglobin'),
+                              Text(''),
+                              Text('g/dL'),
+                              Text('13-17'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: cbcform.unit.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Hematocrit'),
+                              Text(''),
+                              Text('%'),
+                              Text('40-50'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: cbcform.range.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Red Cell Count'),
+                              Text(''),
+                              Text('x10^6/uL'),
+                              Text('4.5-6.2'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('MCV'),
+                              Text(''),
+                              Text('fL'),
+                              Text('78-96'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('MCH'),
+                              Text(''),
+                              Text('fL'),
+                              Text('26-32'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('MCHC'),
+                              Text(''),
+                              Text('pg'),
+                              Text('31-36'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('RDW'),
+                              Text(''),
+                              Text('g/dL'),
+                              Text('11.5-14.5'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Platelet Count'),
+                              Text(''),
+                              Text('%'),
+                              Text('150-450'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('T.L.C'),
+                              Text(''),
+                              Text('x10^3/uL'),
+                              Text('4-11'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Basophils'),
+                              Text(''),
+                              Text('x10^3/uL'),
+                              Text('0-1'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Eosinophils'),
+                              Text(''),
+                              Text('%'),
+                              Text('0-6'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('stab'),
+                              Text(''),
+                              Text('%'),
+                              Text('0-7'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Segmented'),
+                              Text(''),
+                              Text('%'),
+                              Text('40-75'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Lymphocytes'),
+                              Text(''),
+                              Text('%'),
+                              Text('20-45'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Monocytes'),
+                              Text(''),
+                              Text('%'),
+                              Text('1-10'),
+                            ],
                           ),
                         )
                       ],

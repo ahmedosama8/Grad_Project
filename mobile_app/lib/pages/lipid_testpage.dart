@@ -38,75 +38,111 @@ class LipTestpage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 60),
-                    child: Text(
-                      'Results    Unit    Range',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                      textAlign: TextAlign.left,
-                      // Add left padding
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 420,
+                  height: 560,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
-                    child: Row(
+                    child: Column(
                       children: [
-                        Expanded(
-                          child: ListView(
-                            children: lipform.testAtts_Lip.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 15, 0, 0),
-                                child: Text(
-                                  item,
-                                  style: TextStyle(
-                                    fontSize: 13.5,
-                                  ),
-                                ),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Test'),
+                              Text('Result'),
+                              Text('Unit'),
+                              Text('Range'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: lipform.result_Lip.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(70, 30, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('ALT(SGPT)\nserum'),
+                              Text(''),
+                              Text('U/L'),
+                              Text('10-65'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: lipform.unit_Lip.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 30, 0, 0),
-                                child: Text(item),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('AST(SGOT)\nserum'),
+                              Text(''),
+                              Text('U/L'),
+                              Text(' 0-48'),
+                            ],
                           ),
                         ),
-                        Expanded(
-                          child: ListView(
-                            children: lipform.range_Lip.map((item) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 30, 0, 0),
-                                child: Text(
-                                  item,
-                                  style: TextStyle(fontSize: 6.7),
-                                ),
-                              );
-                            }).toList(),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Albumin\nserum'),
+                              Text(''),
+                              Text('g/dL'),
+                              Text('3.5-5.2'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Cholestrol\nTotal\nserum'),
+                              Text('100'),
+                              Text('mg/dL'),
+                              Text(
+                                  'Desirable: < 200 mg/dL\nBorderline High: 200-239 mg/dl\nHigh: > or = 240 mg/dL '),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('HDL-C\nserum'),
+                              Text('100'),
+                              Text('mg/dL'),
+                              Text(
+                                  'Low HDL: < 40 mg/dL\nBorderline Low: 40-60 mg/dL\nAcceptable: > 60 mg/dL')
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('LDL-C\nserum'),
+                              Text('100'),
+                              Text('mg/dL'),
+                              Text(
+                                  'Desirable: < 100 mg/dL\nAbove Desirable: 100-129 mg/dl\nBorderline High: 130-159 mg/dL\nHigh: 160-189 mg/dL\nVery High: > or =190 mg/dL')
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Triglycerides\nserum'),
+                              Text('100'),
+                              Text('mg/dL'),
+                              Text(
+                                '< 150 Desirable 150-199\nBorder High Line 200-499 High\n>=500 Very High',
+                              )
+                            ],
                           ),
                         )
                       ],

@@ -19,12 +19,12 @@ class _lab_resultsState extends State<lab_results> {
   @override
   void initState() {
     super.initState();
-    fetchGlucoseList();
+    fetchGlucoseList(52);
   }
 
-  Future<void> fetchGlucoseList() async {
-    final response =
-        await http.get(Uri.parse('http://10.0.2.2:8080/Glucose/patient/52'));
+  Future<void> fetchGlucoseList(int patientId) async {
+    final response = await http
+        .get(Uri.parse('http://10.0.2.2:8080/Glucose/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> glucoseJsonList = jsonDecode(response.body);
@@ -104,14 +104,13 @@ class _lab_resultsState extends State<lab_results> {
                               children: [
                                 Text('Glucose test'),
                                 Text(
-                                  glucose['examination_Date'] ??
-                                      'no date specfied',
+                                  glucose['examination_Date'] ?? '',
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.black54),
                                 ),
                               ],
                             ),
-                            subtitle: Text('lab name'),
+                            subtitle: Text(glucose['labName'] ?? ''),
                             leading: CircleAvatar(
                                 backgroundImage: AssetImage('assets/lab.png')),
                           ),

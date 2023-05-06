@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/glucose_form.dart';
 import 'package:mobile_app/colors.dart';
 
 class GluTestpage extends StatelessWidget {
@@ -31,7 +30,7 @@ class GluTestpage extends StatelessWidget {
                       ListTile(
                         leading: CircleAvatar(
                             backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text('Lab name: hygy mn backend'),
+                        title: Text(glucose['labName'] ?? ''),
                       ),
                     ],
                   ),
@@ -95,7 +94,7 @@ class GluTestpage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            glucose['comments'],
+                            glucose['comments'] ?? '',
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

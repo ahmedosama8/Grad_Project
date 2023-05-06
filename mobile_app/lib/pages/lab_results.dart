@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/cbc_form.dart';
-import 'package:mobile_app/classes/glucose_form.dart';
-import 'package:mobile_app/classes/lipid_form.dart';
-import 'package:mobile_app/classes/liverfun_form.dart';
-import 'package:mobile_app/classes/urine_form.dart';
 import 'package:mobile_app/colors.dart';
-import 'package:mobile_app/pages/cbc_testpage.dart';
-import 'package:mobile_app/pages/lipid_testpage.dart';
-import 'package:mobile_app/pages/liverfun_testpage.dart';
-import 'package:mobile_app/pages/urine_testpage.dart';
-import 'glucose_testpage.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
+import 'package:mobile_app/pages/glucose_testpage.dart';
 
 // ignore: camel_case_types
 class lab_results extends StatefulWidget {
@@ -21,41 +15,30 @@ class lab_results extends StatefulWidget {
 
 // ignore: camel_case_types
 class _lab_resultsState extends State<lab_results> {
-  static List<String> testname_Glu = ['Glucose test'];
-  static List testAtts_Glu = [
-    'R B G :',
-    'R B S :',
-  ];
-  static List results_Glu = [
-    '12',
-    '45',
-  ];
-  static List range_Glu = [
-    '---',
-    '---',
-  ];
-  static List unit_Glu = [
-    'mg/dL',
-    'mg/dL',
-  ];
-  static List notes_Glu = [];
-  static List labname_Glu = [
-    'Alfa lab',
-  ];
-  static List<String> date_Glu = ['30/12/2022'];
+  List<dynamic> glucoseList = [];
+  @override
+  void initState() {
+    super.initState();
+    fetchGlucoseList();
+  }
 
-  final List<Gluform> gludata = List.generate(
-      testname_Glu.length,
-      (index) => Gluform(
-            testname_Glu: testname_Glu[index],
-            testAtts_Glu: testAtts_Glu,
-            range_Glu: range_Glu,
-            result_Glu: results_Glu,
-            unit_Glu: unit_Glu,
-            notes_Glu: '$notes_Glu',
-            labname_Glu: labname_Glu[index],
-            date_Glu: date_Glu[index],
-          ));
+  Future<void> fetchGlucoseList() async {
+    final response =
+        await http.get(Uri.parse('http://10.0.2.2:8080/Glucose/patient/52'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> glucoseJsonList = jsonDecode(response.body);
+      final List<Map<String, dynamic>> glucoseList = [];
+      for (final glucoseJson in glucoseJsonList) {
+        glucoseList.add(Map<String, dynamic>.from(glucoseJson));
+      }
+      setState(() {
+        this.glucoseList = glucoseList;
+      });
+    } else {
+      throw Exception('Failed to fetch glucose list');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +79,9 @@ class _lab_resultsState extends State<lab_results> {
                   child: ListView.builder(
                     shrinkWrap: true,
                     controller: ScrollController(),
-                    itemCount: gludata.length,
+                    itemCount: glucoseList.length,
                     itemBuilder: (context, index) {
+                      final glucose = glucoseList[index];
                       return Padding(
                         padding: const EdgeInsets.symmetric(
                             vertical: 1.0, horizontal: 4.0),
@@ -112,21 +96,22 @@ class _lab_resultsState extends State<lab_results> {
                           child: ListTile(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      GluTestpage(gluform: gludata[index])));
+                                  builder: (context) => GluTestpage(
+                                      glucose: glucoseList[index])));
                             },
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(gludata[index].testname_Glu),
+                                Text('Glucose test'),
                                 Text(
-                                  gludata[index].date_Glu,
+                                  glucose['examination_Date'] ??
+                                      'no date specfied',
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.black54),
                                 ),
                               ],
                             ),
-                            subtitle: Text(gludata[index].labname_Glu),
+                            subtitle: Text('lab name'),
                             leading: CircleAvatar(
                                 backgroundImage: AssetImage('assets/lab.png')),
                           ),

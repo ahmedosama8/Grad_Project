@@ -3,14 +3,14 @@ import 'package:mobile_app/classes/glucose_form.dart';
 import 'package:mobile_app/colors.dart';
 
 class GluTestpage extends StatelessWidget {
-  final Gluform gluform;
-  const GluTestpage({Key? key, required this.gluform}) : super(key: key);
+  final Map<String, dynamic> glucose;
+  const GluTestpage({Key? key, required this.glucose}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(gluform.testname_Glu),
+        title: Text('Glucose Test'),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -31,7 +31,7 @@ class GluTestpage extends StatelessWidget {
                       ListTile(
                         leading: CircleAvatar(
                             backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text('Lab name: ${gluform.labname_Glu}'),
+                        title: Text('Lab name: hygy mn backend'),
                       ),
                     ],
                   ),
@@ -59,9 +59,9 @@ class GluTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('R B G'),
-                              Text(''),
+                              Text(glucose['rbc'].toString()),
                               Text('mg/dL'),
                               Text('--'),
                             ],
@@ -71,9 +71,9 @@ class GluTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('R B S'),
-                              Text(''),
+                              Text(glucose['rbs'].toString()),
                               Text('mg/dL'),
                               Text('--'),
                             ],
@@ -95,7 +95,7 @@ class GluTestpage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            gluform.notes_Glu,
+                            glucose['comments'],
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

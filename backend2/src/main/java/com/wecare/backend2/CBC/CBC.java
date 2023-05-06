@@ -71,8 +71,26 @@ public class CBC {
 
     @Nullable
     private String Comments;
-    
-    public CBC() {
+
+	@Nullable
+	public String getLabName() {
+		return LabName;
+	}
+
+	public void setLabName(@Nullable String labName) {
+		LabName = labName;
+	}
+
+	@Nullable
+	private String LabName;
+
+	private static String TestName = "CBC Test";
+
+	public static String getTestName() {
+		return TestName;
+	}
+
+	public CBC() {
     	
     }
 
@@ -228,7 +246,7 @@ public class CBC {
 	
 	public CBC(int cbc_id,Patient patient, LocalDate examination_Date, int haemoglobin,
 			int hematocrit, int redCellCount, int mCV, int mCH, int mCHC, int rDW, int plateletCount, int tLC,
-			int basophils, int eosinophils, int stab, int segmented, int lymphocytes, int monocytes, String comments) {
+			int basophils, int eosinophils, int stab, int segmented, int lymphocytes, int monocytes, String comments, String labName) {
 		this.cbc_id = cbc_id;
 		this.Examination_Date = examination_Date;
 		this.patient = patient;
@@ -248,5 +266,6 @@ public class CBC {
 		this.Lymphocytes = lymphocytes;
 		this.Monocytes = monocytes;
 		this.Comments = comments;
+		this.LabName = labName;
 	}
 }

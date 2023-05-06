@@ -54,6 +54,24 @@ public class LipidProfile {
     @Nullable
     private String Comments;
 
+	@Nullable
+	public String getLabName() {
+		return LabName;
+	}
+
+	public void setLabName(@Nullable String labName) {
+		LabName = labName;
+	}
+
+	@Nullable
+	private String LabName;
+
+	private static String TestName = "Lipid Profile Test";
+
+	public static String getTestName() {
+		return TestName;
+	}
+
     public LipidProfile() {
     	
     }
@@ -136,7 +154,7 @@ public class LipidProfile {
 	}
 
 	public LipidProfile(int lipidProfile_id,Patient patient, LocalDate examination_Date, int aLT,
-			int aST, int albumin, int cholestrolTotal, int hDL_C, int lDL_C, int triglycerides, String comments) {
+			int aST, int albumin, int cholestrolTotal, int hDL_C, int lDL_C, int triglycerides, String comments,String labName) {
 		this.LipidProfile_id = lipidProfile_id;
 		this.Examination_Date = examination_Date;
 		this.patient = patient;
@@ -148,6 +166,7 @@ public class LipidProfile {
 		this.LDL_C = lDL_C;
 		this.Triglycerides = triglycerides;
 		this.Comments = comments;
+		this.LabName = labName;
 	}
 
 }

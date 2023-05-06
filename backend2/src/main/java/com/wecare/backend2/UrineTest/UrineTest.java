@@ -76,6 +76,25 @@ public class UrineTest {
     
     @Nullable
     private String Comments;
+
+	@Nullable
+	public String getLabName() {
+		return LabName;
+	}
+
+	public void setLabName(@Nullable String labName) {
+		LabName = labName;
+	}
+
+	@Nullable
+	private String LabName;
+
+	private static String TestName = "Urine Test";
+
+	public static String getTestName() {
+		return TestName;
+	}
+
     
     public UrineTest() {
     	
@@ -248,7 +267,7 @@ public class UrineTest {
 	public UrineTest(int urineTest_id,Patient patient, LocalDate examination_Date, String color,
 			String clarity, int specific_Gravity, int pH, String protein, String glucose, String ketone,
 			String urobilinogen, String bilirubin, String nitrite, int pus_Cells, int red_Cells,
-			String epithelial_Cells, String amorphous, String crystals, String casts, String others, String comments) {
+			String epithelial_Cells, String amorphous, String crystals, String casts, String others, String comments,String labName) {
 		this.UrineTest_id = urineTest_id;
 		this.Examination_Date = examination_Date;
 		this.patient = patient;
@@ -270,6 +289,7 @@ public class UrineTest {
 		this.Casts = casts;
 		this.Others = others;
 		this.Comments = comments;
+		this.LabName = labName;
 	}
 
 }

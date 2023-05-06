@@ -35,13 +35,31 @@ public class Glucose {
 	private LocalDate Examination_Date;
     
     @Nullable
-    private int RBC;
+    private int RBG;
     
     @Nullable
     private int RBS;
     
     @Nullable
     private String Comments;
+
+	@Nullable
+	public String getLabName() {
+		return LabName;
+	}
+
+	public void setLabName(@Nullable String labName) {
+		LabName = labName;
+	}
+
+	@Nullable
+	private String LabName;
+
+	private static String TestName = "Glucose Test";
+
+	public static String getTestName() {
+		return TestName;
+	}
     
     public Glucose() {
     	
@@ -60,12 +78,12 @@ public class Glucose {
 		Examination_Date = examination_Date;
 	}
 
-	public int getRBC() {
-		return RBC;
+	public int getRBG() {
+		return RBG;
 	}
 
-	public void setRBC(int rBC) {
-		RBC = rBC;
+	public void setRBG(int rBG) {
+		RBG = rBG;
 	}
 
 	public int getRBS() {
@@ -84,14 +102,15 @@ public class Glucose {
 		Comments = comments;
 	}
 
-	public Glucose(int glucose_id,Patient patient , LocalDate examination_Date, int rBC, int rBS,
-			String comments) {
+	public Glucose(int glucose_id,Patient patient , LocalDate examination_Date, int rBG, int rBS,
+			String comments,String labName) {
 		this.Glucose_id = glucose_id;
 		this.patient = patient;
 		this.Examination_Date = examination_Date;
-		this.RBC = rBC;
+		this.RBG = rBG;
 		this.RBS = rBS;
 		this.Comments = comments;
+		this.LabName = labName;
 	}
 
 }

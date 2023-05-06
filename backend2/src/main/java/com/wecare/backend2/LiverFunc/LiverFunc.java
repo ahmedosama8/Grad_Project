@@ -50,6 +50,24 @@ public class LiverFunc {
     
     @Nullable
     private String Comments;
+
+	@Nullable
+	public String getLabName() {
+		return LabName;
+	}
+
+	public void setLabName(@Nullable String labName) {
+		LabName = labName;
+	}
+
+	@Nullable
+	private String LabName;
+
+	private static String TestName = "Liver Function Test";
+
+	public static String getTestName() {
+		return TestName;
+	}
     
     public LiverFunc() {
     	
@@ -125,7 +143,7 @@ public class LiverFunc {
 	}
 
 	public LiverFunc(int liverFunc_id,Patient patient, LocalDate examination_Date, int aLT,
-			int aST, int aLB, int dBIL, int tBIL, int aLP, String comments) {
+			int aST, int aLB, int dBIL, int tBIL, int aLP, String comments, String labName) {
 		this.LiverFunc_id = liverFunc_id;
 		this.Examination_Date = examination_Date;
 		this.patient = patient;
@@ -136,5 +154,6 @@ public class LiverFunc {
 		this.TBIL = tBIL;
 		this.ALP = aLP;
 		this.Comments = comments;
+		this.LabName = labName;
 	}
 }

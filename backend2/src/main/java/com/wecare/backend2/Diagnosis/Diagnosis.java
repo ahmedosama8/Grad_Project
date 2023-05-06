@@ -3,6 +3,7 @@ package com.wecare.backend2.Diagnosis;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wecare.backend2.Doctor.Doctor;
 import com.wecare.backend2.Patient.Patient;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 @Entity
@@ -20,10 +21,13 @@ public class Diagnosis {
     @JsonIgnore
     private Doctor doctor;
 
+    @Nullable
     private String bodyPartExamined;
 
+    @Nullable
     private String Medications;
 
+    @Nullable
     private String Report;
 
     public String getBodyPartExamined() {

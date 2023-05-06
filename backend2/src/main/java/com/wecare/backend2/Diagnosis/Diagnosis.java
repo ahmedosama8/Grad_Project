@@ -23,7 +23,7 @@ public class Diagnosis {
 
     @Nullable
     private String BodyPartExamined;
-    
+
     @Nullable
     private String Medications;
 

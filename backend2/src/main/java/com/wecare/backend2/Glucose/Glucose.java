@@ -35,7 +35,7 @@ public class Glucose {
 	private LocalDate Examination_Date;
     
     @Nullable
-    private int RBG;
+    private int RBC;
     
     @Nullable
     private int RBS;
@@ -78,12 +78,12 @@ public class Glucose {
 		Examination_Date = examination_Date;
 	}
 
-	public int getRBG() {
-		return RBG;
+	public int getRBC() {
+		return RBC;
 	}
 
-	public void setRBG(int rBG) {
-		RBG = rBG;
+	public void setRBC(int rBC) {
+		RBC = rBC;
 	}
 
 	public int getRBS() {
@@ -102,12 +102,12 @@ public class Glucose {
 		Comments = comments;
 	}
 
-	public Glucose(int glucose_id,Patient patient , LocalDate examination_Date, int rBG, int rBS,
+	public Glucose(int glucose_id,Patient patient , LocalDate examination_Date, int rBC, int rBS,
 			String comments,String labName) {
 		this.Glucose_id = glucose_id;
 		this.patient = patient;
 		this.Examination_Date = examination_Date;
-		this.RBG = rBG;
+		this.RBC = rBC;
 		this.RBS = rBS;
 		this.Comments = comments;
 		this.LabName = labName;

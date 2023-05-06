@@ -3,14 +3,14 @@ import 'package:mobile_app/classes/lipid_form.dart';
 import 'package:mobile_app/colors.dart';
 
 class LipTestpage extends StatelessWidget {
-  final Lipform lipform;
-  const LipTestpage({Key? key, required this.lipform}) : super(key: key);
+  final Map<String, dynamic> lipid;
+  const LipTestpage({Key? key, required this.lipid}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(lipform.testname_Lip),
+        title: Text('Lipid Profile Test'),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -30,9 +30,8 @@ class LipTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/${lipform.pic_Lip}')),
-                        title: Text('Lab name: ${lipform.labname_Lip}'),
+                            backgroundImage: AssetImage('assets/lab.png')),
+                        title: Text('Lab name:  ${lipid['labName']}'),
                       ),
                     ],
                   ),
@@ -60,9 +59,9 @@ class LipTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('ALT(SGPT)\nserum'),
-                              Text(''),
+                              Text(lipid['alt'].toString()),
                               Text('U/L'),
                               Text('10-65'),
                             ],
@@ -72,9 +71,9 @@ class LipTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('AST(SGOT)\nserum'),
-                              Text(''),
+                              Text(lipid['ast'].toString()),
                               Text('U/L'),
                               Text(' 0-48'),
                             ],
@@ -84,9 +83,9 @@ class LipTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Albumin\nserum'),
-                              Text(''),
+                              Text(lipid['albumin'].toString()),
                               Text('g/dL'),
                               Text('3.5-5.2'),
                             ],
@@ -96,9 +95,9 @@ class LipTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Cholestrol\nTotal\nserum'),
-                              Text('100'),
+                              Text(lipid['cholestrolTotal'].toString()),
                               Text('mg/dL'),
                               Text(
                                   'Desirable: < 200 mg/dL\nBorderline High: 200-239 mg/dl\nHigh: > or = 240 mg/dL '),
@@ -109,9 +108,9 @@ class LipTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('HDL-C\nserum'),
-                              Text('100'),
+                              Text(lipid['hdl_C'].toString()),
                               Text('mg/dL'),
                               Text(
                                   'Low HDL: < 40 mg/dL\nBorderline Low: 40-60 mg/dL\nAcceptable: > 60 mg/dL')
@@ -122,9 +121,9 @@ class LipTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('LDL-C\nserum'),
-                              Text('100'),
+                              Text(lipid['ldl_C'].toString()),
                               Text('mg/dL'),
                               Text(
                                   'Desirable: < 100 mg/dL\nAbove Desirable: 100-129 mg/dl\nBorderline High: 130-159 mg/dL\nHigh: 160-189 mg/dL\nVery High: > or =190 mg/dL')
@@ -135,9 +134,9 @@ class LipTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Triglycerides\nserum'),
-                              Text('100'),
+                              Text(lipid['triglycerides'].toString()),
                               Text('mg/dL'),
                               Text(
                                 '< 150 Desirable 150-199\nBorder High Line 200-499 High\n>=500 Very High',
@@ -161,7 +160,7 @@ class LipTestpage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            lipform.notes_Lip,
+                            lipid['comments'] ?? '',
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

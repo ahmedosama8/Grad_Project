@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/urine_form.dart';
 import 'package:mobile_app/colors.dart';
 
 class UriTestpage extends StatelessWidget {
-  final Urineform uriform;
-  const UriTestpage({Key? key, required this.uriform}) : super(key: key);
+  final Map<String, dynamic> urine;
+  const UriTestpage({Key? key, required this.urine}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(uriform.testname_Ur),
+        title: Text('Urine Test'),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -30,15 +29,14 @@ class UriTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/${uriform.pic_Ur}')),
-                        title: Text('Lab name: ${uriform.labname_Ur}'),
+                            backgroundImage: AssetImage('assets/lab.png')),
+                        title: Text('Lab Name : ${urine['labName']}'),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: 700,
+                  height: 770,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
@@ -60,9 +58,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Color'),
-                              Text(''),
+                              Text(urine['color']),
                               Text('--'),
                               Text('Amberyellow'),
                             ],
@@ -72,9 +70,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Clarity'),
-                              Text(''),
+                              Text(urine['clarity']),
                               Text('--'),
                               Text('Clear'),
                             ],
@@ -84,11 +82,11 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Specific\nGravity'),
-                              Text(''),
+                              Text(urine['specific_Gravity'].toString()),
                               Text('--'),
-                              Text('2015-1025'),
+                              Text('1015-1025'),
                             ],
                           ),
                         ),
@@ -96,9 +94,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('PH'),
-                              Text(''),
+                              Text(urine['ph'].toString()),
                               Text('--'),
                               Text('4.5-6.5'),
                             ],
@@ -108,9 +106,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Protein'),
-                              Text(''),
+                              Text(urine['protein']),
                               Text('--'),
                               Text('Negative'),
                             ],
@@ -120,9 +118,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Glucose'),
-                              Text(''),
+                              Text(urine['glucose']),
                               Text('--'),
                               Text('Negative'),
                             ],
@@ -132,9 +130,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Ketone'),
-                              Text(''),
+                              Text(urine['ketone']),
                               Text('--'),
                               Text('Negative'),
                             ],
@@ -144,9 +142,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Urobilinogen'),
-                              Text(''),
+                              Text(urine['urobilinogen']),
                               Text('--'),
                               Text('Normal Trace'),
                             ],
@@ -156,9 +154,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Bilirubin'),
-                              Text(''),
+                              Text(urine['bilirubin']),
                               Text('--'),
                               Text('Negative'),
                             ],
@@ -168,9 +166,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Nitrite'),
-                              Text(''),
+                              Text(urine['nitrite']),
                               Text('--'),
                               Text('Negative'),
                             ],
@@ -180,9 +178,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Pus Cells'),
-                              Text(''),
+                              Text(urine['pus_Cells'].toString()),
                               Text('/HBF'),
                               Text('0:1'),
                             ],
@@ -192,9 +190,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Red Cells'),
-                              Text(''),
+                              Text(urine['red_Cells'].toString()),
                               Text('/HBF'),
                               Text('0:1'),
                             ],
@@ -204,9 +202,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Epithelial'),
-                              Text(''),
+                              Text(urine['epithelial_Cells']),
                               Text('/HBF'),
                               Text('Negative'),
                             ],
@@ -216,9 +214,9 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Amorphous'),
-                              Text(''),
+                              Text(urine['amorphous']),
                               Text('/HBF'),
                               Text('Negative'),
                             ],
@@ -228,9 +226,21 @@ class UriTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Crystals'),
-                              Text(''),
+                              Text(urine['crystals']),
+                              Text('/HBF'),
+                              Text('Negative'),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Casts'),
+                              Text(urine['casts']),
                               Text('/HBF'),
                               Text('Negative'),
                             ],
@@ -252,7 +262,7 @@ class UriTestpage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            uriform.notes_Ur,
+                            urine['comments'],
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

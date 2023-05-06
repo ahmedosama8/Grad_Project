@@ -3,14 +3,14 @@ import 'package:mobile_app/classes/liverfun_form.dart';
 import 'package:mobile_app/colors.dart';
 
 class LiverTestpage extends StatelessWidget {
-  final Liverfunform liverform;
-  const LiverTestpage({Key? key, required this.liverform}) : super(key: key);
+  final Map<String, dynamic> liver;
+  const LiverTestpage({Key? key, required this.liver}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(liverform.testname_liver),
+        title: Text('Liver function Test'),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -30,9 +30,8 @@ class LiverTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/${liverform.pic_liver}')),
-                        title: Text('Lab name: ${liverform.labname_liver}'),
+                            backgroundImage: AssetImage('assets/lab.png')),
+                        title: Text('Lab Name : ${liver['labName']}'),
                       ),
                     ],
                   ),
@@ -60,9 +59,9 @@ class LiverTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('ALT'),
-                              Text(''),
+                              Text(liver['alt'].toString()),
                               Text('U/L'),
                               Text('10-130'),
                             ],
@@ -72,9 +71,9 @@ class LiverTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('AST'),
-                              Text(''),
+                              Text(liver['ast'].toString()),
                               Text('U/L'),
                               Text('10-34'),
                             ],
@@ -84,9 +83,9 @@ class LiverTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('ALB'),
-                              Text(''),
+                              Text(liver['alb'].toString()),
                               Text('g/dL'),
                               Text('3.4-5.4'),
                             ],
@@ -96,9 +95,9 @@ class LiverTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('DBIL'),
-                              Text(''),
+                              Text(liver['dbil'].toString()),
                               Text('mg/dL'),
                               Text('0-0.4'),
                             ],
@@ -108,9 +107,9 @@ class LiverTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('TBIL'),
-                              Text(''),
+                              Text(liver['tbil'].toString()),
                               Text('mg/dL'),
                               Text('0.1-1.2'),
                             ],
@@ -120,9 +119,9 @@ class LiverTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('ALP'),
-                              Text(''),
+                              Text(liver['alp'].toString()),
                               Text('U/L'),
                               Text('24-147'),
                             ],
@@ -144,7 +143,7 @@ class LiverTestpage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            liverform.notes_liver,
+                            liver['comments'] ?? '',
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

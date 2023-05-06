@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/cbc_form.dart';
 import 'package:mobile_app/colors.dart';
 
 class CbcTestpage extends StatelessWidget {
-  final Cbcform cbcform;
-  const CbcTestpage({Key? key, required this.cbcform}) : super(key: key);
+  final Map<String, dynamic> cbc;
+  const CbcTestpage({Key? key, required this.cbc}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(cbcform.testname),
+        title: Text('CBC Test'),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -30,9 +29,8 @@ class CbcTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: CircleAvatar(
-                            backgroundImage:
-                                AssetImage('assets/${cbcform.pic}')),
-                        title: Text('Lab name: ${cbcform.labname}'),
+                            backgroundImage: AssetImage('assets/lab.png')),
+                        title: Text('Lab name: ${cbc['labName']}'),
                       ),
                     ],
                   ),
@@ -60,9 +58,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Heamoglobin'),
-                              Text(''),
+                              Text(cbc['haemoglobin'].toString()),
                               Text('g/dL'),
                               Text('13-17'),
                             ],
@@ -72,9 +70,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Hematocrit'),
-                              Text(''),
+                              Text(cbc['hematocrit'].toString()),
                               Text('%'),
                               Text('40-50'),
                             ],
@@ -84,9 +82,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Red Cell Count'),
-                              Text(''),
+                              Text(cbc['redCellCount'].toString()),
                               Text('x10^6/uL'),
                               Text('4.5-6.2'),
                             ],
@@ -96,9 +94,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('MCV'),
-                              Text(''),
+                              Text(cbc['mcv'].toString()),
                               Text('fL'),
                               Text('78-96'),
                             ],
@@ -108,9 +106,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('MCH'),
-                              Text(''),
+                              Text(cbc['mch'].toString()),
                               Text('fL'),
                               Text('26-32'),
                             ],
@@ -120,9 +118,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('MCHC'),
-                              Text(''),
+                              Text(cbc['mchc'].toString()),
                               Text('pg'),
                               Text('31-36'),
                             ],
@@ -132,9 +130,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('RDW'),
-                              Text(''),
+                              Text(cbc['rdw'].toString()),
                               Text('g/dL'),
                               Text('11.5-14.5'),
                             ],
@@ -144,9 +142,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Platelet Count'),
-                              Text(''),
+                              Text(cbc['plateletCount'].toString()),
                               Text('%'),
                               Text('150-450'),
                             ],
@@ -156,9 +154,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('T.L.C'),
-                              Text(''),
+                              Text(cbc['tlc'].toString()),
                               Text('x10^3/uL'),
                               Text('4-11'),
                             ],
@@ -168,9 +166,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Basophils'),
-                              Text(''),
+                              Text(cbc['basophils'].toString()),
                               Text('x10^3/uL'),
                               Text('0-1'),
                             ],
@@ -180,9 +178,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Eosinophils'),
-                              Text(''),
+                              Text(cbc['eosinophils'].toString()),
                               Text('%'),
                               Text('0-6'),
                             ],
@@ -192,9 +190,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('stab'),
-                              Text(''),
+                              Text(cbc['stab'].toString()),
                               Text('%'),
                               Text('0-7'),
                             ],
@@ -204,9 +202,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Segmented'),
-                              Text(''),
+                              Text(cbc['segmented'].toString()),
                               Text('%'),
                               Text('40-75'),
                             ],
@@ -216,9 +214,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Lymphocytes'),
-                              Text(''),
+                              Text(cbc['lymphocytes'].toString()),
                               Text('%'),
                               Text('20-45'),
                             ],
@@ -228,9 +226,9 @@ class CbcTestpage extends StatelessWidget {
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
+                            children: [
                               Text('Monocytes'),
-                              Text(''),
+                              Text(cbc['monocytes'].toString()),
                               Text('%'),
                               Text('1-10'),
                             ],
@@ -252,7 +250,7 @@ class CbcTestpage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            cbcform.notes,
+                            cbc['comments'] ?? '',
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

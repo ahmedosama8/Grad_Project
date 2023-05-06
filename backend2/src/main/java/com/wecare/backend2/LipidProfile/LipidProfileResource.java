@@ -31,7 +31,7 @@ public class LipidProfileResource {
     public List<LipidProfile> list(){return lipidProfileRepository.findAll();}
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/test/{id}")
     public EntityModel<LipidProfile> show(@PathVariable int id) throws Exception{
         Optional<LipidProfile> lipidProfile = lipidProfileRepository.findById(id);
         if(lipidProfile.isEmpty()){
@@ -43,7 +43,7 @@ public class LipidProfileResource {
         return lipidProfileEntityModel;
     }
 
-    @PostMapping("/{pid}/new")
+    @PostMapping("/{id}/new")
     public ResponseEntity<LipidProfile> create(@RequestBody LipidProfile lipidProfile, @PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){
@@ -57,7 +57,7 @@ public class LipidProfileResource {
     }
 
 
-    @GetMapping("/{pid}")
+    @GetMapping("/patient/{id}")
     public List<LipidProfile> getLipidProfileForPatient(@PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){

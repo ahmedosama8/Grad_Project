@@ -31,7 +31,7 @@ public class LiverFuncResource {
     public List<LiverFunc> list(){return liverFuncRepository.findAll();}
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/test/{id}")
     public EntityModel<LiverFunc> show(@PathVariable int id) throws Exception{
         Optional<LiverFunc> liverFunc = liverFuncRepository.findById(id);
         if(liverFunc.isEmpty()){
@@ -43,7 +43,7 @@ public class LiverFuncResource {
         return liverFuncEntityModel;
     }
 
-    @PostMapping("/{pid}/new")
+    @PostMapping("/{id}/new")
     public ResponseEntity<LiverFunc> create(@RequestBody LiverFunc liverFunc, @PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){
@@ -57,7 +57,7 @@ public class LiverFuncResource {
     }
 
 
-    @GetMapping("/{pid}")
+    @GetMapping("/patient/{id}")
     public List<LiverFunc> getLiverFuncForPatient(@PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){

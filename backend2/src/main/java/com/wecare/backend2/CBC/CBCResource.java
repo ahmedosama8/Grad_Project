@@ -32,7 +32,7 @@ public class CBCResource {
     public List<CBC> list(){return cbcRepository.findAll();}
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/test/{id}")
     public EntityModel<CBC> show(@PathVariable int id) throws Exception{
         Optional<CBC> cbc = cbcRepository.findById(id);
         if(cbc.isEmpty()){
@@ -44,7 +44,7 @@ public class CBCResource {
         return cbcEntityModel;
     }
 
-    @PostMapping("/{pid}/new")
+    @PostMapping("/{id}/new")
     public ResponseEntity<CBC> create(@RequestBody CBC cbc, @PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){
@@ -58,7 +58,7 @@ public class CBCResource {
     }
 
 
-    @GetMapping("/{pid}")
+    @GetMapping("/patient/{id}")
     public List<CBC> getCBCForPatient(@PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){

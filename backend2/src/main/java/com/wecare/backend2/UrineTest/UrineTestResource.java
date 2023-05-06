@@ -31,7 +31,7 @@ public class UrineTestResource {
     public List<UrineTest> list(){return urineTestRepository.findAll();}
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/test/{id}")
     public EntityModel<UrineTest> show(@PathVariable int id) throws Exception{
         Optional<UrineTest> urineTest = urineTestRepository.findById(id);
         if(urineTest.isEmpty()){
@@ -43,7 +43,7 @@ public class UrineTestResource {
         return urineTestEntityModel;
     }
 
-    @PostMapping("/{pid}/new")
+    @PostMapping("/{id}/new")
     public ResponseEntity<UrineTest> create(@RequestBody UrineTest urineTest, @PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){
@@ -57,7 +57,7 @@ public class UrineTestResource {
     }
 
 
-    @GetMapping("/{pid}")
+    @GetMapping("/patient/{id}")
     public List<UrineTest> getUrineTestForPatient(@PathVariable int id) throws Exception{
         Optional<Patient> patient = patientRepo.findById(id);
         if(patient.isEmpty()){

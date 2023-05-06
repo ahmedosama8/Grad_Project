@@ -20,6 +20,36 @@ public class Diagnosis {
     @JsonIgnore
     private Doctor doctor;
 
+    private String bodyPartExamined;
+
+    private String Medications;
+
+    private String Report;
+
+    public String getBodyPartExamined() {
+        return bodyPartExamined;
+    }
+
+    public void setBodyPartExamined(String bodyPartExamined) {
+        this.bodyPartExamined = bodyPartExamined;
+    }
+
+    public String getMedications() {
+        return Medications;
+    }
+
+    public void setMedications(String medications) {
+        Medications = medications;
+    }
+
+    public String getReport() {
+        return Report;
+    }
+
+    public void setReport(String report) {
+        Report = report;
+    }
+
     public Diagnosis(int diagnosisId, Patient patient, Doctor doctor) {
         this.diagnosisId = diagnosisId;
         this.patient = patient;

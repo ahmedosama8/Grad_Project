@@ -22,8 +22,8 @@ public class Diagnosis {
     private Doctor doctor;
 
     @Nullable
-    private String bodyPartExamined;
-
+    private String BodyPartExamined;
+    
     @Nullable
     private String Medications;
 
@@ -31,11 +31,11 @@ public class Diagnosis {
     private String Report;
 
     public String getBodyPartExamined() {
-        return bodyPartExamined;
+        return BodyPartExamined;
     }
 
     public void setBodyPartExamined(String bodyPartExamined) {
-        this.bodyPartExamined = bodyPartExamined;
+        this.BodyPartExamined = bodyPartExamined;
     }
 
     public String getMedications() {
@@ -54,10 +54,13 @@ public class Diagnosis {
         Report = report;
     }
 
-    public Diagnosis(int diagnosisId, Patient patient, Doctor doctor) {
+    public Diagnosis(int diagnosisId, Patient patient, Doctor doctor,String bodyPartExamined,String medications ,String report) {
         this.diagnosisId = diagnosisId;
         this.patient = patient;
         this.doctor = doctor;
+        this.BodyPartExamined = bodyPartExamined;
+        this.Medications = medications;
+        this.Report = report;
     }
 
     public Diagnosis() {

@@ -9,7 +9,7 @@ class BarCode extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     final double qrSize = size.width * 0.6;
-
+    var iD = 202;
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -69,7 +69,7 @@ class BarCode extends StatelessWidget {
             ),
             Center(
               child: QrImage(
-                data: '${AppUrl.Base_Url}/patient/152',
+                data: "${AppUrl.front_Url}patient-info/$iD",
                 version: QrVersions.auto,
                 size: qrSize,
               ),

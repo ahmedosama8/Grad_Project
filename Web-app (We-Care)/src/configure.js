@@ -1,5 +1,5 @@
 export default {
-    backURL: "http://localhost:8080",
+    backURL: "http://localhost:8080/",
     //lesa hnkhod wahed mn el backend
   };
   

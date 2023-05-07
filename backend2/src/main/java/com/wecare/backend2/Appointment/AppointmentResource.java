@@ -53,7 +53,7 @@ public class AppointmentResource {
         return ResponseEntity.created(loc).build();
     }
 
-    @GetMapping("/{pid}")
+    @GetMapping("/patient/{pid}")
     public List<Appointment> getAppointmentsForPatient(@PathVariable int pid) throws Exception{
         Optional<Patient> patient = patientRepository.findById(pid);
         if(patient.isEmpty()){

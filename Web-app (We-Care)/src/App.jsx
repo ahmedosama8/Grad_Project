@@ -21,6 +21,7 @@ import PatientResultPage from "./Lab/PatientResultPage";
 import UrineExamTest from "./Lab/UrineExamTest";
 import NewPatient from "./Lab/NewPatient";
 import WholeTest from "./Lab/WholeTest";
+import PatientInfo from "./patientInfo";
 function App() {
   return (
     <Router>
@@ -58,6 +59,8 @@ function App() {
 
           <Route path="/clinichome" element={<Clinic />} />
           <Route path="/addpatient" element={<PatientClinic />} />
+          {/*Route for the patient  */}
+          <Route path ="/patient-info/:id" element ={<PatientInfo/>}/>
         </Routes>
       </div>
     </Router>

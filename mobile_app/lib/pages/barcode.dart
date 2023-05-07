@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import '../configure.dart';
 
 class BarCode extends StatelessWidget {
   const BarCode({Key? key});
@@ -22,7 +23,7 @@ class BarCode extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     // ignore: prefer_const_literals_to_create_immutables
-                    children:  [
+                    children: [
                       CircleAvatar(
                         radius: 60,
                         backgroundImage: AssetImage('assets/elm3lm_ga3fr.png'),
@@ -68,7 +69,7 @@ class BarCode extends StatelessWidget {
             ),
             Center(
               child: QrImage(
-                data: 'https://jsonplaceholder.typicode.com/posts/4',
+                data: '${AppUrl.Base_Url}/patient/152',
                 version: QrVersions.auto,
                 size: qrSize,
               ),

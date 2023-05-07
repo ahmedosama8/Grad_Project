@@ -6,6 +6,7 @@ import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
+import '../configure.dart';
 
 class Bookappoint extends StatefulWidget {
   const Bookappoint({super.key});

@@ -16,7 +16,7 @@ class Bookappoint extends StatefulWidget {
 
 // Future<void> createAppointment(String appointmentDate, String appointmentType,
 //     String appointmentNotes, int userId) async {
-//   final Uri apiUrl = Uri.parse('http://10.0.2.2:8080/appointment/$userId/new');
+//   final Uri apiUrl = Uri.parse('${AppUrl.Base_Url}/appointment/$userId/new');
 
 //   final Map<String, String> headers = {
 //     'Content-Type': 'application/json',
@@ -46,7 +46,12 @@ class _BookappointState extends State<Bookappoint> {
   final _nameController = TextEditingController();
   final _notesController = TextEditingController();
   TextEditingController dateinput = TextEditingController();
-  List<String> facilities = ['Dr.Ga3fr el 3omda', 'Nile Scan', 'Alfa lab'];
+  List<String> facilities = [
+    'Dr.Ga3fr el 3omda',
+    'Nile Scan',
+    'Alfa lab'
+  ]; //de hakhodha mn backend wla laa
+
   String? selectedFacility;
 
   void facilityCallBack(String? selectedFacVal) {

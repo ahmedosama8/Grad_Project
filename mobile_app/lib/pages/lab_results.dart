@@ -7,6 +7,7 @@ import 'package:mobile_app/pages/glucose_testpage.dart';
 import 'package:mobile_app/pages/lipid_testpage.dart';
 import 'package:mobile_app/pages/liverfun_testpage.dart';
 import 'package:mobile_app/pages/urine_testpage.dart';
+import '../configure.dart';
 
 // ignore: camel_case_types
 class lab_results extends StatefulWidget {
@@ -36,7 +37,7 @@ class _lab_resultsState extends State<lab_results> {
 
   Future<void> fetchLipidList(int patientId) async {
     final response = await http
-        .get(Uri.parse('http://10.0.2.2:8080/LipidProfile/patient/$patientId'));
+        .get(Uri.parse('${AppUrl.Base_Url}/LipidProfile/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> lipidJsonList = jsonDecode(response.body);
@@ -53,8 +54,8 @@ class _lab_resultsState extends State<lab_results> {
   }
 
   Future<void> fetchCbcList(int patientId) async {
-    final response = await http
-        .get(Uri.parse('http://10.0.2.2:8080/CBC/patient/$patientId'));
+    final response =
+        await http.get(Uri.parse('${AppUrl.Base_Url}/CBC/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> cbcJsonList = jsonDecode(response.body);
@@ -72,7 +73,7 @@ class _lab_resultsState extends State<lab_results> {
 
   Future<void> fetchLiverList(int patientId) async {
     final response = await http
-        .get(Uri.parse('http://10.0.2.2:8080/LiverFunc/patient/$patientId'));
+        .get(Uri.parse('${AppUrl.Base_Url}/LiverFunc/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> liverJsonList = jsonDecode(response.body);
@@ -90,7 +91,7 @@ class _lab_resultsState extends State<lab_results> {
 
   Future<void> fetchGlucoseList(int patientId) async {
     final response = await http
-        .get(Uri.parse('http://10.0.2.2:8080/Glucose/patient/$patientId'));
+        .get(Uri.parse('${AppUrl.Base_Url}/Glucose/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> glucoseJsonList = jsonDecode(response.body);
@@ -108,7 +109,7 @@ class _lab_resultsState extends State<lab_results> {
 
   Future<void> fetchUrineList(int patientId) async {
     final response = await http
-        .get(Uri.parse('http://10.0.2.2:8080/UrineTest/patient/$patientId'));
+        .get(Uri.parse('${AppUrl.Base_Url}/UrineTest/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> urineJsonList = jsonDecode(response.body);

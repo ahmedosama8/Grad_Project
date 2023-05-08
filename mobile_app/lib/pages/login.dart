@@ -1,9 +1,13 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, unused_field
+// ignore_for_file: prefer_const_literals_to_create_immutables, unused_field, use_build_context_synchronously
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:provider/provider.dart';
+import 'package:mobile_app/api/user.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -14,28 +18,82 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final _userNameController = TextEditingController();
-  final _passwordController = TextEditingController();
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
 
   void openSignUpScreen() {
     Navigator.of(context).pushReplacementNamed('signup');
   }
 
-  void loginButton() {
+  Future<void> _loginButton() async {
+
     if (_formKey.currentState!.validate()) {
+          final url = Uri.parse('http://10.0.2.2:8080/patient/login');
+    final response = await http.post(
+      url,
+      headers: {
+    'Content-Type': 'application/json',},
+      body:  json.encode( {
+        'username': usernameController.text,
+        'password': passwordController.text,
+      },)
+    );
+
+    if (response.statusCode == 200) {
+      final responseData = json.decode(response.body);
+      final int id = responseData['patient_id'];
+      final String gender = responseData['gender'] ?? '';
+      final String number = responseData['phone1'] ?? '';
+      final String username = responseData['username'];
+      final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
+      userIdProvider.setId(id , username);
+
       Navigator.of(context).pushNamedAndRemoveUntil(
-        'home',
+        'home',arguments: {'username': usernameController.text},
         (Route<dynamic> route) => false,
       );
-      print(_userNameController.text);
-      print(_passwordController.text);
+
+      // Navigator.pushReplacementNamed(context, 'home',
+      //     arguments: {'username': usernameController.text});
+      print('dosh');
+      print(id);
+      print(username);
+      print(number);
+      print(gender);
+    } else {    
+    final responseBody = response.body;
+    if (responseBody.isNotEmpty) {
+      try {
+        final responseData = json.decode(responseBody);
+        final errorMessage = responseData['error'] ?? 'Something went wrong!';
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text('Error'),
+            content: Text(errorMessage),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } catch (e) {
+        print('Error parsing response: $e');
+      }
+    } else {
+      print('Empty response body');
+    }
+    }
+      
     }
   }
 
   @override
   void dispose() {
-    _userNameController.dispose();
-    _passwordController.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
     super.dispose();
   }
 
@@ -89,7 +147,7 @@ class _LoginState extends State<Login> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
-                          controller: _userNameController,
+                          controller: usernameController,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Username',
@@ -127,7 +185,7 @@ class _LoginState extends State<Login> {
                             }
                             return null;
                           },
-                          controller: _passwordController,
+                          controller: passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             border: InputBorder.none,
@@ -147,7 +205,7 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: GestureDetector(
-                      onTap: loginButton,
+                      onTap: _loginButton,
                       child: Container(
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(

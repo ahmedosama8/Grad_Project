@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
+import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/app_screen.dart';
 import 'package:mobile_app/pages/doctor_report.dart';
@@ -11,19 +12,28 @@ import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/rad_report.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 import 'package:mobile_app/pages/rad_scans.dart';
+import 'package:provider/provider.dart';
 import 'pages/login.dart';
 import 'pages/signup.dart';
 import 'pages/my_medical_records.dart';
 import 'pages/lab_results.dart';
 import 'package:flutter/services.dart';
 import 'dart:core';
+import 'api/logintest.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  runApp(const MyApp());
+   runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserIdProvider()),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +42,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        initialRoute: 'home',
+        initialRoute: 'login',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primary,
@@ -43,9 +53,9 @@ class MyApp extends StatelessWidget {
 
         routes: {
           '/': (context) => const AppScreen(),
-          'login': (context) => const Login(),
-          'signup': (context) => const SignUp(),
-          'home': (context) => const WelcomePage(),
+          'login': (context) => Login(),
+          'signup': (context) => RegisterPage(),
+          'home': (context) => WelcomePage(),
           'emrsignup': (context) => const EmergencyInfoPage(),
           'my_medical_records': (context) => My_Medical_Records(),
           'lab_results': (context) => const lab_results(),

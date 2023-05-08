@@ -7,12 +7,13 @@ import 'package:mobile_app/labs_data_model.dart';
 import 'package:mobile_app/pages/book_appointment.dart';
 import 'package:mobile_app/pages/labList.dart';
 import 'package:mobile_app/pages/labs_detail.dart';
-import 'package:mobile_app/pages/my_medical_records.dart';
 import 'package:mobile_app/pages/pharm_details.dart';
-import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/view_appointment.dart';
-import 'package:mobile_app/pages/welcome_page.dart';
 import 'package:mobile_app/pharm_data_model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:provider/provider.dart';
+import 'package:mobile_app/api/user.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -104,6 +105,9 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userIdProvider = Provider.of<UserIdProvider>(context);
+    final id = userIdProvider.id;
+    final username = userIdProvider.username;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -115,7 +119,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Padding(
                     padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
-                    child: Text('Welcome Back, Ga3far ElOmda!',
+                    child: Text('Welcome Back, $username!',
                         style: GoogleFonts.robotoCondensed(
                             fontSize: 20, fontWeight: FontWeight.bold))),
                 Spacer(),

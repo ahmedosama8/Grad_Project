@@ -3,15 +3,15 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/configure.dart';
+
 class BarCode extends StatelessWidget {
   const BarCode({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    final userIdProvider = Provider.of<UserIdProvider>(context);
-    final id = userIdProvider.id;
-    //final username = userIdProvider.username;
-    final fullname = userIdProvider.fullname;
+    int id = Provider.of<UserIdProvider>(context, listen: false).id!;
+    final fullname =
+        Provider.of<UserIdProvider>(context, listen: false).fullname;
     final Size size = MediaQuery.of(context).size;
     final double qrSize = size.width * 0.6;
     var iD = 202;
@@ -74,7 +74,7 @@ class BarCode extends StatelessWidget {
             ),
             Center(
               child: QrImage(
-                data: "${AppUrl.front_Url}patient-info/$iD",
+                data: "${AppUrl.front_Url}patient-info/$id",
                 version: QrVersions.auto,
                 size: qrSize,
               ),

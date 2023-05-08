@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-<<<<<<< Updated upstream
-import '../configure.dart';
-=======
 import 'package:provider/provider.dart';
 import 'package:mobile_app/api/user.dart';
->>>>>>> Stashed changes
-
+import 'package:mobile_app/configure.dart';
 class BarCode extends StatelessWidget {
   const BarCode({Key? key});
 

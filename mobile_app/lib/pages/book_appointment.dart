@@ -6,6 +6,8 @@ import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import '../api/user.dart';
 import '../configure.dart';
 
 class Bookappoint extends StatefulWidget {
@@ -15,32 +17,32 @@ class Bookappoint extends StatefulWidget {
   State<Bookappoint> createState() => _BookappointState();
 }
 
-// Future<void> createAppointment(String appointmentDate, String appointmentType,
-//     String appointmentNotes, int userId) async {
-//   final Uri apiUrl = Uri.parse('${AppUrl.Base_Url}/appointment/$userId/new');
+Future<void> createAppointment(String appointmentDate, String appointmentType,
+    String appointmentNotes, int userId) async {
+  final Uri apiUrl = Uri.parse('${AppUrl.Base_Url}/appointment/$userId/new');
 
-//   final Map<String, String> headers = {
-//     'Content-Type': 'application/json',
-//     'Accept': 'application/json',
-//   };
+  final Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  };
 
-//   final Map<String, dynamic> data = {
-//     'appointmentDate': appointmentDate,
-//     'appointmentType': appointmentType,
-//     'appointmentNotes': appointmentNotes,
-//   };
+  final Map<String, dynamic> data = {
+    'appointmentDate': appointmentDate,
+    'appointmentType': appointmentType,
+    'appointmentNotes': appointmentNotes,
+  };
 
-//   final String body = json.encode(data);
+  final String body = json.encode(data);
 
-//   final http.Response response =
-//       await http.post(apiUrl, headers: headers, body: body);
+  final http.Response response =
+      await http.post(apiUrl, headers: headers, body: body);
 
-//   if (response.statusCode != 201) {
-//     throw Exception('Failed to create appointment.');
-//   } else {
-//     print(body);
-//   }
-// }
+  if (response.statusCode != 201) {
+    throw Exception('Failed to create appointment.');
+  } else {
+    print(body);
+  }
+}
 
 class _BookappointState extends State<Bookappoint> {
   final _formKey = GlobalKey<FormState>();
@@ -65,8 +67,10 @@ class _BookappointState extends State<Bookappoint> {
 
   void submitButton() {
     if (_formKey.currentState!.validate()) {
+      int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
+      //print(userId);
       // createAppointment(
-      //     dateinput.text, selectedFacility!, _notesController.text, 102);
+      //     dateinput.text, selectedFacility!, _notesController.text, userId);
       showDialog(
         context: context,
         builder: (context) {

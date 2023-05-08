@@ -7,6 +7,8 @@ import 'package:mobile_app/pages/glucose_testpage.dart';
 import 'package:mobile_app/pages/lipid_testpage.dart';
 import 'package:mobile_app/pages/liverfun_testpage.dart';
 import 'package:mobile_app/pages/urine_testpage.dart';
+import 'package:provider/provider.dart';
+import '../api/user.dart';
 import '../configure.dart';
 
 // ignore: camel_case_types
@@ -28,11 +30,12 @@ class _lab_resultsState extends State<lab_results> {
   @override
   void initState() {
     super.initState();
-    fetchGlucoseList(52);
-    fetchUrineList(52);
-    fetchLipidList(52);
-    fetchLiverList(52);
-    fetchCbcList(52);
+    int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
+    fetchGlucoseList(userId);
+    fetchUrineList(userId);
+    fetchLipidList(userId);
+    fetchLiverList(userId);
+    fetchCbcList(userId);
   }
 
   Future<void> fetchLipidList(int patientId) async {

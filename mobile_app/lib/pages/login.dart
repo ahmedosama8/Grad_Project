@@ -26,70 +26,72 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> _loginButton() async {
-
     if (_formKey.currentState!.validate()) {
-          final url = Uri.parse('http://10.0.2.2:8080/patient/login');
-    final response = await http.post(
-      url,
-      headers: {
-    'Content-Type': 'application/json',},
-      body:  json.encode( {
-        'username': usernameController.text,
-        'password': passwordController.text,
-      },)
-    );
+      final url = Uri.parse('http://10.0.2.2:8080/patient/login');
+      final response = await http.post(url,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: json.encode(
+            {
+              'username': usernameController.text,
+              'password': passwordController.text,
+            },
+          ));
 
-    if (response.statusCode == 200) {
-      final responseData = json.decode(response.body);
-      final int id = responseData['patient_id'];
-      final String gender = responseData['gender'] ?? '';
-      final String number = responseData['phone1'] ?? '';
-      final String username = responseData['username'];
-      final String fullname = responseData['firstName'];
+      if (response.statusCode == 200) {
+        final responseData = json.decode(response.body);
+        final int id = responseData['patient_id'];
+        final String gender = responseData['gender'] ?? '';
+        final String number = responseData['phone1'] ?? '';
+        final String username = responseData['username'] ?? '';
+        final String fullname = responseData['firstName'] ?? '';
 
-      final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
-      userIdProvider.setId(id , username , fullname);
+        final userIdProvider =
+            Provider.of<UserIdProvider>(context, listen: false);
+        userIdProvider.setId(id, username, fullname);
 
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        'home',arguments: {'username': usernameController.text},
-        (Route<dynamic> route) => false,
-      );
-
-      // Navigator.pushReplacementNamed(context, 'home',
-      //     arguments: {'username': usernameController.text});
-      print('dosh');
-      print(id);
-      print(username);
-      print(number);
-      print(gender);
-      print(fullname);
-    } else {    
-    final responseBody = response.body;
-    if (responseBody.isNotEmpty) {
-      try {
-        final responseData = json.decode(responseBody);
-        final errorMessage = responseData['error'] ?? 'Something went wrong!';
-        showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-            title: Text('Error'),
-            content: Text(errorMessage),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('OK'),
-              ),
-            ],
-          ),
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          'home',
+          arguments: {'username': usernameController.text},
+          (Route<dynamic> route) => false,
         );
-      } catch (e) {
-        print('Error parsing response: $e');
+
+        // Navigator.pushReplacementNamed(context, 'home',
+        //     arguments: {'username': usernameController.text});
+        print('dosh');
+        print(id);
+        print(username);
+        print(number);
+        print(gender);
+        print(fullname);
+      } else {
+        final responseBody = response.body;
+        if (responseBody.isNotEmpty) {
+          try {
+            final responseData = json.decode(responseBody);
+            final errorMessage =
+                responseData['error'] ?? 'Something went wrong!';
+            showDialog(
+              context: context,
+              builder: (_) => AlertDialog(
+                title: Text('Error'),
+                content: Text(errorMessage),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text('OK'),
+                  ),
+                ],
+              ),
+            );
+          } catch (e) {
+            print('Error parsing response: $e');
+          }
+        } else {
+          print('Empty response body');
+        }
       }
-    } else {
-      print('Empty response body');
-    }
-    }
-      
     }
   }
 
@@ -138,9 +140,8 @@ class _LoginState extends State<Login> {
                     height: 50,
                   ),
 
-
                   // userName Text field
-                   Padding(
+                  Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
                       decoration: BoxDecoration(

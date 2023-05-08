@@ -4,14 +4,55 @@ import 'package:flutter/material.dart';
 class UserIdProvider with ChangeNotifier {
   int? _id;
   String? _username;
+  String? _fullname;
+  String? _email;
+  String? _address;
+  String? _gender;
+  int? _dob;
+  String? _bloodType;
+  String? _emergencyNumber;
+  String? _martialStatus;
+
+
+
+
   int? get id => _id;
   String? get username => _username;
+  String? get fullname => _fullname;
+  String? get email => _email;
+  String? get address => _address;
+  String? get gender => _gender;
+  int? get dob => _dob;
+  String? get bloodType => _bloodType;
+  String? get emergencyNumber => _emergencyNumber;
+  String? get martialStatus => _martialStatus;
 
-  void setId(int id, String username) {
+
+
+  void setId(int id, String username, String fullname) {
     _id = id;
     _username = username;
+    _fullname = fullname;
     notifyListeners();
   }
+
+
+  //   void setId(int id,
+  //  String username,
+  //  String username,
+  //  String username,
+  //  String username,
+  //  String username,
+  //  String username,
+  //  String username,
+  //  String username,
+  //  String username,String username,
+  //  String username,
+  //  String username,) {
+  //   _id = id;
+  //   _username = username;
+  //   notifyListeners();
+  // }
 }
 
 

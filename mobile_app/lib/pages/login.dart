@@ -45,8 +45,10 @@ class _LoginState extends State<Login> {
       final String gender = responseData['gender'] ?? '';
       final String number = responseData['phone1'] ?? '';
       final String username = responseData['username'];
+      final String fullname = responseData['firstName'];
+
       final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
-      userIdProvider.setId(id , username);
+      userIdProvider.setId(id , username , fullname);
 
       Navigator.of(context).pushNamedAndRemoveUntil(
         'home',arguments: {'username': usernameController.text},
@@ -60,6 +62,7 @@ class _LoginState extends State<Login> {
       print(username);
       print(number);
       print(gender);
+      print(fullname);
     } else {    
     final responseBody = response.body;
     if (responseBody.isNotEmpty) {

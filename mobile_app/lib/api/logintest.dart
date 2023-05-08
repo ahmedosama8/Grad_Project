@@ -150,8 +150,9 @@ class _LoginPageState extends State<LoginPage> {
       final String gender = responseData['gender'] ?? '';
       final String number = responseData['phone1'] ?? '';
       final String username = responseData['username'];
+      final String fullname = responseData['firstName'];
       final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
-      userIdProvider.setId(id , username);
+      userIdProvider.setId(id , username, fullname);
  
       Navigator.pushReplacementNamed(context, 'home',
           arguments: {'username': usernameController.text});

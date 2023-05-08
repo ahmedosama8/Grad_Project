@@ -10,7 +10,8 @@ class BarCode extends StatelessWidget {
   Widget build(BuildContext context) {
     final userIdProvider = Provider.of<UserIdProvider>(context);
     final id = userIdProvider.id;
-    final username = userIdProvider.username;
+    //final username = userIdProvider.username;
+    final fullname = userIdProvider.fullname;
     final Size size = MediaQuery.of(context).size;
     final double qrSize = size.width * 0.6;
     var iD = 202;
@@ -39,7 +40,7 @@ class BarCode extends StatelessWidget {
                         width: 230,
                         child: Center(
                           child: Text(
-                            '$username',
+                            '$fullname',
                             style: TextStyle(
                                 fontSize: 22, fontWeight: FontWeight.bold),
                           ),

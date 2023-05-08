@@ -108,6 +108,7 @@ class _HomePageState extends State<HomePage> {
     final userIdProvider = Provider.of<UserIdProvider>(context);
     final id = userIdProvider.id;
     final username = userIdProvider.username;
+    final fullname = userIdProvider.fullname;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -119,7 +120,7 @@ class _HomePageState extends State<HomePage> {
               children: [
                 Padding(
                     padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
-                    child: Text('Welcome Back, $username!',
+                    child: Text('Welcome Back, $fullname!',
                         style: GoogleFonts.robotoCondensed(
                             fontSize: 20, fontWeight: FontWeight.bold))),
                 Spacer(),

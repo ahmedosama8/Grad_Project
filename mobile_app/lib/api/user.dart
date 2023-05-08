@@ -11,7 +11,8 @@ class UserIdProvider with ChangeNotifier {
   int? _dob;
   String? _bloodType;
   String? _emergencyNumber;
-  String? _martialStatus;
+  String? _identityNumber;
+  String? _phoneNumber;
 
 
 
@@ -25,34 +26,41 @@ class UserIdProvider with ChangeNotifier {
   int? get dob => _dob;
   String? get bloodType => _bloodType;
   String? get emergencyNumber => _emergencyNumber;
-  String? get martialStatus => _martialStatus;
+  String? get identityNumber => _identityNumber;
+  String? get phoneNumber => _phoneNumber;
 
 
-
-  void setId(int id, String username, String fullname) {
+  void setId(int? id) {
     _id = id;
+    notifyListeners();
+  }
+
+  void setNames(String username, String fullname){
     _username = username;
     _fullname = fullname;
     notifyListeners();
   }
-
-
-  //   void setId(int id,
-  //  String username,
-  //  String username,
-  //  String username,
-  //  String username,
-  //  String username,
-  //  String username,
-  //  String username,
-  //  String username,
-  //  String username,String username,
-  //  String username,
-  //  String username,) {
-  //   _id = id;
-  //   _username = username;
-  //   notifyListeners();
-  // }
+   void setData(//String dob,
+   String email,
+   String address,
+   String gender,
+   String bloodType,
+   String emergencyNumber,
+   String identityNumber,
+   String phoneNumber
+   ) 
+   
+   {
+    //_dob = dob;
+    _email = email;
+    _address = address;
+    _gender = gender;
+    _bloodType = bloodType;
+    _emergencyNumber = emergencyNumber;
+    _identityNumber = identityNumber;
+    _phoneNumber = phoneNumber;
+    notifyListeners();
+  }
 }
 
 

@@ -6,8 +6,6 @@ import 'dart:convert';
 import 'package:provider/provider.dart';
 import 'package:mobile_app/api/user.dart';
 
-
-
 class RegisterPage extends StatefulWidget {
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -17,48 +15,55 @@ class _RegisterPageState extends State<RegisterPage> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final emailController = TextEditingController();
+  final nameController = TextEditingController();
 
   Future<void> _register() async {
     final url = Uri.parse('http://10.0.2.2:8080/patient/new');
-    final response = await http.post(
-      url,
-      headers: {
-    'Content-Type': 'application/json',},
-      body:  json.encode( {
-        'username': usernameController.text,
-        'password': passwordController.text,
-      },)
-    );
+    final response = await http.post(url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(
+          {
+            'username': usernameController.text,
+            'password': passwordController.text,
+            'phone1' : phoneNumberController.text,
+            'mail' : emailController.text,
+            'firstName' : nameController.text
+          },
+        ));
 
     // Handle the API response here
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       Navigator.pushReplacementNamed(context, 'login',
           arguments: {'username': usernameController.text});
-    } else {    
-    final responseBody = response.body;
-    if (responseBody.isNotEmpty) {
-      try {
-        final responseData = json.decode(responseBody);
-        final errorMessage = responseData['error'] ?? 'Something went wrong!';
-        showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-            title: Text('Error'),
-            content: Text(errorMessage),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('OK'),
-              ),
-            ],
-          ),
-        );
-      } catch (e) {
-        print('Error parsing response: $e');
-      }
     } else {
-      print('Empty response body');
-    }
+      final responseBody = response.body;
+      if (responseBody.isNotEmpty) {
+        try {
+          final responseData = json.decode(responseBody);
+          final errorMessage = responseData['error'] ?? 'Something went wrong!';
+          showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+              title: Text('Error'),
+              content: Text(errorMessage),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('OK'),
+                ),
+              ],
+            ),
+          );
+        } catch (e) {
+          print('Error parsing response: $e');
+        }
+      } else {
+        print('Empty response body');
+      }
     }
   }
 
@@ -91,6 +96,24 @@ class _RegisterPageState extends State<RegisterPage> {
               obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Confirm Password',
+              ),
+            ),
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(
+                labelText: 'Email',
+              ),
+            ),
+            TextField(
+              controller: nameController,
+              decoration: InputDecoration(
+                labelText: 'Full name',
+              ),
+            ),
+            TextField(
+              controller: phoneNumberController,
+              decoration: InputDecoration(
+                labelText: 'Phone Number',
               ),
             ),
             SizedBox(height: 16),
@@ -134,15 +157,16 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _login() async {
     final url = Uri.parse('http://10.0.2.2:8080/patient/login');
-    final response = await http.post(
-      url,
-      headers: {
-    'Content-Type': 'application/json',},
-      body:  json.encode( {
-        'username': usernameController.text,
-        'password': passwordController.text,
-      },)
-    );
+    final response = await http.post(url,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: json.encode(
+          {
+            'username': usernameController.text,
+            'password': passwordController.text,
+          },
+        ));
 
     if (response.statusCode == 200) {
       final responseData = json.decode(response.body);
@@ -151,9 +175,11 @@ class _LoginPageState extends State<LoginPage> {
       final String number = responseData['phone1'] ?? '';
       final String username = responseData['username'];
       final String fullname = responseData['firstName'];
-      final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
-      userIdProvider.setId(id , username, fullname);
- 
+      final userIdProvider =
+          Provider.of<UserIdProvider>(context, listen: false);
+      userIdProvider.setId(id);
+      userIdProvider.setNames(username, fullname);
+
       Navigator.pushReplacementNamed(context, 'home',
           arguments: {'username': usernameController.text});
       print('dosh');
@@ -161,31 +187,31 @@ class _LoginPageState extends State<LoginPage> {
       print(username);
       print(number);
       print(gender);
-    } else {    
-    final responseBody = response.body;
-    if (responseBody.isNotEmpty) {
-      try {
-        final responseData = json.decode(responseBody);
-        final errorMessage = responseData['error'] ?? 'Something went wrong!';
-        showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-            title: Text('Error'),
-            content: Text(errorMessage),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('OK'),
-              ),
-            ],
-          ),
-        );
-      } catch (e) {
-        print('Error parsing response: $e');
-      }
     } else {
-      print('Empty response body');
-    }
+      final responseBody = response.body;
+      if (responseBody.isNotEmpty) {
+        try {
+          final responseData = json.decode(responseBody);
+          final errorMessage = responseData['error'] ?? 'Something went wrong!';
+          showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+              title: Text('Error'),
+              content: Text(errorMessage),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('OK'),
+                ),
+              ],
+            ),
+          );
+        } catch (e) {
+          print('Error parsing response: $e');
+        }
+      } else {
+        print('Empty response body');
+      }
     }
     // Handle the API response here
     //print(response.body);
@@ -226,6 +252,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
+
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -240,17 +267,9 @@ class Home extends StatelessWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('ID: $id'),
-            Text('Username: $username')
-          ],
+          children: [Text('ID: $id'), Text('Username: $username')],
         ),
       ),
     );
   }
 }
-
-
-
-
-

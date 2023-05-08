@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/edit_profile.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
+import 'package:provider/provider.dart';
 
 class PatientProfilePage extends StatefulWidget {
   @override
@@ -28,6 +31,17 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    final userIdProvider = Provider.of<UserIdProvider>(context);
+    final fullname = userIdProvider.fullname;
+    final username = userIdProvider.username;
+    //final dob = userIdProvider.dob;
+    final email = userIdProvider.email;
+    final address = userIdProvider.address;
+    final gender = userIdProvider.gender;
+    final bloodType = userIdProvider.bloodType;
+    final emergencyNumber = userIdProvider.emergencyNumber;
+    final identityNumber = userIdProvider.identityNumber;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primary,
@@ -68,7 +82,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Full name',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: _fullName),
+                        controller: TextEditingController(text: fullname),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -80,7 +94,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Email',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: _email),
+                        controller: TextEditingController(text: email),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -98,7 +112,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Username',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: _userName),
+                        controller: TextEditingController(text: username),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -110,7 +124,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Address',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: _address),
+                        controller: TextEditingController(text: address),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -128,7 +142,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Gender',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: _gender),
+                        controller: TextEditingController(text: gender),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -159,7 +173,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
                         controller: TextEditingController(
-                            text: _emergencyContactNumber),
+                            text: emergencyNumber),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -172,7 +186,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
                         controller:
-                            TextEditingController(text: _identityNumber),
+                            TextEditingController(text: identityNumber),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -189,7 +203,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Blood Type',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: _bloodType),
+                        controller: TextEditingController(text: bloodType),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),

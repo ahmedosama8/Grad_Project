@@ -7,6 +7,7 @@ import 'package:mobile_app/labs_data_model.dart';
 import 'package:mobile_app/pages/book_appointment.dart';
 import 'package:mobile_app/pages/labList.dart';
 import 'package:mobile_app/pages/labs_detail.dart';
+import 'package:mobile_app/pages/login.dart';
 import 'package:mobile_app/pages/pharm_details.dart';
 import 'package:mobile_app/pages/view_appointment.dart';
 import 'package:mobile_app/pharm_data_model.dart';
@@ -126,7 +127,14 @@ class _HomePageState extends State<HomePage> {
                 Spacer(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
-                  child: Icon(Icons.settings),
+                  child: IconButton(
+                    icon: Icon(Icons.logout),
+                    onPressed: () {
+                      print('dosh');
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, 'login', (route) => false);
+                    },
+                  ),
                 )
               ],
             ),

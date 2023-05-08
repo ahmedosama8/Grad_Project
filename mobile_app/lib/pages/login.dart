@@ -28,63 +28,67 @@ class _LoginState extends State<Login> {
   Future<void> _loginButton() async {
     if (_formKey.currentState!.validate()) {
       final url = Uri.parse('http://10.0.2.2:8080/patient/login');
-      final response = await http.post(url,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: json.encode(
-            {
-              'username': usernameController.text,
-              'password': passwordController.text,
-            },
-          ));
+      final response = await http.post(
+        url,
+        headers: {
+    'Content-Type': 'application/json',},
+      body:  json.encode( {
+        'username': usernameController.text,
+        'password': passwordController.text,
+      },)
+    );
 
-      if (response.statusCode == 200) {
-        final responseData = json.decode(response.body);
-        final int id = responseData['patient_id'];
-        final String gender = responseData['gender'] ?? '';
-        final String number = responseData['phone1'] ?? '';
-        final String username = responseData['username'] ?? '';
-        final String fullname = responseData['firstName'] ?? '';
+    if (response.statusCode == 200) {
+      final responseData = json.decode(response.body);
+      final int id = responseData['patient_id'];
+      final String gender = responseData['gender'] ?? '';
+      final String phoneNumber = responseData['phone1'] ?? '';
+      final String username = responseData['username'] ?? '';
+      final String fullname = responseData['firstName'] ?? '';      
+      final String email = responseData['mail'] ?? '';
+      final String bloodType = responseData['bloodType'] ?? '';
+      final String emergencyNumber = responseData['phone2'] ?? '';
+      final String address = responseData['city'] ?? '';
+      final String identityNumber = responseData['nationalIdNumber'] ?? '';
 
-        final userIdProvider =
-            Provider.of<UserIdProvider>(context, listen: false);
-        userIdProvider.setId(id, username, fullname);
+      final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
+      userIdProvider.setId(id);
+      userIdProvider.setNames(username,fullname);
+      userIdProvider.setData(email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber);
 
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          'home',
-          arguments: {'username': usernameController.text},
-          (Route<dynamic> route) => false,
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        'home',arguments: {'username': usernameController.text},
+        (Route<dynamic> route) => false,
+      );
+
+      // Navigator.pushReplacementNamed(context, 'home',
+      //     arguments: {'username': usernameController.text});
+      print('dosh');
+      print(id);
+      print(username);
+      print(phoneNumber);
+      print(gender);
+      print(fullname);
+    } else {    
+    final responseBody = response.body;
+    if (responseBody.isNotEmpty) {
+      try {
+        final responseData = json.decode(responseBody);
+        final errorMessage = responseData['error'] ?? 'Something went wrong!';
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text('Error'),
+            content: Text(errorMessage),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK'),
+              ),
+            ],
+          ),
         );
 
-        // Navigator.pushReplacementNamed(context, 'home',
-        //     arguments: {'username': usernameController.text});
-        print('dosh');
-        print(id);
-        print(username);
-        print(number);
-        print(gender);
-        print(fullname);
-      } else {
-        final responseBody = response.body;
-        if (responseBody.isNotEmpty) {
-          try {
-            final responseData = json.decode(responseBody);
-            final errorMessage =
-                responseData['error'] ?? 'Something went wrong!';
-            showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                title: Text('Error'),
-                content: Text(errorMessage),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text('OK'),
-                  ),
-                ],
-              ),
-            );
           } catch (e) {
             print('Error parsing response: $e');
           }
@@ -94,6 +98,7 @@ class _LoginState extends State<Login> {
       }
     }
   }
+
 
   @override
   void dispose() {
@@ -256,5 +261,7 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  
   }
+
 }

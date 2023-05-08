@@ -2,6 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:provider/provider.dart';
+import 'package:mobile_app/api/user.dart';
+
 
 
 class SignUp extends StatefulWidget {
@@ -13,13 +18,80 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
-  final _userNameController = TextEditingController();
-  final _nameController = TextEditingController();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _confirmPasswordController = TextEditingController();
-  final _phoneNumberController = TextEditingController();
+  final usernameController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+  final phoneNumberController = TextEditingController();
 
+  Future<void> _register() async {
+    if (_formKey.currentState!.validate()) {
+    final url = Uri.parse('http://10.0.2.2:8080/patient/new');
+    final response = await http.post(
+      url,
+      headers: {
+    'Content-Type': 'application/json',},
+      body:  json.encode( {
+        'username': usernameController.text,
+        'password': passwordController.text,
+        'Phone1':phoneNumberController.text,
+        'firstName':nameController.text,
+        'mail':emailController.text
+      },)
+    );
+
+    // Handle the API response here
+    if (response.statusCode == 201) {
+      // final responseData = json.decode(response.body);
+      // final int id = responseData['patient_id'];
+      // final String gender = responseData['gender'] ?? '';
+      // final String phoneNumber = responseData['phone1'] ?? '';
+      // final String username = responseData['username'] ?? '';
+      // final String fullname = responseData['firstName'] ?? '';      
+      // final String email = responseData['mail'] ?? '';
+      // final String bloodType = responseData['bloodType'] ?? '';
+      // final String emergencyNumber = responseData['phone2'] ?? '';
+      // final String address = responseData['city'] ?? '';
+      // final String identityNumber = responseData['nationalIdNumber'] ?? '';
+
+      // final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
+      // userIdProvider.setId(id);
+      // userIdProvider.setNames(username,fullname);
+      // userIdProvider.setData(email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber);
+
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        'login',arguments: {'username': usernameController.text},
+        (Route<dynamic> route) => false,
+      );
+    } else {    
+    final responseBody = response.body;
+    if (responseBody.isNotEmpty) {
+      try {
+        final responseData = json.decode(responseBody);
+        final errorMessage = responseData['error'] ?? 'Something went wrong!';
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text('Error'),
+            content: Text(errorMessage),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } catch (e) {
+        print('Error parsing response: $e');
+      }
+    } else {
+      print('Empty response body');
+    }
+    }
+  }
+  }
   void signUpButton() {
     if (_formKey.currentState!.validate()) {
       Navigator.of(context).pushNamed('emrsignup');
@@ -32,10 +104,10 @@ class _SignUpState extends State<SignUp> {
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _phoneNumberController.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    phoneNumberController.dispose();
     super.dispose();
   }
 
@@ -87,7 +159,7 @@ class _SignUpState extends State<SignUp> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
-                          controller: _nameController,
+                          controller: nameController,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Full name',
@@ -118,7 +190,7 @@ class _SignUpState extends State<SignUp> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
-                          controller: _userNameController,
+                          controller: usernameController,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Username',
@@ -150,7 +222,7 @@ class _SignUpState extends State<SignUp> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
-                            controller: _emailController,
+                            controller: emailController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
@@ -182,7 +254,7 @@ class _SignUpState extends State<SignUp> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
-                          controller: _phoneNumberController,
+                          controller: phoneNumberController,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               border: InputBorder.none,
@@ -216,7 +288,7 @@ class _SignUpState extends State<SignUp> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
-                          controller: _passwordController,
+                          controller: passwordController,
                           obscureText: true,
                           decoration: InputDecoration(
                               border: InputBorder.none,
@@ -248,7 +320,7 @@ class _SignUpState extends State<SignUp> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
-                          controller: _confirmPasswordController,
+                          controller: confirmPasswordController,
                           obscureText: true,
                           decoration: InputDecoration(
                               border: InputBorder.none,
@@ -261,7 +333,7 @@ class _SignUpState extends State<SignUp> {
                            else if (value.length <6){
                             return "Your password must be 6 characters or more";
                            }
-                           else if (value != _passwordController.text){
+                           else if (value != passwordController.text){
                             return 'Password missmatch';
                            }
                            return null; 
@@ -277,7 +349,7 @@ class _SignUpState extends State<SignUp> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: GestureDetector(
-                      onTap: signUpButton,
+                      onTap: _register,
                       child: Container(
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(

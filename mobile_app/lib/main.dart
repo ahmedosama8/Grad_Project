@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        initialRoute: 'login',
+        initialRoute: '/',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primary,
@@ -53,8 +53,8 @@ class MyApp extends StatelessWidget {
 
         routes: {
           '/': (context) => const AppScreen(),
-          'login': (context) => Login(),
-          'signup': (context) => RegisterPage(),
+          'login': (context) =>  Login(),
+          'signup': (context) => SignUp(),
           'home': (context) => WelcomePage(),
           'emrsignup': (context) => const EmergencyInfoPage(),
           'my_medical_records': (context) => My_Medical_Records(),

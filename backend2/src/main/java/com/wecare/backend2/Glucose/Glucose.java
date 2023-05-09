@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.wecare.backend2.Doctor.Doctor;
 import com.wecare.backend2.Patient.Patient;
 import jakarta.persistence.GeneratedValue;
 import jakarta.annotation.Nullable;
@@ -32,6 +33,18 @@ public class Glucose {
 		this.patient = patient;
 	}
 
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Doctor doctor;
+
 	private LocalDate Examination_Date;
     
     @Nullable
@@ -42,18 +55,6 @@ public class Glucose {
     
     @Nullable
     private String Comments;
-
-	@Nullable
-	public String getLabName() {
-		return LabName;
-	}
-
-	public void setLabName(@Nullable String labName) {
-		LabName = labName;
-	}
-
-	@Nullable
-	private String LabName;
 
 	private static String TestName = "Glucose Test";
 
@@ -102,15 +103,15 @@ public class Glucose {
 		Comments = comments;
 	}
 
-	public Glucose(int glucose_id,Patient patient , LocalDate examination_Date, int rBC, int rBS,
-			String comments,String labName) {
+	public Glucose(int glucose_id,Patient patient , Doctor doctor, LocalDate examination_Date, int rBC, int rBS,
+			String comments) {
 		this.Glucose_id = glucose_id;
 		this.patient = patient;
+		this.doctor = doctor;
 		this.Examination_Date = examination_Date;
 		this.RBC = rBC;
 		this.RBS = rBS;
 		this.Comments = comments;
-		this.LabName = labName;
 	}
 
 }

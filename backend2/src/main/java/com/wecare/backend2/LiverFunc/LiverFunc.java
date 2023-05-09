@@ -1,6 +1,7 @@
 package com.wecare.backend2.LiverFunc;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wecare.backend2.Doctor.Doctor;
 import com.wecare.backend2.Patient.Patient;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
@@ -21,6 +22,18 @@ public class LiverFunc {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Patient patient;
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Doctor doctor;
 
 	public Patient getPatient() {
 		return patient;
@@ -50,18 +63,6 @@ public class LiverFunc {
     
     @Nullable
     private String Comments;
-
-	@Nullable
-	public String getLabName() {
-		return LabName;
-	}
-
-	public void setLabName(@Nullable String labName) {
-		LabName = labName;
-	}
-
-	@Nullable
-	private String LabName;
 
 	private static String TestName = "Liver Function Test";
 
@@ -143,10 +144,11 @@ public class LiverFunc {
 	}
 
 	public LiverFunc(int liverFunc_id,Patient patient, LocalDate examination_Date, int aLT,
-			int aST, int aLB, int dBIL, int tBIL, int aLP, String comments, String labName) {
+			int aST, Doctor doctor, int aLB, int dBIL, int tBIL, int aLP, String comments) {
 		this.LiverFunc_id = liverFunc_id;
 		this.Examination_Date = examination_Date;
 		this.patient = patient;
+		this.doctor = doctor;
 		this.ALT = aLT;
 		this.AST = aST;
 		this.ALB = aLB;
@@ -154,6 +156,5 @@ public class LiverFunc {
 		this.TBIL = tBIL;
 		this.ALP = aLP;
 		this.Comments = comments;
-		this.LabName = labName;
 	}
 }

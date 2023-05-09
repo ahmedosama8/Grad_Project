@@ -1,12 +1,21 @@
 package com.wecare.backend2.Doctor;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wecare.backend2.Appointment.Appointment;
+import com.wecare.backend2.CBC.CBC;
 import com.wecare.backend2.Diagnosis.Diagnosis;
+import com.wecare.backend2.Glucose.Glucose;
+import com.wecare.backend2.LipidProfile.LipidProfile;
+import com.wecare.backend2.LiverFunc.LiverFunc;
+import com.wecare.backend2.Patient.Patient;
+import com.wecare.backend2.UrineTest.UrineTest;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Doctor {
@@ -14,38 +23,68 @@ public class Doctor {
     @GeneratedValue
     private int doctor_id;
 
-    private String gender;
-
-    private String phone1;
-
-    private String mail;
-
-    private int age;
-
-    private String firstName;
-    @Nullable
-    private String MiddleName;
-    private String LastName;
-
-    private LocalDate birthDate;
-
     @OneToMany(mappedBy = "doctor")
     @JsonIgnore
-    private List<Diagnosis> diagnoses;
+    @Nullable
+    private List<Appointment> appointments;
 
 
-    private String nationalIdNumber;
+    @Nullable
+    private String gender;
 
+    @Nullable
+    private String phone1;
+
+    @Nullable
+    @ManyToMany
+    private Set<Patient> patients = new HashSet<>();
+
+    @Nullable
+    private String mail;
+
+
+    @Nullable
+    private String name;
+
+//    @Nullable
+//    @OneToMany(mappedBy = "doctor")
+//    @JsonIgnore
+//    private List<Diagnosis> diagnoses;
+
+    @Nullable
     private String city;
+
+    @Nullable
     private String street;
 
-    public Doctor() {
-    }
+    @Nullable
+    @OneToMany(mappedBy = "doctor")
+    @JsonIgnore
+    private List<CBC> cbcTests = new ArrayList<>();
+
+    @Nullable
+    @OneToMany(mappedBy = "doctor")
+    @JsonIgnore
+    private List<Glucose> glucoseTests = new ArrayList<>();
+
+    @Nullable
+    @OneToMany(mappedBy = "doctor")
+    @JsonIgnore
+    private List<LipidProfile> lipidProfileTests = new ArrayList<>();
+
+    @Nullable
+    @OneToMany(mappedBy = "doctor")
+    @JsonIgnore
+    private List<LiverFunc> liverFuncTests = new ArrayList<>();
+
+    @Nullable
+    @OneToMany(mappedBy = "doctor")
+    @JsonIgnore
+    private List<UrineTest> urineTests = new ArrayList<>();
 
     public int getDoctor_id() {
         return doctor_id;
     }
-
 
     public String getGender() {
         return gender;
@@ -71,61 +110,21 @@ public class Doctor {
         this.mail = mail;
     }
 
-    public int getAge() {
-        return age;
+    public String getName() {
+        return name;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return MiddleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        MiddleName = middleName;
-    }
-
-    public String getLastName() {
-        return LastName;
-    }
-
-    public void setLastName(String lastName) {
-        LastName = lastName;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public List<Diagnosis> getDiagnoses() {
-        return diagnoses;
-    }
-
-    public void setDiagnoses(List<Diagnosis> diagnoses) {
-        this.diagnoses = diagnoses;
-    }
-
-    public String getNationalIdNumber() {
-        return nationalIdNumber;
-    }
-
-    public void setNationalIdNumber(String nationalIdNumber) {
-        this.nationalIdNumber = nationalIdNumber;
-    }
+//    public List<Diagnosis> getDiagnoses() {
+//        return diagnoses;
+//    }
+//
+//    public void setDiagnoses(List<Diagnosis> diagnoses) {
+//        this.diagnoses = diagnoses;
+//    }
 
     public String getCity() {
         return city;
@@ -143,19 +142,79 @@ public class Doctor {
         this.street = street;
     }
 
-    public Doctor(int doctor_id, String gender, String phone1, String mail, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street) {
+    public List<CBC> getCbcTests() {
+        return cbcTests;
+    }
+
+    public void setCbcTests(List<CBC> cbcTests) {
+        this.cbcTests = cbcTests;
+    }
+
+    public List<Glucose> getGlucoseTests() {
+        return glucoseTests;
+    }
+
+    public void setGlucoseTests(List<Glucose> glucoseTests) {
+        this.glucoseTests = glucoseTests;
+    }
+
+    public List<LipidProfile> getLipidProfileTests() {
+        return lipidProfileTests;
+    }
+
+    public void setLipidProfileTests(List<LipidProfile> lipidProfileTests) {
+        this.lipidProfileTests = lipidProfileTests;
+    }
+
+    public List<LiverFunc> getLiverFuncTests() {
+        return liverFuncTests;
+    }
+
+    public void setLiverFuncTests(List<LiverFunc> liverFuncTests) {
+        this.liverFuncTests = liverFuncTests;
+    }
+
+    public List<UrineTest> getUrineTests() {
+        return urineTests;
+    }
+
+    public void setUrineTests(List<UrineTest> urineTests) {
+        this.urineTests = urineTests;
+    }
+
+    public Set<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(Set<Patient> patients) {
+        this.patients = patients;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    public Doctor() {
+    }
+
+    public Doctor(int doctor_id, List<Appointment> appointments, String gender, String phone1, Set<Patient> patients, String mail, String name, String city, String street, List<CBC> cbcTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests) {
         this.doctor_id = doctor_id;
+        this.appointments = appointments;
         this.gender = gender;
         this.phone1 = phone1;
+        this.patients = patients;
         this.mail = mail;
-        this.age = age;
-        this.firstName = firstName;
-        MiddleName = middleName;
-        LastName = lastName;
-        this.birthDate = birthDate;
-        this.diagnoses = diagnoses;
-        this.nationalIdNumber = nationalIdNumber;
+        this.name = name;
         this.city = city;
         this.street = street;
+        this.cbcTests = cbcTests;
+        this.glucoseTests = glucoseTests;
+        this.lipidProfileTests = lipidProfileTests;
+        this.liverFuncTests = liverFuncTests;
+        this.urineTests = urineTests;
     }
 }

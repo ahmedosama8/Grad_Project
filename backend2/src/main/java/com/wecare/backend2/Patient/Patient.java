@@ -5,6 +5,7 @@ import com.wecare.backend2.Allergy.Allergy;
 import com.wecare.backend2.Appointment.Appointment;
 import com.wecare.backend2.CBC.CBC;
 import com.wecare.backend2.Diagnosis.Diagnosis;
+import com.wecare.backend2.Doctor.Doctor;
 import com.wecare.backend2.Glucose.Glucose;
 import com.wecare.backend2.LipidProfile.LipidProfile;
 import com.wecare.backend2.LiverFunc.LiverFunc;
@@ -15,8 +16,7 @@ import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 public class Patient {
@@ -24,7 +24,137 @@ public class Patient {
     @GeneratedValue
     private int patient_id;
 
+    @Column(unique = true)
     private String username;
+
+    private String password;
+    @Nullable
+    private String gender;
+
+    @Nullable
+    private String phone1;
+
+    @Nullable
+    private String phone2;
+
+    @Nullable
+    private String mail;
+
+    @Nullable
+    private String image;
+
+    @Nullable
+    private String bloodType;
+
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Appointment> appointments = new ArrayList<>();
+
+
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Allergy> allergies = new ArrayList<>();
+
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MedicalCondition> medicalConditions = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient")
+    @JsonIgnore
+    private List<CBC> CBCTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Glucose> GlucoseTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<LipidProfile> LipidProfileTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<LiverFunc> LiverFuncTests = new ArrayList<>();
+    
+    @Nullable
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<UrineTest> UrineTests = new ArrayList<>();
+    
+    @Nullable
+    private int age;
+    @Nullable
+    private String firstName;
+    @Nullable
+    private String MiddleName;
+    @Nullable
+    private String LastName;
+    @Nullable
+    private LocalDate birthDate;
+//    @Nullable
+//    @OneToMany(mappedBy = "patient")
+//    @JsonIgnore
+//    private List<Diagnosis> diagnoses;
+
+    @Nullable
+    @ManyToMany(mappedBy = "patients")
+    @JsonIgnore
+    private Set<Doctor> doctors = new HashSet<>();
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "patient_id=" + patient_id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", gender='" + gender + '\'' +
+                ", phone1='" + phone1 + '\'' +
+                ", phone2='" + phone2 + '\'' +
+                ", mail='" + mail + '\'' +
+                ", image='" + image + '\'' +
+                ", bloodType='" + bloodType + '\'' +
+                ", appointments=" + appointments +
+                ", allergies=" + allergies +
+                ", medicalConditions=" + medicalConditions +
+                ", CBCTests=" + CBCTests +
+                ", GlucoseTests=" + GlucoseTests +
+                ", LipidProfileTests=" + LipidProfileTests +
+                ", LiverFuncTests=" + LiverFuncTests +
+                ", UrineTests=" + UrineTests +
+                ", age=" + age +
+                ", firstName='" + firstName + '\'' +
+                ", MiddleName='" + MiddleName + '\'' +
+                ", LastName='" + LastName + '\'' +
+                ", birthDate=" + birthDate +
+//                ", diagnoses=" + diagnoses +
+                ", doctors=" + doctors +
+                ", nationalIdNumber='" + nationalIdNumber + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", maritalStatus=" + maritalStatus +
+                '}';
+    }
+
+    @Nullable
+    private String nationalIdNumber;
+
+    @Nullable
+    private String city;
+    @Nullable
+    private String street;
+
+     @Nullable
+     private boolean maritalStatus;
+
+
+    public Patient() {
+    }
+
 
     public String getUsername() {
         return username;
@@ -42,94 +172,13 @@ public class Patient {
         this.password = password;
     }
 
-    private String password;
-    @Nullable
-    private String gender;
-
-    @Nullable
-    private String phone1;
-
-    @Nullable
-    private String phone2;
-
-    @Nullable
-    private String mail;
-
-    @Nullable
-    private String bloodType;
-
-    @Nullable
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Appointment> appointments = new ArrayList<>();
-
-
-    @Nullable
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Allergy> allergies = new ArrayList<>();
-
-    @Nullable
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MedicalCondition> medicalConditions = new ArrayList<>();
-    
-    @Nullable
-    @OneToMany(mappedBy = "patient")
-    @JsonIgnore
-    private List<CBC> CBCTests = new ArrayList<>();
-    
-    @Nullable
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Glucose> GlucoseTests = new ArrayList<>();
-    
-    @Nullable
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LipidProfile> LipidProfileTests = new ArrayList<>();
-    
-    @Nullable
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<LiverFunc> LiverFuncTests = new ArrayList<>();
-    
-    @Nullable
-    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<UrineTest> UrineTests = new ArrayList<>();
-    
-    @Nullable
-    private int age;
-    @Nullable
-    private String firstName;
-    @Nullable
-    private String MiddleName;
-    @Nullable
-    private String LastName;
-    @Nullable
-    private LocalDate birthDate;
-    @Nullable
-    @OneToMany(mappedBy = "patient")
-    @JsonIgnore
-    private List<Diagnosis> diagnoses;
-
-    @Nullable
-    private String nationalIdNumber;
-
-    @Nullable
-    private String city;
-    @Nullable
-    private String street;
-
-    // @Nullable
-    // private boolean maritalStatus;
-
-
-    // public boolean isMaritalStatus() {
-    //     return maritalStatus;
-    // }
-
-    // public void setMaritalStatus(boolean maritalStatus) {
-    //     this.maritalStatus = maritalStatus;
-    // }
-
-    public Patient() {
+    public boolean isMaritalStatus() {
+        return maritalStatus;
     }
 
+    public void setMaritalStatus(boolean maritalStatus) {
+        this.maritalStatus = maritalStatus;
+    }
 
     public List<Appointment> getAppointments() {
         return appointments;
@@ -216,19 +265,19 @@ public class Patient {
         this.birthDate = birthDate;
     }
 
-    public List<Diagnosis> getDiagnoses() {
-        return diagnoses;
-    }
-
-    public void setDiagnoses(List<Diagnosis> diagnoses) {
-        this.diagnoses = diagnoses;
-    }
-
-    public void updateDiagnoses(Diagnosis diagnosis){
-        List<Diagnosis> current = this.getDiagnoses();
-        current.add(diagnosis);
-        this.setDiagnoses(current);
-    }
+//    public List<Diagnosis> getDiagnoses() {
+//        return diagnoses;
+//    }
+//
+//    public void setDiagnoses(List<Diagnosis> diagnoses) {
+//        this.diagnoses = diagnoses;
+//    }
+//
+//    public void updateDiagnoses(Diagnosis diagnosis){
+//        List<Diagnosis> current = this.getDiagnoses();
+//        current.add(diagnosis);
+//        this.setDiagnoses(current);
+//    }
 
     public String getNationalIdNumber() {
         return nationalIdNumber;
@@ -346,8 +395,23 @@ public class Patient {
 		UrineTests = urineTests;
 	}
 
+    public String getImage() {
+        return image;
+    }
 
-    public Patient(int patient_id, String username, String password, String gender, String phone1, String phone2, String mail, String bloodType, List<Appointment> appointments, List<Allergy> allergies, List<MedicalCondition> medicalConditions, List<CBC> CBCTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, String nationalIdNumber, String city, String street) {
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Set<Doctor> getDoctors() {
+        return doctors;
+    }
+
+    public void setDoctors(Set<Doctor> doctors) {
+        this.doctors = doctors;
+    }
+
+    public Patient(int patient_id, String username, String password, String gender, String phone1, String phone2, String mail, String image, String bloodType, List<Appointment> appointments, List<Allergy> allergies, List<MedicalCondition> medicalConditions, List<CBC> CBCTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests, int age, String firstName, String middleName, String lastName, LocalDate birthDate, Set<Doctor> doctors, String nationalIdNumber, String city, String street, boolean maritalStatus) {
         this.patient_id = patient_id;
         this.username = username;
         this.password = password;
@@ -355,6 +419,7 @@ public class Patient {
         this.phone1 = phone1;
         this.phone2 = phone2;
         this.mail = mail;
+        this.image = image;
         this.bloodType = bloodType;
         this.appointments = appointments;
         this.allergies = allergies;
@@ -369,11 +434,12 @@ public class Patient {
         MiddleName = middleName;
         LastName = lastName;
         this.birthDate = birthDate;
-        this.diagnoses = diagnoses;
+//        this.diagnoses = diagnoses;
+        this.doctors = doctors;
         this.nationalIdNumber = nationalIdNumber;
         this.city = city;
         this.street = street;
-       // this.maritalStatus = maritalStatus;
+        this.maritalStatus = maritalStatus;
     }
 }
 

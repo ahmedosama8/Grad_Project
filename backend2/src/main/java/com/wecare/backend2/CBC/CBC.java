@@ -1,6 +1,7 @@
 package com.wecare.backend2.CBC;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wecare.backend2.Doctor.Doctor;
 import com.wecare.backend2.Patient.Patient;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
@@ -23,6 +24,21 @@ public class CBC {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JsonIgnore
 	private Patient patient;
+
+
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Doctor doctor;
+
 
 	@Nullable
     private int Haemoglobin;
@@ -72,17 +88,7 @@ public class CBC {
     @Nullable
     private String Comments;
 
-	@Nullable
-	public String getLabName() {
-		return LabName;
-	}
 
-	public void setLabName(@Nullable String labName) {
-		LabName = labName;
-	}
-
-	@Nullable
-	private String LabName;
 
 	private static String TestName = "CBC Test";
 
@@ -243,29 +249,27 @@ public class CBC {
 		Comments = comments;
 	}
 
-	
-	public CBC(int cbc_id,Patient patient, LocalDate examination_Date, int haemoglobin,
-			int hematocrit, int redCellCount, int mCV, int mCH, int mCHC, int rDW, int plateletCount, int tLC,
-			int basophils, int eosinophils, int stab, int segmented, int lymphocytes, int monocytes, String comments, String labName) {
+
+	public CBC(int cbc_id, LocalDate examination_Date, Patient patient, Doctor doctor, int haemoglobin, int hematocrit, int redCellCount, int MCV, int MCH, int MCHC, int RDW, int plateletCount, int TLC, int basophils, int eosinophils, int stab, int segmented, int lymphocytes, int monocytes, String comments) {
 		this.cbc_id = cbc_id;
-		this.Examination_Date = examination_Date;
+		Examination_Date = examination_Date;
 		this.patient = patient;
-		this.Haemoglobin = haemoglobin;
-		this.Hematocrit = hematocrit;
-		this.RedCellCount = redCellCount;
-		this.MCV = mCV;
-		this.MCH = mCH;
-		this.MCHC = mCHC;
-		this.RDW = rDW;
-		this.PlateletCount = plateletCount;
-		this.TLC = tLC;
-		this.Basophils = basophils;
-		this.Eosinophils = eosinophils;
-		this.Stab = stab;
-		this.Segmented = segmented;
-		this.Lymphocytes = lymphocytes;
-		this.Monocytes = monocytes;
-		this.Comments = comments;
-		this.LabName = labName;
+		this.doctor = doctor;
+		Haemoglobin = haemoglobin;
+		Hematocrit = hematocrit;
+		RedCellCount = redCellCount;
+		this.MCV = MCV;
+		this.MCH = MCH;
+		this.MCHC = MCHC;
+		this.RDW = RDW;
+		PlateletCount = plateletCount;
+		this.TLC = TLC;
+		Basophils = basophils;
+		Eosinophils = eosinophils;
+		Stab = stab;
+		Segmented = segmented;
+		Lymphocytes = lymphocytes;
+		Monocytes = monocytes;
+		Comments = comments;
 	}
 }

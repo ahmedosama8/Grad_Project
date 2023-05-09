@@ -1,6 +1,7 @@
 package com.wecare.backend2.LipidProfile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wecare.backend2.Doctor.Doctor;
 import com.wecare.backend2.Patient.Patient;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
@@ -23,6 +24,18 @@ public class LipidProfile {
 	public void setPatient(Patient patient) {
 		this.patient = patient;
 	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Doctor doctor;
 
 	private LocalDate Examination_Date;
 
@@ -53,18 +66,6 @@ public class LipidProfile {
     
     @Nullable
     private String Comments;
-
-	@Nullable
-	public String getLabName() {
-		return LabName;
-	}
-
-	public void setLabName(@Nullable String labName) {
-		LabName = labName;
-	}
-
-	@Nullable
-	private String LabName;
 
 	private static String TestName = "Lipid Profile Test";
 
@@ -154,10 +155,11 @@ public class LipidProfile {
 	}
 
 	public LipidProfile(int lipidProfile_id,Patient patient, LocalDate examination_Date, int aLT,
-			int aST, int albumin, int cholestrolTotal, int hDL_C, int lDL_C, int triglycerides, String comments,String labName) {
+			int aST, Doctor doctor,  int albumin, int cholestrolTotal, int hDL_C, int lDL_C, int triglycerides, String comments) {
 		this.LipidProfile_id = lipidProfile_id;
 		this.Examination_Date = examination_Date;
 		this.patient = patient;
+		this.doctor = doctor;
 		this.ALT = aLT;
 		this.AST = aST;
 		this.Albumin = albumin;
@@ -166,7 +168,6 @@ public class LipidProfile {
 		this.LDL_C = lDL_C;
 		this.Triglycerides = triglycerides;
 		this.Comments = comments;
-		this.LabName = labName;
 	}
 
 }

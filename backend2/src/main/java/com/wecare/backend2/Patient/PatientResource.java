@@ -1,16 +1,19 @@
 package com.wecare.backend2.Patient;
 
 import com.wecare.backend2.Backend2Application;
+import com.wecare.backend2.Doctor.DoctorRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
@@ -25,9 +28,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 public class PatientResource {
 
     private PatientRepository patientRepo;
+    private DoctorRepository doctorRepository;
 
-    public PatientResource(PatientRepository patientRepo) {
+    public PatientResource(PatientRepository patientRepo, DoctorRepository doctorRepository) {
         this.patientRepo = patientRepo;
+        this.doctorRepository = doctorRepository;
     }
 
     @GetMapping("/list")
@@ -49,12 +54,29 @@ public class PatientResource {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<Patient> create(@RequestBody Patient patient){
+    public ResponseEntity<Patient> create(@RequestBody Patient patient) {
         Patient newPatient = patientRepo.save(patient);
         String id = String.valueOf(newPatient.getPatient_id());
         URI loc = URI.create("/"+id);
         return ResponseEntity.created(loc).build();
     }
+
+
+    @PostMapping("/{id}/image")
+    public ResponseEntity<Patient> uploadImage(@PathVariable int id, @RequestParam("image") MultipartFile multipartFile) throws IOException{
+        Optional<Patient> patient = patientRepo.findById(id);
+        if(patient.isPresent()){
+            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            Patient patient1 = patient.get();
+            patient1.setImage(fileName);
+            patientRepo.save(patient1);
+            String uploadDir = "user-photos/"+id;
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.badRequest().build();
+    }
+
     private static final Logger logger = LoggerFactory.getLogger(Backend2Application.class);
 
 
@@ -83,15 +105,11 @@ public class PatientResource {
         }
 
         Patient oldPatient = patient.get();
-
         oldPatient.setFirstName(updatedPatient.getFirstName());
         oldPatient.setMiddleName(updatedPatient.getMiddleName());
         oldPatient.setLastName(updatedPatient.getLastName());
         oldPatient.setAge(updatedPatient.getAge());
-        oldPatient.setAllergies(updatedPatient.getAllergies());
         oldPatient.setBloodType(updatedPatient.getBloodType());
-        oldPatient.setMedicalConditions(updatedPatient.getMedicalConditions());
-        oldPatient.setDiagnoses(updatedPatient.getDiagnoses());
         oldPatient.setCity(updatedPatient.getCity());
         oldPatient.setPhone1(updatedPatient.getPhone1());
         oldPatient.setPhone2(updatedPatient.getPhone2());
@@ -100,8 +118,8 @@ public class PatientResource {
         oldPatient.setBirthDate(updatedPatient.getBirthDate());
         oldPatient.setNationalIdNumber(updatedPatient.getNationalIdNumber());
         oldPatient.setStreet(updatedPatient.getStreet());
-       // oldPatient.setMaritalStatus(updatedPatient.isMaritalStatus());
-
+        oldPatient.setUsername(updatedPatient.getUsername());
+        oldPatient.setPassword(updatedPatient.getPassword());
 
         Patient savedPatient = patientRepo.save(oldPatient);
         return ResponseEntity.ok(savedPatient);

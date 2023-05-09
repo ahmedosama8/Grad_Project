@@ -1,6 +1,7 @@
 package com.wecare.backend2.Appointment;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wecare.backend2.Doctor.Doctor;
 import com.wecare.backend2.Patient.Patient;
 import jakarta.annotation.Nullable;
@@ -14,28 +15,36 @@ public class Appointment {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long AppointmentId;
 
+    @Nullable
     @ManyToOne
-    @JoinColumn(name="patient_id")
     private Patient patient;
 
+    @Nullable
     @ManyToOne
-    @JoinColumn(name="doctor_id")
     private Doctor doctor;
 
+    @Nullable
     private LocalDate appointmentDate;
 
+    @Nullable
     private String appointmentType;
 
+    @Nullable
     private String appointmentStatus;
 
+    @Nullable
     private String appointmentNotes;
 
+    @Nullable
     private String price;
 
+    @Nullable
     private String paymentMethod;
 
+    @Nullable
     private String discountPrice;
 
+    @Nullable
     private String procedure;
 
     @Nullable

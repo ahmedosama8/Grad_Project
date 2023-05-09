@@ -80,6 +80,14 @@ public class AppointmentResource {
         return patient.get().getAppointments();
     }
 
+    @GetMapping("/doctor/{id}")
+    public List<Appointment> getAppointmentsForDoctr(@PathVariable int id) throws Exception{
+        Optional<Doctor> doctor = doctorRepository.findById(id);
+        if(doctor.isEmpty()){
+            throw new Exception("id" + id);
+        }
+        return doctor.get().getAppointments();
+    }
 
 
 }

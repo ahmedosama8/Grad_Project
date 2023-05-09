@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class UserIdProvider with ChangeNotifier {
@@ -8,11 +7,12 @@ class UserIdProvider with ChangeNotifier {
   String? _email;
   String? _address;
   String? _gender;
-  int? _dob;
+  String? _dob;
   String? _bloodType;
   String? _emergencyNumber;
   String? _identityNumber;
   String? _phoneNumber;
+  String? _maritalStatus;
 
 
 
@@ -23,12 +23,12 @@ class UserIdProvider with ChangeNotifier {
   String? get email => _email;
   String? get address => _address;
   String? get gender => _gender;
-  int? get dob => _dob;
+  String? get dob => _dob;
   String? get bloodType => _bloodType;
   String? get emergencyNumber => _emergencyNumber;
   String? get identityNumber => _identityNumber;
   String? get phoneNumber => _phoneNumber;
-
+  String? get maritalStatus => _maritalStatus;
 
   void setId(int? id) {
     _id = id;
@@ -40,18 +40,19 @@ class UserIdProvider with ChangeNotifier {
     _fullname = fullname;
     notifyListeners();
   }
-   void setData(//String dob,
+   void setData(String dob,
    String email,
    String address,
    String gender,
    String bloodType,
    String emergencyNumber,
    String identityNumber,
-   String phoneNumber
+   String phoneNumber,
+   String maritalStatus
    ) 
    
    {
-    //_dob = dob;
+    _dob = dob;
     _email = email;
     _address = address;
     _gender = gender;
@@ -59,6 +60,7 @@ class UserIdProvider with ChangeNotifier {
     _emergencyNumber = emergencyNumber;
     _identityNumber = identityNumber;
     _phoneNumber = phoneNumber;
+    _maritalStatus = maritalStatus;
     notifyListeners();
   }
 }

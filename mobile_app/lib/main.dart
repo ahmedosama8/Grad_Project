@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
           'login': (context) =>  Login(),
           'signup': (context) => SignUp(),
           'home': (context) => WelcomePage(),
-          'emrsignup': (context) => const EmergencyInfoPage(),
+          'emrsignup': (context) => EmergencyInfoPage(),
           'my_medical_records': (context) => My_Medical_Records(),
           'lab_results': (context) => const lab_results(),
           'rad_scans': (context) => const rad_scans(),

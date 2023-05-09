@@ -24,6 +24,7 @@ class _SignUpState extends State<SignUp> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
   final phoneNumberController = TextEditingController();
+  
 
   Future<void> _register() async {
     if (_formKey.currentState!.validate()) {
@@ -43,23 +44,6 @@ class _SignUpState extends State<SignUp> {
 
     // Handle the API response here
     if (response.statusCode == 201) {
-      // final responseData = json.decode(response.body);
-      // final int id = responseData['patient_id'];
-      // final String gender = responseData['gender'] ?? '';
-      // final String phoneNumber = responseData['phone1'] ?? '';
-      // final String username = responseData['username'] ?? '';
-      // final String fullname = responseData['firstName'] ?? '';      
-      // final String email = responseData['mail'] ?? '';
-      // final String bloodType = responseData['bloodType'] ?? '';
-      // final String emergencyNumber = responseData['phone2'] ?? '';
-      // final String address = responseData['city'] ?? '';
-      // final String identityNumber = responseData['nationalIdNumber'] ?? '';
-
-      // final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
-      // userIdProvider.setId(id);
-      // userIdProvider.setNames(username,fullname);
-      // userIdProvider.setData(email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber);
-
       Navigator.of(context).pushNamedAndRemoveUntil(
         'login',arguments: {'username': usernameController.text},
         (Route<dynamic> route) => false,

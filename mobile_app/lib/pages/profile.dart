@@ -34,13 +34,14 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
     final userIdProvider = Provider.of<UserIdProvider>(context);
     final fullname = userIdProvider.fullname;
     final username = userIdProvider.username;
-    //final dob = userIdProvider.dob;
+    final dob = userIdProvider.dob;
     final email = userIdProvider.email;
     final address = userIdProvider.address;
     final gender = userIdProvider.gender;
     final bloodType = userIdProvider.bloodType;
     final emergencyNumber = userIdProvider.emergencyNumber;
     final identityNumber = userIdProvider.identityNumber;
+    final martialStatus = userIdProvider.maritalStatus;
 
     return Scaffold(
       appBar: AppBar(
@@ -154,7 +155,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Date of birth',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: _dob),
+                        controller: TextEditingController(text: dob),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -233,7 +234,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Martial Status',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: _maritalStatus),
+                        controller: TextEditingController(text: martialStatus),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -262,18 +263,18 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => EditProfilePage(
-                            fullName: _fullName,
-                            email: _email,
-                            address: _address,
-                            username: _userName,
-                            dob: _dob,
-                            gender: _gender,
-                            emergencyContactNumber: _emergencyContactNumber,
+                            fullName: fullname,
+                            email: email,
+                            address: address,
+                            username: username,
+                            dob: dob,
+                            gender: gender,
+                            emergencyContactNumber: emergencyNumber,
                             profileImage: _image,
-                            bloodType: _bloodType,
+                            bloodType: bloodType,
                             chronicDisease: _chronicDisease,
-                            identityNumber: _identityNumber,
-                            maritalStatus: _maritalStatus,
+                            identityNumber: identityNumber,
+                            maritalStatus: martialStatus,
                             allergies: _allergies),
                       ),
                     );

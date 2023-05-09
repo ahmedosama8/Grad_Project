@@ -5,18 +5,18 @@ import 'dart:io';
 import 'package:intl/intl.dart';
 
 class EditProfilePage extends StatefulWidget {
-  final String fullName;
-  final String email;
-  final String gender;
-  final String dob;
-  final String username;
-  final String address;
-  final String emergencyContactNumber;
-  final String identityNumber;
-  final String bloodType;
-  final String chronicDisease;
-  final String maritalStatus;
-  final String allergies;
+  final String? fullName;
+  final String? email;
+  final String? gender;
+  final String? dob;
+  final String? username;
+  final String? address;
+  final String? emergencyContactNumber;
+  final String? identityNumber;
+  final String? bloodType;
+  final String? chronicDisease;
+  final String? maritalStatus;
+  final String? allergies;
   final File? profileImage;
 
   EditProfilePage({

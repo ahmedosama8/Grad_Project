@@ -50,11 +50,15 @@ class _LoginState extends State<Login> {
       final String emergencyNumber = responseData['phone2'] ?? '';
       final String address = responseData['city'] ?? '';
       final String identityNumber = responseData['nationalIdNumber'] ?? '';
+      final String dob = responseData['birthDate'] ?? '';
+      final String maritalStatus = responseData['street'] ?? '';
+
+
 
       final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
       userIdProvider.setId(id);
       userIdProvider.setNames(username,fullname);
-      userIdProvider.setData(email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber);
+      userIdProvider.setData(dob,email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber,maritalStatus);
 
       Navigator.of(context).pushNamedAndRemoveUntil(
         'home',arguments: {'username': usernameController.text},
@@ -63,12 +67,13 @@ class _LoginState extends State<Login> {
 
       // Navigator.pushReplacementNamed(context, 'home',
       //     arguments: {'username': usernameController.text});
-      print('dosh');
+      print(maritalStatus);
       print(id);
       print(username);
       print(phoneNumber);
       print(gender);
       print(fullname);
+
     } else {    
     final responseBody = response.body;
     if (responseBody.isNotEmpty) {
@@ -214,7 +219,7 @@ class _LoginState extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: GestureDetector(
-                      onTap: _loginButton,
+                      onTap:_loginButton,
                       child: Container(
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(

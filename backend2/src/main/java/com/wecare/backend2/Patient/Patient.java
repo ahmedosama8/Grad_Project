@@ -96,10 +96,10 @@ public class Patient {
     private String LastName;
     @Nullable
     private LocalDate birthDate;
-    @Nullable
-    @OneToMany(mappedBy = "patient")
-    @JsonIgnore
-    private List<Diagnosis> diagnoses;
+//    @Nullable
+//    @OneToMany(mappedBy = "patient")
+//    @JsonIgnore
+//    private List<Diagnosis> diagnoses;
 
     @Nullable
     @ManyToMany(mappedBy = "patients")
@@ -131,7 +131,7 @@ public class Patient {
                 ", MiddleName='" + MiddleName + '\'' +
                 ", LastName='" + LastName + '\'' +
                 ", birthDate=" + birthDate +
-                ", diagnoses=" + diagnoses +
+//                ", diagnoses=" + diagnoses +
                 ", doctors=" + doctors +
                 ", nationalIdNumber='" + nationalIdNumber + '\'' +
                 ", city='" + city + '\'' +
@@ -265,19 +265,19 @@ public class Patient {
         this.birthDate = birthDate;
     }
 
-    public List<Diagnosis> getDiagnoses() {
-        return diagnoses;
-    }
-
-    public void setDiagnoses(List<Diagnosis> diagnoses) {
-        this.diagnoses = diagnoses;
-    }
-
-    public void updateDiagnoses(Diagnosis diagnosis){
-        List<Diagnosis> current = this.getDiagnoses();
-        current.add(diagnosis);
-        this.setDiagnoses(current);
-    }
+//    public List<Diagnosis> getDiagnoses() {
+//        return diagnoses;
+//    }
+//
+//    public void setDiagnoses(List<Diagnosis> diagnoses) {
+//        this.diagnoses = diagnoses;
+//    }
+//
+//    public void updateDiagnoses(Diagnosis diagnosis){
+//        List<Diagnosis> current = this.getDiagnoses();
+//        current.add(diagnosis);
+//        this.setDiagnoses(current);
+//    }
 
     public String getNationalIdNumber() {
         return nationalIdNumber;
@@ -411,7 +411,7 @@ public class Patient {
         this.doctors = doctors;
     }
 
-    public Patient(int patient_id, String username, String password, String gender, String phone1, String phone2, String mail, String image, String bloodType, List<Appointment> appointments, List<Allergy> allergies, List<MedicalCondition> medicalConditions, List<CBC> CBCTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests, int age, String firstName, String middleName, String lastName, LocalDate birthDate, List<Diagnosis> diagnoses, Set<Doctor> doctors, String nationalIdNumber, String city, String street, boolean maritalStatus) {
+    public Patient(int patient_id, String username, String password, String gender, String phone1, String phone2, String mail, String image, String bloodType, List<Appointment> appointments, List<Allergy> allergies, List<MedicalCondition> medicalConditions, List<CBC> CBCTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests, int age, String firstName, String middleName, String lastName, LocalDate birthDate, Set<Doctor> doctors, String nationalIdNumber, String city, String street, boolean maritalStatus) {
         this.patient_id = patient_id;
         this.username = username;
         this.password = password;
@@ -434,7 +434,7 @@ public class Patient {
         MiddleName = middleName;
         LastName = lastName;
         this.birthDate = birthDate;
-        this.diagnoses = diagnoses;
+//        this.diagnoses = diagnoses;
         this.doctors = doctors;
         this.nationalIdNumber = nationalIdNumber;
         this.city = city;

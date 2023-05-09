@@ -46,10 +46,10 @@ public class Doctor {
     @Nullable
     private String name;
 
-    @Nullable
-    @OneToMany(mappedBy = "doctor")
-    @JsonIgnore
-    private List<Diagnosis> diagnoses;
+//    @Nullable
+//    @OneToMany(mappedBy = "doctor")
+//    @JsonIgnore
+//    private List<Diagnosis> diagnoses;
 
     @Nullable
     private String city;
@@ -118,13 +118,13 @@ public class Doctor {
         this.name = name;
     }
 
-    public List<Diagnosis> getDiagnoses() {
-        return diagnoses;
-    }
-
-    public void setDiagnoses(List<Diagnosis> diagnoses) {
-        this.diagnoses = diagnoses;
-    }
+//    public List<Diagnosis> getDiagnoses() {
+//        return diagnoses;
+//    }
+//
+//    public void setDiagnoses(List<Diagnosis> diagnoses) {
+//        this.diagnoses = diagnoses;
+//    }
 
     public String getCity() {
         return city;
@@ -201,7 +201,7 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(int doctor_id, List<Appointment> appointments, String gender, String phone1, Set<Patient> patients, String mail, String name, List<Diagnosis> diagnoses, String city, String street, List<CBC> cbcTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests) {
+    public Doctor(int doctor_id, List<Appointment> appointments, String gender, String phone1, Set<Patient> patients, String mail, String name, String city, String street, List<CBC> cbcTests, List<Glucose> glucoseTests, List<LipidProfile> lipidProfileTests, List<LiverFunc> liverFuncTests, List<UrineTest> urineTests) {
         this.doctor_id = doctor_id;
         this.appointments = appointments;
         this.gender = gender;
@@ -209,7 +209,6 @@ public class Doctor {
         this.patients = patients;
         this.mail = mail;
         this.name = name;
-        this.diagnoses = diagnoses;
         this.city = city;
         this.street = street;
         this.cbcTests = cbcTests;

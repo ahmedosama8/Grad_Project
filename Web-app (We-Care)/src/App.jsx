@@ -22,6 +22,11 @@ import UrineExamTest from "./Lab/UrineExamTest";
 import NewPatient from "./Lab/NewPatient";
 import WholeTest from "./Lab/WholeTest";
 import PatientInfo from "./patientInfo";
+import LipidProfileResult from "./Lab/WholeTests/LipidProfileResult";
+import UrinetestResult from "./Lab/WholeTests/UrinetestResult";
+import CbcTestResult from "./Lab/WholeTests/CbcTestResult";
+import LiverTestResult from "./Lab/WholeTests/LiverTestResult";
+import GlucoseTestResult from "./Lab/WholeTests/GlucoseTestResult";
 function App() {
   return (
     <Router>
@@ -45,10 +50,12 @@ function App() {
             path="/allpatientspage/patientresultpage"
             element={<PatientResultPage />}
           />
-          <Route
-            path="/selected-row/:id"
-            element={<WholeTest />}
-          />
+          <Route path="/selected-row/:id" element={<WholeTest />} />
+          <Route path="/cbc-page/:id" element={<CbcTestResult />} />
+          <Route path="/glucose-page/:id" element={<GlucoseTestResult />} />
+          <Route path="/lipid-profile-page/:id" element={<LipidProfileResult />} />
+          <Route path="/liver-page/:id" element={<LiverTestResult />} />
+          <Route path="/urine-page/:id" element={<UrinetestResult />} />
 
           {/* Routes for radiology center */}
 
@@ -60,7 +67,7 @@ function App() {
           <Route path="/clinichome" element={<Clinic />} />
           <Route path="/addpatient" element={<PatientClinic />} />
           {/*Route for the patient  */}
-          <Route path ="/patient-info/:id" element ={<PatientInfo/>}/>
+          <Route path="/patient-info/:id" element={<PatientInfo />} />
         </Routes>
       </div>
     </Router>

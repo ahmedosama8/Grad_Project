@@ -6,16 +6,33 @@ import "./CBCTest.css";
 // function MouseOver(event) {
 //   event.target.style.background = "red";
 // }
+const cbcData = [
+  { name: "Haemoglobin", value: "12", unit: "g/dL", range: "13-17" },
+  { name: "Hematocrit", value: "12", unit: "%", range: "40-50" },
+  { name: "Red Cell Count", value: "12", unit: "x10⁶ /uL", range: "4.5-6.2" },
+  { name: "MCV", value: "12", unit: "fL", range: "78-96" },
+  { name: "MCH", value: "12", unit: "pg", range: "26-32" },
+  { name: "MCHC", value: "12", unit: "g/dL", range: "31-36" },
+  { name: "RDW", value: "12", unit: "%", range: "11.5-14.5" },
+  { name: "Platelet Count", value: "12", unit: "x10³/uL", range: "150-450" },
+  { name: "T.L.C", value: "12", unit: "x10³/uL", range: "4-11" },
+  { name: "Basophils", value: "12", unit: "%", range: "0-1" },
+  { name: "Eosinophils", value: "12", unit: "%", range: "0-6" },
+  { name: "Stab", value: "12", unit: "%", range: "0-7" },
+  { name: "Segmented", value: "12", unit: "%", range: "40-75" },
+  { name: "Lymphocytes", value: "12", unit: "%", range: "20-45" },
+  { name: "Monocytes", value: "12", unit: "%", range: "1-10" },
+];
 
 function CBCTest() {
   const [posts, setPosts] = useState([]);
   return (
     <div>
       <Topbar />
-      <Sidebar />
+      <Sidebar />ؤ
       <div
         className="App container"
-        style={{ position: "relative",top:"50px", width: 1000 }}
+        style={{ position: "relative", top: "50px", width: 1000 }}
       >
         <h3>Patient Demoghraphics</h3>
         <form noValidate>
@@ -34,12 +51,7 @@ function CBCTest() {
               <label htmlFor="email">Patient's ID</label>
               <p className="patientdata">HOSP-12345</p>
             </div>
-            <div className="col md-6">
-              <label htmlFor="email">Examination Date</label>
-              <p className="patientdata">3/2/2022</p>
-            </div>
           </div>
-
           <h3>CBC Test</h3>
           <div className="row mb-3">
             <h6 className="col md-3"> </h6>
@@ -48,199 +60,21 @@ function CBCTest() {
             <h6 className="col md-3">Ref.Range</h6>
           </div>
           <div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Haemoglobin</label>
+            {cbcData.map((item) => (
+              <div className="row mb-3">
+                <div className="col-md-3">
+                  <label>{item.name}</label>
+                </div>
+                <input
+                  className="form-control col md-3 boxentry"
+                  type="number"
+                  noValidate
+                />
+                <label className="col md-3">{item.unit}</label>
+                <label className="col md-3">{item.range}</label>
+                {item.name === "T.L.C" && <h4>Differential Count</h4>}
               </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">g/dL</label>
-              <label className="col md-3">13 - 17</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Hematocrit</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">%</label>
-              <label className="col md-3">40-50</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Red Cell Count</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">x10⁶ /uL</label>
-              <label className="col md-3">4.5 - 6.2</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>MCV</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">fL</label>
-              <label className="col md-3">78 - 96</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>MCV</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">fL</label>
-              <label className="col md-3">78 - 96</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>MCH</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">pg</label>
-              <label className="col md-3">26 - 32</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>MCHC</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">g/dL</label>
-              <label className="col md-3">31 - 36</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>RDW</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">% </label>
-              <label className="col md-3">11.5 - 14.5</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Platelet Count</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">x10³/uL</label>
-              <label className="col md-3">150 - 450</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>T.L.C</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">x10³/uL</label>
-              <label className="col md-3">4 - 11</label>
-            </div>
-            <h4>Differential Count</h4>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Basophils</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">%</label>
-              <label className="col md-3">0-1</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Eosinophils</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">%</label>
-              <label className="col md-3">0-6</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Stab</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">%</label>
-              <label className="col md-3">0-7</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Segmented</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">%</label>
-              <label className="col md-3">40-75</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Lymphocytes</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">%</label>
-              <label className="col md-3">20 - 45</label>
-            </div>
-            <div className="row mb-3">
-              <div className="col-md-3">
-                <label>Monocytes</label>
-              </div>
-              <input
-                className="form-control col md-3 boxentry"
-                type="number"
-                noValidate
-              />
-              <label className="col md-3">%</label>
-              <label className="col md-3">1-10</label>
-            </div>
+            ))}
           </div>
 
           <div>

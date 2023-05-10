@@ -71,7 +71,6 @@ const columns = [
           size="small"
           color="secondary"
           style={{ color: "#00000098" }}
-
         >
           View
         </Button>

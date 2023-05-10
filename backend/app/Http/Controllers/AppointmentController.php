@@ -18,20 +18,9 @@ class AppointmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, string $id, string $pid)
+    public function store(Request $request)
     {
-        $appointment = Appointments::updateOrCreate([
-            'patient_id' => $pid,
-            'entity_id' => $id,
-            'appointment_date' => $request->get('appointment_date'),
-            'appointment_type' => $request->get('appointment_type'),
-            'appointment_status' => $request->get('appointment_status'),
-            'referral' => $request->get('referral'),
-            'price' => $request->get('price'),
-            'diagnoses' => $request->get('diagnoses'),
-            'notes' => $request->get('notes'),
-            'payment_method' => $request->get('payment_method'),
-        ]);
+        $appointment = Appointments::updateOrCreate($request->all());
         return response()->json($appointment, 201);
     }
 

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Appointments extends Model
 {
@@ -35,5 +37,10 @@ class Appointments extends Model
 
     public function entity(): BelongsTo{
         return $this->belongsTo(HealthcareEntity::class, 'entity_id');
+    }
+
+    public function cbc(): HasOne
+    {
+        return $this->hasOne(cbc::class, 'appointment_id');
     }
 }

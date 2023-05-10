@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\HealthcareEntityController;
 use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\CbcController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,16 @@ use App\Http\Controllers\AppointmentController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+
+Route::get('/cbc/{id}', [CbcController::class, 'show']);
+Route::post('/cbc/new', [CbcController::class, 'store']);
+Route::put('/cbc/{id}', [CbcController::class, 'update']);
+Route::get('/cbc/patient/{id}', [CbcController::class, 'get_patient_cbc']);
+Route::get('/cbc/entity/{id}', [CbcController::class, 'get_entity_cbc']);
+Route::get('/cbc/entity/{id}/patient/{pid}', [CbcController::class, 'get_patient_entity_cbc']);
+Route::get('/cbc/list', [CbcController::class, 'index']);
+
+
 
 Route::get('/entity/{id}', [HealthcareEntityController::class, 'show']);
 Route::post('/entity/new', [HealthcareEntityController::class, 'store']);

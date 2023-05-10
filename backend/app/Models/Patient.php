@@ -32,4 +32,9 @@ class Patient extends Model
     {
         return $this->hasMany(Appointments::class, 'patient_id');
     }
+
+    public function cbc(): HasMany
+    {
+        return $this->hasMany(cbc::class, 'patient_id');
+    }
 }

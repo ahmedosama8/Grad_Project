@@ -30,7 +30,7 @@ class LiverTestpage extends StatelessWidget {
                       ListTile(
                         leading: CircleAvatar(
                             backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text('Lab Name : ${liver['labName']}'),
+                        title: Text(liver['labName'] ?? ''),
                       ),
                     ],
                   ),

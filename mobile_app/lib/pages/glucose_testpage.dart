@@ -30,7 +30,7 @@ class GluTestpage extends StatelessWidget {
                       ListTile(
                         leading: CircleAvatar(
                             backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text('Lab Name : ${glucose['labName']}'),
+                        title: Text(glucose['labName'] ?? ''),
                       ),
                     ],
                   ),

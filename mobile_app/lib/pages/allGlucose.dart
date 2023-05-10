@@ -80,7 +80,7 @@ class _allGlucoseState extends State<allGlucose> {
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text('CBC test'),
+                          Text('Glucose test'),
                           Text(
                             glucose['examination_Date'] ?? '',
                             style:

@@ -30,7 +30,7 @@ class UriTestpage extends StatelessWidget {
                       ListTile(
                         leading: CircleAvatar(
                             backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text('Lab Name : ${urine['labName']}'),
+                        title: Text(urine['labName'] ?? ''),
                       ),
                     ],
                   ),

@@ -30,7 +30,7 @@ class LipTestpage extends StatelessWidget {
                       ListTile(
                         leading: CircleAvatar(
                             backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text('Lab name:  ${lipid['labName']}'),
+                        title: Text(lipid['labName'] ?? ''),
                       ),
                     ],
                   ),

@@ -30,7 +30,7 @@ class CbcTestpage extends StatelessWidget {
                       ListTile(
                         leading: CircleAvatar(
                             backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text('Lab name: ${cbc['labName']}'),
+                        title: Text(cbc['labName'] ?? ''),
                       ),
                     ],
                   ),

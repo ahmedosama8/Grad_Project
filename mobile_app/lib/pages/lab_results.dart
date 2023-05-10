@@ -45,7 +45,7 @@ class _lab_resultsState extends State<lab_results> {
                 ),
                 elevation: 0,
                 child: ListTile(
-                  title: Text('Cbc Test menu'),
+                  title: Text('Cbc Tests'),
                   leading: SizedBox(
                     width: 50,
                     height: 50,
@@ -66,7 +66,7 @@ class _lab_resultsState extends State<lab_results> {
                 ),
                 elevation: 0,
                 child: ListTile(
-                  title: Text('Glucose Test menu'),
+                  title: Text('Glucose Tests'),
                   leading: SizedBox(
                     width: 50,
                     height: 50,
@@ -87,7 +87,7 @@ class _lab_resultsState extends State<lab_results> {
                 ),
                 elevation: 0,
                 child: ListTile(
-                  title: Text('Urine Test menu'),
+                  title: Text('Urine Tests'),
                   leading: SizedBox(
                     width: 50,
                     height: 50,
@@ -108,7 +108,7 @@ class _lab_resultsState extends State<lab_results> {
                 ),
                 elevation: 0,
                 child: ListTile(
-                  title: Text('Lipid profile Test menu'),
+                  title: Text('Lipid profile Tests'),
                   leading: SizedBox(
                     width: 50,
                     height: 50,
@@ -129,7 +129,7 @@ class _lab_resultsState extends State<lab_results> {
                 ),
                 elevation: 0,
                 child: ListTile(
-                  title: Text('Liver function Test menu'),
+                  title: Text('Liver function Tests'),
                   leading: SizedBox(
                     width: 50,
                     height: 50,

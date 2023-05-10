@@ -554,6 +554,28 @@
       "monocytes": "2",
       "comments": "hello",
       "id": 113
+    },
+    {
+      "labname": "dosh",
+      "alt": "6",
+      "ast": "65",
+      "alb": "66",
+      "dbil": "6",
+      "tbil": "6",
+      "alp": "6",
+      "comments": "kosomen habib",
+      "id": 114
+    },
+    {
+      "labname": "dosh",
+      "alt": "6",
+      "ast": "65",
+      "alb": "66",
+      "dbil": "6",
+      "tbil": "6",
+      "alp": "6",
+      "comments": "kosomen abuelshakh\n",
+      "id": 115
     }
   ],
   "patientLabTests": [
@@ -729,6 +751,28 @@
       "pus_Cells": 0,
       "casts": "string",
       "others": "string"
+    },
+    {
+      "labname": "dosh",
+      "epithelial cells": "j",
+      "color": "am",
+      "clarity": "jcjd",
+      "specific gravity": "jo",
+      "ph": "jo",
+      "protein": "kojj",
+      "glucose": "ojj",
+      "ketone": "o",
+      "urobilinogen": "jo",
+      "bilirubin": "j",
+      "nitrite": "o",
+      "pus cells": "oj",
+      "red cells": "o",
+      "amorphous": "oj",
+      "crystals": "o",
+      "casts": "oj",
+      "others": "joj",
+      "comments": "o",
+      "id": 1
     }
   ],
   "CBCTest": [
@@ -773,6 +817,26 @@
       "lymphocytes": 0,
       "monocytes": 0,
       "comments": "string"
+    },
+    {
+      "labname": "dosh",
+      "haemoglobin": "8",
+      "hematocrit": "8",
+      "red cell count": "8",
+      "mcv": "8",
+      "mch": "8",
+      "mchc": "8",
+      "rdw": "8",
+      "platelet count": "8",
+      "t.l.c": "8",
+      "basophils": "8",
+      "eosinophils": "8",
+      "stab": "8",
+      "segmented": "8",
+      "lymphocytes": "8",
+      "monocytes": "8",
+      "comments": "abuelbony",
+      "id": 2
     }
   ],
   "Livertest": [
@@ -843,6 +907,18 @@
       "ldl_C": 10,
       "triglycerides": 0,
       "id": 1
+    },
+    {
+      "labname": "dosh",
+      "alt (sgpt), serum": "99",
+      "ast (sgot), serum": "9",
+      "albumin, serum": "9",
+      "cholestrol total, serum": "9",
+      "hdl-c, serum": "9",
+      "ldl-c, serum": "9",
+      "triglycerides, serum": "9",
+      "comments": "hello tez el zartara",
+      "id": 2
     }
   ]
 }

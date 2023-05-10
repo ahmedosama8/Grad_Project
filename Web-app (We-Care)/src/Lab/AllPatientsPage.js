@@ -141,6 +141,7 @@ export default function AllPatientsPage() {
     async function fetchRows() {
       const response = await fetch("http://localhost:8080/patient/list");
       const data = await response.json();
+      console.log(data,"zeby")
       setRows(data);
     }
     fetchRows();

@@ -33,7 +33,7 @@ const UrineTestPaper = () => {
   return (
     <Paper className="paperstyle" sx={{ p: 2 }}>
       <Typography variant="h2" sx={paperStyle}>
-        <h2>Glucose Test</h2>
+        <h2>Urine Test</h2>
       </Typography>
       <Grid container spacing={3}>
         <Grid className="gridtest" item xs={12}>

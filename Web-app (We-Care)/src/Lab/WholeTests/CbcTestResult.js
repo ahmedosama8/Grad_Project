@@ -28,7 +28,7 @@ const CbcTestResult = () => {
   }, []);
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:3001/CBCTest/${id}`);
+    const res = await axios.get(`http://localhost:8080/CBC/${id}/new`);
     setSingleTest(res.data);
     console.log("cbc data", res);
   };

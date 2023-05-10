@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Topbar from "../Topbar/Topbar";
 import Sidebar from "../Sidebar/Sidebar";
 import "./CBCTest.css";
+import axios from "axios";
 
 // function MouseOver(event) {
 //   event.target.style.background = "red";
@@ -25,7 +26,29 @@ const cbcData = [
 ];
 
 function CBCTest() {
-  const [posts, setPosts] = useState([]);
+  const [formData, setFormData] = useState({ labname: "dosh" });
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post(`http://localhost:8080/CBC/new`, formData)
+      .then((response) => {
+        console.log("Data posted:", response.data);
+        // Do something with the response, e.g. show a success message
+      })
+      .catch((error) => {
+        console.error("Error posting data:", error);
+        // Handle the error, e.g. show an error message
+      });
+  };
+
+  const handleChange = (event) => {
+    const fieldName = event.target.name.toLowerCase();
+    setFormData({
+      ...formData,
+      [fieldName]: event.target.value,
+    });
+  };
   return (
     <div>
       <Topbar />
@@ -35,7 +58,7 @@ function CBCTest() {
         style={{ position: "relative", top: "50px", width: 1000 }}
       >
         <h3>Patient Demoghraphics</h3>
-        <form noValidate>
+        <form onSubmit={handleSubmit} noValidate>
           <div className="row mb-3">
             <div className="col-md-6">
               <label htmlFor="firstName">First Name</label>
@@ -61,14 +84,16 @@ function CBCTest() {
           </div>
           <div>
             {cbcData.map((item) => (
-              <div className="row mb-3">
+              <div className="row mb-3" key={item.name.toLowerCase()}>
                 <div className="col-md-3">
                   <label>{item.name}</label>
                 </div>
                 <input
                   className="form-control col md-3 boxentry"
                   type="number"
-                  noValidate
+                  name={item.name.toLowerCase()}
+                  value={formData[item.name.toLowerCase()] || ""}
+                  onChange={handleChange}
                 />
                 <label className="col md-3">{item.unit}</label>
                 <label className="col md-3">{item.range}</label>
@@ -83,6 +108,8 @@ function CBCTest() {
               className="commentbtn"
               id="comments"
               name="comments"
+              value={formData.comments || ""}
+              onChange={handleChange}
               placeholder="Write Comments.."
             ></textarea>
           </div>

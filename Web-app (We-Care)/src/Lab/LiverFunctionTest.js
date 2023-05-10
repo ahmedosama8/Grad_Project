@@ -5,36 +5,33 @@ import "./CBCTest.css";
 import axios from "axios";
 
 const liverData = [
-  { name: "ALT", value: "12", unit: "U/L", range: "10 - 130" },
-  { name: "AST", value: "12", unit: "U/L", range: "10 - 34" },
+  { name: "ALT", unit: "U/L", range: "10 - 130" },
+  { name: "AST", unit: "U/L", range: "10 - 34" },
   {
     name: "ALB",
-    value: "12",
     unit: "g/dL",
-    range: "3.4 - 5.4"
+    range: "3.4 - 5.4",
   },
   {
     name: "DBIL",
-    value: "12",
     unit: "mg/dL",
-    range: "0 - 0.3"
+    range: "0 - 0.3",
   },
   {
     name: "TBIL",
-    value: "12",
     unit: "mg/dL",
-    range: "0.1 - 1.2"
+    range: "0.1 - 1.2",
   },
-  { name: "ALP", value: "12", unit: "U/L", range: "24 - 147" },
+  { name: "ALP", unit: "U/L", range: "24 - 147" },
 ];
 function LiverTest() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({labname:"dosh"});
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
       .post("http://localhost:3001/medicalLabTests", formData)
-      .then((response) => { 
+      .then((response) => {
         console.log("Data posted:", response.data);
         // Do something with the response, e.g. show a success message
       })
@@ -45,9 +42,10 @@ function LiverTest() {
   };
 
   const handleChange = (event) => {
+    const fieldName = event.target.name.toLowerCase();
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value,
+      [fieldName]: event.target.value,
     });
   };
 
@@ -69,18 +67,16 @@ function LiverTest() {
             <h6 className="col md-3">Ref.Range</h6>
           </div>
           {liverData.map((item) => (
-            <div className="row mb-3" key={item.name}>
+            <div className="row mb-3" key={item.name.toLowerCase()}>
               <div className="col-md-3">
-                <label htmlFor={item.name}>{item.name}</label>
+                <label>{item.name}</label>
               </div>
               <input
                 className="form-control col md-3 boxentry"
                 type="number"
-                id={item.name}
-                name={item.name}
-                value={formData[item.name] || ""}
+                name={item.name.toLowerCase()}
+                value={formData[item.name.toLowerCase()] || ""}
                 onChange={handleChange}
-                noValidate
               />
               <label className="col md-3">{item.unit}</label>
               <label className="col md-3">{item.range}</label>

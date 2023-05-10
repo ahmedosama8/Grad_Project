@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Sidebar from "../Sidebar/Sidebar";
 import Topbar from "../Topbar/Topbar";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import axios from "axios";
 
@@ -72,10 +72,12 @@ function TestResultsTable({}) {
   const [urinetests, setUrineTests] = useState([]);
   const [glucosetests, setGlucoseTests] = useState([]);
   const [backendcbc, setCBCBackend] = useState([]);
+  const { id } = useParams();
+
 
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch("http://localhost:3001/CBCTest");
+      const response = await fetch(`http://localhost:8080/CBC/patient/${id}`);
       const data = await response.json();
       setcbcTests(data);
     }
@@ -83,7 +85,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch("http://localhost:3001/Livertest");
+      const response = await fetch(`http://localhost:8080/LiverFunc/patient/${id}`);
       const data = await response.json();
       setLiverTests(data);
     }
@@ -91,7 +93,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch("http://localhost:3001/Urinetest");
+      const response = await fetch(`http://localhost:8080/UrineTest/patient/${id}`);
       const data = await response.json();
       setUrineTests(data);
     }
@@ -99,7 +101,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch("http://localhost:3001/Glucosetest");
+      const response = await fetch(`http://localhost:8080/Glucose/patient/${id}`);
       const data = await response.json();
       setGlucoseTests(data);
     }
@@ -107,7 +109,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch("http://localhost:3001/LipidTest");
+      const response = await fetch(`http://localhost:8080/LipidProfile/patient/${id}`);
       const data = await response.json();
       setLipidTests(data);
     }
@@ -144,13 +146,13 @@ function TestResultsTable({}) {
           </thead>
           <tbody>
             {cbctests?.map((test) => (
-              <tr key={test.id}>
+              <tr key={test.cbc_id}>
                 <td>CBC Test</td>
                 <td>{test.labName}</td>
                 <td>{test.examination_Date}</td>
                 <td>{test.comments}</td>
                 <td>
-                  <Link to={`/cbc-page/${test.id}`}>
+                  <Link to={`/cbc-page/${test.cbc_id}`}>
                     <button className="btn btn-edit">View</button>
                   </Link>
                 </td>

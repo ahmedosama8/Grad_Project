@@ -35,19 +35,19 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           {/* Routes for lab page */}
           <Route path="/labhome" element={<Lab />} />
-          <Route path="/cbctest" element={<CBCTest />} />
-          <Route path="/glucosetest" element={<GlucoseTest />} />
-          <Route path="/livertest" element={<LiverTest />} />
-          <Route path="/urinetest" element={<UrineExamTest />} />
+          <Route path="/cbctest/:id" element={<CBCTest />} />
+          <Route path="/glucosetest/:id" element={<GlucoseTest />} />
+          <Route path="/livertest/:id" element={<LiverTest />} />
+          <Route path="/urinetest/:id" element={<UrineExamTest />} />
           <Route
-            path="/clinicalchemistry"
+            path="/clinicalchemistry/:id"
             element={<ClinicalChemistryTest />}
           />
           <Route path="/newpatient" element={<NewPatient />} />
           <Route path="/patientspage" element={<PatitentsPage />} />
           <Route path="/allpatientspage" element={<AllPatientsPage />} />
           <Route
-            path="/allpatientspage/patientresultpage"
+            path="/allpatientspage/patientresultpage/:id"
             element={<PatientResultPage />}
           />
           <Route path="/selected-row/:id" element={<WholeTest />} />

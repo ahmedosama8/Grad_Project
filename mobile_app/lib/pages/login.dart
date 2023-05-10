@@ -52,16 +52,19 @@ class _LoginState extends State<Login> {
       final String identityNumber = responseData['nationalIdNumber'] ?? '';
       final String dob = responseData['birthDate'] ?? '';
       final String maritalStatus = responseData['street'] ?? '';
+      final List chronicDisease = responseData['medicalConditions'] ?? '';
+      //final List allergies = responseData[''] ?? '';
+      //final List chronicDisease = responseData['medicalConditions'] ?? '';
 
 
 
       final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
       userIdProvider.setId(id);
       userIdProvider.setNames(username,fullname);
-      userIdProvider.setData(dob,email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber,maritalStatus);
+      userIdProvider.setData(dob,email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber,maritalStatus,chronicDisease);
 
       Navigator.of(context).pushNamedAndRemoveUntil(
-        'home',arguments: {'username': usernameController.text},
+        'home',arguments: {'username': usernameController.text}, 
         (Route<dynamic> route) => false,
       );
 

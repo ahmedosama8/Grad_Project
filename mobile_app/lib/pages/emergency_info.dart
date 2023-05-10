@@ -1,17 +1,25 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+import 'package:mobile_app/api/user.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:mobile_app/colors.dart';
-import 'package:mobile_app/pages/home.dart';
 // ignore: unused_import
 import 'package:multiselect_formfield/multiselect_formfield.dart';
-import 'package:mobile_app/pages/welcome_page.dart';
 
 class EmergencyInfoPage extends StatefulWidget {
-  const EmergencyInfoPage({super.key});
+  final String username;
+  final String name;
+  final String email;
+  final String phone;
+  final String password;
+
+  EmergencyInfoPage({required this.username,required this.name,required this.email,required this.phone,required this.password});
 
   @override
   State<EmergencyInfoPage> createState() => _EmergencyInfoPage();
@@ -51,7 +59,14 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
   List? selectedDiseases;
   late String selectedDiseasesResult;
   late String selectedAllergyResult;
-  final formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  final emergencyController = TextEditingController();
+  final identityNumberController = TextEditingController();
+  final addressController = TextEditingController();
+  final date = TextEditingController();
+  TextEditingController dateinput = TextEditingController();
+
+
 
   //List<Map<String, String>> chronicDiseaseItems = ;
 
@@ -65,21 +80,67 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
     }
   }
 
-  void signUpButton() {
-    var form = formKey.currentState!;
-    if (form.validate()) {
-      form.save();
-      setState(() {
+Future<void> _register(String username,String name,String email,String phone,String password) async {
+    if (_formKey.currentState!.validate()) {
         selectedDiseasesResult = selectedDiseases.toString();
         selectedAllergyResult = selectedAllergy.toString();
         print(selectedDiseasesResult);
         print(selectedAllergyResult);
         print(selectedGender);
-      });
-Navigator.of(context).pushNamedAndRemoveUntil(
-  'home',
-  (Route<dynamic> route) => false,
-);
+    final url = Uri.parse('http://10.0.2.2:8080/patient/new');
+    final response = await http.post(
+      url,
+      headers: {
+    'Content-Type': 'application/json',},
+      body:  json.encode( {
+        'username': username,
+        'password': password,
+        'Phone1':phone,
+        'firstName':name,
+        'mail':email,
+        'gender':selectedGender,
+        'street':selectedStatus,
+        'city':addressController.text,
+        'nationalIdNumber':identityNumberController.text,
+        'phone2':emergencyController.text,
+        'bloodType':selectedBlood,
+        'birthDate':dateinput.text,
+        //'medicalConditions':selectedDiseasesResult
+      },)
+    );
+
+    // Handle the API response here
+    if (response.statusCode == 201) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        'login',arguments: {'username': username},
+        (Route<dynamic> route) => false,
+      );
+    } else {    
+    final responseBody = response.body;
+    if (responseBody.isNotEmpty) {
+      try {
+        final responseData = json.decode(responseBody);
+        final errorMessage = responseData['error'] ?? 'Something went wrong!';
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text('Error'),
+            content: Text(errorMessage),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } catch (e) {
+        print('Error parsing response: $e');
+      }
+    } else {
+      print('Empty response body');
+    }
+    }    
     }
   }
 
@@ -87,7 +148,6 @@ Navigator.of(context).pushNamedAndRemoveUntil(
     Navigator.of(context).pushReplacementNamed('login');
   }
 
-  TextEditingController dateinput = TextEditingController();
   //text editing controller for text field
 
   @override
@@ -97,7 +157,14 @@ Navigator.of(context).pushNamedAndRemoveUntil(
     selectedDiseases = [];
     selectedDiseasesResult = ''; //set the initial value of text field
   }
-
+    @override
+  void dispose() {
+    emergencyController.dispose();
+    addressController.dispose();
+    identityNumberController.dispose();
+    super.dispose();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +173,7 @@ Navigator.of(context).pushNamedAndRemoveUntil(
         child: Center(
           child: SingleChildScrollView(
             child: Form(
-              key: formKey,
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -144,8 +211,51 @@ Navigator.of(context).pushNamedAndRemoveUntil(
                   // Date Text field
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
-                      child:
-                          DatePickerField(labelText: 'Enter your birth date')),
+                      child: Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: primary),
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.white,
+        //borderRadius: BorderRadius.circular(12),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter a date';
+            }
+            return null;
+          },
+          controller: dateinput,
+          decoration: InputDecoration(
+            icon: Icon(Icons.calendar_month_outlined),
+            labelText: 'Enter your birth date',
+            border: InputBorder.none,
+          ),
+          readOnly: true,
+          onTap: () async {
+            DateTime? pickedDate = await showDatePicker(
+              context: context,
+              initialDate: DateTime(1930),
+              firstDate: DateTime(1930),
+              lastDate: DateTime.now(),
+            );
+
+            if (pickedDate != null) {
+              String formattedDate =
+                  DateFormat('yyyy-MM-dd').format(pickedDate);
+              setState(() {
+                dateinput.text = formattedDate;
+              });
+            } else {
+              print("Date is not selected");
+            }
+          },
+        ),
+      ),
+    )
+                          ),
                   //dateBox(context),
                   SizedBox(
                     height: 10,
@@ -165,7 +275,18 @@ Navigator.of(context).pushNamedAndRemoveUntil(
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: TextField(
+                        child: TextFormField(
+                          validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please write your identity number';
+                        } else if (value.length != 14) {
+                          return "Write a true identity number";
+                        } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                          return 'identity number must contain only digits';
+                        }
+                        return null;
+                      },
+                          controller: identityNumberController,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               border: InputBorder.none,
@@ -188,7 +309,14 @@ Navigator.of(context).pushNamedAndRemoveUntil(
                           borderRadius: BorderRadius.circular(12)),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: TextField(
+                        child: TextFormField(
+                           validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please write your address';
+                        }
+                        return null;
+                      },
+                          controller: addressController,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               border: InputBorder.none,
@@ -215,6 +343,12 @@ Navigator.of(context).pushNamedAndRemoveUntil(
                           child: SizedBox(
                             width: double.infinity,
                             child: DropdownButtonFormField(
+                              validator: (value) {
+                                if (value==null || value.isEmpty){
+                                  return 'Please select your blood type';
+
+                                }
+                              },
                               decoration: InputDecoration(
                                   icon: Icon(Icons.bloodtype_rounded),
                                   border: InputBorder.none),
@@ -238,7 +372,7 @@ Navigator.of(context).pushNamedAndRemoveUntil(
                   SizedBox(
                     height: 10,
                   ),
-                  //Blood type text field
+                  //disease text field
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
@@ -325,6 +459,7 @@ Navigator.of(context).pushNamedAndRemoveUntil(
                   SizedBox(
                     height: 10,
                   ),
+                  //allergy text
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
@@ -386,7 +521,7 @@ Navigator.of(context).pushNamedAndRemoveUntil(
                   SizedBox(
                     height: 10,
                   ),
-                  //Blood type text field
+                  //martal status text field
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
@@ -399,6 +534,12 @@ Navigator.of(context).pushNamedAndRemoveUntil(
                           child: SizedBox(
                             width: double.infinity,
                             child: DropdownButtonFormField(
+                               validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please choose your status';
+                        }
+                        return null;
+                      },
                               decoration: InputDecoration(
                                   icon: Icon(Icons.people_alt),
                                   border: InputBorder.none),
@@ -426,7 +567,8 @@ Navigator.of(context).pushNamedAndRemoveUntil(
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: GestureDetector(
-                      onTap: signUpButton,
+                      onTap:(){ _register(widget.username,widget.name,widget.email,widget.phone,widget.password);
+                      },
                       child: Container(
                         padding: EdgeInsets.all(16),
                         decoration: BoxDecoration(
@@ -450,7 +592,7 @@ Navigator.of(context).pushNamedAndRemoveUntil(
 
                   // sign up text
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Text('You can skip this stage by pressing sign up ',
+                    Text('Please fill your real data for your safety',
                         style: GoogleFonts.robotoCondensed(
                             fontWeight: FontWeight.bold)),
                   ])
@@ -473,7 +615,14 @@ Navigator.of(context).pushNamedAndRemoveUntil(
             borderRadius: BorderRadius.circular(12)),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: TextField(
+          child: TextFormField(
+             validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please write your emergency';
+                        }
+                        return null;
+                      },
+            controller: emergencyController,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
                 border: InputBorder.none,
@@ -524,69 +673,3 @@ Navigator.of(context).pushNamedAndRemoveUntil(
   }
 }
 
-class DatePickerField extends StatefulWidget {
-  final String labelText;
-
-  const DatePickerField({Key? key, required this.labelText}) : super(key: key);
-
-  @override
-  _DatePickerFieldState createState() => _DatePickerFieldState();
-}
-
-class _DatePickerFieldState extends State<DatePickerField> {
-  final dateinput = TextEditingController();
-
-  @override
-  void dispose() {
-    dateinput.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: primary),
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
-        //borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: TextFormField(
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter a date';
-            }
-            return null;
-          },
-          controller: dateinput,
-          decoration: InputDecoration(
-            icon: Icon(Icons.calendar_month_outlined),
-            labelText: widget.labelText,
-            border: InputBorder.none,
-          ),
-          readOnly: true,
-          onTap: () async {
-            DateTime? pickedDate = await showDatePicker(
-              context: context,
-              initialDate: DateTime(1930),
-              firstDate: DateTime(1930),
-              lastDate: DateTime.now(),
-            );
-
-            if (pickedDate != null) {
-              String formattedDate =
-                  DateFormat('yyyy-MM-dd').format(pickedDate);
-              setState(() {
-                dateinput.text = formattedDate;
-              });
-            } else {
-              print("Date is not selected");
-            }
-          },
-        ),
-      ),
-    );
-  }
-}

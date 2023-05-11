@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('marital_status')->nullable();
             $table->string('national_id_number')->nullable();
             $table->longText('address')->nullable();
+            $table->json('allergies')->nullable();
+            $table->json('chronic')->nullable();
             $table->timestamps();
         });
     }

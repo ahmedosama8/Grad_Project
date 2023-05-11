@@ -23,6 +23,7 @@ class Appointments extends Model
         'appointment_date',
         'appointment_type',
         'appointment_status',
+        'diagnoses',
         'referral',
         'price',
         'diagnoses',
@@ -67,6 +68,11 @@ class Appointments extends Model
     public function urinetest(): HasOne
     {
         return $this->hasOne(urinetest::class, 'appointment_id');
+    }
+
+    public function doctorvisit(): HasOne
+    {
+        return $this->hasOne(doctorvisit::class, 'appointment_id');
     }
 
 }

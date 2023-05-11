@@ -39,7 +39,9 @@ class HealthcareEntityController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $entity = HealthcareEntity::find($id);
+        $entity->fill($request->all());
+        return response()->json($entity, 200);
     }
 
     /**

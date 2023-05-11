@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('CBC', function (Blueprint $table) {
+        Schema::create('urinetests', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->nullable();
             $table->foreignId('entity_id')->nullable();
@@ -42,6 +42,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('CBC');
+        Schema::dropIfExists('urinetests');
     }
 };

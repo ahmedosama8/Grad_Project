@@ -13,7 +13,7 @@ COPY . .
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod 664 /var/www/html/composer.json
 
-EXPOSE 8000
+EXPOSE 8080
 
 
 CMD ["php-fpm"]

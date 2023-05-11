@@ -10,6 +10,7 @@
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "maatwebsite/excel": "^1.1",
         "rakutentech/laravel-request-docs": "^2.16"
     },
     "require-dev": {

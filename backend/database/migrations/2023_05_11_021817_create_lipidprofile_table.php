@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lipidprofile', function (Blueprint $table) {
+        Schema::create('lipidprofiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->nullable();
             $table->foreignId('doctor_id')->nullable();
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lipidprofile');
+        Schema::dropIfExists('lipidprofiles');
     }
 };

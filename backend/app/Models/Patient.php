@@ -5,10 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Patient extends Model
 {
     use HasFactory;
+
+    protected $casts = [
+        'chronic'=>'array',
+        'allergies'=>'array'
+    ];
 
     protected $fillable = [
         'name',
@@ -62,4 +68,15 @@ class Patient extends Model
     {
         return $this->hasMany(urinetest::class, 'patient_id');
     }
+
+    public function image(): HasMany
+    {
+        return $this->hasMany(image::class, 'patient_id');
+    }
+
+    public function doctorvisit(): HasMany
+    {
+        return $this->hasMany(doctorvisit::class, 'appointment_id');
+    }
+
 }

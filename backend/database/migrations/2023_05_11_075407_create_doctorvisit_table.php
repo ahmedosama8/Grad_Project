@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('radiologyreports', function (Blueprint $table) {
+        Schema::create('doctorvisits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id')->nullable();
-            $table->foreignId('doctor_id')->nullable();
             $table->foreignId('appointment_id')->nullable();
-            $table->string('name')->nullable();
-            $table->string('performer')->nullable();
-            $table->string('report')->nullable();
-            $table->string('examined_part')->nullable();
+            $table->foreignId('patient_id')->nullable();
+            $table->foreignId('entity_id')->nullable();
+            $table->json('medications')->nullable();
+            $table->json('diagnoses')->nullable();
+            $table->longText('notes')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('radiologyreports');
+        Schema::dropIfExists('doctorvisits');
     }
 };

@@ -11,6 +11,9 @@ use App\Http\Controllers\glucoseController;
 use App\Http\Controllers\liverfuncController;
 use App\Http\Controllers\urinetestController;
 use App\Http\Controllers\radiologyreportController;
+use App\Http\Controllers\diagnosisController;
+use App\Http\Controllers\imageController;
+use App\Http\Controllers\doctorvisitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,14 +72,28 @@ Route::get('/radiology/patient/{id}', [radiologyreportController::class, 'get_pa
 Route::get('/radiology/entity/{id}', [radiologyreportController::class, 'get_entity_radiology']);
 Route::get('/radiology/entity/{id}/patient/{pid}', [radiologyreportController::class, 'get_patient_entity_radiology']);
 
+Route::post('/patient/{pid}/image', [imageController::class, 'store']);
+Route::get('/patient/{pid}/image/{id}', [imageController::class, 'show']);
+
+// ERROR SEEDING, DEPRECATED PACKAGE
+Route::get('/diagnosis/list', [diagnosisController::class, 'index']);
 
 
 Route::get('/entity/{id}', [HealthcareEntityController::class, 'show']);
+Route::put('/entity/{id}', [HealthcareEntityController::class, 'update']);
 Route::post('/entity/new', [HealthcareEntityController::class, 'store']);
 Route::post('/entity/login', [HealthcareEntityController::class, 'login']);
 Route::get('/entity/{id}/patient/{pid}', [AppointmentController::class, 'show_patient_appointments']);
 Route::get('/entity/{id}/appointments', [AppointmentController::class, 'show_entity_appointments']);
 Route::get('/entity/{id}/tests', [AppointmentController::class, 'get_tests']);
+
+
+Route::get('/visit/{id}', [doctorvisitController::class, 'show']);
+Route::put('/visit/{id}', [doctorvisitController::class, 'update']);
+Route::post('/visit/new', [doctorvisitController::class, 'store']);
+Route::get('/visit/{id}/patient/{pid}', [doctorvisitController::class, 'get_patient_visit']);
+Route::get('/visit/{id}/appointments', [doctorvisitController::class, 'get_entity_visit']);
+Route::get('/visit/{id}/tests', [doctorvisitController::class, 'get_patient_entity_visit']);
 
 
 Route::get('/appointment/{id}', [AppointmentController::class, 'show']);
@@ -88,7 +105,7 @@ Route::get('/patient/{id}', [PatientController::class, 'show']);
 Route::post('/patient/new', [PatientController::class, 'store']);
 Route::put('/patient/{id}', [PatientController::class, 'update']);
 Route::post('/patient/login', [PatientController::class, 'login']);
-Route::get('/patient/id/tests', [PatientController::class, 'get_tests']);
+Route::get('/patient/{id}/tests', [PatientController::class, 'get_tests']);
 Route::get('/patient/{pid}/appointments', [AppointmentController::class, 'show_patient_history']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

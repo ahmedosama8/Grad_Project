@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class HealthcareEntity extends Model
 {
@@ -52,6 +53,11 @@ class HealthcareEntity extends Model
     public function urinetest(): HasMany
     {
         return $this->hasMany(urinetest::class, 'entity_id');
+    }
+
+    public function doctorvisit(): HasMany
+    {
+        return $this->hasMany(doctorvisit::class, 'appointment_id');
     }
 
 

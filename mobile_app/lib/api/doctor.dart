@@ -4,6 +4,7 @@ import 'package:mobile_app/configure.dart';
 
 Future<List<Doctor>> fetchDoctors() async {
   final response = await http.get(Uri.parse('${AppUrl.Base_Url}/doctor/list'));
+
   if (response.statusCode == 200) {
     final List<dynamic> data = jsonDecode(response.body);
     final List<Doctor> doctors =
@@ -36,12 +37,12 @@ class Doctor {
   factory Doctor.fromJson(Map<String, dynamic> json) {
     return Doctor(
       doctorId: json['doctor_id'],
-      gender: json['gender'],
-      phone1: json['phone1'],
-      mail: json['mail'],
-      name: json['name'],
-      city: json['city'],
-      street: json['street'],
+      gender: json['gender'] ?? '',
+      phone1: json['phone1'] ?? '',
+      mail: json['mail'] ?? '',
+      name: json['name'] ?? '',
+      city: json['city'] ?? '',
+      street: json['street'] ?? '',
     );
   }
 }

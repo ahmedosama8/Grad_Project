@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\cbc;
+use App\Models\glucose;
+use App\Models\lipidprofile;
+use App\Models\liverfunc;
 use App\Models\Patient;
+use App\Models\urinetest;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -64,5 +69,15 @@ class PatientController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function get_tests(string $id)
+    {
+        $cbc = cbc::where('patient_id', $id)->get();
+        $lipids = lipidprofile::where('patient_id', $id)->get();
+        $liver = liverfunc::where('patient_id', $id)->get();
+        $urine = urinetest::where('patient_id', $id)->get();
+        $glucose = glucose::where('patient_id', $id)->get();
+        return response()->json([$cbc, $lipids, $liver, $urine, $glucose], 200);
     }
 }

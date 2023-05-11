@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointments;
+use App\Models\cbc;
+use App\Models\glucose;
+use App\Models\lipidprofile;
+use App\Models\liverfunc;
+use App\Models\urinetest;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -65,6 +70,16 @@ class AppointmentController extends Controller
     public function show_patient_history(string $pid)
     {
         return response()->json(Appointments::where('patient_id', $pid)->get());
+    }
+
+    public function get_tests(string $id)
+    {
+        $cbc = cbc::where('entity_id', $id)->get();
+        $lipids = lipidprofile::where('entity_id', $id)->get();
+        $liver = liverfunc::where('entity_id', $id)->get();
+        $urine = urinetest::where('entity_id', $id)->get();
+        $glucose = glucose::where('entity_id', $id)->get();
+        return response()->json([$cbc, $lipids, $liver, $urine, $glucose], 200);
     }
 
 }

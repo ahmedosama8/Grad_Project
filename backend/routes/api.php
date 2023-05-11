@@ -76,6 +76,7 @@ Route::post('/entity/new', [HealthcareEntityController::class, 'store']);
 Route::post('/entity/login', [HealthcareEntityController::class, 'login']);
 Route::get('/entity/{id}/patient/{pid}', [AppointmentController::class, 'show_patient_appointments']);
 Route::get('/entity/{id}/appointments', [AppointmentController::class, 'show_entity_appointments']);
+Route::get('/entity/{id}/tests', [AppointmentController::class, 'get_tests']);
 
 
 Route::get('/appointment/{id}', [AppointmentController::class, 'show']);
@@ -87,6 +88,7 @@ Route::get('/patient/{id}', [PatientController::class, 'show']);
 Route::post('/patient/new', [PatientController::class, 'store']);
 Route::put('/patient/{id}', [PatientController::class, 'update']);
 Route::post('/patient/login', [PatientController::class, 'login']);
+Route::get('/patient/id/tests', [PatientController::class, 'get_tests']);
 Route::get('/patient/{pid}/appointments', [AppointmentController::class, 'show_patient_history']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

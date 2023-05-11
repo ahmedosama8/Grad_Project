@@ -30,23 +30,7 @@ public class DoctorResource {
         this.doctorRepo = doctorRepo;
     }
 
-    @GetMapping("/list")
-    public List<Doctor> list(){
-        return doctorRepo.findAll();
-    }
 
-    @GetMapping("/{id}")
-    public EntityModel<Doctor> show(@PathVariable int id) throws Exception {
-        Optional<Doctor> doctor = doctorRepo.findById(id);
-        if(doctor.isEmpty()){
-            throw new Exception("id");
-        }
-        EntityModel<Doctor> entityModel = EntityModel.of(doctor.get());
-        WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).list());
-        entityModel.add(link.withRel("all-doctors"));
-
-        return entityModel;
-    }
 
     @GetMapping("/{id}/patients")
     public ResponseEntity<Set<Patient>> getPatients(@PathVariable int id){
@@ -74,12 +58,5 @@ public class DoctorResource {
 
     }
 
-    @PostMapping("/new")
-    public ResponseEntity<Doctor> create(@RequestBody Doctor doctor){
-        Doctor newDoctor = doctorRepo.save(doctor);
-        String id = String.valueOf(newDoctor.getDoctor_id());
-        URI loc = URI.create("/"+id);
-        return ResponseEntity.created(loc).build();
-    }
 
 }

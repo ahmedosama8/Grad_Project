@@ -1,13 +1,12 @@
 package com.wecare.backend2.Appointment;
 
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wecare.backend2.Doctor.Doctor;
 import com.wecare.backend2.Patient.Patient;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Appointment {
@@ -35,6 +34,11 @@ public class Appointment {
     @Nullable
     private String appointmentNotes;
 
+
+    @Nullable
+    @ElementCollection
+    private List<String> diagnoses;
+
     @Nullable
     private String price;
 
@@ -50,7 +54,7 @@ public class Appointment {
     @Nullable
     private String referral;
 
-    public Appointment(Long appointmentId, Patient patient, Doctor doctor, LocalDate appointmentDate, String appointmentType, String appointmentStatus, String appointmentNotes, String price, String paymentMethod, String discountPrice, String procedure, String referral) {
+    public Appointment(Long appointmentId, Patient patient, Doctor doctor, LocalDate appointmentDate, String appointmentType, String appointmentStatus, String appointmentNotes, List<String> diagnoses, String price, String paymentMethod, String discountPrice, String procedure, String referral) {
         AppointmentId = appointmentId;
         this.patient = patient;
         this.doctor = doctor;
@@ -58,6 +62,7 @@ public class Appointment {
         this.appointmentType = appointmentType;
         this.appointmentStatus = appointmentStatus;
         this.appointmentNotes = appointmentNotes;
+        this.diagnoses = diagnoses;
         this.price = price;
         this.paymentMethod = paymentMethod;
         this.discountPrice = discountPrice;
@@ -72,6 +77,14 @@ public class Appointment {
         return AppointmentId;
     }
 
+
+    public List<String> getDiagnoses() {
+        return diagnoses;
+    }
+
+    public void setDiagnoses(List<String> diagnoses) {
+        this.diagnoses = diagnoses;
+    }
 
     public Patient getPatient() {
         return patient;

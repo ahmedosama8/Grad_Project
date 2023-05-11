@@ -48,7 +48,6 @@ public class Patient {
 
     @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<Appointment> appointments = new ArrayList<>();
 
 
@@ -60,27 +59,27 @@ public class Patient {
     @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MedicalCondition> medicalConditions = new ArrayList<>();
-    
+
     @Nullable
     @OneToMany(mappedBy = "patient")
     @JsonIgnore
     private List<CBC> CBCTests = new ArrayList<>();
-    
+
     @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Glucose> GlucoseTests = new ArrayList<>();
-    
+
     @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<LipidProfile> LipidProfileTests = new ArrayList<>();
-    
+
     @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<LiverFunc> LiverFuncTests = new ArrayList<>();
-    
+
     @Nullable
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore

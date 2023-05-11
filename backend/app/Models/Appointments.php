@@ -43,4 +43,30 @@ class Appointments extends Model
     {
         return $this->hasOne(cbc::class, 'appointment_id');
     }
+
+    public function lipidprofile(): HasOne
+    {
+        return $this->hasOne(lipidprofile::class, 'appointment_id');
+    }
+
+    public function glucose(): HasOne
+    {
+        return $this->hasOne(glucose::class, 'appointment_id');
+    }
+
+    public function liverfunc(): HasOne
+    {
+        return $this->hasOne(liverfunc::class, 'appointment_id');
+    }
+
+    public function radiologyreport(): HasOne
+    {
+        return $this->hasOne(radiologyreport::class, 'appointment_id');
+    }
+
+    public function urinetest(): HasOne
+    {
+        return $this->hasOne(urinetest::class, 'appointment_id');
+    }
+
 }

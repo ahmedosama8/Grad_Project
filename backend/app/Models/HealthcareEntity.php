@@ -29,4 +29,30 @@ class HealthcareEntity extends Model
         return $this->hasMany(cbc::class, 'entity_id');
     }
 
+    public function lipidprofile(): HasMany
+    {
+        return $this->hasMany(lipidprofile::class, 'entity_id');
+    }
+
+    public function glucose(): HasMany
+    {
+        return $this->hasMany(glucose::class, 'entity_id');
+    }
+
+    public function liverfunc(): HasMany
+    {
+        return $this->hasMany(liverfunc::class, 'entity_id');
+    }
+
+    public function radiologyreport(): HasMany
+    {
+        return $this->hasMany(radiologyreport::class, 'entity_id');
+    }
+
+    public function urinetest(): HasMany
+    {
+        return $this->hasMany(urinetest::class, 'entity_id');
+    }
+
+
 }

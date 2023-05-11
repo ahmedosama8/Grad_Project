@@ -95,7 +95,7 @@ Future<void> _register(String username,String name,String email,String phone,Str
       body:  json.encode( {
         'username': username,
         'password': password,
-        'Phone1':phone,
+        'phone1':phone,
         'firstName':name,
         'mail':email,
         'gender':selectedGender,

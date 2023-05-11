@@ -36,6 +36,7 @@ class _SignUpState extends State<SignUp> {
                     builder: (context) => EmergencyInfoPage(username: usernameController.text,name: nameController.text,email: emailController.text,password: passwordController.text,phone: phoneNumberController.text),
                   ),
                   );
+                  print(phoneNumberController.text);
                   
   }
   }

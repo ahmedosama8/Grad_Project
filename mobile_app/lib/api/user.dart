@@ -54,7 +54,7 @@ class UserIdProvider with ChangeNotifier {
    String phoneNumber,
    String maritalStatus,
    //List allergies,
-   List chronicDisease
+   //List chronicDisease
    ) 
    
    {
@@ -68,7 +68,7 @@ class UserIdProvider with ChangeNotifier {
     _phoneNumber = phoneNumber;
     _maritalStatus = maritalStatus;
     //_allergies = allergies;
-    _chronicDisease = chronicDisease; 
+    //_chronicDisease = chronicDisease; 
     notifyListeners();
   }
 }

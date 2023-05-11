@@ -87,7 +87,7 @@ Future<void> _register(String username,String name,String email,String phone,Str
         print(selectedDiseasesResult);
         print(selectedAllergyResult);
         print(selectedGender);
-    final url = Uri.parse('http://10.0.2.2:8080/patient/new');
+    final url = Uri.parse('http://10.0.2.2:8080/api/patient/new');
     final response = await http.post(
       url,
       headers: {
@@ -95,16 +95,16 @@ Future<void> _register(String username,String name,String email,String phone,Str
       body:  json.encode( {
         'username': username,
         'password': password,
-        'phone1':phone,
-        'firstName':name,
-        'mail':email,
+        'phone':phone,
+        'name':name,
+        'email':email,
         'gender':selectedGender,
-        'street':selectedStatus,
-        'city':addressController.text,
-        'nationalIdNumber':identityNumberController.text,
-        'phone2':emergencyController.text,
-        'bloodType':selectedBlood,
-        'birthDate':dateinput.text,
+        'marital_status':selectedStatus,
+        'address':addressController.text,
+        'national_id_number':identityNumberController.text,
+        'emergency_contact':emergencyController.text,
+        'blood_type':selectedBlood,
+        'birth_date':dateinput.text,
         //'medicalConditions':selectedDiseasesResult
       },)
     );

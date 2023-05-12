@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('dbil')->nullable();
             $table->string('tbil')->nullable();
             $table->string('alp')->nullable();
+            $table->longText('comments')->nullable();
             $table->timestamps();
         });
     }

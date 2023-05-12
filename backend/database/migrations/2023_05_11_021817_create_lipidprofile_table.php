@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('hdl_c')->nullable();
             $table->string('ldl_c')->nullable();
             $table->string('triglycerides')->nullable();
+            $table->longText('comments')->nullable();
             $table->timestamps();
         });
     }

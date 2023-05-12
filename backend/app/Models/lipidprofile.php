@@ -20,7 +20,8 @@ class lipidprofile extends Model
         'cholesterol',
         'hdl_c',
         'ldl_c',
-        'triglycerides'
+        'triglycerides',
+        'comments'
     ];
 
     public function patient(): BelongsTo

@@ -18,8 +18,9 @@ return new class extends Migration
             $table->foreignId('appointment_id')->nullable();
             $table->string('name')->nullable();
             $table->string('performer')->nullable();
-            $table->string('report')->nullable();
+            $table->longText('report')->nullable();
             $table->string('examined_part')->nullable();
+            $table->longText('comments')->nullable();
             $table->timestamps();
         });
     }

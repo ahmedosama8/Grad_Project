@@ -19,7 +19,8 @@ class liverfunc extends Model
         'alb',
         'dbil',
         'tbil',
-        'alp'
+        'alp',
+        'comments'
     ];
 
     public function appointments(): BelongsTo

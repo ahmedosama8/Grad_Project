@@ -15,7 +15,8 @@ class glucose extends Model
         'entity_id',
         'appointment_id',
         'rbc',
-        'rbs'
+        'rbs',
+        'comments'
     ];
 
     public function patient(): BelongsTo

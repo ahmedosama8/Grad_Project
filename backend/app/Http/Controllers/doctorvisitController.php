@@ -20,14 +20,13 @@ class doctorvisitController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->get('medications'));
         $visit = doctorvisit::create([
             'appointment_id'=>$request->get('appointment_id'),
             'patient_id'=>$request->get('patient_id'),
             'entity_id'=>$request->get('entity_id'),
-            'diagnoses'=>$request->get('diagnoses'),
-            'medications'=>$request->get('medications'),
-            'notes'=>$request->get('medications')
+            'diagnoses'=>json_encode($request->get('diagnoses')),
+            'medications'=>json_encode($request->get('medications')),
+            'comments'=>$request->get('comments')
         ]);
 //        $visit = doctorvisit::updateOrCreate($request->all());
         return response()->json($visit, 201);
@@ -46,9 +45,12 @@ class doctorvisitController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $visits = doctorvisit::where('id', $id)->
         $visit = doctorvisit::find($id);
-        $visit->fill($request->all())->save();
+        $visit->fill([
+            'diagnoses'=>json_encode($request->get('diagnoses'), JSON_UNESCAPED_SLASHES),
+            'medications'=>json_encode($request->get('medications'), JSON_UNESCAPED_SLASHES),
+            'comments'=>$request->get('notes')
+        ])->save();
         return response()->json($visit, 200);
     }
 

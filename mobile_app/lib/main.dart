@@ -26,7 +26,7 @@ void main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-   runApp(
+  runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserIdProvider()),
@@ -48,12 +48,12 @@ class MyApp extends StatelessWidget {
           primarySwatch: primary,
         ),
 
-        //home: const WelcomePage(), 
+        //home: const WelcomePage(),
         //initialRoute: '/auth',
 
         routes: {
           '/': (context) => const AppScreen(),
-          'login': (context) =>  Login(),
+          'login': (context) => Login(),
           'signup': (context) => SignUp(),
           'home': (context) => WelcomePage(),
           //'emrsignup': (context) => EmergencyInfoPage(),

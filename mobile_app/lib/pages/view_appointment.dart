@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/configure.dart';
 import 'package:provider/provider.dart';
 
 class AppointmentDetailsPage extends StatefulWidget {
@@ -13,17 +14,39 @@ class AppointmentDetailsPage extends StatefulWidget {
 }
 
 class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
-  List<dynamic> appointments = [];
+  List<dynamic> appointmentdetails = [];
 
   Future<void> fetchData() async {
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-    final response = await http.get(Uri.parse('http://10.0.2.2:8080/appointment/patient/$userId'));
+    final response = await http.get(
+        Uri.parse('http://10.0.2.2:8080/api/patient/$userId/appointments'));
     if (response.statusCode == 200) {
+      final List<dynamic> appointmentJsondetails = jsonDecode(response.body);
+      final List<Map<String, dynamic>> appointmentdetails = [];
+      for (final aptJson in appointmentJsondetails) {
+        appointmentdetails.add(Map<String, dynamic>.from(aptJson));
+// Fetch entity by ID and update the glucoseList with the entity name
+        final entityData = await fetcEntityById(aptJson['entity_id']);
+        final entityName = entityData['name'];
+
+        appointmentdetails.last['entityName'] = entityName;
+      }
       setState(() {
-        appointments = json.decode(response.body);
+        this.appointmentdetails = appointmentdetails;
       });
     } else {
-      print('Failed to fetch data');
+      throw Exception('Failed to fetch data');
+    }
+  }
+
+  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
+    final response =
+        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = jsonDecode(response.body);
+      return data;
+    } else {
+      throw Exception('Failed to fetch doctor');
     }
   }
 
@@ -40,19 +63,19 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
         title: Text('Appointment Details'),
         backgroundColor: primary,
       ),
-      body: appointments.isEmpty
+      body: appointmentdetails.isEmpty
           ? Center(child: CircularProgressIndicator())
           : ListView.builder(
-              itemCount: appointments.length,
+              itemCount: appointmentdetails.length,
               itemBuilder: (context, index) {
-                final appointment = appointments[index];
-                final doctorName = appointment['doctor']['name'];
-                final appointmentDate = appointment['appointmentDate'];
-                final appointmentType = appointment['appointmentType'];
-                final appointmentStatus = appointment['appointmentStatus'];
-                final appointmentNotes = appointment['appointmentNotes'];
+                final appointment = appointmentdetails[index];
+                final doctorName = appointment['entityName'] ?? '';
+                final appointmentDate = appointment['appointment_date'] ?? '';
+                final appointmentType = appointment['appointment_type'] ?? '';
+                final appointmentStatus =
+                    appointment['appointment_status'] ?? '';
 
-                return  Padding(
+                return Padding(
                   padding: EdgeInsets.all(16.0),
                   child: DataTable(
                     columnSpacing: 16.0,
@@ -63,7 +86,7 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
                     rows: [
                       DataRow(
                         cells: [
-                          DataCell(Text('Doctor')),
+                          DataCell(Text('Doctor Name')),
                           DataCell(Text(doctorName)),
                         ],
                       ),
@@ -83,12 +106,6 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
                         cells: [
                           DataCell(Text('Appointment Status')),
                           DataCell(Text(appointmentStatus)),
-                        ],
-                      ),
-                      DataRow(
-                        cells: [
-                          DataCell(Text('Appointment Notes')),
-                          DataCell(Text(appointmentNotes ?? 'N/A')),
                         ],
                       ),
                     ],

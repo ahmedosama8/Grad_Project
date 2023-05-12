@@ -19,7 +19,6 @@ class allGlucose extends StatefulWidget {
 
 class _allGlucoseState extends State<allGlucose> {
   List<dynamic> glucoseList = [];
-  String entityName = '';
 
   @override
   void initState() {
@@ -35,9 +34,15 @@ class _allGlucoseState extends State<allGlucose> {
     if (response.statusCode == 200) {
       final List<dynamic> glucoseJsonList = jsonDecode(response.body);
       final List<Map<String, dynamic>> glucoseList = [];
+
       for (final glucoseJson in glucoseJsonList) {
         glucoseList.add(Map<String, dynamic>.from(glucoseJson));
-        fetcEntityById(glucoseJson['entity_id']);
+
+        // Fetch entity by ID and update the glucoseList with the entity name
+        final entityData = await fetcEntityById(glucoseJson['entity_id']);
+        final entityName = entityData['name'];
+
+        glucoseList.last['entityName'] = entityName;
       }
       setState(() {
         this.glucoseList = glucoseList;
@@ -47,14 +52,14 @@ class _allGlucoseState extends State<allGlucose> {
     }
   }
 
-  Future<void> fetcEntityById(int entityId) async {
+  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
     final response =
         await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = jsonDecode(response.body);
-      entityName = data['name'];
+      return data;
     } else {
-      throw Exception('Failed to fetch doctor');
+      throw Exception('Failed to fetch entity');
     }
   }
 
@@ -76,8 +81,7 @@ class _allGlucoseState extends State<allGlucose> {
               itemCount: glucoseList.length,
               itemBuilder: (context, index) {
                 final glucose = glucoseList[index];
-                String dateTimeString = glucose['updated_at'];
-
+                String dateTimeString = glucose['created_at'];
                 DateTime dateTime = DateTime.parse(dateTimeString);
                 String date = DateFormat("yyyy-MM-dd").format(dateTime);
                 return Padding(
@@ -107,7 +111,7 @@ class _allGlucoseState extends State<allGlucose> {
                           ),
                         ],
                       ),
-                      subtitle: Text(entityName),
+                      subtitle: Text(glucose['entityName']),
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

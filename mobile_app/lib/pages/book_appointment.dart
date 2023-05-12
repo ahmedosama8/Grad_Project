@@ -35,7 +35,7 @@ class _BookappointState extends State<Bookappoint> {
   Future<void> createAppointment(
       String appointmentDate, String appointmentType, int userId) async {
     final Uri apiUrl = Uri.parse(
-        '${AppUrl.Base_Url}/appointment/$userId/new?lab=${selectedfacility?.doctorId}');
+        '${AppUrl.Base_Url}/appointment/$userId/${selectedfacility?.doctorId}');
 
     final Map<String, String> headers = {
       'Content-Type': 'application/json',

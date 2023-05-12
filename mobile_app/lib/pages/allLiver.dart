@@ -19,7 +19,6 @@ class allLiver extends StatefulWidget {
 
 class _allLiverState extends State<allLiver> {
   List<dynamic> liverList = [];
-  String entityName = '';
 
   @override
   void initState() {
@@ -28,14 +27,14 @@ class _allLiverState extends State<allLiver> {
     fetchLiverList(userId);
   }
 
-  Future<void> fetcEntityById(int entityId) async {
+  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
     final response =
         await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = jsonDecode(response.body);
-      entityName = data['name'];
+      return data;
     } else {
-      throw Exception('Failed to fetch doctor');
+      throw Exception('Failed to fetch entity');
     }
   }
 
@@ -48,6 +47,11 @@ class _allLiverState extends State<allLiver> {
       final List<Map<String, dynamic>> liverList = [];
       for (final liverJson in liverJsonList) {
         liverList.add(Map<String, dynamic>.from(liverJson));
+        // Fetch entity by ID and update the glucoseList with the entity name
+        final entityData = await fetcEntityById(liverJson['entity_id'] ?? 0);
+        final entityName = entityData['name'];
+
+        liverList.last['entityName'] = entityName;
       }
       setState(() {
         this.liverList = liverList;
@@ -105,7 +109,7 @@ class _allLiverState extends State<allLiver> {
                         ),
                       ],
                     ),
-                    subtitle: Text(entityName),
+                    subtitle: Text(liver['entityName'] ?? ''),
                     leading: CircleAvatar(
                         backgroundImage: AssetImage('assets/lab.png')),
                   ),

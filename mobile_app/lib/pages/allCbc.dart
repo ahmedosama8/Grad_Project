@@ -20,7 +20,6 @@ class allCbc extends StatefulWidget {
 
 class _allCbcState extends State<allCbc> {
   List<dynamic> cbcList = [];
-  String entityName = '';
 
   @override
   void initState() {
@@ -29,14 +28,14 @@ class _allCbcState extends State<allCbc> {
     fetchCbcList(userId);
   }
 
-  Future<void> fetcEntityById(int entityId) async {
+  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
     final response =
         await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = jsonDecode(response.body);
-      entityName = data['name'];
+      return data;
     } else {
-      throw Exception('Failed to fetch doctor');
+      throw Exception('Failed to fetch entity');
     }
   }
 
@@ -50,7 +49,9 @@ class _allCbcState extends State<allCbc> {
 
       for (final cbcJson in cbcJsonList) {
         cbcList.add(Map<String, dynamic>.from(cbcJson));
-        fetcEntityById(cbcJson['entity_id']);
+        final entityData = await fetcEntityById(cbcJson['entity_id']);
+        final entityName = entityData['name'];
+        cbcList.last['entityName'] = entityName;
       }
 
       setState(() {
@@ -113,7 +114,7 @@ class _allCbcState extends State<allCbc> {
                           ),
                         ],
                       ),
-                      subtitle: Text(entityName), //labname
+                      subtitle: Text(cbc['entityName']), //labname
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

@@ -19,7 +19,6 @@ class allLipid extends StatefulWidget {
 
 class _allLipidState extends State<allLipid> {
   List<dynamic> lipidList = [];
-  String entityName = '';
 
   @override
   void initState() {
@@ -37,7 +36,10 @@ class _allLipidState extends State<allLipid> {
       final List<Map<String, dynamic>> lipidList = [];
       for (final lipidJson in lipidJsonList) {
         lipidList.add(Map<String, dynamic>.from(lipidJson));
-        fetcEntityById(lipidJson['doctor_id']);
+
+        final entityData = await fetcEntityById(lipidJson['doctor_id']);
+        final entityName = entityData['name'];
+        lipidList.last['entityName'] = entityName;
       }
       setState(() {
         this.lipidList = lipidList;
@@ -47,14 +49,14 @@ class _allLipidState extends State<allLipid> {
     }
   }
 
-  Future<void> fetcEntityById(int entityId) async {
+  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
     final response =
         await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = jsonDecode(response.body);
-      entityName = data['name'];
+      return data;
     } else {
-      throw Exception('Failed to fetch doctor');
+      throw Exception('Failed to fetch entity');
     }
   }
 
@@ -108,7 +110,7 @@ class _allLipidState extends State<allLipid> {
                           ),
                         ],
                       ),
-                      subtitle: Text(entityName),
+                      subtitle: Text(lipid['entityName']),
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

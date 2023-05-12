@@ -19,7 +19,6 @@ class allUrine extends StatefulWidget {
 
 class _allUrineState extends State<allUrine> {
   List<dynamic> urineList = [];
-  String entityName = '';
 
   @override
   void initState() {
@@ -28,14 +27,14 @@ class _allUrineState extends State<allUrine> {
     fetchUrineList(userId);
   }
 
-  Future<void> fetcEntityById(int entityId) async {
+  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
     final response =
         await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
     if (response.statusCode == 200) {
       final Map<String, dynamic> data = jsonDecode(response.body);
-      entityName = data['name'];
+      return data;
     } else {
-      throw Exception('Failed to fetch doctor');
+      throw Exception('Failed to fetch entity');
     }
   }
 
@@ -48,7 +47,11 @@ class _allUrineState extends State<allUrine> {
       final List<Map<String, dynamic>> urineList = [];
       for (final urineJson in urineJsonList) {
         urineList.add(Map<String, dynamic>.from(urineJson));
-        fetcEntityById(urineJson['entity_id']);
+// Fetch entity by ID and update the glucoseList with the entity name
+        final entityData = await fetcEntityById(urineJson['entity_id']);
+        final entityName = entityData['name'];
+
+        urineList.last['entityName'] = entityName;
       }
       setState(() {
         this.urineList = urineList;
@@ -108,7 +111,7 @@ class _allUrineState extends State<allUrine> {
                           ),
                         ],
                       ),
-                      subtitle: Text(entityName),
+                      subtitle: Text(urine['entityName']),
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

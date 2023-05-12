@@ -48,9 +48,8 @@ class _allUrineState extends State<allUrine> {
       for (final urineJson in urineJsonList) {
         urineList.add(Map<String, dynamic>.from(urineJson));
 // Fetch entity by ID and update the glucoseList with the entity name
-        final entityData = await fetcEntityById(urineJson['entity_id']);
-        final entityName = entityData['name'];
-
+        final entityData = await fetcEntityById(urineJson['entity_id'] ?? 0);
+        final entityName = entityData['name'] ?? 'not specified';
         urineList.last['entityName'] = entityName;
       }
       setState(() {
@@ -111,7 +110,7 @@ class _allUrineState extends State<allUrine> {
                           ),
                         ],
                       ),
-                      subtitle: Text(urine['entityName']),
+                      subtitle: Text(urine['entityName'] ?? 0),
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

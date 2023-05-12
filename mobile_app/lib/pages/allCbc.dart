@@ -49,8 +49,8 @@ class _allCbcState extends State<allCbc> {
 
       for (final cbcJson in cbcJsonList) {
         cbcList.add(Map<String, dynamic>.from(cbcJson));
-        final entityData = await fetcEntityById(cbcJson['entity_id']);
-        final entityName = entityData['name'];
+        final entityData = await fetcEntityById(cbcJson['entity_id'] ?? 0);
+        final entityName = entityData['name'] ?? 'not specified';
         cbcList.last['entityName'] = entityName;
       }
 
@@ -114,7 +114,7 @@ class _allCbcState extends State<allCbc> {
                           ),
                         ],
                       ),
-                      subtitle: Text(cbc['entityName']), //labname
+                      subtitle: Text(cbc['entityName'] ?? ''), //labname
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

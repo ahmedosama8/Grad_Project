@@ -236,12 +236,12 @@ class CbcTestpage extends StatelessWidget {
                         padding: EdgeInsets.all(10.0),
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          // child: Text(
-                          //   cbc['comments'] ?? '',
-                          //   style: TextStyle(
-                          //       color: Colors.black.withOpacity(0.6),
-                          //       fontSize: 20),
-                          // ),
+                          child: Text(
+                            cbc['comments'] ?? '',
+                            style: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                                fontSize: 20),
+                          ),
                         ),
                       ),
                     ],

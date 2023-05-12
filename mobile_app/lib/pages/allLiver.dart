@@ -49,7 +49,7 @@ class _allLiverState extends State<allLiver> {
         liverList.add(Map<String, dynamic>.from(liverJson));
         // Fetch entity by ID and update the glucoseList with the entity name
         final entityData = await fetcEntityById(liverJson['entity_id'] ?? 0);
-        final entityName = entityData['name'];
+        final entityName = entityData['name'] ?? 'not specified';
 
         liverList.last['entityName'] = entityName;
       }

@@ -39,9 +39,8 @@ class _allGlucoseState extends State<allGlucose> {
         glucoseList.add(Map<String, dynamic>.from(glucoseJson));
 
         // Fetch entity by ID and update the glucoseList with the entity name
-        final entityData = await fetcEntityById(glucoseJson['entity_id']);
-        final entityName = entityData['name'];
-
+        final entityData = await fetcEntityById(glucoseJson['entity_id'] ?? 0);
+        final entityName = entityData['name'] ?? 'not specified';
         glucoseList.last['entityName'] = entityName;
       }
       setState(() {
@@ -111,7 +110,7 @@ class _allGlucoseState extends State<allGlucose> {
                           ),
                         ],
                       ),
-                      subtitle: Text(glucose['entityName']),
+                      subtitle: Text(glucose['entityName'] ?? ''),
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

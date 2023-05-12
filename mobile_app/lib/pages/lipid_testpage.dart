@@ -22,19 +22,6 @@ class LipTestpage extends StatelessWidget {
           children: [
             Column(
               children: <Widget>[
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shadowColor: Colors.greenAccent,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text(lipid['labName'] ?? ''),
-                      ),
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: 560,
                   child: Card(
@@ -96,7 +83,7 @@ class LipTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Cholestrol\nTotal\nserum'),
-                              Text(lipid['cholestrolTotal'].toString()),
+                              Text(lipid['cholesterol'].toString()),
                               Text('mg/dL'),
                               Text(
                                   'Desirable: < 200 mg/dL\nBorderline High: 200-239 mg/dl\nHigh: > or = 240 mg/dL '),
@@ -109,7 +96,7 @@ class LipTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('HDL-C\nserum'),
-                              Text(lipid['hdl_C'].toString()),
+                              Text(lipid['hdl_c'].toString()),
                               Text('mg/dL'),
                               Text(
                                   'Low HDL: < 40 mg/dL\nBorderline Low: 40-60 mg/dL\nAcceptable: > 60 mg/dL')
@@ -122,7 +109,7 @@ class LipTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('LDL-C\nserum'),
-                              Text(lipid['ldl_C'].toString()),
+                              Text(lipid['ldl_c'].toString()),
                               Text('mg/dL'),
                               Text(
                                   'Desirable: < 100 mg/dL\nAbove Desirable: 100-129 mg/dl\nBorderline High: 130-159 mg/dL\nHigh: 160-189 mg/dL\nVery High: > or =190 mg/dL')

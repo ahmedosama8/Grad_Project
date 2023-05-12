@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/pages/urine_testpage.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 import '../api/user.dart';
 import '../colors.dart';
@@ -18,6 +19,8 @@ class allUrine extends StatefulWidget {
 
 class _allUrineState extends State<allUrine> {
   List<dynamic> urineList = [];
+  String entityName = '';
+
   @override
   void initState() {
     super.initState();
@@ -25,15 +28,27 @@ class _allUrineState extends State<allUrine> {
     fetchUrineList(userId);
   }
 
+  Future<void> fetcEntityById(int entityId) async {
+    final response =
+        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = jsonDecode(response.body);
+      entityName = data['name'];
+    } else {
+      throw Exception('Failed to fetch doctor');
+    }
+  }
+
   Future<void> fetchUrineList(int patientId) async {
     final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/UrineTest/patient/$patientId'));
+        .get(Uri.parse('${AppUrl.Base_Url}/urine/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> urineJsonList = jsonDecode(response.body);
       final List<Map<String, dynamic>> urineList = [];
       for (final urineJson in urineJsonList) {
         urineList.add(Map<String, dynamic>.from(urineJson));
+        fetcEntityById(urineJson['entity_id']);
       }
       setState(() {
         this.urineList = urineList;
@@ -62,6 +77,10 @@ class _allUrineState extends State<allUrine> {
               itemCount: urineList.length,
               itemBuilder: (context, index) {
                 final urine = urineList[index];
+                String dateTimeString = urine['updated_at'];
+
+                DateTime dateTime = DateTime.parse(dateTimeString);
+                String date = DateFormat("yyyy-MM-dd").format(dateTime);
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 1.0, horizontal: 4.0),
@@ -83,13 +102,13 @@ class _allUrineState extends State<allUrine> {
                         children: [
                           Text('Urine test'),
                           Text(
-                            urine['examination_Date'] ?? '',
+                            date,
                             style:
                                 TextStyle(fontSize: 14, color: Colors.black54),
                           ),
                         ],
                       ),
-                      subtitle: Text(urine['labName'] ?? ''),
+                      subtitle: Text(entityName),
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

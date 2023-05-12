@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:mobile_app/pages/glucose_testpage.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 import '../api/user.dart';
 import '../colors.dart';
@@ -18,6 +19,8 @@ class allGlucose extends StatefulWidget {
 
 class _allGlucoseState extends State<allGlucose> {
   List<dynamic> glucoseList = [];
+  String entityName = '';
+
   @override
   void initState() {
     super.initState();
@@ -27,19 +30,31 @@ class _allGlucoseState extends State<allGlucose> {
 
   Future<void> fetchGlucoseList(int patientId) async {
     final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/Glucose/patient/$patientId'));
+        .get(Uri.parse('${AppUrl.Base_Url}/glucose/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> glucoseJsonList = jsonDecode(response.body);
       final List<Map<String, dynamic>> glucoseList = [];
       for (final glucoseJson in glucoseJsonList) {
         glucoseList.add(Map<String, dynamic>.from(glucoseJson));
+        fetcEntityById(glucoseJson['entity_id']);
       }
       setState(() {
         this.glucoseList = glucoseList;
       });
     } else {
       throw Exception('Failed to fetch glucose list');
+    }
+  }
+
+  Future<void> fetcEntityById(int entityId) async {
+    final response =
+        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = jsonDecode(response.body);
+      entityName = data['name'];
+    } else {
+      throw Exception('Failed to fetch doctor');
     }
   }
 
@@ -61,6 +76,10 @@ class _allGlucoseState extends State<allGlucose> {
               itemCount: glucoseList.length,
               itemBuilder: (context, index) {
                 final glucose = glucoseList[index];
+                String dateTimeString = glucose['updated_at'];
+
+                DateTime dateTime = DateTime.parse(dateTimeString);
+                String date = DateFormat("yyyy-MM-dd").format(dateTime);
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 1.0, horizontal: 4.0),
@@ -82,13 +101,13 @@ class _allGlucoseState extends State<allGlucose> {
                         children: [
                           Text('Glucose test'),
                           Text(
-                            glucose['examination_Date'] ?? '',
+                            date,
                             style:
                                 TextStyle(fontSize: 14, color: Colors.black54),
                           ),
                         ],
                       ),
-                      subtitle: Text(glucose['labName'] ?? ''),
+                      subtitle: Text(entityName),
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

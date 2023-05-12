@@ -6,6 +6,7 @@ import 'package:mobile_app/configure.dart';
 import 'package:mobile_app/pages/lipid_testpage.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 import '../colors.dart';
 
@@ -18,6 +19,7 @@ class allLipid extends StatefulWidget {
 
 class _allLipidState extends State<allLipid> {
   List<dynamic> lipidList = [];
+  String entityName = '';
 
   @override
   void initState() {
@@ -28,19 +30,31 @@ class _allLipidState extends State<allLipid> {
 
   Future<void> fetchLipidList(int patientId) async {
     final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/LipidProfile/patient/$patientId'));
+        .get(Uri.parse('${AppUrl.Base_Url}/lipid/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> lipidJsonList = jsonDecode(response.body);
       final List<Map<String, dynamic>> lipidList = [];
       for (final lipidJson in lipidJsonList) {
         lipidList.add(Map<String, dynamic>.from(lipidJson));
+        fetcEntityById(lipidJson['doctor_id']);
       }
       setState(() {
         this.lipidList = lipidList;
       });
     } else {
       throw Exception('Failed to fetch lipid profile list');
+    }
+  }
+
+  Future<void> fetcEntityById(int entityId) async {
+    final response =
+        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = jsonDecode(response.body);
+      entityName = data['name'];
+    } else {
+      throw Exception('Failed to fetch doctor');
     }
   }
 
@@ -63,6 +77,10 @@ class _allLipidState extends State<allLipid> {
               itemCount: lipidList.length,
               itemBuilder: (context, index) {
                 final lipid = lipidList[index];
+                String dateTimeString = lipid['updated_at'];
+
+                DateTime dateTime = DateTime.parse(dateTimeString);
+                String date = DateFormat("yyyy-MM-dd").format(dateTime);
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 1.0, horizontal: 4.0),
@@ -84,13 +102,13 @@ class _allLipidState extends State<allLipid> {
                         children: [
                           Text('Lipid profile test'),
                           Text(
-                            lipid['examination_Date'] ?? '',
+                            date,
                             style:
                                 TextStyle(fontSize: 14, color: Colors.black54),
                           ),
                         ],
                       ),
-                      subtitle: Text(lipid['labName'] ?? ''),
+                      subtitle: Text(entityName),
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

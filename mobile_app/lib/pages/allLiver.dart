@@ -6,6 +6,7 @@ import 'package:mobile_app/configure.dart';
 import 'package:mobile_app/pages/liverfun_testpage.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 import '../colors.dart';
 
@@ -18,6 +19,7 @@ class allLiver extends StatefulWidget {
 
 class _allLiverState extends State<allLiver> {
   List<dynamic> liverList = [];
+  String entityName = '';
 
   @override
   void initState() {
@@ -26,9 +28,20 @@ class _allLiverState extends State<allLiver> {
     fetchLiverList(userId);
   }
 
+  Future<void> fetcEntityById(int entityId) async {
+    final response =
+        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = jsonDecode(response.body);
+      entityName = data['name'];
+    } else {
+      throw Exception('Failed to fetch doctor');
+    }
+  }
+
   Future<void> fetchLiverList(int patientId) async {
     final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/LiverFunc/patient/$patientId'));
+        .get(Uri.parse('${AppUrl.Base_Url}/liver/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> liverJsonList = jsonDecode(response.body);
@@ -62,6 +75,10 @@ class _allLiverState extends State<allLiver> {
             itemCount: liverList.length,
             itemBuilder: (context, index) {
               final liver = liverList[index];
+              String dateTimeString = liver['updated_at'];
+
+              DateTime dateTime = DateTime.parse(dateTimeString);
+              String date = DateFormat("yyyy-MM-dd").format(dateTime);
               return Padding(
                 padding:
                     const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
@@ -83,12 +100,12 @@ class _allLiverState extends State<allLiver> {
                       children: [
                         Text('Liver function test'),
                         Text(
-                          liver['examination_Date'] ?? '',
+                          date,
                           style: TextStyle(fontSize: 14, color: Colors.black54),
                         ),
                       ],
                     ),
-                    subtitle: Text(liver['labName'] ?? ''),
+                    subtitle: Text(entityName),
                     leading: CircleAvatar(
                         backgroundImage: AssetImage('assets/lab.png')),
                   ),

@@ -43,9 +43,11 @@ class _BookappointState extends State<Bookappoint> {
     };
 
     final Map<String, dynamic> data = {
-      'appointmentDate': appointmentDate,
-      'appointmentType': appointmentType,
-      'appointmentStatus': "on going"
+      'appointment_date': appointmentDate,
+      'appointment_type': appointmentType,
+      'appointment_status': "on going",
+      'patient_id': userId,
+      'entity_id': selectedfacility?.doctorId
     };
 
     final String body = json.encode(data);

@@ -77,6 +77,9 @@ Route::get('/patient/{pid}/image/{id}', [imageController::class, 'show']);
 
 // ERROR SEEDING, DEPRECATED PACKAGE
 Route::get('/diagnosis/list', [diagnosisController::class, 'index']);
+Route::get('/patient/list',[PatientController::class,'index']);
+Route::get('/entity/list',[HealthcareEntityController::class,'index']);
+
 
 
 Route::get('/entity/{id}', [HealthcareEntityController::class, 'show']);

@@ -22,19 +22,6 @@ class CbcTestpage extends StatelessWidget {
           children: [
             Column(
               children: <Widget>[
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shadowColor: Colors.greenAccent,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text(cbc['labName'] ?? ''),
-                      ),
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: 675,
                   child: Card(
@@ -84,7 +71,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Red Cell Count'),
-                              Text(cbc['redCellCount'].toString()),
+                              Text(cbc['red_cell_count'].toString()),
                               Text('x10^6/uL'),
                               Text('4.5-6.2'),
                             ],
@@ -120,7 +107,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('MCHC'),
-                              Text(cbc['mchc'].toString()),
+                              //Text(cbc['mchc'].toString()),
                               Text('pg'),
                               Text('31-36'),
                             ],
@@ -144,7 +131,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Platelet Count'),
-                              Text(cbc['plateletCount'].toString()),
+                              Text(cbc['platelet_count'].toString()),
                               Text('%'),
                               Text('150-450'),
                             ],
@@ -249,12 +236,12 @@ class CbcTestpage extends StatelessWidget {
                         padding: EdgeInsets.all(10.0),
                         child: Align(
                           alignment: Alignment.centerLeft,
-                          child: Text(
-                            cbc['comments'] ?? '',
-                            style: TextStyle(
-                                color: Colors.black.withOpacity(0.6),
-                                fontSize: 20),
-                          ),
+                          // child: Text(
+                          //   cbc['comments'] ?? '',
+                          //   style: TextStyle(
+                          //       color: Colors.black.withOpacity(0.6),
+                          //       fontSize: 20),
+                          // ),
                         ),
                       ),
                     ],

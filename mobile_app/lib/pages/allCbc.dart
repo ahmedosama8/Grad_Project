@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:mobile_app/api/doctor.dart';
 import 'package:mobile_app/pages/cbc_testpage.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 import '../api/user.dart';
 import '../colors.dart';
@@ -18,6 +20,8 @@ class allCbc extends StatefulWidget {
 
 class _allCbcState extends State<allCbc> {
   List<dynamic> cbcList = [];
+  String entityName = '';
+
   @override
   void initState() {
     super.initState();
@@ -25,16 +29,30 @@ class _allCbcState extends State<allCbc> {
     fetchCbcList(userId);
   }
 
+  Future<void> fetcEntityById(int entityId) async {
+    final response =
+        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = jsonDecode(response.body);
+      entityName = data['name'];
+    } else {
+      throw Exception('Failed to fetch doctor');
+    }
+  }
+
   Future<void> fetchCbcList(int patientId) async {
     final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/CBC/patient/$patientId'));
+        await http.get(Uri.parse('${AppUrl.Base_Url}/cbc/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> cbcJsonList = jsonDecode(response.body);
       final List<Map<String, dynamic>> cbcList = [];
+
       for (final cbcJson in cbcJsonList) {
         cbcList.add(Map<String, dynamic>.from(cbcJson));
+        fetcEntityById(cbcJson['entity_id']);
       }
+
       setState(() {
         this.cbcList = cbcList;
       });
@@ -54,6 +72,9 @@ class _allCbcState extends State<allCbc> {
           elevation: 10,
         ),
         body: Column(children: [
+          SizedBox(
+            height: 20,
+          ),
           SingleChildScrollView(
             child: ListView.builder(
               shrinkWrap: true,
@@ -61,6 +82,10 @@ class _allCbcState extends State<allCbc> {
               itemCount: cbcList.length,
               itemBuilder: (context, index) {
                 final cbc = cbcList[index];
+                String dateTimeString = cbc['updated_at'];
+
+                DateTime dateTime = DateTime.parse(dateTimeString);
+                String date = DateFormat("yyyy-MM-dd").format(dateTime);
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 1.0, horizontal: 4.0),
@@ -82,13 +107,13 @@ class _allCbcState extends State<allCbc> {
                         children: [
                           Text('CBC test'),
                           Text(
-                            cbc['examination_Date'] ?? '',
+                            date,
                             style:
                                 TextStyle(fontSize: 14, color: Colors.black54),
                           ),
                         ],
                       ),
-                      subtitle: Text(cbc['labName'] ?? ''),
+                      subtitle: Text(entityName), //labname
                       leading: CircleAvatar(
                           backgroundImage: AssetImage('assets/lab.png')),
                     ),

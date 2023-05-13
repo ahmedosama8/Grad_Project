@@ -74,6 +74,30 @@ class rad_report extends StatelessWidget {
                     ],
                   ),
                 ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shadowColor: Colors.greenAccent,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.note),
+                        title: Text('Comments'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            scans['comments'] ?? 'no comments',
+                            style: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                                fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ],

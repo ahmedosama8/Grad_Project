@@ -94,9 +94,9 @@ Route::get('/entity/{id}/tests', [AppointmentController::class, 'get_tests']);
 Route::get('/visit/{id}', [doctorvisitController::class, 'show']);
 Route::put('/visit/{id}', [doctorvisitController::class, 'update']);
 Route::post('/visit/new', [doctorvisitController::class, 'store']);
-Route::get('/visit/{id}/patient/{pid}', [doctorvisitController::class, 'get_patient_visit']);
-Route::get('/visit/{id}/appointments', [doctorvisitController::class, 'get_entity_visit']);
-Route::get('/visit/{id}/tests', [doctorvisitController::class, 'get_patient_entity_visit']);
+Route::get('/visit/patient/{pid}', [doctorvisitController::class, 'get_patient_visit']);
+Route::get('/visit/entity/{id}', [doctorvisitController::class, 'get_entity_visit']);
+Route::get('/visit/{id}/{pid}', [doctorvisitController::class, 'get_patient_entity_visit']);
 
 
 Route::get('/appointment/{id}', [AppointmentController::class, 'show']);
@@ -113,6 +113,7 @@ Route::get('/patient/{id}/tests', [PatientController::class, 'get_tests']);
 Route::get('/patient/{pid}/appointments', [AppointmentController::class, 'show_patient_history']);
 Route::get('/patient/{pid}/diagnoses', [doctorvisitController::class, 'get_patient_diagnoses']);
 Route::get('/patient/{pid}/medications', [doctorvisitController::class, 'get_patient_medications']);
+Route::get('/patient/{pid}/visits', [doctorvisitController::class, 'get_patient_visits']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

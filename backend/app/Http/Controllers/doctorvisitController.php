@@ -99,7 +99,7 @@ class doctorvisitController extends Controller
             $medications[] = $visit->medications;
         }
         return response()->json($medications, 200);
-
     }
+
 
 }

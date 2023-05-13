@@ -22,19 +22,6 @@ class LiverTestpage extends StatelessWidget {
           children: [
             Column(
               children: <Widget>[
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shadowColor: Colors.greenAccent,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text('Lab Name : ${liver['labName']}'),
-                      ),
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: 310,
                   child: Card(

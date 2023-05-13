@@ -22,19 +22,6 @@ class GluTestpage extends StatelessWidget {
           children: [
             Column(
               children: <Widget>[
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shadowColor: Colors.greenAccent,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text('Lab Name : ${glucose['labName']}'),
-                      ),
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: 140,
                   child: Card(

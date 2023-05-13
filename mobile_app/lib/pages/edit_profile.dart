@@ -1,14 +1,14 @@
-
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
 import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
 import '../api/user.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -480,7 +480,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primary,
                         ),
-
                         onPressed: _register,
                         child: Text(
                           'Save Changes',

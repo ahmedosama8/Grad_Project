@@ -22,19 +22,6 @@ class UriTestpage extends StatelessWidget {
           children: [
             Column(
               children: <Widget>[
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shadowColor: Colors.greenAccent,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                            backgroundImage: AssetImage('assets/lab.png')),
-                        title: Text('Lab Name : ${urine['labName']}'),
-                      ),
-                    ],
-                  ),
-                ),
                 SizedBox(
                   height: 770,
                   child: Card(
@@ -180,7 +167,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Pus Cells'),
-                              Text(urine['pus_Cells'].toString()),
+                              Text(urine['pus_cells'].toString()),
                               Text('/HBF'),
                               Text('0:1'),
                             ],
@@ -192,7 +179,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Red Cells'),
-                              Text(urine['red_Cells'].toString()),
+                              Text(urine['red_cells'].toString()),
                               Text('/HBF'),
                               Text('0:1'),
                             ],
@@ -204,7 +191,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('Epithelial'),
-                              Text(urine['epithelial_Cells']),
+                              Text(urine['epithelial_cells']),
                               Text('/HBF'),
                               Text('Negative'),
                             ],

@@ -17,7 +17,6 @@ class HealthcareEntityController extends Controller
         return response()->json(HealthcareEntity::all(), 200);
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
@@ -26,7 +25,6 @@ class HealthcareEntityController extends Controller
         $entity = HealthcareEntity::updateOrCreate($request->all());
         return response()->json($entity, 201);
     }
-
 
     /**
      * Display the specified resource.

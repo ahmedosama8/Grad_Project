@@ -48,7 +48,7 @@ export default  function PatientInfo() {
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{info?.firstName}</MDBCardText>
+                    <MDBCardText className="text-muted">{info?.username}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />

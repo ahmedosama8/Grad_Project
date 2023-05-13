@@ -249,8 +249,7 @@
   "medicalLabTests": [
     {
       "id": 1,
-      "patientName": "John Doe",
-      "testType": "Blood Test",
+      "testType": "CBC Test",
       "date": "2022-04-20",
       "result": "Normal",
       "branch": "Manial",
@@ -263,30 +262,137 @@
           "unit": "g/dL",
           "range": "13-17"
         },
-        { "name": "Hematocrit", "value": "12", "unit": "%", "range": "40-50" },
+        {
+          "name": "Hematocrit",
+          "value": "12",
+          "unit": "%",
+          "range": "40-50"
+        },
         {
           "name": "Red Cell Count",
           "value": "12",
           "unit": "x10⁶ /uL",
           "range": "4.5-6.2"
         },
-        { "name": "MCV", "value": "12", "unit": "fL", "range": "78-96" },
-        { "name": "MCH", "value": "12", "unit": "pg", "range": "26-32" },
-        { "name": "MCHC", "value": "12", "unit": "g/dL", "range": "31-36" },
-        { "name": "RDW", "value": "12", "unit": "%", "range": "11.5-14.5" },
+        {
+          "name": "MCV",
+          "value": "12",
+          "unit": "fL",
+          "range": "78-96"
+        },
+        {
+          "name": "MCH",
+          "value": "12",
+          "unit": "pg",
+          "range": "26-32"
+        },
+        {
+          "name": "MCHC",
+          "value": "12",
+          "unit": "g/dL",
+          "range": "31-36"
+        },
+        {
+          "name": "RDW",
+          "value": "12",
+          "unit": "%",
+          "range": "11.5-14.5"
+        },
         {
           "name": "Platelet Count",
           "value": "12",
           "unit": "x10³/uL",
           "range": "150-450"
         },
-        { "name": "T.L.C", "value": "12", "unit": "x10³/uL", "range": "4-11" },
-        { "name": "Basophils", "value": "12", "unit": "%", "range": "0-1" },
-        { "name": "Eosinophils", "value": "12", "unit": "%", "range": "0-6" },
-        { "name": "Stab", "value": "12", "unit": "%", "range": "0-7" },
-        { "name": "Segmented", "value": "12", "unit": "%", "range": "40-75" },
-        { "name": "Lymphocytes", "value": "12", "unit": "%", "range": "20-45" },
-        { "name": "Monocytes", "value": "12", "unit": "%", "range": "1-10" }
+        {
+          "name": "T.L.C",
+          "value": "12",
+          "unit": "x10³/uL",
+          "range": "4-11"
+        },
+        {
+          "name": "Basophils",
+          "value": "12",
+          "unit": "%",
+          "range": "0-1"
+        },
+        {
+          "name": "Eosinophils",
+          "value": "12",
+          "unit": "%",
+          "range": "0-6"
+        },
+        {
+          "name": "Stab",
+          "value": "12",
+          "unit": "%",
+          "range": "0-7"
+        },
+        {
+          "name": "Segmented",
+          "value": "12",
+          "unit": "%",
+          "range": "40-75"
+        },
+        {
+          "name": "Lymphocytes",
+          "value": "12",
+          "unit": "%",
+          "range": "20-45"
+        },
+        {
+          "name": "Monocytes",
+          "value": "12",
+          "unit": "%",
+          "range": "1-10"
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "testType": "Liver Function Test",
+      "date": "2022-04-20",
+      "result": "Normal",
+      "branch": "Manial",
+      "testID": "1234",
+      "referringDoctor": "Dr. Smith",
+      "attributes": [
+        {
+          "name": "ALT",
+          "value": "2",
+          "unit": "U/L",
+          "range": "10-130"
+        },
+        {
+          "name": "AST",
+          "value": "12",
+          "unit": "U/L",
+          "range": "10-34"
+        },
+        {
+          "name": "ALB",
+          "value": "12",
+          "unit": "g /dL",
+          "range": "3.4-5.4"
+        },
+        {
+          "name": "DBIL",
+          "value": "12",
+          "unit": "mg/dL",
+          "range": "0 - 0.3"
+        },
+        {
+          "name": "TBIL",
+          "value": "12",
+          "unit": "mg/dL",
+          "range": "0.1 - 1.2"
+        },
+        {
+          "name": "ALP",
+          "value": "12",
+          "unit": "U/L",
+          "range": "24 - 147"
+        }
       ]
     },
     {
@@ -418,6 +524,401 @@
       "branch": "Nas City",
       "referringDoctor": "Dr. Shimaa",
       "testID": "5152"
+    },
+    {
+      "labname": "dosh",
+      "alt": "4",
+      "ast": "4",
+      "alb": "4",
+      "tbil": "4",
+      "alp": "4",
+      "comments": "4",
+      "id": 112
+    },
+    {
+      "labname": "dosh",
+      "hematocrit": "2",
+      "haemoglobin": "2",
+      "red cell count": "2",
+      "mcv": "2",
+      "mch": "2",
+      "mchc": "22",
+      "rdw": "2",
+      "platelet count": "2",
+      "t.l.c": "2",
+      "basophils": "2",
+      "eosinophils": "2",
+      "stab": "2",
+      "segmented": "2",
+      "lymphocytes": "2",
+      "monocytes": "2",
+      "comments": "hello",
+      "id": 113
+    },
+    {
+      "labname": "dosh",
+      "alt": "6",
+      "ast": "65",
+      "alb": "66",
+      "dbil": "6",
+      "tbil": "6",
+      "alp": "6",
+      "comments": "kosomen habib",
+      "id": 114
+    },
+    {
+      "labname": "dosh",
+      "alt": "6",
+      "ast": "65",
+      "alb": "66",
+      "dbil": "6",
+      "tbil": "6",
+      "alp": "6",
+      "comments": "kosomen abuelshakh\n",
+      "id": 115
+    }
+  ],
+  "patientLabTests": [
+    {
+      "id": 1,
+      "testType": "CBC Test",
+      "date": "2022-04-20",
+      "result": "Normal",
+      "branch": "Manial",
+      "testID": "1234",
+      "referringDoctor": "Dr. Smith",
+      "attributes": [
+        {
+          "name": "Haemoglobin",
+          "value": "12",
+          "unit": "g/dL",
+          "range": "13-17"
+        },
+        {
+          "name": "Hematocrit",
+          "value": "12",
+          "unit": "%",
+          "range": "40-50"
+        },
+        {
+          "name": "Red Cell Count",
+          "value": "12",
+          "unit": "x10⁶ /uL",
+          "range": "4.5-6.2"
+        },
+        {
+          "name": "MCV",
+          "value": "12",
+          "unit": "fL",
+          "range": "78-96"
+        },
+        {
+          "name": "MCH",
+          "value": "12",
+          "unit": "pg",
+          "range": "26-32"
+        },
+        {
+          "name": "MCHC",
+          "value": "12",
+          "unit": "g/dL",
+          "range": "31-36"
+        },
+        {
+          "name": "RDW",
+          "value": "12",
+          "unit": "%",
+          "range": "11.5-14.5"
+        },
+        {
+          "name": "Platelet Count",
+          "value": "12",
+          "unit": "x10³/uL",
+          "range": "150-450"
+        },
+        {
+          "name": "T.L.C",
+          "value": "12",
+          "unit": "x10³/uL",
+          "range": "4-11"
+        },
+        {
+          "name": "Basophils",
+          "value": "12",
+          "unit": "%",
+          "range": "0-1"
+        },
+        {
+          "name": "Eosinophils",
+          "value": "12",
+          "unit": "%",
+          "range": "0-6"
+        },
+        {
+          "name": "Stab",
+          "value": "12",
+          "unit": "%",
+          "range": "0-7"
+        },
+        {
+          "name": "Segmented",
+          "value": "12",
+          "unit": "%",
+          "range": "40-75"
+        },
+        {
+          "name": "Lymphocytes",
+          "value": "12",
+          "unit": "%",
+          "range": "20-45"
+        },
+        {
+          "name": "Monocytes",
+          "value": "12",
+          "unit": "%",
+          "range": "1-10"
+        }
+      ]
+    },
+    {
+      "id": 111,
+      "testType": "Liver Function Test",
+      "date": "2022-04-20",
+      "result": "Normal",
+      "branch": "Manial",
+      "testID": "1234",
+      "referringDoctor": "Dr. Smith",
+      "attributes": [
+        {
+          "name": "ALT",
+          "value": "2",
+          "unit": "U/L",
+          "range": "10-130"
+        },
+        {
+          "name": "AST",
+          "value": "12",
+          "unit": "U/L",
+          "range": "10-34"
+        },
+        {
+          "name": "ALB",
+          "value": "12",
+          "unit": "g /dL",
+          "range": "3.4-5.4"
+        },
+        {
+          "name": "DBIL",
+          "value": "12",
+          "unit": "mg/dL",
+          "range": "0 - 0.3"
+        },
+        {
+          "name": "TBIL",
+          "value": "12",
+          "unit": "mg/dL",
+          "range": "0.1 - 1.2"
+        },
+        {
+          "name": "ALP",
+          "value": "12",
+          "unit": "U/L",
+          "range": "24 - 147"
+        }
+      ]
+    }
+  ],
+  "Urinetest": [
+    {
+      "color": "string",
+      "labName": "string",
+      "examination_Date": "2023-05-08",
+      "comments": "string",
+      "id": 0,
+      "clarity": "string",
+      "specific_Gravity": 0,
+      "epithelial_Cells": "string",
+      "red_Cells": 0,
+      "amorphous": "string",
+      "crystals": "string",
+      "ph": 0,
+      "protein": "string",
+      "glucose": "string",
+      "ketone": "string",
+      "urobilinogen": "string",
+      "bilirubin": "string",
+      "nitrite": "string",
+      "pus_Cells": 0,
+      "casts": "string",
+      "others": "string"
+    },
+    {
+      "labname": "dosh",
+      "epithelial cells": "j",
+      "color": "am",
+      "clarity": "jcjd",
+      "specific gravity": "jo",
+      "ph": "jo",
+      "protein": "kojj",
+      "glucose": "ojj",
+      "ketone": "o",
+      "urobilinogen": "jo",
+      "bilirubin": "j",
+      "nitrite": "o",
+      "pus cells": "oj",
+      "red cells": "o",
+      "amorphous": "oj",
+      "crystals": "o",
+      "casts": "oj",
+      "others": "joj",
+      "comments": "o",
+      "id": 1
+    }
+  ],
+  "CBCTest": [
+    {
+      "id": 0,
+      "eosinophils": 0,
+      "labName": "string",
+      "examination_Date": "2023-05-08",
+      "haemoglobin": 0,
+      "hematocrit": 0,
+      "redCellCount": 0,
+      "mcv": 0,
+      "mch": 0,
+      "mchc": 0,
+      "rdw": 0,
+      "plateletCount": 0,
+      "tlc": 0,
+      "basophils": 0,
+      "stab": 0,
+      "segmented": 0,
+      "lymphocytes": 0,
+      "monocytes": 0,
+      "comments": "string"
+    },
+    {
+      "id": 1,
+      "eosinophils": 1,
+      "labName": "string",
+      "examination_Date": "2023-05-08",
+      "haemoglobin": 0,
+      "hematocrit": 0,
+      "redCellCount": 0,
+      "mcv": 100,
+      "mch": 1,
+      "mchc": 0,
+      "rdw": 0,
+      "plateletCount": 0,
+      "tlc": 0,
+      "basophils": 0,
+      "stab": 0,
+      "segmented": 0,
+      "lymphocytes": 0,
+      "monocytes": 0,
+      "comments": "string"
+    },
+    {
+      "labname": "dosh",
+      "haemoglobin": "8",
+      "hematocrit": "8",
+      "red cell count": "8",
+      "mcv": "8",
+      "mch": "8",
+      "mchc": "8",
+      "rdw": "8",
+      "platelet count": "8",
+      "t.l.c": "8",
+      "basophils": "8",
+      "eosinophils": "8",
+      "stab": "8",
+      "segmented": "8",
+      "lymphocytes": "8",
+      "monocytes": "8",
+      "comments": "abuelbony",
+      "id": 2
+    }
+  ],
+  "Livertest": [
+    {
+      "ast": 0,
+      "alt": 0,
+      "examination_Date": "2023-05-09",
+      "id": 0,
+      "comments": "string",
+      "alb": 0,
+      "dbil": 0,
+      "tbil": 0,
+      "alp": 0
+    },
+    {
+      "ast": 0,
+      "alt": 0,
+      "examination_Date": "2023-05-09",
+      "id": 1,
+      "comments": "normal",
+      "alb": 1,
+      "dbil": 0,
+      "tbil": 0,
+      "alp": 0
+    }
+  ],
+  "Glucosetest": [
+    {
+      "labName": "string",
+      "examination_Date": "2023-05-08",
+      "comments": "string",
+      "rbc": 0,
+      "rbs": 0,
+      "id": 0
+    },
+    {
+      "labName": "string",
+      "examination_Date": "2023-05-08",
+      "comments": "string",
+      "rbc": 10,
+      "rbs": 10,
+      "id": 1
+    }
+  ],
+  "LipidTest": [
+    {
+      "labName": "string",
+      "examination_Date": "2023-05-08",
+      "comments": "string",
+      "alt": 0,
+      "ast": 0,
+      "albumin": 0,
+      "cholestrolTotal": 0,
+      "hdl_C": 0,
+      "ldl_C": 0,
+      "triglycerides": 0,
+      "id": 0
+    },
+    {
+      "labName": "string",
+      "examination_Date": "2023-05-08",
+      "comments": "Trial",
+      "alt": 0,
+      "ast": 0,
+      "albumin": 0,
+      "cholestrolTotal": 0,
+      "hdl_C": 10,
+      "ldl_C": 10,
+      "triglycerides": 0,
+      "id": 1
+    },
+    {
+      "labname": "dosh",
+      "alt (sgpt), serum": "99",
+      "ast (sgot), serum": "9",
+      "albumin, serum": "9",
+      "cholestrol total, serum": "9",
+      "hdl-c, serum": "9",
+      "ldl-c, serum": "9",
+      "triglycerides, serum": "9",
+      "comments": "hello tez el zartara",
+      "id": 2
     }
   ]
 }

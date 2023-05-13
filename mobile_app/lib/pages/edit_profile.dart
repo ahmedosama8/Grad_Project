@@ -54,7 +54,88 @@ class _EditProfilePageState extends State<EditProfilePage> {
   late TextEditingController _chronicDiseaseController;
   late TextEditingController _maritalStatusController;
   late TextEditingController _allergiesController;
+  
+  showAlertDialog(BuildContext context, String title, String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(title),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 
+<<<<<<< Updated upstream
+=======
+Future<void> _update() async {
+    if (_formKey.currentState!.validate()) {
+    
+    int userId = Provider.of<UserIdProvider>(context, listen: false).id!;  
+    final url = Uri.parse('http://10.0.2.2:8080/api/patient/$userId');
+    final response = await http.put(
+      url,
+      headers: {
+    'Content-Type': 'application/json',},
+      body:  json.encode( {
+        'username': _userNameController.text,
+        //'phone':phone,
+        'name':_fullNameController.text,
+        'email':_emailController.text,
+        'gender':_genderController.text,
+        'marital_status':_maritalStatusController.text,
+        'address':_addressController.text,
+        'national_id_number':_identityNumberController.text,
+        'emergency_contact':_emergencyContactNumberController.text,
+        'blood_type':_bloodTypeController.text,
+        'birth_date':_dobController.text,
+        //'medicalConditions':selectedDiseasesResult
+      },)
+    );
+
+    // Handle the API response here
+    if (response.statusCode == 200) {
+      showAlertDialog(context, 'Profile updated successfully', 'Please restart to see the changes');
+    } else {    
+    final responseBody = response.body;
+    if (responseBody.isNotEmpty) {
+      try {
+        final responseData = json.decode(responseBody);
+        final errorMessage = responseData['error'] ?? 'Something went wrong!';
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text('Error'),
+            content: Text(errorMessage),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } catch (e) {
+        print('Error parsing response: $e');
+      }
+    } else {
+      print('Empty response body');
+    }
+    }    
+    }
+  }
+
+
+>>>>>>> Stashed changes
   @override
   void initState() {
     super.initState();
@@ -333,6 +414,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primary,
                         ),
+<<<<<<< Updated upstream
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             // TODO: Save the updated patient information to the database or some other storage
@@ -371,6 +453,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             Navigator.pop(context);
                           }
                         },
+=======
+                        onPressed:_update,
+                         
+>>>>>>> Stashed changes
                         child: Text(
                           'Save Changes',
                           style: TextStyle(color: Colors.white),

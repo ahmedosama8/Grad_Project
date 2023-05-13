@@ -15,17 +15,7 @@ class PatientProfilePage extends StatefulWidget {
 class _PatientProfilePageState extends State<PatientProfilePage> {
   File? _image;
   final _formKey = GlobalKey<FormState>();
-  String _fullName = "John Doe"; // default name
-  String _userName = "John Doe"; // default username
-  String _email = "JohnDoe@dosh.com"; // default full name
-  String _gender = "Male"; // default gender
-  String _dob = "01/01/1970"; // default date of birth
-  String _address = "Al-Haram";
-  String _emergencyContactNumber = "01117880524"; // default emergency contact number
-  String _identityNumber = "12345678912345"; // default identity number
-  String _bloodType = "O+"; // default blood type
   String _chronicDisease = "None"; // default chronic disease
-  String _maritalStatus = "Single"; // default marital status
   String _allergies = "None"; // default allergies status
   
 
@@ -294,10 +284,13 @@ void pickImage() async {
   PickedFile? pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
 
   if (pickedImage != null) {
+
     setState(() {
       _image = File(pickedImage.path);
     });
+  print(_image);
   }
+
 }
 }
 

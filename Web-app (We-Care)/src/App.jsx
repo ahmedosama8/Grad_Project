@@ -22,11 +22,6 @@ import UrineExamTest from "./Lab/UrineExamTest";
 import NewPatient from "./Lab/NewPatient";
 import WholeTest from "./Lab/WholeTest";
 import PatientInfo from "./patientInfo";
-import LipidProfileResult from "./Lab/WholeTests/LipidProfileResult";
-import UrinetestResult from "./Lab/WholeTests/UrinetestResult";
-import CbcTestResult from "./Lab/WholeTests/CbcTestResult";
-import LiverTestResult from "./Lab/WholeTests/LiverTestResult";
-import GlucoseTestResult from "./Lab/WholeTests/GlucoseTestResult";
 function App() {
   return (
     <Router>
@@ -35,27 +30,25 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           {/* Routes for lab page */}
           <Route path="/labhome" element={<Lab />} />
-          <Route path="/cbctest/:id" element={<CBCTest />} />
-          <Route path="/glucosetest/:id" element={<GlucoseTest />} />
-          <Route path="/livertest/:id" element={<LiverTest />} />
-          <Route path="/urinetest/:id" element={<UrineExamTest />} />
+          <Route path="/cbctest" element={<CBCTest />} />
+          <Route path="/glucosetest" element={<GlucoseTest />} />
+          <Route path="/livertest" element={<LiverTest />} />
+          <Route path="/urinetest" element={<UrineExamTest />} />
           <Route
-            path="/clinicalchemistry/:id"
+            path="/clinicalchemistry"
             element={<ClinicalChemistryTest />}
           />
           <Route path="/newpatient" element={<NewPatient />} />
           <Route path="/patientspage" element={<PatitentsPage />} />
           <Route path="/allpatientspage" element={<AllPatientsPage />} />
           <Route
-            path="/allpatientspage/patientresultpage/:id"
+            path="/allpatientspage/patientresultpage"
             element={<PatientResultPage />}
           />
-          <Route path="/selected-row/:id" element={<WholeTest />} />
-          <Route path="/cbc-page/:id" element={<CbcTestResult />} />
-          <Route path="/glucose-page/:id" element={<GlucoseTestResult />} />
-          <Route path="/lipid-profile-page/:id" element={<LipidProfileResult />} />
-          <Route path="/liver-page/:id" element={<LiverTestResult />} />
-          <Route path="/urine-page/:id" element={<UrinetestResult />} />
+          <Route
+            path="/selected-row/:id"
+            element={<WholeTest />}
+          />
 
           {/* Routes for radiology center */}
 
@@ -67,7 +60,7 @@ function App() {
           <Route path="/clinichome" element={<Clinic />} />
           <Route path="/addpatient" element={<PatientClinic />} />
           {/*Route for the patient  */}
-          <Route path="/patient-info/:id" element={<PatientInfo />} />
+          <Route path ="/patient-info/:id" element ={<PatientInfo/>}/>
         </Routes>
       </div>
     </Router>

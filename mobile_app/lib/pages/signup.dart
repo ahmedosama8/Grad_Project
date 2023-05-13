@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:http/http.dart' as http;
-import 'package:mobile_app/pages/emergency_info.dart';
 import 'dart:convert';
 import 'package:provider/provider.dart';
 import 'package:mobile_app/api/user.dart';
@@ -28,16 +27,53 @@ class _SignUpState extends State<SignUp> {
   
 
   Future<void> _register() async {
-
     if (_formKey.currentState!.validate()) {
-      Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => EmergencyInfoPage(username: usernameController.text,name: nameController.text,email: emailController.text,password: passwordController.text,phone: phoneNumberController.text),
-                  ),
-                  );
-                  print(phoneNumberController.text);
-                  
+    final url = Uri.parse('http://10.0.2.2:8080/patient/new');
+    final response = await http.post(
+      url,
+      headers: {
+    'Content-Type': 'application/json',},
+      body:  json.encode( {
+        'username': usernameController.text,
+        'password': passwordController.text,
+        'Phone1':phoneNumberController.text,
+        'firstName':nameController.text,
+        'mail':emailController.text
+      },)
+    );
+
+    // Handle the API response here
+    if (response.statusCode == 201) {
+      Navigator.of(context).pushNamedAndRemoveUntil(
+        'login',arguments: {'username': usernameController.text},
+        (Route<dynamic> route) => false,
+      );
+    } else {    
+    final responseBody = response.body;
+    if (responseBody.isNotEmpty) {
+      try {
+        final responseData = json.decode(responseBody);
+        final errorMessage = responseData['error'] ?? 'Something went wrong!';
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(
+            title: Text('Error'),
+            content: Text(errorMessage),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('OK'),
+              ),
+            ],
+          ),
+        );
+      } catch (e) {
+        print('Error parsing response: $e');
+      }
+    } else {
+      print('Empty response body');
+    }
+    }
   }
   }
   void signUpButton() {

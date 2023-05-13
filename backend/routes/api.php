@@ -75,17 +75,13 @@ Route::get('/radiology/entity/{id}/patient/{pid}', [radiologyreportController::c
 Route::post('/patient/{pid}/image', [imageController::class, 'store']);
 Route::get('/patient/{pid}/image/{id}', [imageController::class, 'show']);
 
-// ERROR SEEDING, DEPRECATED PACKAGE
 Route::get('/diagnosis/list', [diagnosisController::class, 'index']);
-Route::get('/patient/list',[PatientController::class,'index']);
-Route::get('/entity/list',[HealthcareEntityController::class,'index']);
-
 
 
 Route::get('/entity/{id}', [HealthcareEntityController::class, 'show']);
 Route::put('/entity/{id}', [HealthcareEntityController::class, 'update']);
 Route::post('/entity/new', [HealthcareEntityController::class, 'store']);
-Route::get('/entity/list', [\App\Models\HealthcareEntity::class, 'index']);
+Route::get('/entity/list', [HealthcareEntityController::class, 'index']);
 Route::post('/entity/login', [HealthcareEntityController::class, 'login']);
 Route::get('/entity/{id}/patient/{pid}', [AppointmentController::class, 'show_patient_appointments']);
 Route::get('/entity/{id}/appointments', [AppointmentController::class, 'show_entity_appointments']);

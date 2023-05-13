@@ -9,7 +9,7 @@ import "./allpatientspage.css";
 
 const columns = [
   {
-    field: "username",
+    field: "name",
     headerName: "Name",
     width: 200,
     headerClassName: "custom-header",
@@ -43,14 +43,14 @@ const columns = [
     headerClassName: "custom-header",
   },
   {
-    field: "birthDate",
-    headerName: "Birth Date",
+    field: "last_test_date",
+    headerName: "Last Visit Date",
     width: 150,
     headerClassName: "custom-header",
   },
   {
-    field: "bloodType",
-    headerName: "Blood Type",
+    field: "insurance",
+    headerName: "Insurance",
     width: 100,
     headerClassName: "custom-header",
   },
@@ -61,16 +61,17 @@ const columns = [
     headerClassName: "custom-header",
   },
   {
-    field: "patient_id",
+    field: "Results",
     headerName: "Results",
     width: 150,
     renderCell: (params) => (
-      <Link to={`patientresultpage/${params.value}`}>
+      <Link to={`patientresultpage`}>
         <Button
           variant="outlined"
           size="small"
           color="secondary"
           style={{ color: "#00000098" }}
+
         >
           View
         </Button>
@@ -83,7 +84,7 @@ const columns = [
     headerName: "Tests",
     sortable: false,
     width: 120,
-    renderCell: (params) => <ResultsMenu patientId={params.row.patient_id} row={params.row} />,
+    renderCell: (params) => <ResultsMenu row={params.row} />,
     headerClassName: "custom-header",
   },
 ];
@@ -116,19 +117,19 @@ function ResultsMenu({ patientId }) {
         onClose={handleMenuClose}
       >
         <MenuItem onClick={handleMenuClose}>
-          <Link to={`/cbctest/${patientId}`}>CBC</Link>
+          <Link to={`/cbctest`}>CBC</Link>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <Link to={`/livertest/${patientId}`}>Liver Function Test</Link>
+          <Link to={`/livertest`}>Liver Function Test</Link>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <Link to={`/glucosetest/${patientId}`}>Glucose</Link>
+          <Link to={`/glucosetest`}>Glucose</Link>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <Link to={`/clinicalchemistry/${patientId}`}>Lipid Profile</Link>
+          <Link to={`/clinicalchemistry`}>Lipid Profile</Link>
         </MenuItem>
         <MenuItem onClick={handleMenuClose}>
-          <Link to={`/urinetest/${patientId}`}>Urine Test </Link>
+          <Link to={`/urinetest`}>Urine Test </Link>
         </MenuItem>
       </Menu>
     </div>
@@ -139,9 +140,8 @@ export default function AllPatientsPage() {
 
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch("http://localhost:8080/patient/list");
+      const response = await fetch("http://localhost:3001/fakeusers");
       const data = await response.json();
-      console.log(data,"zeby")
       setRows(data);
     }
     fetchRows();
@@ -155,7 +155,6 @@ export default function AllPatientsPage() {
           style={{ position: "relative",top:"20px" }}
           className="customDataGridStyle"
           rows={rows}
-          getRowId={(row) => row.patient_id}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5, 10, 20]}

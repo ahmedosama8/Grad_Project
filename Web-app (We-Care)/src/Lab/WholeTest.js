@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 
 import { useParams } from "react-router-dom";
 
+import "./patientresultpage.css";
 import axios from "axios";
 const paperStyle = {
   display: "flex",
@@ -61,6 +62,10 @@ const TestPaper = () => {
 };
 
 export default function WholeTest() {
+  const location = useLocation();
+
+  let selectedRow = new URLSearchParams(location.search);
+  console.log(selectedRow);
   return (
     <div>
       <Topbar />
@@ -79,6 +84,7 @@ export default function WholeTest() {
           className="app__container"
         >
           <Grid item xs={12}>
+            <TestPaper />
           </Grid>
         </Grid>
       </div>

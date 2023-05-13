@@ -13,8 +13,6 @@ class UserIdProvider with ChangeNotifier {
   String? _identityNumber;
   String? _phoneNumber;
   String? _maritalStatus;
-  List?_allergies;
-  List?_chronicDisease;
 
 
 
@@ -31,9 +29,7 @@ class UserIdProvider with ChangeNotifier {
   String? get identityNumber => _identityNumber;
   String? get phoneNumber => _phoneNumber;
   String? get maritalStatus => _maritalStatus;
-  List? get allergies => _allergies;
-  List? get chronicDisease => _chronicDisease;
-  
+
   void setId(int? id) {
     _id = id;
     notifyListeners();
@@ -52,9 +48,7 @@ class UserIdProvider with ChangeNotifier {
    String emergencyNumber,
    String identityNumber,
    String phoneNumber,
-   String maritalStatus,
-   //List allergies,
-   //List chronicDisease
+   String maritalStatus
    ) 
    
    {
@@ -67,8 +61,6 @@ class UserIdProvider with ChangeNotifier {
     _identityNumber = identityNumber;
     _phoneNumber = phoneNumber;
     _maritalStatus = maritalStatus;
-    //_allergies = allergies;
-    //_chronicDisease = chronicDisease; 
     notifyListeners();
   }
 }

@@ -19,7 +19,6 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "cornerstone-core": "^2.6.1",
-    "cors": "^2.8.5",
     "dicom-parser": "^1.8.21",
     "mdb-react-ui-kit": "^5.1.0",
     "react": "^18.2.0",

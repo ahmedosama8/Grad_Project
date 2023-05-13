@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/rad_report.dart';
-import 'dart:convert';
-import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
-import '../api/user.dart';
-import '../configure.dart';
+import 'package:mobile_app/classes/rad_form.dart';
 
 class rad_scans extends StatefulWidget {
   const rad_scans({super.key});
@@ -16,48 +11,26 @@ class rad_scans extends StatefulWidget {
 }
 
 class _rad_scansState extends State<rad_scans> {
-  List<dynamic> scansList = [];
-  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
-    final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
-      return data;
-    } else {
-      throw Exception('Failed to fetch entity');
-    }
-  }
-
-  Future<void> fetchScansList(int patientId) async {
-    final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/radiology/patient/$patientId'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> scansJsonList = jsonDecode(response.body);
-      final List<Map<String, dynamic>> scansList = [];
-
-      for (final scansJson in scansJsonList) {
-        scansList.add(Map<String, dynamic>.from(scansJson));
-        final entityData = await fetcEntityById(scansJson['entity_id'] ?? 0);
-        final entityName = entityData['name'] ?? 'not specified';
-        scansList.last['entityName'] = entityName;
-      }
-
-      setState(() {
-        this.scansList = scansList;
-      });
-    } else {
-      throw Exception('Failed to fetch Scans list');
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-    fetchScansList(userId);
-  }
-
+  static List<String> exminName = ['Lung', 'hand', 'Brain CT'];
+  static List byname = ['andraw tate', 'benzema', 'Ga3fr el3omda'];
+  static List report = [
+    'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled (and possibly unstyled) text that follow it. You can use an empty string for text if you want to start with styled text',
+    'very well',
+    'need to go to doctor',
+  ];
+  static List radname = [
+    'alfa scan',
+    'nile scan',
+    'scan by us',
+  ];
+  final List<Radform> raddata = List.generate(
+      exminName.length,
+      (index) => Radform(
+          exminName: exminName[index],
+          report: '${report[index]}',
+          radname: '${radname[index]}',
+          byname: '${byname[index]}',
+          pic: 'rad.png'));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,12 +50,8 @@ class _rad_scansState extends State<rad_scans> {
                 child: ListView.builder(
                   controller: ScrollController(),
                   shrinkWrap: true,
-                  itemCount: scansList.length,
+                  itemCount: raddata.length,
                   itemBuilder: (context, index) {
-                    final scans = scansList[index];
-                    String dateTimeString = scans['created_at'];
-                    DateTime dateTime = DateTime.parse(dateTimeString);
-                    String date = DateFormat("yyyy-MM-dd").format(dateTime);
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 1.0, horizontal: 4.0),
@@ -98,23 +67,14 @@ class _rad_scansState extends State<rad_scans> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => rad_report(
-                                      scans: scansList[index],
+                                      radform: raddata[index],
                                     )));
                           },
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(scans['name'] ?? ''),
-                              Text(
-                                date,
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.black54),
-                              )
-                            ],
-                          ),
-                          subtitle: Text(scans['examined_part'] ?? ''),
+                          title: Text(raddata[index].exminName),
+                          subtitle: Text(raddata[index].radname),
                           leading: CircleAvatar(
-                              backgroundImage: AssetImage('assets/rad.png')),
+                              backgroundImage:
+                                  AssetImage('assets/${raddata[index].pic}')),
                         ),
                       ),
                     );

@@ -210,8 +210,21 @@ class _HomePageState extends State<HomePage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          AppointmentDetailsPage()
-                                          ),
+                                          PatientScheduleTable(
+                                            schedules: [
+                                              PatientSchedule(
+                                                  doctorName: 'John Doe',
+                                                  facility: 'ABC Hospital',
+                                                  bookedDate: '2022-05-01',
+                                                  notes:
+                                                      'Follow-up appointment'),
+                                              PatientSchedule(
+                                                  doctorName: 'Jane Smith',
+                                                  facility: 'XYZ Clinic',
+                                                  bookedDate: '2022-05-02',
+                                                  notes: 'Annual check-up'),
+                                            ],
+                                          )),
                                 );
                               },
                             ),

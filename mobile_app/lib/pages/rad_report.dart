@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/classes/rad_form.dart';
 import 'package:mobile_app/colors.dart';
 
 class rad_report extends StatelessWidget {
-  final Map<String, dynamic> scans;
-
-  const rad_report({Key? key, required this.scans}) : super(key: key);
+  final Radform radform;
+  const rad_report({Key? key, required this.radform}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(scans['examined_part'] ?? ''),
+        title: Text(radform.exminName),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -30,7 +30,7 @@ class rad_report extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: Icon(Icons.local_hospital),
-                        title: Text('Radiology Center: ${scans['entityName']}'),
+                        title: Text('Radiology Center: ${radform.radname}'),
                       ),
                     ],
                   ),
@@ -49,7 +49,7 @@ class rad_report extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            scans['report'] ?? 'no report',
+                            radform.report,
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),
@@ -69,7 +69,7 @@ class rad_report extends StatelessWidget {
                           radius: 20,
                           backgroundImage: AssetImage('assets/doctor.png'),
                         ),
-                        title: Text('perfromed by: ${scans['performer']}'),
+                        title: Text('perfromed by: ${radform.byname}'),
                       ),
                     ],
                   ),

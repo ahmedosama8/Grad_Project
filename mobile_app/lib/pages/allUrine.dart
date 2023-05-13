@@ -82,7 +82,7 @@ class _allUrineState extends State<allUrine> {
                 String dateTimeString = urine['updated_at'];
 
                 DateTime dateTime = DateTime.parse(dateTimeString);
-                String date = DateFormat("yyyy-MM-dd").format(dateTime);
+                String date = DateFormat("dd-MM-yyyy").format(dateTime);
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                       vertical: 1.0, horizontal: 4.0),

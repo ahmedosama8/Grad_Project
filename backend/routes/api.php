@@ -85,7 +85,6 @@ Route::get('/entity/list',[HealthcareEntityController::class,'index']);
 Route::get('/entity/{id}', [HealthcareEntityController::class, 'show']);
 Route::put('/entity/{id}', [HealthcareEntityController::class, 'update']);
 Route::post('/entity/new', [HealthcareEntityController::class, 'store']);
-Route::get('/entity/list', [\App\Models\HealthcareEntity::class, 'index']);
 Route::post('/entity/login', [HealthcareEntityController::class, 'login']);
 Route::get('/entity/{id}/patient/{pid}', [AppointmentController::class, 'show_patient_appointments']);
 Route::get('/entity/{id}/appointments', [AppointmentController::class, 'show_entity_appointments']);

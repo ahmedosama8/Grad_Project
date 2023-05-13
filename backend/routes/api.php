@@ -109,6 +109,8 @@ Route::put('/patient/{id}', [PatientController::class, 'update']);
 Route::post('/patient/login', [PatientController::class, 'login']);
 Route::get('/patient/{id}/tests', [PatientController::class, 'get_tests']);
 Route::get('/patient/{pid}/appointments', [AppointmentController::class, 'show_patient_history']);
+Route::get('/patient/{pid}/diagnoses', [doctorvisitController::class, 'get_patient_diagnoses']);
+Route::get('/patient/{pid}/medications', [doctorvisitController::class, 'get_patient_medications']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

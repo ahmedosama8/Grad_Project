@@ -49,7 +49,7 @@ class doctorvisitController extends Controller
         $visit->fill([
             'diagnoses'=>json_encode($request->get('diagnoses'), JSON_UNESCAPED_SLASHES),
             'medications'=>json_encode($request->get('medications'), JSON_UNESCAPED_SLASHES),
-            'comments'=>$request->get('notes')
+            'comments'=>$request->get('comments')
         ])->save();
         return response()->json($visit, 200);
     }
@@ -78,6 +78,28 @@ class doctorvisitController extends Controller
     {
         $tests = doctorvisit::where('patient_id', $pid)->where('entity_id', $id)->get();
         return response()->json($tests, 200);
+    }
+
+    public function get_patient_diagnoses(string $pid){
+        $visits = doctorvisit::where('patient_id', $pid)->get();
+        $diagnoses = [];
+        foreach ($visits as $visit)
+        {
+            $diagnoses[] = $visit->diagnoses;
+        }
+        return response()->json($diagnoses, 200);
+    }
+
+    public function get_patient_medications(string $pid)
+    {
+        $visits = doctorvisit::where('patient_id', $pid)->get();
+        $medications = [];
+        foreach ($visits as $visit)
+        {
+            $medications[] = $visit->medications;
+        }
+        return response()->json($medications, 200);
+
     }
 
 }

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('red_cell_count')->nullable();
             $table->string('mcv')->nullable();
             $table->string('mch')->nullable();
-            $table->string('mchc')->nullable();
             $table->string('rdw')->nullable();
             $table->string('tlc')->nullable();
             $table->string('platelet_count')->nullable();
@@ -31,7 +30,6 @@ return new class extends Migration
             $table->string('segmented')->nullable();
             $table->string('lymphocytes')->nullable();
             $table->string('monocytes')->nullable();
-            $table->longText('comments')->nullable();
             $table->timestamps();
 
         });

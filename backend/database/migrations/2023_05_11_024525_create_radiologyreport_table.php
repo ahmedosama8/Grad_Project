@@ -14,13 +14,12 @@ return new class extends Migration
         Schema::create('radiologyreports', function (Blueprint $table) {
             $table->id();
             $table->foreignId('patient_id')->nullable();
-            $table->foreignId('entity_id')->nullable();
+            $table->foreignId('doctor_id')->nullable();
             $table->foreignId('appointment_id')->nullable();
             $table->string('name')->nullable();
             $table->string('performer')->nullable();
-            $table->longText('report')->nullable();
+            $table->string('report')->nullable();
             $table->string('examined_part')->nullable();
-            $table->longText('comments')->nullable();
             $table->timestamps();
         });
     }

@@ -20,13 +20,14 @@ class doctorvisitController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->get('medications'));
         $visit = doctorvisit::create([
             'appointment_id'=>$request->get('appointment_id'),
             'patient_id'=>$request->get('patient_id'),
             'entity_id'=>$request->get('entity_id'),
-            'diagnoses'=>json_encode($request->get('diagnoses')),
-            'medications'=>json_encode($request->get('medications')),
-            'comments'=>$request->get('comments')
+            'diagnoses'=>$request->get('diagnoses'),
+            'medications'=>$request->get('medications'),
+            'notes'=>$request->get('medications')
         ]);
 //        $visit = doctorvisit::updateOrCreate($request->all());
         return response()->json($visit, 201);
@@ -45,12 +46,9 @@ class doctorvisitController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $visits = doctorvisit::where('id', $id)->
         $visit = doctorvisit::find($id);
-        $visit->fill([
-            'diagnoses'=>json_encode($request->get('diagnoses'), JSON_UNESCAPED_SLASHES),
-            'medications'=>json_encode($request->get('medications'), JSON_UNESCAPED_SLASHES),
-            'comments'=>$request->get('comments')
-        ])->save();
+        $visit->fill($request->all())->save();
         return response()->json($visit, 200);
     }
 
@@ -78,28 +76,6 @@ class doctorvisitController extends Controller
     {
         $tests = doctorvisit::where('patient_id', $pid)->where('entity_id', $id)->get();
         return response()->json($tests, 200);
-    }
-
-    public function get_patient_diagnoses(string $pid){
-        $visits = doctorvisit::where('patient_id', $pid)->get();
-        $diagnoses = [];
-        foreach ($visits as $visit)
-        {
-            $diagnoses[] = $visit->diagnoses;
-        }
-        return response()->json($diagnoses, 200);
-    }
-
-    public function get_patient_medications(string $pid)
-    {
-        $visits = doctorvisit::where('patient_id', $pid)->get();
-        $medications = [];
-        foreach ($visits as $visit)
-        {
-            $medications[] = $visit->medications;
-        }
-        return response()->json($medications, 200);
-
     }
 
 }

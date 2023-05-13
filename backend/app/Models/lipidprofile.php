@@ -12,7 +12,7 @@ class lipidprofile extends Model
 
     protected $fillable = [
         'patient_id',
-        'entity_id',
+        'doctor_id',
         'appointment_id',
         'alt',
         'ast',
@@ -20,8 +20,7 @@ class lipidprofile extends Model
         'cholesterol',
         'hdl_c',
         'ldl_c',
-        'triglycerides',
-        'comments'
+        'triglycerides'
     ];
 
     public function patient(): BelongsTo

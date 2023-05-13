@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('entity_id')->nullable();
             $table->json('medications')->nullable();
             $table->json('diagnoses')->nullable();
-            $table->longText('comments')->nullable();
+            $table->longText('notes')->nullable();
             $table->timestamps();
         });
     }

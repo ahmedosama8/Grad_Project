@@ -25,31 +25,7 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-            $patient = Patient::updateOrCreate($request->all());
-
-        } catch (\Exception $e)
-        {
-            $patient = Patient::updateOrCreate([
-                'name'=>$request->get('name'),
-                'email'=>$request->get('email'),
-                'password'=>$request->get('password'),
-                'gender'=>$request->get('gender'),
-                'phone'=>$request->get('phone'),
-                'emergency_contact'=>$request->get('emergency_contact'),
-                'image'=>$request->get('image'),
-                'blood_type'=>$request->get('blood_type'),
-                'age'=>$request->get('age'),
-                'birth_date'=>$request->get('birth_date'),
-                'marital_status'=>$request->get('marital_status'),
-                'national_id_number'=>$request->get('national_id_number'),
-                'address'=>$request->get('address'),
-                'chronic'=>json_encode($request->get('chronic')),
-                'allergies'=>json_encode($request->get('allergies')),
-
-            ]);
-
-        }
+        $patient = Patient::updateOrCreate($request->all());
         return response()->json($patient, 201);
     }
 
@@ -58,7 +34,6 @@ class PatientController extends Controller
      */
     public function show(string $id)
     {
-
         return response()->json(Patient::where('id', $id)->first());
     }
 
@@ -68,29 +43,7 @@ class PatientController extends Controller
     public function update(Request $request, string $id)
     {
         $patient = Patient::findOrfail($id);
-        try{
-            $patient->fill($request->all());
-        } catch (\Exception $e)
-        {
-            $patient->fill([
-                'name'=>$request->get('name'),
-                'email'=>$request->get('email'),
-                'password'=>$request->get('password'),
-                'gender'=>$request->get('gender'),
-                'phone'=>$request->get('phone'),
-                'emergency_contact'=>$request->get('emergency_contact'),
-                'image'=>$request->get('image'),
-                'blood_type'=>$request->get('blood_type'),
-                'age'=>$request->get('age'),
-                'birth_date'=>$request->get('birth_date'),
-                'marital_status'=>$request->get('marital_status'),
-                'national_id_number'=>$request->get('national_id_number'),
-                'address'=>$request->get('address'),
-                'chronic'=>json_encode($request->get('chronic')),
-                'allergies'=>json_encode($request->get('allergies')),
-            ]);
-        }
-
+        $patient->fill($request->all());
         $patient->save();
         return response()->json($patient, 200);
 

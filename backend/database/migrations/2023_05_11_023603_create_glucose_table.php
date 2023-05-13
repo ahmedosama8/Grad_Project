@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('appointment_id');
             $table->string('rbc');
             $table->string('rbs');
-            $table->longText('comments')->nullable();
             $table->timestamps();
         });
     }

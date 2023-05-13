@@ -15,8 +15,8 @@ $i = 1;
 foreach($rows as $row) {
     if($i <> 1) {
         $diagnosis = new Diagnosis();
-        $diagnosis->diagnosis = $row[1];
-        $diagnosis->code = $row[0];
+        $diagnosis->diagnosis = (isset($row[1]))? $row[1] : '';
+        $diagnosis->code = (isset($row[0]))? $row[0] : '';
         $diagnosis->save();
     }
     $i++;

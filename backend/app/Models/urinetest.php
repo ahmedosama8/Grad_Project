@@ -30,8 +30,7 @@ class urinetest extends Model
         'amorphous',
         'crystals',
         'casts',
-        'others',
-        'comments'
+        'others'
     ];
 
 

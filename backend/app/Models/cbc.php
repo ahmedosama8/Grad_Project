@@ -19,7 +19,6 @@ class cbc extends Model
         'red_cell_count',
         'mcv',
         'mch',
-        'mchc',
         'rdw',
         'platelet_count',
         'tlc',
@@ -28,8 +27,7 @@ class cbc extends Model
         'stab',
         'segmented',
         'lymphocytes',
-        'monocytes',
-        'comments'
+        'monocytes'
     ];
 
     public function appointments(): BelongsTo

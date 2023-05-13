@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('diagnosiss', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->String('code');
-            $table->String('diagnosis');
+            $table->String('shortDesc');
+            $table->String('longDesc');
             $table->timestamps();
         });
     }

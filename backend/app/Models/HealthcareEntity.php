@@ -13,7 +13,6 @@ class HealthcareEntity extends Model
 
     protected $fillable = [
       'phone',
-        'type',
       'email',
       'address',
       'name',

@@ -17,7 +17,7 @@ class doctorvisit extends Model
      */
 
     protected $casts = [
-        'diagnosis'=>'array',
+        'diagnoses'=>'array',
         'medications'=> 'array'
     ];
 
@@ -27,7 +27,7 @@ class doctorvisit extends Model
         'appointment_id',
         'diagnoses',
         'medications',
-        'notes',
+        'comments',
     ];
 
     public function appointments(): BelongsTo

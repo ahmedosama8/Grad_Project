@@ -3,10 +3,10 @@
 
 namespace Database\Seeders;
 
-use DB;
-use Excel;
+use App\Models\diagnosis;
 use Illuminate\Database\Seeder;
-use App\Imports\DiagnosisDescImport;
+use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
+
 
 class DiagnosisSeed extends Seeder
 {
@@ -17,7 +17,20 @@ class DiagnosisSeed extends Seeder
      */
     public function run()
     {
-        DB::table('diagnosis')->truncate();
-        Excel::import(new DiagnosisImport, './database/seeds/diagnoses.xlsx');
+        $reader = ReaderEntityFactory::createXLSXReader();
+        $reader->open('./database/seeders/diagnoses.xlsx');
+        foreach ($reader->getSheetIterator() as $sheet) {
+            foreach ($sheet->getRowIterator() as $row) {
+                $data = $row->toArray();
+
+                diagnosis::create([
+                    'code' => $data[0],
+                    'diagnosis' => $data[1],
+                    // Add more columns as needed
+                ]);
+            }
+        }
+//        DB::table('diagnosiss')->truncate();
+//        (new Excel, new LaravelExcelReader(), new LaravelExcelWriter())->load('./database/seeds/diagnoses.xlsx', new DiagnosisImport);
     }
 }

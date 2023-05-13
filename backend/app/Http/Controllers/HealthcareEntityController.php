@@ -15,7 +15,7 @@ class HealthcareEntityController extends Controller
     public function index()
     {
         return response()->json(HealthcareEntity::all(), 200);
-
+ main
     }
 
     /**

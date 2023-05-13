@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('crystals')->nullable();
             $table->string('casts')->nullable();
             $table->string('others')->nullable();
+            $table->longText('comments')->nullable();
             $table->timestamps();
         });
     }

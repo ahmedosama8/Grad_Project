@@ -1,8 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile_app/colors.dart';
 import 'dart:io';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+import '../api/user.dart';
 
 class EditProfilePage extends StatefulWidget {
   final String? fullName;
@@ -75,8 +82,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
   );
 }
 
-<<<<<<< Updated upstream
-=======
 Future<void> _update() async {
     if (_formKey.currentState!.validate()) {
     
@@ -135,7 +140,6 @@ Future<void> _update() async {
   }
 
 
->>>>>>> Stashed changes
   @override
   void initState() {
     super.initState();
@@ -414,49 +418,8 @@ Future<void> _update() async {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primary,
                         ),
-<<<<<<< Updated upstream
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            // TODO: Save the updated patient information to the database or some other storage
-                            // For now, we can just print the information to the console
-                            String fullName = _fullNameController.text;
-                            String email = _emailController.text;
-                            String userName = _userNameController.text;
-                            String address = _addressController.text;
-                            String gender = _genderController.text;
-                            String dateOfBirth = _dobController.text;
-                            String emergencyContactNumber =
-                                _emergencyContactNumberController.text;
-                            String identityNumber =
-                                _identityNumberController.text;
-                            String bloodType = _bloodTypeController.text;
-                            String chronicDisease =
-                                _chronicDiseaseController.text;
-                            String maritalStatus =
-                                _maritalStatusController.text;
-                            String allergies = _allergiesController.text;
-
-                            // Print the updated values to the console
-                            print('Full Name: $fullName');
-                            print('Email: $email');
-                            print('Username: $userName');
-                            print('Address: $address');
-                            print('Gender: $gender');
-                            print('Date of Birth: $dateOfBirth');
-                            print(
-                                'Emergency Contact Number: $emergencyContactNumber');
-                            print('Identity Number: $identityNumber');
-                            print('Blood Type: $bloodType');
-                            print('Chronic Disease: $chronicDisease');
-                            print('Marital Status: $maritalStatus');
-                            print('Allergies: $allergies');
-                            Navigator.pop(context);
-                          }
-                        },
-=======
                         onPressed:_update,
                          
->>>>>>> Stashed changes
                         child: Text(
                           'Save Changes',
                           style: TextStyle(color: Colors.white),

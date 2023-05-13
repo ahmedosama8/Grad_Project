@@ -42,11 +42,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-<<<<<<< Updated upstream
-        initialRoute: '/',
-=======
         initialRoute: 'login',
->>>>>>> Stashed changes
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primary,

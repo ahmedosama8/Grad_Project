@@ -18,7 +18,6 @@ class PatientController extends Controller
     public function index()
     {
         return response()->json(Patient::all(), 200);
-
     }
 
     /**

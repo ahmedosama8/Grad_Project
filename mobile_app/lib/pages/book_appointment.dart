@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:mobile_app/api/doctor.dart';
 import 'package:mobile_app/colors.dart';
 // ignore: unused_import
 import 'package:mobile_app/pages/welcome_page.dart';
@@ -18,70 +17,60 @@ class Bookappoint extends StatefulWidget {
   State<Bookappoint> createState() => _BookappointState();
 }
 
+Future<void> createAppointment(String appointmentDate, String appointmentType,
+    String appointmentNotes, int userId) async {
+  final Uri apiUrl = Uri.parse('${AppUrl.Base_Url}/appointment/$userId/new');
+
+  final Map<String, String> headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+  };
+
+  final Map<String, dynamic> data = {
+    'appointmentDate': appointmentDate,
+    'appointmentType': appointmentType,
+    'appointmentNotes': appointmentNotes,
+  };
+
+  final String body = json.encode(data);
+
+  final http.Response response =
+      await http.post(apiUrl, headers: headers, body: body);
+
+  if (response.statusCode != 201) {
+    throw Exception('Failed to create appointment.');
+  } else {
+    print(body);
+  }
+}
+
 class _BookappointState extends State<Bookappoint> {
-  List<String> appointmentTypes = [
-    'General Check-up',
-    'Specialist Consultation',
-    'Follow-up Appointment',
-    'Diagnostic Test Appointment',
-    'Vaccination Appointment',
-    'Therapy or Counseling Session',
-    'Surgical Procedure',
-    'Maternity or Prenatal Appointment',
-    'Dental or Oral Health Appointment',
-    'Physical Therapy Appointment',
-  ];
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _notesController = TextEditingController();
+  TextEditingController dateinput = TextEditingController();
+  List<String> facilities = [
+    'Dr.Ga3fr el 3omda',
+    'Nile Scan',
+    'Alfa lab'
+  ]; //de hakhodha mn backend wla laa
 
-  Future<void> createAppointment(
-      String appointmentDate, String appointmentType, int userId) async {
-    final Uri apiUrl = Uri.parse(
-        '${AppUrl.Base_Url}/appointment/$userId/${selectedfacility?.doctorId}');
+  String? selectedFacility;
 
-    final Map<String, String> headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    };
-
-    final Map<String, dynamic> data = {
-      'appointment_date': appointmentDate,
-      'appointment_type': appointmentType,
-      'appointment_status': "on going",
-      'patient_id': userId,
-      'entity_id': selectedfacility?.doctorId
-    };
-
-    final String body = json.encode(data);
-
-    final http.Response response =
-        await http.post(apiUrl, headers: headers, body: body);
-
-    if (response.statusCode != 201) {
-      throw Exception('Failed to create appointment.');
-    } else {
-      print(body);
+  void facilityCallBack(String? selectedFacVal) {
+    if (selectedFacVal is String) {
+      setState(() {
+        selectedFacility = selectedFacVal;
+      });
     }
   }
 
-  final _formKey = GlobalKey<FormState>();
-  TextEditingController dateinput = TextEditingController();
-  late List<Doctor> facilities = []; //de hakhodha mn backend wla laa
-  Doctor? selectedfacility;
-  @override
-  void initState() {
-    super.initState();
-    fetchDoctors().then((data) {
-      setState(() {
-        facilities = data;
-      });
-    });
-  }
-
-  String? selectedAppointmentType;
   void submitButton() {
     if (_formKey.currentState!.validate()) {
       int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-      //print(selectedfacility?.doctorId);
-      createAppointment(dateinput.text, selectedAppointmentType!, userId);
+      //print(userId);
+      // createAppointment(
+      //     dateinput.text, selectedFacility!, _notesController.text, userId);
       showDialog(
         context: context,
         builder: (context) {
@@ -96,10 +85,11 @@ class _BookappointState extends State<Bookappoint> {
                 SizedBox(
                   height: 5,
                 ),
-                Text('Type :$selectedAppointmentType'),
-                Text('Facility :${selectedfacility?.name}'),
+                Text('Name :${_nameController.text}'),
+                Text('Facility :$selectedFacility'),
                 Text('Date :${dateinput.text}'),
-//walahy el 3azeeeem shaghalaaaaa
+                Text('Notes :${_notesController.text}'),
+
                 //Text('Data :$  )
                 TextButton(
                   onPressed: () {
@@ -147,34 +137,22 @@ class _BookappointState extends State<Bookappoint> {
                     horizontal: MediaQuery.of(context).size.width * 0.05,
                     vertical: MediaQuery.of(context).size.height * 0.02,
                   ),
-                  child: DropdownButtonFormField(
-                    value: selectedAppointmentType,
-                    onChanged: (value) {
-                      setState(() {
-                        selectedAppointmentType = value!;
-                      });
-                    },
+                  child: TextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter a valid Type';
+                        return 'Please enter your name';
                       }
                       return null;
                     },
-                    items: appointmentTypes.map((String appointmentType) {
-                      return DropdownMenuItem<String>(
-                        value: appointmentType,
-                        child: Text(appointmentType),
-                      );
-                    }).toList(),
+                    controller: _nameController,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.local_hospital_outlined),
                       enabledBorder: OutlineInputBorder(
                         borderSide:
                             BorderSide(width: 2, color: Colors.greenAccent),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      labelText: 'Appointment Type',
-                      border: OutlineInputBorder(),
+                      hintText: 'Full Name',
+                      prefixIcon: Icon(Icons.person_2_outlined),
                     ),
                   ),
                 ),
@@ -183,7 +161,7 @@ class _BookappointState extends State<Bookappoint> {
                       horizontal: MediaQuery.of(context).size.width * 0.05),
                   child: SizedBox(
                     width: double.infinity,
-                    child: DropdownButtonFormField<Doctor>(
+                    child: DropdownButtonFormField(
                       decoration: InputDecoration(
                           prefixIcon: Icon(Icons.local_hospital_outlined),
                           enabledBorder: OutlineInputBorder(
@@ -193,24 +171,20 @@ class _BookappointState extends State<Bookappoint> {
                           )),
                       hint: Text('Facility'),
                       isExpanded: true,
-                      items: facilities
-                          .map<DropdownMenuItem<Doctor>>((Doctor doctor) {
-                        return DropdownMenuItem<Doctor>(
-                          value: doctor,
-                          child: Text(doctor.name),
+                      items: facilities.map<DropdownMenuItem<String>>(
+                          (String selectedFacVal) {
+                        return DropdownMenuItem<String>(
+                          value: selectedFacVal,
+                          child: Text(selectedFacVal),
                         );
                       }).toList(),
                       validator: (value) {
-                        if (value == null) {
+                        if (value == null || value.isEmpty) {
                           return 'Please select a facility';
                         }
                       },
-                      value: selectedfacility,
-                      onChanged: (Doctor? newValue) {
-                        setState(() {
-                          selectedfacility = newValue;
-                        });
-                      },
+                      value: selectedFacility,
+                      onChanged: facilityCallBack,
                     ),
                   ),
                 ),
@@ -222,6 +196,21 @@ class _BookappointState extends State<Bookappoint> {
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.05,
                       vertical: MediaQuery.of(context).size.height * 0.02),
+                  child: TextFormField(
+                    minLines: 1,
+                    maxLines: 5,
+                    controller: _notesController,
+                    decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: Colors.greenAccent),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        hintText: 'Notes',
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 25.0, horizontal: 10.0),
+                        prefixIcon: Icon(Icons.notes)),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(
@@ -297,7 +286,9 @@ class _BookappointState extends State<Bookappoint> {
                   dateinput.text =
                       formattedDate; //set output date to TextField value.
                 });
-              } else {}
+              } else {
+                print("Date is not selected");
+              }
             },
           ),
         ));

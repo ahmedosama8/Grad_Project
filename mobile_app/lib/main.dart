@@ -26,7 +26,7 @@ void main() async {
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
-  runApp(
+   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UserIdProvider()),
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        initialRoute: 'signup',
+        initialRoute: '/',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: primary,
@@ -53,10 +53,10 @@ class MyApp extends StatelessWidget {
 
         routes: {
           '/': (context) => const AppScreen(),
-          'login': (context) => Login(),
+          'login': (context) =>  Login(),
           'signup': (context) => SignUp(),
           'home': (context) => WelcomePage(),
-          //'emrsignup': (context) => EmergencyInfoPage(),
+          'emrsignup': (context) => EmergencyInfoPage(),
           'my_medical_records': (context) => My_Medical_Records(),
           'lab_results': (context) => const lab_results(),
           'rad_scans': (context) => const rad_scans(),

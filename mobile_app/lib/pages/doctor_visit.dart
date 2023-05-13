@@ -1,15 +1,7 @@
-import 'package:mobile_app/pages/doctor_report.dart';
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:mobile_app/api/doctor.dart';
-import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
-import 'package:intl/intl.dart';
-
-import '../api/user.dart';
-import '../colors.dart';
-import '../configure.dart';
+import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/pages/doctor_report.dart';
+import 'package:mobile_app/classes/doc_form.dart';
 
 class doctor_visit extends StatefulWidget {
   const doctor_visit({super.key});
@@ -19,48 +11,26 @@ class doctor_visit extends StatefulWidget {
 }
 
 class _doctor_visitState extends State<doctor_visit> {
-  List<dynamic> visitList = [];
-  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
-    final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
-      return data;
-    } else {
-      throw Exception('Failed to fetch entity');
-    }
-  }
-
-  Future<void> fetchVisitList(int patientId) async {
-    final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/visit/$patientId'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> visitJsonList = jsonDecode(response.body);
-      final List<Map<String, dynamic>> visitList = [];
-
-      for (final visitJson in visitJsonList) {
-        visitList.add(Map<String, dynamic>.from(visitJson));
-        final entityData = await fetcEntityById(visitJson['entity_id'] ?? 0);
-        final entityName = entityData['name'] ?? 'not specified';
-        visitList.last['entityName'] = entityName;
-      }
-
-      setState(() {
-        this.visitList = visitList;
-      });
-    } else {
-      throw Exception('Failed to fetch visits');
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-    //fetchVisitList(userId);
-  }
-
+  static List<String> exminName = ['Lung', 'hand', 'Brain '];
+  static List drname = ['andraw tate', 'benzema', 'Ga3fr el3omda'];
+  static List meds = [
+    'moov',
+    'panadol',
+    'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled (and possibly unstyled) text that follow it. You can use an empty string for text if you want to start with styled text',
+  ];
+  static List report = [
+    'TextSpan is a little strange. The text parameter is the default style but the children list contains the styled (and possibly unstyled) text that follow it. You can use an empty string for text if you want to start with styled text',
+    'very well',
+    'need to go to doctor',
+  ];
+  final List<Docform> docdata = List.generate(
+      exminName.length,
+      (index) => Docform(
+          exminName: exminName[index],
+          report: '${report[index]}',
+          meds: '${meds[index]}',
+          drname: '${drname[index]}',
+          pic: 'doctor.png'));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,12 +50,8 @@ class _doctor_visitState extends State<doctor_visit> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   controller: ScrollController(),
-                  itemCount: visitList.length,
+                  itemCount: docdata.length,
                   itemBuilder: (context, index) {
-                    final visit = visitList[index];
-                    String dateTimeString = visit['created_at'];
-                    DateTime dateTime = DateTime.parse(dateTimeString);
-                    String date = DateFormat("yyyy-MM-dd").format(dateTime);
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 1.0, horizontal: 4.0),
@@ -101,18 +67,14 @@ class _doctor_visitState extends State<doctor_visit> {
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => dr_report(
-                                      visit: visitList[index],
+                                      docform: docdata[index],
                                     )));
                           },
-                          title: Row(
-                            children: [
-                              Text(visit['diagnoses'] ?? ''),
-                              Text(date)
-                            ],
-                          ),
-                          subtitle: Text(visit['entityName'] ?? ''),
+                          title: Text(docdata[index].exminName),
+                          subtitle: Text(docdata[index].drname),
                           leading: CircleAvatar(
-                              backgroundImage: AssetImage('assets/doctor.png')),
+                              backgroundImage:
+                                  AssetImage('assets/${docdata[index].pic}')),
                         ),
                       ),
                     );

@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
 
   Future<void> _loginButton() async {
     if (_formKey.currentState!.validate()) {
-      final url = Uri.parse('http://10.0.2.2:8080/patient/login');
+      final url = Uri.parse('http://10.0.2.2:8080/api/patient/login');
       final response = await http.post(
         url,
         headers: {
@@ -38,20 +38,23 @@ class _LoginState extends State<Login> {
       },)
     );
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       final responseData = json.decode(response.body);
-      final int id = responseData['patient_id'];
+      final int id = responseData['id'];
       final String gender = responseData['gender'] ?? '';
-      final String phoneNumber = responseData['phone1'] ?? '';
+      final String phoneNumber = responseData['phone'] ?? '';
       final String username = responseData['username'] ?? '';
-      final String fullname = responseData['firstName'] ?? '';      
-      final String email = responseData['mail'] ?? '';
-      final String bloodType = responseData['bloodType'] ?? '';
-      final String emergencyNumber = responseData['phone2'] ?? '';
-      final String address = responseData['city'] ?? '';
-      final String identityNumber = responseData['nationalIdNumber'] ?? '';
-      final String dob = responseData['birthDate'] ?? '';
-      final String maritalStatus = responseData['street'] ?? '';
+      final String fullname = responseData['name'] ?? '';      
+      final String email = responseData['email'] ?? '';
+      final String bloodType = responseData['blood_type'] ?? '';
+      final String emergencyNumber = responseData['emergency_contact'] ?? '';
+      final String address = responseData['address'] ?? '';
+      final String identityNumber = responseData['national_id_number'] ?? '';
+      final String dob = responseData['birth_date'] ?? '';
+      final String maritalStatus = responseData['marital_status'] ?? '';
+      //final List chronicDisease = responseData['chronic'] ?? '';
+      //final List allergies = responseData[''] ?? '';
+      //final List chronicDisease = responseData['medicalConditions'] ?? '';
 
 
 
@@ -61,7 +64,7 @@ class _LoginState extends State<Login> {
       userIdProvider.setData(dob,email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber,maritalStatus);
 
       Navigator.of(context).pushNamedAndRemoveUntil(
-        'home',arguments: {'username': usernameController.text},
+        'home',arguments: {'username': usernameController.text}, 
         (Route<dynamic> route) => false,
       );
 

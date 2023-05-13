@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/classes/doc_form.dart';
 import 'package:mobile_app/colors.dart';
 
 class dr_report extends StatelessWidget {
-  final Docform docform;
-  const dr_report({Key? key, required this.docform}) : super(key: key);
+  final Map<String, dynamic> visit;
+
+  const dr_report({Key? key, required this.visit}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(docform.exminName),
+        title: Text(visit['diagnoses'] ?? ''),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -33,7 +33,7 @@ class dr_report extends StatelessWidget {
                           radius: 20,
                           backgroundImage: AssetImage('assets/doctor.png'),
                         ),
-                        title: Text('Doctor: ${docform.drname}'),
+                        title: Text('Doctor: ${visit['entityName']}'),
                       ),
                     ],
                   ),
@@ -52,7 +52,7 @@ class dr_report extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            docform.meds,
+                            visit['medications'] ?? '',
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),
@@ -76,7 +76,7 @@ class dr_report extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            docform.report,
+                            visit['notes'] ?? '',
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

@@ -1,0 +1,10 @@
+.testitem {
+  border-bottom: 1px solid #dddddd;
+  padding: 12px 15px;
+}
+.paperstyle {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  max-width: 800rem;
+  box-shadow: 0 0 20px rgba(146, 31, 31, 0.15); 
+}

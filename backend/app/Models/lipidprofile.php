@@ -12,7 +12,7 @@ class lipidprofile extends Model
 
     protected $fillable = [
         'patient_id',
-        'doctor_id',
+        'entity_id',
         'appointment_id',
         'alt',
         'ast',

@@ -31,6 +31,8 @@ class Patient extends Model
         'marital_status',
         'national_id_number',
         'address',
+        'chronic',
+        'allergies'
     ];
 
 

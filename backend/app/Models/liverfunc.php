@@ -12,14 +12,15 @@ class liverfunc extends Model
 
     protected $fillable = [
         'patient_id',
-        'doctor_id',
+        'entity_id',
         'appointment_id',
         'alt',
         'ast',
         'alb',
         'dbil',
         'tbil',
-        'alp'
+        'alp',
+        'comments'
     ];
 
     public function appointments(): BelongsTo

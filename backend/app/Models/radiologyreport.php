@@ -18,6 +18,7 @@ class radiologyreport extends Model
         'report',
         'performer',
         'examined_part',
+        'comments'
     ];
 
     public function appointments(): BelongsTo

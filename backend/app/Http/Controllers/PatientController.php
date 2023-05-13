@@ -58,6 +58,7 @@ class PatientController extends Controller
      */
     public function show(string $id)
     {
+
         return response()->json(Patient::where('id', $id)->first());
     }
 
@@ -87,7 +88,6 @@ class PatientController extends Controller
                 'address'=>$request->get('address'),
                 'chronic'=>json_encode($request->get('chronic')),
                 'allergies'=>json_encode($request->get('allergies')),
-
             ]);
         }
 

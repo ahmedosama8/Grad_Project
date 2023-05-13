@@ -19,7 +19,12 @@ class EmergencyInfoPage extends StatefulWidget {
   final String phone;
   final String password;
 
-  EmergencyInfoPage({required this.username,required this.name,required this.email,required this.phone,required this.password});
+  EmergencyInfoPage(
+      {required this.username,
+      required this.name,
+      required this.email,
+      required this.phone,
+      required this.password});
 
   @override
   State<EmergencyInfoPage> createState() => _EmergencyInfoPage();
@@ -66,8 +71,6 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
   final date = TextEditingController();
   TextEditingController dateinput = TextEditingController();
 
-
-
   //List<Map<String, String>> chronicDiseaseItems = ;
 
   List<String> martialItems = ['Single', 'Married', 'Divorced', 'Widowed'];
@@ -80,67 +83,71 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
     }
   }
 
-Future<void> _register(String username,String name,String email,String phone,String password) async {
+  Future<void> _register(String username, String name, String email,
+      String phone, String password) async {
     if (_formKey.currentState!.validate()) {
-        selectedDiseasesResult = selectedDiseases.toString();
-        selectedAllergyResult = selectedAllergy.toString();
-        print(selectedDiseasesResult);
-        print(selectedAllergyResult);
-        print(selectedGender);
-    final url = Uri.parse('http://10.0.2.2:8080/api/patient/new');
-    final response = await http.post(
-      url,
-      headers: {
-    'Content-Type': 'application/json',},
-      body:  json.encode( {
-        'username': username,
-        'password': password,
-        'phone':phone,
-        'name':name,
-        'email':email,
-        'gender':selectedGender,
-        'marital_status':selectedStatus,
-        'address':addressController.text,
-        'national_id_number':identityNumberController.text,
-        'emergency_contact':emergencyController.text,
-        'blood_type':selectedBlood,
-        'birth_date':dateinput.text,
-        //'medicalConditions':selectedDiseasesResult
-      },)
-    );
+      selectedDiseasesResult = selectedDiseases.toString();
+      selectedAllergyResult = selectedAllergy.toString();
+      print(selectedDiseasesResult);
+      print(selectedAllergyResult);
+      print(selectedGender);
+      final url = Uri.parse('http://10.0.2.2:8080/api/patient/new');
+      final response = await http.post(url,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: json.encode(
+            {
+              'username': username,
+              'password': password,
+              'phone': phone,
+              'name': name,
+              'email': email,
+              'gender': selectedGender,
+              'marital_status': selectedStatus,
+              'address': addressController.text,
+              'national_id_number': identityNumberController.text,
+              'emergency_contact': emergencyController.text,
+              'blood_type': selectedBlood,
+              'birth_date': dateinput.text,
+              //'medicalConditions':selectedDiseasesResult
+            },
+          ));
 
-    // Handle the API response here
-    if (response.statusCode == 201) {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-        'login',arguments: {'username': username},
-        (Route<dynamic> route) => false,
-      );
-    } else {    
-    final responseBody = response.body;
-    if (responseBody.isNotEmpty) {
-      try {
-        final responseData = json.decode(responseBody);
-        final errorMessage = responseData['error'] ?? 'Something went wrong!';
-        showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-            title: Text('Error'),
-            content: Text(errorMessage),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('OK'),
-              ),
-            ],
-          ),
+      // Handle the API response here
+      if (response.statusCode == 201) {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          'login',
+          arguments: {'username': username},
+          (Route<dynamic> route) => false,
         );
-      } catch (e) {
-        print('Error parsing response: $e');
+      } else {
+        final responseBody = response.body;
+        if (responseBody.isNotEmpty) {
+          try {
+            final responseData = json.decode(responseBody);
+            final errorMessage =
+                responseData['error'] ?? 'Something went wrong!';
+            showDialog(
+              context: context,
+              builder: (_) => AlertDialog(
+                title: Text('Error'),
+                content: Text(errorMessage),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: Text('OK'),
+                  ),
+                ],
+              ),
+            );
+          } catch (e) {
+            print('Error parsing response: $e');
+          }
+        } else {
+          print('Empty response body');
+        }
       }
-    } else {
-      print('Empty response body');
-    }
-    }    
     }
   }
 
@@ -157,14 +164,15 @@ Future<void> _register(String username,String name,String email,String phone,Str
     selectedDiseases = [];
     selectedDiseasesResult = ''; //set the initial value of text field
   }
-    @override
+
+  @override
   void dispose() {
     emergencyController.dispose();
     addressController.dispose();
     identityNumberController.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -212,50 +220,49 @@ Future<void> _register(String username,String name,String email,String phone,Str
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       child: Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: primary),
-        borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
-        //borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: TextFormField(
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return 'Please enter a date';
-            }
-            return null;
-          },
-          controller: dateinput,
-          decoration: InputDecoration(
-            icon: Icon(Icons.calendar_month_outlined),
-            labelText: 'Enter your birth date',
-            border: InputBorder.none,
-          ),
-          readOnly: true,
-          onTap: () async {
-            DateTime? pickedDate = await showDatePicker(
-              context: context,
-              initialDate: DateTime(1930),
-              firstDate: DateTime(1930),
-              lastDate: DateTime.now(),
-            );
+                        decoration: BoxDecoration(
+                          border: Border.all(color: primary),
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.white,
+                          //borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: TextFormField(
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter a date';
+                              }
+                              return null;
+                            },
+                            controller: dateinput,
+                            decoration: InputDecoration(
+                              icon: Icon(Icons.calendar_month_outlined),
+                              labelText: 'Enter your birth date',
+                              border: InputBorder.none,
+                            ),
+                            readOnly: true,
+                            onTap: () async {
+                              DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime(1930),
+                                firstDate: DateTime(1930),
+                                lastDate: DateTime.now(),
+                              );
 
-            if (pickedDate != null) {
-              String formattedDate =
-                  DateFormat('yyyy-MM-dd').format(pickedDate);
-              setState(() {
-                dateinput.text = formattedDate;
-              });
-            } else {
-              print("Date is not selected");
-            }
-          },
-        ),
-      ),
-    )
+                              if (pickedDate != null) {
+                                String formattedDate =
+                                    DateFormat('yyyy-MM-dd').format(pickedDate);
+                                setState(() {
+                                  dateinput.text = formattedDate;
+                                });
+                              } else {
+                                print("Date is not selected");
+                              }
+                            },
                           ),
+                        ),
+                      )),
                   //dateBox(context),
                   SizedBox(
                     height: 10,
@@ -277,15 +284,15 @@ Future<void> _register(String username,String name,String email,String phone,Str
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
                           validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please write your identity number';
-                        } else if (value.length != 14) {
-                          return "Write a true identity number";
-                        } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
-                          return 'identity number must contain only digits';
-                        }
-                        return null;
-                      },
+                            if (value == null || value.isEmpty) {
+                              return 'Please write your identity number';
+                            } else if (value.length != 14) {
+                              return "Write a true identity number";
+                            } else if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
+                              return 'identity number must contain only digits';
+                            }
+                            return null;
+                          },
                           controller: identityNumberController,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
@@ -299,8 +306,8 @@ Future<void> _register(String username,String name,String email,String phone,Str
                   SizedBox(
                     height: 10,
                   ),
-                    //address
-                    Padding(
+                  //address
+                  Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Container(
                       decoration: BoxDecoration(
@@ -310,12 +317,12 @@ Future<void> _register(String username,String name,String email,String phone,Str
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: TextFormField(
-                           validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please write your address';
-                        }
-                        return null;
-                      },
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please write your address';
+                            }
+                            return null;
+                          },
                           controller: addressController,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
@@ -344,9 +351,8 @@ Future<void> _register(String username,String name,String email,String phone,Str
                             width: double.infinity,
                             child: DropdownButtonFormField(
                               validator: (value) {
-                                if (value==null || value.isEmpty){
+                                if (value == null || value.isEmpty) {
                                   return 'Please select your blood type';
-
                                 }
                               },
                               decoration: InputDecoration(
@@ -493,7 +499,8 @@ Future<void> _register(String username,String name,String email,String phone,Str
                                 {'value': 'Peanuts', 'display': 'Peanuts'},
                                 {'value': 'Eggs', 'display': 'Eggs'},
                                 {'value': 'Milk', 'display': 'Milk'},
-                                {'value': 'Other', 'display': 'Other'}
+                                {'value': 'Other', 'display': 'Other'},
+                                {'value': 'None', 'display': 'none'}
                               ],
                               validator: (value) {
                                 if (value == null || value.length == 0) {
@@ -534,12 +541,12 @@ Future<void> _register(String username,String name,String email,String phone,Str
                           child: SizedBox(
                             width: double.infinity,
                             child: DropdownButtonFormField(
-                               validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please choose your status';
-                        }
-                        return null;
-                      },
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please choose your status';
+                                }
+                                return null;
+                              },
                               decoration: InputDecoration(
                                   icon: Icon(Icons.people_alt),
                                   border: InputBorder.none),
@@ -567,7 +574,9 @@ Future<void> _register(String username,String name,String email,String phone,Str
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: GestureDetector(
-                      onTap:(){ _register(widget.username,widget.name,widget.email,widget.phone,widget.password);
+                      onTap: () {
+                        _register(widget.username, widget.name, widget.email,
+                            widget.phone, widget.password);
                       },
                       child: Container(
                         padding: EdgeInsets.all(16),
@@ -616,12 +625,12 @@ Future<void> _register(String username,String name,String email,String phone,Str
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: TextFormField(
-             validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please write your emergency';
-                        }
-                        return null;
-                      },
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please write your emergency';
+              }
+              return null;
+            },
             controller: emergencyController,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
@@ -672,4 +681,3 @@ Future<void> _register(String username,String name,String email,String phone,Str
     );
   }
 }
-

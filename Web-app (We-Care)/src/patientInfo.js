@@ -12,15 +12,31 @@ import {
   
 } from 'mdb-react-ui-kit';
 import { useParams } from 'react-router-dom';
+function calculateAge(birthdate) {
+  const currentDate = new Date();
+  const birthdateObj = new Date(birthdate);
+  
+  // Calculate the age
+  let age = currentDate.getFullYear() - birthdateObj.getFullYear();
+  const monthDifference = currentDate.getMonth() - birthdateObj.getMonth();
+  
+  if (monthDifference < 0 || (monthDifference === 0 && currentDate.getDate() < birthdateObj.getDate())) {
+    age -= 1;
+  }
+  
+  return age;
+}
+
 
 export default  function PatientInfo() {
+ 
     const [info, setInfo] = useState([]);
     const { id } = useParams();
     useEffect(() => {
         loadData_patient();
       }, []);
     const loadData_patient = async () => {
-        const res = await axios.get(`http://localhost:8080/patient/${id}`);
+        const res = await axios.get(`${configure.backURL}patient/${id}`);
        //const res = await axios.get(`http://localhost:3001/medicalLabTests/${id}`);
  
        setInfo(res.data);
@@ -48,7 +64,7 @@ export default  function PatientInfo() {
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{info?.firstName}</MDBCardText>
+                    <MDBCardText className="text-muted">{info?.name}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -63,10 +79,55 @@ export default  function PatientInfo() {
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
+                    <MDBCardText>Birthdate</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{info?.birth_date}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr/>
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>My Number</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{info?.phone}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
                     <MDBCardText>Emergency contact</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{info?.phone2}</MDBCardText>
+                    <MDBCardText className="text-muted">{info?.emergency_contact}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Address</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{info?.address}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>National ID Number</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{info?.national_id_number}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>martial status</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{info?.marital_status}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -75,7 +136,25 @@ export default  function PatientInfo() {
                     <MDBCardText>Blood Type</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{info?.bloodType}</MDBCardText>
+                    <MDBCardText className="text-muted">{info?.blood_type}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Allergies</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{info?.allergies}</MDBCardText>
+                  </MDBCol>
+                </MDBRow>
+                <hr />
+                <MDBRow>
+                  <MDBCol sm="3">
+                    <MDBCardText>Chronic</MDBCardText>
+                  </MDBCol>
+                  <MDBCol sm="9">
+                    <MDBCardText className="text-muted">{info?.chronic}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                           

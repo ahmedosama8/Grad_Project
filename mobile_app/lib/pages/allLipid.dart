@@ -37,7 +37,7 @@ class _allLipidState extends State<allLipid> {
       for (final lipidJson in lipidJsonList) {
         lipidList.add(Map<String, dynamic>.from(lipidJson));
 
-        final entityData = await fetcEntityById(lipidJson['doctor_id'] ?? 0);
+        final entityData = await fetcEntityById(lipidJson['entity_id'] ?? 0);
         final entityName = entityData['name'] ?? 'not specified';
         lipidList.last['entityName'] = entityName;
       }

@@ -55,7 +55,7 @@ class _rad_scansState extends State<rad_scans> {
   void initState() {
     super.initState();
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-    fetchScansList(userId);
+    //fetchScansList(userId);
   }
 
   @override

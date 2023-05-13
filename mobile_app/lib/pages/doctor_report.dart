@@ -76,7 +76,7 @@ class dr_report extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            visit['notes'] ?? '',
+                            visit['comments'] ?? '',
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

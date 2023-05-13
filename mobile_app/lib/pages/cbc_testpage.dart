@@ -107,7 +107,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('MCHC'),
-                              //Text(cbc['mchc'].toString()),
+                              Text(cbc['mchc'].toString()),
                               Text('pg'),
                               Text('31-36'),
                             ],
@@ -237,7 +237,7 @@ class CbcTestpage extends StatelessWidget {
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            cbc['comments'] ?? '',
+                            cbc['comments'] ?? 'no comments',
                             style: TextStyle(
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),

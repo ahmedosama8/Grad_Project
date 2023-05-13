@@ -32,8 +32,8 @@ class _doctor_visitState extends State<doctor_visit> {
   }
 
   Future<void> fetchVisitList(int patientId) async {
-    final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/visit/$patientId'));
+    final response = await http
+        .get(Uri.parse('${AppUrl.Base_Url}/visit/patient/$patientId'));
 
     if (response.statusCode == 200) {
       final List<dynamic> visitJsonList = jsonDecode(response.body);
@@ -58,6 +58,7 @@ class _doctor_visitState extends State<doctor_visit> {
   void initState() {
     super.initState();
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
+    print(userId);
     //fetchVisitList(userId);
   }
 

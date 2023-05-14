@@ -63,9 +63,8 @@ class _LoginState extends State<Login> {
       userIdProvider.setNames(username,fullname);
       userIdProvider.setData(dob,email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber,maritalStatus);
 
-      Navigator.of(context).pushNamedAndRemoveUntil(
+      Navigator.of(context).pushReplacementNamed(
         'home',arguments: {'username': usernameController.text}, 
-        (Route<dynamic> route) => false,
       );
 
       // Navigator.pushReplacementNamed(context, 'home',

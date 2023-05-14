@@ -54,7 +54,7 @@ class BarCode extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 60,
-                        backgroundImage: AssetImage('assets/elm3lm_ga3fr.png'),
+                        backgroundImage: AssetImage('assets/pp.png'),
                       ),
                       SizedBox(
                         height: 30,

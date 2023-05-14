@@ -141,75 +141,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
   }
 
-  Future<void> _register() async {
-    if (_formKey.currentState!.validate()) {
-      int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-      final url = Uri.parse('http://10.0.2.2:8080/api/patient/$userId');
-      final response = await http.put(url,
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: json.encode(
-            {
-              'username': _userNameController.text,
-              //'phone':phone,
-              'name': _fullNameController.text,
-              'email': _emailController.text,
-              'gender': _genderController.text,
-              'marital_status': _maritalStatusController.text,
-              'address': _addressController.text,
-              'national_id_number': _identityNumberController.text,
-              'emergency_contact': _emergencyContactNumberController.text,
-              'blood_type': _bloodTypeController.text,
-              'birth_date': _dobController.text,
-              //'medicalConditions':selectedDiseasesResult
-            },
-          ));
-
-      // Handle the API response here
-      if (response.statusCode == 200) {
-        showDialog(
-          context: context,
-          builder: (_) => AlertDialog(
-            title: Text('Profile updated successfully!'),
-            content: Text('Restart the app to see your latest updates!'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('Ok'),
-              ),
-            ],
-          ),
-        );
-      } else {
-        final responseBody = response.body;
-        if (responseBody.isNotEmpty) {
-          try {
-            final responseData = json.decode(responseBody);
-            final errorMessage =
-                responseData['error'] ?? 'Something went wrong!';
-            showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                title: Text('Error'),
-                content: Text(errorMessage),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text('OK'),
-                  ),
-                ],
-              ),
-            );
-          } catch (e) {
-            print('Error parsing response: $e');
-          }
-        } else {
-          print('Empty response body');
-        }
-      }
-    }
-  }
+  
 
   @override
   void initState() {
@@ -480,7 +412,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primary,
                         ),
-                        onPressed: _register,
+                        onPressed: _update,
                         child: Text(
                           'Save Changes',
                           style: TextStyle(color: Colors.white),

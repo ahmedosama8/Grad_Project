@@ -130,9 +130,8 @@ class _HomePageState extends State<HomePage> {
                   child: IconButton(
                     icon: Icon(Icons.logout),
                     onPressed: () {
-                      print('dosh');
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, 'login', (route) => false);
+                      Navigator.pushReplacementNamed(
+                          context, 'login');
                     },
                   ),
                 )

@@ -44,25 +44,10 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
           child: Center(
             child: Column(
               children: [
-                Stack(
-                    // ignore: prefer_const_literals_to_create_immutables
-                    children: [
-                      CircleAvatar(
-                        radius: 60.0,
-                        backgroundImage: _image == null ? null : FileImage(_image!),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: GestureDetector(
-                          onTap: pickImage,
-                          child: Icon(
-                            Icons.edit,
-                            color: primary,
-                          ),
-                        ),
-                      ),
-                    ]),
+                CircleAvatar(
+                  radius: 50.0,
+                  backgroundImage:AssetImage('assets/pp.png'),
+                ),
                 SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,

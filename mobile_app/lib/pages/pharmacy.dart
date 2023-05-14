@@ -5,10 +5,10 @@ import 'package:mobile_app/pages/welcome_page.dart';
 class Medicine {
   String name;
   String description;
-  String image;
+  double price;
 
   Medicine(
-      {required this.name, required this.description, required this.image});
+      {required this.name, required this.description, required this.price});
 }
 
 class MedicineListPage extends StatefulWidget {
@@ -18,26 +18,20 @@ class MedicineListPage extends StatefulWidget {
 
 class _MedicineListPageState extends State<MedicineListPage> {
   final List<Medicine> _medicines = [
-    Medicine(
-        name: 'Aspirin',
-        description: 'Pain Reliever',
-        image: 'https://via.placeholder.com/150'),
+    Medicine(name: 'Aspirin', description: 'Pain Reliever', price: 2.99),
     Medicine(
         name: 'Ibuprofen',
         description: 'Pain Reliever/Fever Reducer',
-        image: 'https://via.placeholder.com/150'),
+        price: 3.99),
     Medicine(
         name: 'Panadol',
         description: 'Pain Reliever/Fever Reducer',
-        image: 'https://via.placeholder.com/150'),
+        price: 1.99),
     Medicine(
         name: 'Antinal',
         description: 'treatment of diarrhea & gastroenteritis.',
-        image: 'https://via.placeholder.com/150'),
-    Medicine(
-        name: 'Medicine 5',
-        description: 'Allergy Relief',
-        image: 'https://via.placeholder.com/150'),
+        price: 4.99),
+    Medicine(name: 'Medicine 5', description: 'Allergy Relief', price: 5.99),
   ];
 
   List<Medicine> _cart = [];
@@ -149,10 +143,6 @@ class _MedicineListPageState extends State<MedicineListPage> {
                     ),
                     elevation: 0,
                     child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage:
-                            NetworkImage(_filteredMedicines[index].image),
-                      ),
                       title: Text(_filteredMedicines[index].name),
                       subtitle: Text(_filteredMedicines[index].description),
                       trailing: IconButton(
@@ -182,12 +172,23 @@ class CheckoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double total = 0;
+    for (var medicine in cart) {
+      total += medicine.price;
+    }
+
+    void orderNow() {
+      for (var medicine in cart) {
+        print(
+            'Medicine: ${medicine.name}, Price: \$${medicine.price.toStringAsFixed(2)}');
+      }
+    }
+
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
         elevation: 0,
-        title: Center(child: Text('Checkout')),
         backgroundColor: primary,
+        title: Text('Checkout'),
       ),
       body: Column(
         children: [
@@ -196,53 +197,75 @@ class CheckoutPage extends StatelessWidget {
               itemCount: cart.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: CircleAvatar(
-                    backgroundImage: NetworkImage(cart[index].image),
-                  ),
                   title: Text(cart[index].name),
-                  subtitle: Text(cart[index].description),
+                  subtitle: Text('\$${cart[index].price.toStringAsFixed(2)}'),
                 );
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: primary,
-              ),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text('Clear Cart?'),
-                      content: Text('Are you sure you want to clear the cart?'),
-                      actions: [
-                        TextButton(
-                          style: TextButton.styleFrom(foregroundColor: primary),
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text('Cancel'),
-                        ),
-                        TextButton(
-                          style: TextButton.styleFrom(foregroundColor: primary),
-                          onPressed: () {
-                            Navigator.pop(context);
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                              'home',
-                              (Route<dynamic> route) => false,
-                            );
-                          },
-                          child: Text('Clear'),
-                        ),
-                      ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primary,
+                  ),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Clear Cart?'),
+                          content:
+                              Text('Are you sure you want to clear the cart?'),
+                          actions: [
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                  foregroundColor: primary),
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text('Cancel'),
+                            ),
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                  foregroundColor: primary),
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                  'home',
+                                  (Route<dynamic> route) => false,
+                                );
+                              },
+                              child: Text('Clear'),
+                            ),
+                          ],
+                        );
+                      },
                     );
                   },
-                );
-              },
-              child: Text('Clear Cart'),
+                  child: Text('Clear Cart'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: primary,
+                  ),
+                  onPressed: orderNow,
+                  child: Text('Order Now'),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 60),
+            child: Text(
+              'Total Price: \$${total.toStringAsFixed(2)}',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
         ],

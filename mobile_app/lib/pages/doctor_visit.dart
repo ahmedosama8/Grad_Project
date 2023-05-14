@@ -104,16 +104,28 @@ class _doctor_visitState extends State<doctor_visit> {
                                       visit: visitList[index],
                                     )));
                           },
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(visit['diagnoses'] ?? ''),
-                              Text(
-                                date,
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.black54),
-                              )
-                            ],
+                          title: SizedBox(
+                            width: double
+                                .infinity, // Set the width to occupy the available space
+
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    visit['diagnoses'] ?? '',
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                                Text(
+                                  date,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black54,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           subtitle: Text(visit['entityName'] ?? ''),
                           leading: CircleAvatar(

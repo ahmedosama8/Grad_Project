@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/app_screen.dart';
+import 'package:mobile_app/pages/barcode.dart';
 import 'package:mobile_app/pages/doctor_report.dart';
 import 'package:mobile_app/pages/doctor_visit.dart';
 import 'package:mobile_app/pages/emergency_info.dart';
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
           'rad_scans': (context) => const rad_scans(),
           'doctor_visit': (context) => const doctor_visit(),
           'pharmacy': (context) => MedicineListPage(),
+          'barcode': (context) => BarCode(),
         });
   }
 }

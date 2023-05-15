@@ -64,12 +64,12 @@ class AppointmentController extends Controller
 
     public function show_entity_appointments(string $id)
     {
-        return response()->json(Appointments::where('entity_id', $id)->get());
+        return response()->json(Appointments::where('entity_id', $id)->get(), 200);
     }
 
     public function show_patient_history(string $pid)
     {
-        return response()->json(Appointments::where('patient_id', $pid)->get());
+        return response()->json(Appointments::where('patient_id', $pid)->get(), 200);
     }
 
     public function get_tests(string $id)
@@ -81,6 +81,13 @@ class AppointmentController extends Controller
         $glucose = glucose::where('entity_id', $id)->get();
         return response()->json([$cbc, $lipids, $liver, $urine, $glucose], 200);
     }
+
+
+    public function show_entity_patients(string $id)
+    {
+        return response()->json(Appointments::where('entity_id', $id)->get('patient_id'), 200);
+    }
+
 
 }
 

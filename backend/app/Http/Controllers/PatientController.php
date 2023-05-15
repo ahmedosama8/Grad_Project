@@ -31,7 +31,8 @@ class PatientController extends Controller
 
         } catch (\Exception $e)
         {
-            $patient = Patient::updateOrCreate([
+            $patient = Patient::create([
+                'username'=>$request->get('username'),
                 'name'=>$request->get('name'),
                 'email'=>$request->get('email'),
                 'password'=>$request->get('password'),

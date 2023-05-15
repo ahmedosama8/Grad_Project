@@ -110,8 +110,8 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
               'emergency_contact': emergencyController.text,
               'blood_type': selectedBlood,
               'birth_date': dateinput.text,
-              'chronic': selectedDiseasesResult,
-              'allergies':selectedAllergyResult
+              'chronic': selectedDiseases,
+              'allergies':selectedAllergy
             },
           ));
         print(response.body);
@@ -502,7 +502,6 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                                 {'value': 'Eggs', 'display': 'Eggs'},
                                 {'value': 'Milk', 'display': 'Milk'},
                                 {'value': 'Other', 'display': 'Other'},
-                                {'value': 'None', 'display': 'none'}
                               ],
                               validator: (value) {
                                 if (value == null || value.length == 0) {

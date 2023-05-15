@@ -3,6 +3,8 @@ import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/pharmacy.dart';
 
 class Hub extends StatelessWidget {
+  const Hub({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

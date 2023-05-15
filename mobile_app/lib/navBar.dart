@@ -24,7 +24,7 @@ List<PersistentBottomNavBarItem> navBarsItems() {
     ),
     PersistentBottomNavBarItem(
       icon: const Icon(Icons.local_pharmacy_outlined),
-      title: ("Pharmacy"),
+      title: ("Medical Hub"),
       activeColorPrimary: Color(0XFF66CA98),
       inactiveColorPrimary: CupertinoColors.systemGrey,
     ),

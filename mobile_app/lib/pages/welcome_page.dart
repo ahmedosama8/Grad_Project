@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/navBar.dart';
 import 'package:mobile_app/pages/barcode.dart';
 import 'package:mobile_app/pages/home.dart';
+import 'package:mobile_app/pages/hub.dart';
 import 'package:mobile_app/pages/my_medical_records.dart';
 import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/profile.dart';
@@ -65,7 +66,8 @@ class _WelcomePageState extends State<WelcomePage> {
       HomePage(),
       My_Medical_Records(),
       BarCode(),
-      MedicineListPage(),
+      Hub(),
+      //MedicineListPage(),
       PatientProfilePage()
     ];
   }

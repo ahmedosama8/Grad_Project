@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/doctor_visit.dart';
 import 'package:mobile_app/pages/lab_results.dart';
 import 'package:mobile_app/pages/rad_scans.dart';
@@ -24,19 +25,17 @@ class _My_Medical_RecordsState extends State<My_Medical_Records> {
           child: Row(
             children: const [
               Expanded(
-                child: Text(
-                  'Medical Records',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 35,
+                child: Center(
+                  child: Text(
+                    'Medical Records',
                   ),
                 ),
               ),
             ],
           ),
         ),
-        backgroundColor: Colors.transparent,
-        toolbarHeight: 100,
+        backgroundColor: primary,
+        //toolbarHeight: 100,
         elevation: 0,
       ),
       body: SingleChildScrollView(

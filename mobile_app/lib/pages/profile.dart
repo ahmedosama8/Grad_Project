@@ -38,7 +38,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primary,
-        title: Center(child: Text('Patient Profile')),
+        title: Center(child: Text('Profile')),
       ),
       body: SingleChildScrollView(
         child: Padding(

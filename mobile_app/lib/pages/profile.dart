@@ -32,6 +32,8 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
     final emergencyNumber = userIdProvider.emergencyNumber;
     final identityNumber = userIdProvider.identityNumber;
     final martialStatus = userIdProvider.maritalStatus;
+    final chronicDisease = userIdProvider.chronicDisease;
+    final allergies = userIdProvider.allergies;
 
     return Scaffold(
       appBar: AppBar(
@@ -192,7 +194,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
                         controller:
-                            TextEditingController(text: _chronicDisease),
+                            TextEditingController(text: chronicDisease),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -221,7 +223,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Allergies',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: _allergies),
+                        controller: TextEditingController(text: allergies),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),

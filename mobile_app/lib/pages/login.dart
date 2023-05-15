@@ -52,8 +52,8 @@ class _LoginState extends State<Login> {
       final String identityNumber = responseData['national_id_number'] ?? '';
       final String dob = responseData['birth_date'] ?? '';
       final String maritalStatus = responseData['marital_status'] ?? '';
-      //final List chronicDisease = responseData['chronic'] ?? '';
-      //final List allergies = responseData[''] ?? '';
+      final String chronicDisease = responseData['chronic'] ?? '';
+      final String allergies = responseData['allergies'] ?? '';
       //final List chronicDisease = responseData['medicalConditions'] ?? '';
 
 
@@ -61,10 +61,10 @@ class _LoginState extends State<Login> {
       final userIdProvider = Provider.of<UserIdProvider>(context, listen: false);
       userIdProvider.setId(id);
       userIdProvider.setNames(username,fullname);
-      userIdProvider.setData(dob,email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber,maritalStatus);
+      userIdProvider.setData(dob,email, address, gender, bloodType, emergencyNumber, identityNumber,phoneNumber,maritalStatus,chronicDisease,allergies);
 
       Navigator.of(context).pushReplacementNamed(
-        'home',arguments: {'username': usernameController.text}, 
+        'home', 
       );
 
       // Navigator.pushReplacementNamed(context, 'home',

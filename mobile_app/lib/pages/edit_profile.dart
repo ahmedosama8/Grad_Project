@@ -93,7 +93,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
           body: json.encode(
             {
               'username': _userNameController.text,
-              //'phone':phone,
               'name': _fullNameController.text,
               'email': _emailController.text,
               'gender': _genderController.text,
@@ -103,7 +102,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               'emergency_contact': _emergencyContactNumberController.text,
               'blood_type': _bloodTypeController.text,
               'birth_date': _dobController.text,
-              //'medicalConditions':selectedDiseasesResult
+              'chronic': _chronicDiseaseController.text,
+              'allergies': _allergiesController.text
             },
           ));
 

@@ -15,6 +15,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:provider/provider.dart';
 import 'package:mobile_app/api/user.dart';
+import 'package:restart_app/restart_app.dart';
+
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -123,15 +125,16 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
                     child: Text('Welcome Back, $fullname!',
                         style: GoogleFonts.robotoCondensed(
-                            fontSize: 20, fontWeight: FontWeight.bold))),
+                            fontSize: 18, fontWeight: FontWeight.bold))),
                 Spacer(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
                   child: IconButton(
                     icon: Icon(Icons.logout),
                     onPressed: () {
-                      Navigator.pushReplacementNamed(
-                          context, 'login');
+                                             Restart.restartApp();
+
+
                     },
                   ),
                 )
@@ -145,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.fromLTRB(25, 30, 20, 20),
                     child: Text('Appointments',
                         style: GoogleFonts.robotoCondensed(
-                          fontSize: 18,
+                          fontSize: 16,
                         ))),
                 Spacer(),
               ],
@@ -230,7 +233,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.fromLTRB(25, 0, 20, 10),
                     child: Text('Pharmacies',
                         style: GoogleFonts.robotoCondensed(
-                          fontSize: 18,
+                          fontSize: 16,
                         ))),
               ],
             ),
@@ -254,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.fromLTRB(25, 18, 20, 20),
                     child: Text('Labs & Centers',
                         style: GoogleFonts.robotoCondensed(
-                          fontSize: 18,
+                          fontSize: 16,
                         ))),
                 Spacer(),
                 Padding(

@@ -110,10 +110,11 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
               'emergency_contact': emergencyController.text,
               'blood_type': selectedBlood,
               'birth_date': dateinput.text,
-              //'medicalConditions':selectedDiseasesResult
+              'chronic': selectedDiseasesResult,
+              'allergies':selectedAllergyResult
             },
           ));
-
+        print(response.body);
       // Handle the API response here
       if (response.statusCode == 201) {
         Navigator.of(context).pushNamedAndRemoveUntil(
@@ -437,6 +438,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                                   'value': 'osteoporosis'
                                 },
                                 {'display': 'None', 'value': 'none'},
+                                {'display': 'Other', 'value': 'other'},
                               ],
                               validator: (value) {
                                 if (value == null || value.length == 0) {

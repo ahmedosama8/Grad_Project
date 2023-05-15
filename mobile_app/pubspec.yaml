@@ -52,6 +52,8 @@ dependencies:
   multiselect_formfield: ^0.1.7
   mockito: ^5.4.0
   provider: ^6.0.5
+  restart_app: ^1.1.2
+
 
 
 

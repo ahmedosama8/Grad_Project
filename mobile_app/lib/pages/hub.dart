@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/pages/login.dart';
 import 'package:mobile_app/pages/pharmacy.dart';
+import 'package:mobile_app/pages/reminder.dart';
 
 class Hub extends StatelessWidget {
   const Hub({super.key});
@@ -41,11 +43,19 @@ class Hub extends StatelessWidget {
               icon: Icons.medical_services_outlined,
               color: primary,
             ),
-            CardWidget(
-              title: 'Medication reminders',
-              description: 'You can add your medecines to remember your doses',
-              icon: Icons.add_alarm_outlined,
-              color: primary,
+            InkWell(
+                              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MedicineReminderPage()),
+                );
+              },
+              child: CardWidget(
+                title: 'Medication reminders',
+                description: 'You can add your medecines to remember your doses',
+                icon: Icons.add_alarm_outlined,
+                color: primary,
+              ),
             ),
           ],
         ),

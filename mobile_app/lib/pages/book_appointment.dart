@@ -64,7 +64,7 @@ class _BookappointState extends State<Bookappoint> {
 
   final _formKey = GlobalKey<FormState>();
   TextEditingController dateinput = TextEditingController();
-  late List<Doctor> facilities = []; //de hakhodha mn backend wla laa
+  late List<Doctor> facilities = [];
   Doctor? selectedfacility;
   @override
   void initState() {
@@ -99,7 +99,6 @@ class _BookappointState extends State<Bookappoint> {
                 Text('Type :$selectedAppointmentType'),
                 Text('Facility :${selectedfacility?.name}'),
                 Text('Date :${dateinput.text}'),
-//walahy el 3azeeeem shaghalaaaaa
                 //Text('Data :$  )
                 TextButton(
                   onPressed: () {

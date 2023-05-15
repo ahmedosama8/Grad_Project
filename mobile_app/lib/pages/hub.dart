@@ -19,7 +19,7 @@ class Hub extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            GestureDetector(
+            InkWell(
               onTap: () {
                 Navigator.push(
                   context,

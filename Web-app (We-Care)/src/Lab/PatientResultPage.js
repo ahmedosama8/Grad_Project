@@ -71,13 +71,12 @@ function TestResultsTable({}) {
   const [lipidtests, setLipidTests] = useState([]);
   const [urinetests, setUrineTests] = useState([]);
   const [glucosetests, setGlucoseTests] = useState([]);
-  const [backendcbc, setCBCBackend] = useState([]);
   const { id } = useParams();
 
 
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/CBC/patient/${id}`);
+      const response = await fetch(`http://localhost:8080/api/cbc/patient/${id}`);
       const data = await response.json();
       setcbcTests(data);
     }
@@ -85,7 +84,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/LiverFunc/patient/${id}`);
+      const response = await fetch(`http://localhost:8080/api/liver/patient/${id}`);
       const data = await response.json();
       setLiverTests(data);
     }
@@ -93,7 +92,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/UrineTest/patient/${id}`);
+      const response = await fetch(`http://localhost:8080/api/urine/patient/${id}`);
       const data = await response.json();
       setUrineTests(data);
     }
@@ -101,7 +100,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/Glucose/patient/${id}`);
+      const response = await fetch(`http://localhost:8080/api/glucose/patient/${id}`);
       const data = await response.json();
       setGlucoseTests(data);
     }
@@ -109,7 +108,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/LipidProfile/patient/${id}`);
+      const response = await fetch(`http://localhost:8080/api/lipid/patient/${id}`);
       const data = await response.json();
       setLipidTests(data);
     }
@@ -139,20 +138,25 @@ function TestResultsTable({}) {
               <th style={{ textAlign: "center" }}>Test Type</th>
               <th style={{ textAlign: "center" }}>Lab Name</th>
               <th style={{ textAlign: "center" }}>Examination Date</th>
+              <th style={{ textAlign: "center" }}>Referring Doctor</th>
+
               <th style={{ textAlign: "center" }}>Comments</th>
+              
               <th style={{ textAlign: "center" }}>Action</th>
               {/* Add other relevant columns as necessary */}
             </tr>
           </thead>
           <tbody>
             {cbctests?.map((test) => (
-              <tr key={test.cbc_id}>
+              <tr key={test.id}>
                 <td>CBC Test</td>
-                <td>{test.labName}</td>
-                <td>{test.examination_Date}</td>
+                <td>{sessionStorage.getItem("User")}</td>
+                <td>{test.created_at.slice(0, 10)}</td>
+                <td>{test.referring_doctor}</td>
+
                 <td>{test.comments}</td>
                 <td>
-                  <Link to={`/cbc-page/${test.cbc_id}`}>
+                  <Link to={`/cbc-page/${test.id}`}>
                     <button className="btn btn-edit">View</button>
                   </Link>
                 </td>
@@ -163,8 +167,10 @@ function TestResultsTable({}) {
             {lipidtests?.map((test) => (
               <tr key={test.id}>
                 <td>Lipid Profile Test</td>
-                <td>{test.labName}</td>
-                <td>{test.examination_Date}</td>
+                <td>{sessionStorage.getItem("User")}</td>
+                <td>{test.created_at.slice(0, 10)}</td>
+                <td>{test.referring_doctor}</td>
+
                 <td>{test.comments}</td>
                 <td>
                   <Link to={`/lipid-profile-page/${test.id}`}>
@@ -177,8 +183,10 @@ function TestResultsTable({}) {
             {livertests?.map((test) => (
               <tr key={test.id}>
                 <td>Liver Function Test</td>
-                <td>{test.labName}</td>
-                <td>{test.examination_Date}</td>
+                <td>{sessionStorage.getItem("User")}</td>
+                <td>{test.created_at.slice(0, 10)}</td>
+                <td>{test.referring_doctor}</td>
+
                 <td>{test.comments}</td>
                 <td>
                   <Link to={`/liver-page/${test.id}`}>
@@ -191,8 +199,10 @@ function TestResultsTable({}) {
             {urinetests?.map((test) => (
               <tr key={test.id}>
                 <td>Urine Test</td>
-                <td>{test.labName}</td>
-                <td>{test.examination_Date}</td>
+                <td>{sessionStorage.getItem("User")}</td>
+                <td>{test.created_at.slice(0, 10)}</td>
+                <td>{test.referring_doctor}</td>
+
                 <td>{test.comments}</td>
                 <td>
                   <Link to={`/urine-page/${test.id}`}>
@@ -205,8 +215,10 @@ function TestResultsTable({}) {
             {glucosetests?.map((test) => (
               <tr key={test.id}>
                 <td>Glucose Test</td>
-                <td>{test.labName}</td>
-                <td>{test.examination_Date}</td>
+                <td>{sessionStorage.getItem("User")}</td>
+                <td>{test.created_at.slice(0, 10)}</td>
+                <td>{test.referring_doctor}</td>
+
                 <td>{test.comments}</td>
                 <td>
                   <Link to={`/glucose-page/${test.id}`}>

@@ -28,7 +28,7 @@ const CbcTestResult = () => {
   }, []);
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:3001/CBCTest/${id}`);
+    const res = await axios.get(`http://localhost:8080/api/cbc/${id}`);
     setSingleTest(res.data);
     console.log("cbc data", res);
   };
@@ -87,7 +87,7 @@ const CbcTestResult = () => {
                 <label>Red Cell Count</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.redCellCount}</label>
+                <label>{singletest?.red_cell_count}</label>
               </div>
               <div className="col-md-3">
                 <label>x10⁶ /uL</label>
@@ -157,7 +157,7 @@ const CbcTestResult = () => {
                 <label>Platelet Count</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.plateletCount}</label>
+                <label>{singletest?.platelet_count}</label>
               </div>
               <div className="col-md-3">
                 <label>x10³/uL</label>

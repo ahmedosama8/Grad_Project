@@ -3,105 +3,27 @@ import Topbar from "../Topbar/Topbar";
 import Sidebar from "../Sidebar/Sidebar";
 import "./CBCTest.css";
 import axios from "axios";
-
-const urinedata = [
-  {
-    name: "Color",
-    unit: "",
-    range: "Amber yellow",
-  },
-  {
-    name: "Clarity",
-    unit: "",
-    range: "Clear",
-  },
-  {
-    name: "Specific Gravity",
-    unit: "",
-    range: "1015 - 1025",
-  },
-  {
-    name: "PH",
-    unit: "",
-    range: "4.5 - 6.5",
-  },
-  {
-    name: "Protein",
-    unit: "",
-    range: "Negative",
-  },
-  {
-    name: "Glucose",
-    unit: "",
-    range: "Negative",
-  },
-  {
-    name: "Ketone",
-    unit: "",
-    range: "Negative",
-  },
-  {
-    name: "Urobilinogen",
-    unit: "",
-    range: "Normal Trace",
-  },
-  {
-    name: "Bilirubin",
-    unit: "",
-    range: "Negative",
-  },
-  {
-    name: "Nitrite",
-    unit: "",
-    range: "Negative",
-  },
-  {
-    name: "Pus Cells",
-    unit: "/HPF",
-    range: "0 : 1",
-  },
-  {
-    name: "Red Cells",
-    unit: "/HPF",
-    range: "0 : 1",
-  },
-  {
-    name: "Epithelial Cells",
-    unit: "/HPF",
-    range: "Negative",
-  },
-  {
-    name: "Amorphous",
-    unit: "/HPF",
-    range: "Negative",
-  },
-  {
-    name: "Crystals",
-    unit: "/HPF",
-    range: "Negative",
-  },
-  {
-    name: "Casts",
-    unit: "/HPF",
-    range: "Negative",
-  },
-  {
-    name: "Others",
-    unit: "/HPF",
-    range: "",
-  },
-];
+import usePagination from "@mui/material/usePagination/usePagination";
+import { useLocation, useParams } from "react-router-dom";
+import { urinedata } from "../BackEndFunctions";
 
 export default function UrineExamTest() {
+  const { id } = useParams();
+  const location = useLocation();
   document.title = "Urine Test / Lab";
-  const [formData, setFormData] = useState({ labname: "dosh" });
+  const [formData, setFormData] = useState({
+    patient_id: id,
+    entity_id: "2",
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3001/Urinetest", formData)
+      .post("http://localhost:8080/api/urine/new", formData)
       .then((response) => {
         console.log("Data posted:", response.data);
+        window.location.href = `/allpatientspage/patientresultpage/${id}`;
+
         // Do something with the response, e.g. show a success message
       })
       .catch((error) => {
@@ -111,13 +33,12 @@ export default function UrineExamTest() {
   };
 
   const handleChange = (event) => {
-    const fieldName = event.target.name.toLowerCase();
+    const fieldName = event.target.name;
     setFormData({
       ...formData,
       [fieldName]: event.target.value,
     });
   };
-
   return (
     <div>
       <Topbar />
@@ -130,16 +51,16 @@ export default function UrineExamTest() {
         <form onSubmit={handleSubmit} noValidate>
           <div className="row mb-3">
             <div className="col-md-4">
-              <label htmlFor="firstName">First Name</label>
-              <p className="patientdata">Mahmoud </p>
+              <label htmlFor="firstName">Name</label>
+              <p className="patientdata">{location.state?.name} </p>
             </div>
             <div className="col-md-4">
-              <label htmlFor="lastName">Last Name</label>
-              <p className="patientdata">Ahmed </p>
+              <label htmlFor="lastName">ِAge</label>
+              <p className="patientdata">{location.state?.age} </p>
             </div>
             <div className="col md-4">
               <label htmlFor="email">Patient's ID</label>
-              <p className="patientdata">HOSP-12345</p>
+              <p className="patientdata">{id}</p>
             </div>
           </div>
           <div>
@@ -163,10 +84,9 @@ export default function UrineExamTest() {
             </div>
           </div>
           <h3 className="mb-4">Urine Test</h3>
-          
 
           <h3 className="mb-4">Physiochemical Data</h3>
-          
+
           <div className="row mb-3">
             <h6 className="col md-3"> </h6>
             <h6 className="col md-3">Result</h6>
@@ -174,15 +94,15 @@ export default function UrineExamTest() {
             <h6 className="col md-3">Ref.Range</h6>
           </div>
           {urinedata.map((item) => (
-            <div className="row mb-3" key={item.name.toLowerCase()}>
+            <div className="row mb-3" key={item.Attribute}>
               <div className="col-md-3">
                 <label>{item.name}</label>
               </div>
               <input
                 className="form-control col md-3 boxentry"
                 type="text"
-                name={item.name.toLowerCase()}
-                value={formData[item.name.toLowerCase()] || ""}
+                name={item.Attribute}
+                value={formData[item.Attribute] || ""}
                 onChange={handleChange}
               />
               <label className="col md-3">{item.unit}</label>
@@ -195,7 +115,7 @@ export default function UrineExamTest() {
               )}
             </div>
           ))}
-          <div>
+          {/* <div>
             <label htmlFor="comments">Comments</label>
             <textarea
               className="commentbtn"
@@ -205,7 +125,7 @@ export default function UrineExamTest() {
               onChange={handleChange}
               placeholder="Write Comments.."
             ></textarea>
-          </div>
+          </div> */}
 
           <div className="mb-5">
             <button type="submit">Submit</button>

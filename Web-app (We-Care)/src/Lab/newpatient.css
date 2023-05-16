@@ -1,0 +1,19 @@
+.submitform {
+	background: #d49ef5;
+	color: #ffffff;
+	border: 1px solid #eee;
+	border-radius: 20px;
+	box-shadow: 5px 5px 5px #eee;
+	text-shadow: none;
+    width: 15rem;
+    height: 3rem;
+}
+
+.submitform:hover {
+	background: #9a01bc;
+	color: #ffffff;
+	border: 1px solid #eee;
+	border-radius: 20px;
+	box-shadow: 5px 5px 5px #eee;
+	text-shadow: none;
+}

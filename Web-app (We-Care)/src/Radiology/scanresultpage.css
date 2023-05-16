@@ -1,0 +1,42 @@
+.testitem {
+  border-bottom: 1px solid #dddddd;
+  padding: 12px 15px;
+}
+.paperstyle {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  max-width: 800rem;
+  box-shadow: 0 0 20px rgba(146, 31, 31, 0.15);
+}
+.paper {
+  width: 600px;
+  padding: 20px;
+  margin: 20px auto;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.left-section {
+  flex: 1;
+}
+
+.right-section {
+  flex: 1;
+}
+
+.footer {
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  padding-top: 10px;
+}

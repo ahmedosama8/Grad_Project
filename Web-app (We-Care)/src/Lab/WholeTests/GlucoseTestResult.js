@@ -28,7 +28,7 @@ const GlucoseTestPaper = () => {
   }, []);
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:3001/Glucosetest/${id}`);
+    const res = await axios.get(`http://localhost:8080/api/glucose/${id}`);
     setSingleTest(res.data);
   };
   return (

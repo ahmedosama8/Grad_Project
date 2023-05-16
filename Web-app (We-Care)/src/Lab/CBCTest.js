@@ -4,6 +4,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import "./CBCTest.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // function MouseOver(event) {
 //   event.target.style.background = "red";
@@ -11,31 +12,43 @@ import { useParams } from "react-router-dom";
 const cbcData = [
   { name: "Haemoglobin", value: "12", unit: "g/dL", range: "13-17" },
   { name: "Hematocrit", value: "12", unit: "%", range: "40-50" },
-  { name: "Red Cell Count", value: "12", unit: "x10⁶ /uL", range: "4.5-6.2" },
+  { name: "Red_Cell_Count", value: "12", unit: "x10⁶ /uL", range: "4.5-6.2" },
   { name: "MCV", value: "12", unit: "fL", range: "78-96" },
   { name: "MCH", value: "12", unit: "pg", range: "26-32" },
-  { name: "MCHC", value: "12", unit: "g/dL", range: "31-36" },
+  // { name: "MCHC ", value: "12", unit: "g/dL", range: "31-36" },
   { name: "RDW", value: "12", unit: "%", range: "11.5-14.5" },
-  { name: "Platelet Count", value: "12", unit: "x10³/uL", range: "150-450" },
-  { name: "T.L.C", value: "12", unit: "x10³/uL", range: "4-11" },
+  { name: "Platelet_Count", value: "12", unit: "x10³/uL", range: "150-450" },
+  { name: "TLC", value: "12", unit: "x10³/uL", range: "4-11" },
   { name: "Basophils", value: "12", unit: "%", range: "0-1" },
   { name: "Eosinophils", value: "12", unit: "%", range: "0-6" },
   { name: "Stab", value: "12", unit: "%", range: "0-7" },
   { name: "Segmented", value: "12", unit: "%", range: "40-75" },
   { name: "Lymphocytes", value: "12", unit: "%", range: "20-45" },
   { name: "Monocytes", value: "12", unit: "%", range: "1-10" },
+  
 ];
 
 function CBCTest() {
-  const [formData, setFormData] = useState({ labname: "dosh" });
-  const { patient_id } = useParams();
+  const { id } = useParams();
+  const location = useLocation();
+
+  const [formData, setFormData] = useState({
+    patient_id: id,
+    entity_id: "2",
+    appointment_id:"5"
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`http://localhost:3001/CBCTest`, formData)
+      .post(`http://localhost:8080/api/cbc/new`, formData)
       .then((response) => {
         console.log("Data posted:", response.data);
+        console.log("response", response);
+        if (response.status === 201) {
+          // Navigate to another page
+          window.location.href = `/allpatientspage/patientresultpage/${id}`;
+        }
         // Do something with the response, e.g. show a success message
       })
       .catch((error) => {
@@ -43,6 +56,7 @@ function CBCTest() {
         // Handle the error, e.g. show an error message
       });
   };
+  console.log("cbc data", formData);
 
   const handleChange = (event) => {
     const fieldName = event.target.name.toLowerCase();
@@ -63,16 +77,16 @@ function CBCTest() {
         <form onSubmit={handleSubmit} noValidate>
           <div className="row mb-3">
             <div className="col-md-4">
-              <label htmlFor="firstName">First Name</label>
-              <p className="patientdata">Mahmoud </p>
+              <label htmlFor="firstName">Name</label>
+              <p className="patientdata"> {location.state?.name} </p>
             </div>
             <div className="col-md-4">
-              <label htmlFor="lastName">Last Name</label>
-              <p className="patientdata">Ahmed </p>
+              <label htmlFor="lastName">Age</label>
+              <p className="patientdata">{location.state?.age} </p>
             </div>
             <div className="col md-4">
               <label htmlFor="email">Patient's ID</label>
-              <p className="patientdata">HOSP-12345</p>
+              <p className="patientdata">{id}</p>
             </div>
           </div>
           <div>
@@ -126,7 +140,6 @@ function CBCTest() {
             <label for="comments">Comments</label>
             <textarea
               className="commentbtn"
-              id="comments"
               name="comments"
               value={formData.comments || ""}
               onChange={handleChange}

@@ -46,10 +46,46 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Heamoglobin'),
-                              Text(cbc['haemoglobin'].toString()),
-                              Text('g/dL'),
-                              Text('13-17'),
+                              Text(
+                                'Hemoglobin',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['haemoglobin']) <
+                                              13 ||
+                                          double.parse(cbc['haemoglobin']) > 17)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['haemoglobin'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['haemoglobin']) <
+                                              13 ||
+                                          double.parse(cbc['haemoglobin']) > 17)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'g/dL',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['haemoglobin']) <
+                                              13 ||
+                                          double.parse(cbc['haemoglobin']) > 17)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '13-17',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['haemoglobin']) <
+                                              13 ||
+                                          double.parse(cbc['haemoglobin']) > 17)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -58,10 +94,46 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Hematocrit'),
-                              Text(cbc['hematocrit'].toString()),
-                              Text('%'),
-                              Text('40-50'),
+                              Text(
+                                'Hematocrit',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['hematocrit']) <
+                                              40 ||
+                                          double.parse(cbc['hematocrit']) > 50)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['hematocrit'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['hematocrit']) <
+                                              40 ||
+                                          double.parse(cbc['hematocrit']) > 50)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '%',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['hematocrit']) <
+                                              40 ||
+                                          double.parse(cbc['hematocrit']) > 50)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '40-50',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['hematocrit']) <
+                                              40 ||
+                                          double.parse(cbc['hematocrit']) > 50)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -70,10 +142,50 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Red Cell Count'),
-                              Text(cbc['red_cell_count'].toString()),
-                              Text('x10^6/uL'),
-                              Text('4.5-6.2'),
+                              Text(
+                                'Red Cell Count',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['red_cell_count']) <
+                                              4.5 ||
+                                          double.parse(cbc['red_cell_count']) >
+                                              6.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['red_cell_count'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['red_cell_count']) <
+                                              4.5 ||
+                                          double.parse(cbc['red_cell_count']) >
+                                              6.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'x10^6/uL',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['red_cell_count']) <
+                                              4.5 ||
+                                          double.parse(cbc['red_cell_count']) >
+                                              6.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '4.5-6.2',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['red_cell_count']) <
+                                              4.5 ||
+                                          double.parse(cbc['red_cell_count']) >
+                                              6.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -82,10 +194,42 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('MCV'),
-                              Text(cbc['mcv'].toString()),
-                              Text('fL'),
-                              Text('78-96'),
+                              Text(
+                                'MCV',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mcv']) < 78 ||
+                                          double.parse(cbc['mcv']) > 96)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['mcv'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mcv']) < 78 ||
+                                          double.parse(cbc['mcv']) > 96)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'fL',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mcv']) < 78 ||
+                                          double.parse(cbc['mcv']) > 96)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '78-96',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mcv']) < 78 ||
+                                          double.parse(cbc['mcv']) > 96)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -94,10 +238,42 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('MCH'),
-                              Text(cbc['mch'].toString()),
-                              Text('fL'),
-                              Text('26-32'),
+                              Text(
+                                'MCH',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mch']) < 26 ||
+                                          double.parse(cbc['mch']) > 32)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['mch'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mch']) < 26 ||
+                                          double.parse(cbc['mch']) > 32)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'fL',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mch']) < 26 ||
+                                          double.parse(cbc['mch']) > 32)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '26-32',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mch']) < 26 ||
+                                          double.parse(cbc['mch']) > 32)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -106,10 +282,42 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('MCHC'),
-                              Text(cbc['mchc'].toString()),
-                              Text('pg'),
-                              Text('31-36'),
+                              Text(
+                                'MCHC',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mchc']) < 31 ||
+                                          double.parse(cbc['mchc']) > 36)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['mchc'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mchc']) < 31 ||
+                                          double.parse(cbc['mchc']) > 36)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'pg',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mchc']) < 31 ||
+                                          double.parse(cbc['mchc']) > 36)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '31-36',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['mchc']) < 31 ||
+                                          double.parse(cbc['mchc']) > 36)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -118,10 +326,42 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('RDW'),
-                              Text(cbc['rdw'].toString()),
-                              Text('g/dL'),
-                              Text('11.5-14.5'),
+                              Text(
+                                'RDW',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['rdw']) < 11.5 ||
+                                          double.parse(cbc['rdw']) > 14.5)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['rdw'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['rdw']) < 11.5 ||
+                                          double.parse(cbc['rdw']) > 14.5)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'g/dL',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['rdw']) < 11.5 ||
+                                          double.parse(cbc['rdw']) > 14.5)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '11.5-14.5',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['rdw']) < 11.5 ||
+                                          double.parse(cbc['rdw']) > 14.5)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -130,10 +370,50 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Platelet Count'),
-                              Text(cbc['platelet_count'].toString()),
-                              Text('%'),
-                              Text('150-450'),
+                              Text(
+                                'Platelet Count',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['platelet_count']) <
+                                              150 ||
+                                          double.parse(cbc['platelet_count']) >
+                                              450)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['platelet_count'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['platelet_count']) <
+                                              150 ||
+                                          double.parse(cbc['platelet_count']) >
+                                              450)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '%',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['platelet_count']) <
+                                              150 ||
+                                          double.parse(cbc['platelet_count']) >
+                                              450)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '150-450',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['platelet_count']) <
+                                              150 ||
+                                          double.parse(cbc['platelet_count']) >
+                                              450)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -142,10 +422,42 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('T.L.C'),
-                              Text(cbc['tlc'].toString()),
-                              Text('x10^3/uL'),
-                              Text('4-11'),
+                              Text(
+                                'T.L.C',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['tlc']) < 4 ||
+                                          double.parse(cbc['tlc']) > 11)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['tlc'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['tlc']) < 4 ||
+                                          double.parse(cbc['tlc']) > 11)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'x10^3/uL',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['tlc']) < 4 ||
+                                          double.parse(cbc['tlc']) > 11)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '4-11',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['tlc']) < 4 ||
+                                          double.parse(cbc['tlc']) > 11)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -154,10 +466,42 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Basophils'),
-                              Text(cbc['basophils'].toString()),
-                              Text('x10^3/uL'),
-                              Text('0-1'),
+                              Text(
+                                'Basophils',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['basophils']) < 0 ||
+                                          double.parse(cbc['basophils']) > 1)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['basophils'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['basophils']) < 0 ||
+                                          double.parse(cbc['basophils']) > 1)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'x10^3/uL',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['basophils']) < 0 ||
+                                          double.parse(cbc['basophils']) > 1)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '0-1',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['basophils']) < 0 ||
+                                          double.parse(cbc['basophils']) > 1)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -166,10 +510,46 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Eosinophils'),
-                              Text(cbc['eosinophils'].toString()),
-                              Text('%'),
-                              Text('0-6'),
+                              Text(
+                                'Eosinophils',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['eosinophils']) <
+                                              0 ||
+                                          double.parse(cbc['eosinophils']) > 6)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['eosinophils'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['eosinophils']) <
+                                              0 ||
+                                          double.parse(cbc['eosinophils']) > 6)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '%',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['eosinophils']) <
+                                              0 ||
+                                          double.parse(cbc['eosinophils']) > 6)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '0-6',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['eosinophils']) <
+                                              0 ||
+                                          double.parse(cbc['eosinophils']) > 6)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -178,10 +558,42 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('stab'),
-                              Text(cbc['stab'].toString()),
-                              Text('%'),
-                              Text('0-7'),
+                              Text(
+                                'stab',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['stab']) < 0 ||
+                                          double.parse(cbc['stab']) > 7)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['stab'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['stab']) < 0 ||
+                                          double.parse(cbc['stab']) > 7)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '%',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['stab']) < 0 ||
+                                          double.parse(cbc['stab']) > 7)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '0-7',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['stab']) < 0 ||
+                                          double.parse(cbc['stab']) > 7)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -190,10 +602,42 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Segmented'),
-                              Text(cbc['segmented'].toString()),
-                              Text('%'),
-                              Text('40-75'),
+                              Text(
+                                'Segmented',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['segmented']) < 40 ||
+                                          double.parse(cbc['segmented']) > 75)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['segmented'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['segmented']) < 40 ||
+                                          double.parse(cbc['segmented']) > 75)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '%',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['segmented']) < 40 ||
+                                          double.parse(cbc['segmented']) > 75)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '40-75',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['segmented']) < 40 ||
+                                          double.parse(cbc['segmented']) > 75)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -202,10 +646,46 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Lymphocytes'),
-                              Text(cbc['lymphocytes'].toString()),
-                              Text('%'),
-                              Text('20-45'),
+                              Text(
+                                'Lymphocytes',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['lymphocytes']) <
+                                              20 ||
+                                          double.parse(cbc['lymphocytes']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['lymphocytes'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['lymphocytes']) <
+                                              20 ||
+                                          double.parse(cbc['lymphocytes']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '%',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['lymphocytes']) <
+                                              20 ||
+                                          double.parse(cbc['lymphocytes']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '20-45',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['lymphocytes']) <
+                                              20 ||
+                                          double.parse(cbc['lymphocytes']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -214,10 +694,42 @@ class CbcTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Monocytes'),
-                              Text(cbc['monocytes'].toString()),
-                              Text('%'),
-                              Text('1-10'),
+                              Text(
+                                'Monocytes',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['monocytes']) < 1 ||
+                                          double.parse(cbc['monocytes']) > 10)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                cbc['monocytes'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(cbc['monocytes']) < 1 ||
+                                          double.parse(cbc['monocytes']) > 10)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '%',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['monocytes']) < 1 ||
+                                          double.parse(cbc['monocytes']) > 10)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '1-10',
+                                style: TextStyle(
+                                  color: (double.parse(cbc['monocytes']) < 1 ||
+                                          double.parse(cbc['monocytes']) > 10)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         )
@@ -230,7 +742,14 @@ class CbcTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: Icon(Icons.note),
-                        title: Text('notes'),
+                        title: Text(
+                          'notes',
+                          style: TextStyle(
+                            color: cbc['comments'] != null
+                                ? Colors.red
+                                : Colors.black,
+                          ),
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.all(10.0),

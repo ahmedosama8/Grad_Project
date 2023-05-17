@@ -111,10 +111,10 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
               'blood_type': selectedBlood,
               'birth_date': dateinput.text,
               'chronic': selectedDiseases,
-              'allergies':selectedAllergy
+              'allergies': selectedAllergy
             },
           ));
-        print(response.body);
+      print(response.body);
       // Handle the API response here
       if (response.statusCode == 201) {
         Navigator.of(context).pushNamedAndRemoveUntil(
@@ -502,6 +502,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                                 {'value': 'Eggs', 'display': 'Eggs'},
                                 {'value': 'Milk', 'display': 'Milk'},
                                 {'value': 'Other', 'display': 'Other'},
+                                {'value': 'None', 'display': 'None'},
                               ],
                               validator: (value) {
                                 if (value == null || value.length == 0) {

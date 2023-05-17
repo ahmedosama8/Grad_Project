@@ -46,10 +46,42 @@ class GluTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('R B G'),
-                              Text(glucose['rbc'].toString()),
-                              Text('mg/dL'),
-                              Text('--'),
+                              Text(
+                                'R B G',
+                                style: TextStyle(
+                                  color: (double.parse(glucose['rbc']) < 20 ||
+                                          double.parse(glucose['rbc']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                glucose['rbc'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(glucose['rbc']) < 20 ||
+                                          double.parse(glucose['rbc']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'mg/dL',
+                                style: TextStyle(
+                                  color: (double.parse(glucose['rbc']) < 20 ||
+                                          double.parse(glucose['rbc']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '--',
+                                style: TextStyle(
+                                  color: (double.parse(glucose['rbc']) < 20 ||
+                                          double.parse(glucose['rbc']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -58,10 +90,42 @@ class GluTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('R B S'),
-                              Text(glucose['rbs'].toString()),
-                              Text('mg/dL'),
-                              Text('--'),
+                              Text(
+                                'R B S',
+                                style: TextStyle(
+                                  color: (double.parse(glucose['rbc']) < 20 ||
+                                          double.parse(glucose['rbc']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                glucose['rbs'].toString(),
+                                style: TextStyle(
+                                  color: (double.parse(glucose['rbc']) < 20 ||
+                                          double.parse(glucose['rbc']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'mg/dL',
+                                style: TextStyle(
+                                  color: (double.parse(glucose['rbc']) < 20 ||
+                                          double.parse(glucose['rbc']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '--',
+                                style: TextStyle(
+                                  color: (double.parse(glucose['rbc']) < 20 ||
+                                          double.parse(glucose['rbc']) > 45)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         )
@@ -74,7 +138,14 @@ class GluTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: Icon(Icons.note),
-                        title: Text('notes'),
+                        title: Text(
+                          'notes',
+                          style: TextStyle(
+                            color: glucose['comments'] != null
+                                ? Colors.red
+                                : Colors.black,
+                          ),
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.all(10.0),

@@ -46,73 +46,42 @@ class LipTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('ALT(SGPT)\nserum'),
-                              Text(lipid['alt'].toString()),
-                              Text('U/L'),
-                              Text('10-65'),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('AST(SGOT)\nserum'),
-                              Text(lipid['ast'].toString()),
-                              Text('U/L'),
-                              Text(' 0-48'),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Albumin\nserum'),
-                              Text(lipid['albumin'].toString()),
-                              Text('g/dL'),
-                              Text('3.5-5.2'),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Cholestrol\nTotal\nserum'),
-                              Text(lipid['cholesterol'].toString()),
-                              Text('mg/dL'),
                               Text(
-                                  'Desirable: < 200 mg/dL\nBorderline High: 200-239 mg/dl\nHigh: > or = 240 mg/dL '),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('HDL-C\nserum'),
-                              Text(lipid['hdl_c'].toString()),
-                              Text('mg/dL'),
+                                'ALT(SGPT)\nserum',
+                                style: TextStyle(
+                                  color:
+                                      (lipid['alt'] < 10 || lipid['alt'] > 65)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
                               Text(
-                                  'Low HDL: < 40 mg/dL\nBorderline Low: 40-60 mg/dL\nAcceptable: > 60 mg/dL')
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('LDL-C\nserum'),
-                              Text(lipid['ldl_c'].toString()),
-                              Text('mg/dL'),
+                                lipid['alt'].toString(),
+                                style: TextStyle(
+                                  color:
+                                      (lipid['alt'] < 10 || lipid['alt'] > 65)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
                               Text(
-                                  'Desirable: < 100 mg/dL\nAbove Desirable: 100-129 mg/dl\nBorderline High: 130-159 mg/dL\nHigh: 160-189 mg/dL\nVery High: > or =190 mg/dL')
+                                'U/L',
+                                style: TextStyle(
+                                  color:
+                                      (lipid['alt'] < 10 || lipid['alt'] > 65)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '10-65',
+                                style: TextStyle(
+                                  color:
+                                      (lipid['alt'] < 10 || lipid['alt'] > 65)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -121,11 +90,241 @@ class LipTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Triglycerides\nserum'),
-                              Text(lipid['triglycerides'].toString()),
-                              Text('mg/dL'),
+                              Text(
+                                'AST(SGOT)\nserum',
+                                style: TextStyle(
+                                  color: (lipid['ast'] < 0 || lipid['ast'] > 48)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                lipid['ast'].toString(),
+                                style: TextStyle(
+                                  color: (lipid['ast'] < 0 || lipid['ast'] > 48)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'U/L',
+                                style: TextStyle(
+                                  color: (lipid['ast'] < 0 || lipid['ast'] > 48)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                ' 0-48',
+                                style: TextStyle(
+                                  color: (lipid['ast'] < 0 || lipid['ast'] > 48)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Albumin\nserum',
+                                style: TextStyle(
+                                  color: (lipid['albumin'] < 3.5 ||
+                                          lipid['albumin'] > 5.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                lipid['albumin'].toString(),
+                                style: TextStyle(
+                                  color: (lipid['albumin'] < 3.5 ||
+                                          lipid['albumin'] > 5.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'g/dL',
+                                style: TextStyle(
+                                  color: (lipid['albumin'] < 3.5 ||
+                                          lipid['albumin'] > 5.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '3.5-5.2',
+                                style: TextStyle(
+                                  color: (lipid['albumin'] < 3.5 ||
+                                          lipid['albumin'] > 5.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Cholestrol\nTotal\nserum',
+                                style: TextStyle(
+                                  color: (lipid['cholesterol'] >= 240)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                lipid['cholesterol'].toString(),
+                                style: TextStyle(
+                                  color: (lipid['cholesterol'] >= 240)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'mg/dL',
+                                style: TextStyle(
+                                  color: (lipid['cholesterol'] >= 240)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'Desirable: < 200 mg/dL\nBorderline High: 200-239 mg/dl\nHigh: > or = 240 mg/dL ',
+                                style: TextStyle(
+                                  color: (lipid['cholesterol'] >= 240)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'HDL-C\nserum',
+                                style: TextStyle(
+                                  color: (lipid['hdl_c'] < 40)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                lipid['hdl_c'].toString(),
+                                style: TextStyle(
+                                  color: (lipid['hdl_c'] < 40)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'mg/dL',
+                                style: TextStyle(
+                                  color: (lipid['hdl_c'] < 40)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'Low HDL: < 40 mg/dL\nBorderline Low: 40-60 mg/dL\nAcceptable: > 60 mg/dL',
+                                style: TextStyle(
+                                  color: (lipid['hdl_c'] < 40)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'LDL-C\nserum',
+                                style: TextStyle(
+                                  color: (lipid['ldl_c'] >= 160)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                lipid['ldl_c'].toString(),
+                                style: TextStyle(
+                                  color: (lipid['ldl_c'] >= 160)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'mg/dL',
+                                style: TextStyle(
+                                  color: (lipid['ldl_c'] >= 160)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'Desirable: < 100 mg/dL\nAbove Desirable: 100-129 mg/dl\nBorderline High: 130-159 mg/dL\nHigh: 160-189 mg/dL\nVery High: > or =190 mg/dL',
+                                style: TextStyle(
+                                  color: (lipid['ldl_c'] >= 160)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Triglycerides\nserum',
+                                style: TextStyle(
+                                  color: (lipid['triglycerides'] >= 150)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                lipid['triglycerides'].toString(),
+                                style: TextStyle(
+                                  color: (lipid['triglycerides'] >= 150)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'mg/dL',
+                                style: TextStyle(
+                                  color: (lipid['triglycerides'] >= 150)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                               Text(
                                 '< 150 Desirable 150-199\nBorder High Line 200-499 High\n>=500 Very High',
+                                style: TextStyle(
+                                  color: (lipid['triglycerides'] >= 150)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
                               )
                             ],
                           ),
@@ -139,7 +338,14 @@ class LipTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: Icon(Icons.note),
-                        title: Text('notes'),
+                        title: Text(
+                          'notes',
+                          style: TextStyle(
+                            color: lipid['comments'] != null
+                                ? Colors.red
+                                : Colors.black,
+                          ),
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.all(10.0),

@@ -20,7 +20,6 @@ class allCbc extends StatefulWidget {
 
 class _allCbcState extends State<allCbc> {
   List<dynamic> cbcList = [];
-  bool showWidget = false;
 
   @override
   void initState() {

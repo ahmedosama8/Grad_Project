@@ -41,7 +41,14 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Center(child: Text('Medicine Reminder',style: TextStyle(color: Colors.white),)),
+          leading: BackButton(
+            onPressed: () => Navigator.of(context).pop(),
+            color: Colors.white,
+          ),
+          title: Text(
+            'Medicine Reminder',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
         body: Column(
           children: [
@@ -71,7 +78,7 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
                     onPressed: () {
                       addMedicine(medicineController.text, timeController.text);
                     },
-                    child: Text('Add',style: TextStyle(color: Colors.white)),
+                    child: Text('Add', style: TextStyle(color: Colors.white)),
                   ),
                 ],
               ),

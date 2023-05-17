@@ -63,7 +63,9 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
         title: Text('Appointment Details'),
         backgroundColor: primary,
       ),
-      body: ListView.builder(
+      body: appointmentdetails.isEmpty
+          ? Center(child: Text('You dont have any appoinments',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),))
+          : ListView.builder(
         itemCount: appointmentdetails.length,
         itemBuilder: (context, index) {
           final appointment = appointmentdetails[index];
@@ -78,7 +80,7 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
               columnSpacing: 16.0,
               columns: [
                 DataColumn(label: Text('Details')),
-                DataColumn(label: Text('Value')),
+                DataColumn(label: Text('Data')),
               ],
               rows: [
                 DataRow(

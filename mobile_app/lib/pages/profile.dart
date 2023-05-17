@@ -15,8 +15,6 @@ class PatientProfilePage extends StatefulWidget {
 class _PatientProfilePageState extends State<PatientProfilePage> {
   File? _image;
   final _formKey = GlobalKey<FormState>();
-  String _chronicDisease = "None"; // default chronic disease
-  String _allergies = "None"; // default allergies status
   
 
   @override
@@ -190,7 +188,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                     Expanded(
                       child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: 'Chronic Disease',
+                          labelText: 'Allergies',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
                         controller:
@@ -220,7 +218,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                     Expanded(
                       child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: 'Allergies',
+                          labelText: 'Chronic Disease',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
                         controller: TextEditingController(text: allergies),
@@ -249,10 +247,10 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                             emergencyContactNumber: emergencyNumber,
                             profileImage: _image,
                             bloodType: bloodType,
-                            chronicDisease: _chronicDisease,
+                            chronicDisease: chronicDisease,
                             identityNumber: identityNumber,
                             maritalStatus: martialStatus,
-                            allergies: _allergies),
+                            allergies: allergies),
                       ),
                     );
                   },

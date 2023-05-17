@@ -362,12 +362,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: 'Chronic Disease',
+                        labelText: 'Allergies',
                       ),
                       controller: _chronicDiseaseController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter a valid chronic disease';
+                          return 'Please enter a valid allergy';
                         }
                         return null;
                       },
@@ -397,12 +397,12 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     ),
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: 'Allergies',
+                        labelText: 'Choronic Disease',
                       ),
                       controller: _allergiesController,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter a valid allergy';
+                          return 'Please enter a valid Disease';
                         }
                         return null;
                       },

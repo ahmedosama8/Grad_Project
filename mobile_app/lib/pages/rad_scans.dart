@@ -68,63 +68,72 @@ class _rad_scansState extends State<rad_scans> {
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: SingleChildScrollView(
-                child: ListView.builder(
-                  controller: ScrollController(),
-                  shrinkWrap: true,
-                  itemCount: scansList.length,
-                  itemBuilder: (context, index) {
-                    final scans = scansList[index];
-                    String dateTimeString = scans['created_at'];
-                    DateTime dateTime = DateTime.parse(dateTimeString);
-                    String date = DateFormat("dd-MM-yyyy").format(dateTime);
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 1.0, horizontal: 4.0),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: Colors.greenAccent,
-                          ),
-                          borderRadius:
-                              BorderRadius.circular(20.0), //<-- SEE HERE
-                        ),
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => rad_report(
-                                      scans: scansList[index],
-                                    )));
-                          },
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(scans['name'] ?? ''),
-                              Text(
-                                date,
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.black54),
-                              )
-                            ],
-                          ),
-                          subtitle: Text(scans['examined_part'] ?? ''),
-                          leading: CircleAvatar(
-                              backgroundImage: AssetImage('assets/rad.png')),
-                        ),
+      body: scansList.isEmpty
+          ? Center(
+              child: Text(
+              'You dont have any Results yet',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ))
+          : Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: ListView.builder(
+                        controller: ScrollController(),
+                        shrinkWrap: true,
+                        itemCount: scansList.length,
+                        itemBuilder: (context, index) {
+                          final scans = scansList[index];
+                          String dateTimeString = scans['created_at'];
+                          DateTime dateTime = DateTime.parse(dateTimeString);
+                          String date =
+                              DateFormat("dd-MM-yyyy").format(dateTime);
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 1.0, horizontal: 4.0),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  color: Colors.greenAccent,
+                                ),
+                                borderRadius:
+                                    BorderRadius.circular(20.0), //<-- SEE HERE
+                              ),
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => rad_report(
+                                            scans: scansList[index],
+                                          )));
+                                },
+                                title: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(scans['name'] ?? ''),
+                                    Text(
+                                      date,
+                                      style: TextStyle(
+                                          fontSize: 14, color: Colors.black54),
+                                    )
+                                  ],
+                                ),
+                                subtitle: Text(scans['examined_part'] ?? ''),
+                                leading: CircleAvatar(
+                                    backgroundImage:
+                                        AssetImage('assets/rad.png')),
+                              ),
+                            ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }

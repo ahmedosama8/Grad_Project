@@ -20,6 +20,7 @@ class allCbc extends StatefulWidget {
 
 class _allCbcState extends State<allCbc> {
   List<dynamic> cbcList = [];
+  bool showWidget = false;
 
   @override
   void initState() {
@@ -72,57 +73,64 @@ class _allCbcState extends State<allCbc> {
           shadowColor: Colors.greenAccent,
           elevation: 10,
         ),
-        body: Column(children: [
-          SizedBox(
-            height: 20,
-          ),
-          SingleChildScrollView(
-            child: ListView.builder(
-              shrinkWrap: true,
-              controller: ScrollController(),
-              itemCount: cbcList.length,
-              itemBuilder: (context, index) {
-                final cbc = cbcList[index];
-                String dateTimeString = cbc['updated_at'];
+        body: cbcList.isEmpty
+            ? Center(
+                child: Text(
+                'You dont have any Results yet',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ))
+            : Column(children: [
+                SizedBox(
+                  height: 20,
+                ),
+                SingleChildScrollView(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    controller: ScrollController(),
+                    itemCount: cbcList.length,
+                    itemBuilder: (context, index) {
+                      final cbc = cbcList[index];
+                      String dateTimeString = cbc['updated_at'];
 
-                DateTime dateTime = DateTime.parse(dateTimeString);
-                String date = DateFormat("dd-MM-yyyy").format(dateTime);
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 1.0, horizontal: 4.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: Colors.greenAccent,
-                      ),
-                      borderRadius: BorderRadius.circular(20.0), //<-- SEE HERE
-                    ),
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                CbcTestpage(cbc: cbcList[index])));
-                      },
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('CBC test'),
-                          Text(
-                            date,
-                            style:
-                                TextStyle(fontSize: 14, color: Colors.black54),
+                      DateTime dateTime = DateTime.parse(dateTimeString);
+                      String date = DateFormat("dd-MM-yyyy").format(dateTime);
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 1.0, horizontal: 4.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              color: Colors.greenAccent,
+                            ),
+                            borderRadius:
+                                BorderRadius.circular(20.0), //<-- SEE HERE
                           ),
-                        ],
-                      ),
-                      subtitle: Text(cbc['entityName'] ?? ''), //labname
-                      leading: CircleAvatar(
-                          backgroundImage: AssetImage('assets/lab.png')),
-                    ),
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      CbcTestpage(cbc: cbcList[index])));
+                            },
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('CBC test'),
+                                Text(
+                                  date,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.black54),
+                                ),
+                              ],
+                            ),
+                            subtitle: Text(cbc['entityName'] ?? ''), //labname
+                            leading: CircleAvatar(
+                                backgroundImage: AssetImage('assets/lab.png')),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
-        ]));
+                ),
+              ]));
   }
 }

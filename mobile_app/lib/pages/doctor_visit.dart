@@ -71,75 +71,84 @@ class _doctor_visitState extends State<doctor_visit> {
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(
-          children: <Widget>[
-            Expanded(
-              child: SingleChildScrollView(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  controller: ScrollController(),
-                  itemCount: visitList.length,
-                  itemBuilder: (context, index) {
-                    final visit = visitList[index];
-                    String dateTimeString = visit['created_at'];
-                    DateTime dateTime = DateTime.parse(dateTimeString);
-                    String date = DateFormat("dd-MM-yyyy").format(dateTime);
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 1.0, horizontal: 4.0),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: Colors.greenAccent,
-                          ),
-                          borderRadius:
-                              BorderRadius.circular(20.0), //<-- SEE HERE
-                        ),
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => dr_report(
-                                      visit: visitList[index],
-                                    )));
-                          },
-                          title: SizedBox(
-                            width: double
-                                .infinity, // Set the width to occupy the available space
+      body: visitList.isEmpty
+          ? Center(
+              child: Text(
+              'You dont have any data yet',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ))
+          : Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        controller: ScrollController(),
+                        itemCount: visitList.length,
+                        itemBuilder: (context, index) {
+                          final visit = visitList[index];
+                          String dateTimeString = visit['created_at'];
+                          DateTime dateTime = DateTime.parse(dateTimeString);
+                          String date =
+                              DateFormat("dd-MM-yyyy").format(dateTime);
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 1.0, horizontal: 4.0),
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                  color: Colors.greenAccent,
+                                ),
+                                borderRadius:
+                                    BorderRadius.circular(20.0), //<-- SEE HERE
+                              ),
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => dr_report(
+                                            visit: visitList[index],
+                                          )));
+                                },
+                                title: SizedBox(
+                                  width: double
+                                      .infinity, // Set the width to occupy the available space
 
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    visit['diagnoses'] ?? '',
-                                    overflow: TextOverflow.ellipsis,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                        child: Text(
+                                          visit['diagnoses'] ?? '',
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                      ),
+                                      Text(
+                                        date,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black54,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                Text(
-                                  date,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black54,
-                                  ),
-                                ),
-                              ],
+                                subtitle: Text(visit['entityName'] ?? ''),
+                                leading: CircleAvatar(
+                                    backgroundImage:
+                                        AssetImage('assets/doctor.png')),
+                              ),
                             ),
-                          ),
-                          subtitle: Text(visit['entityName'] ?? ''),
-                          leading: CircleAvatar(
-                              backgroundImage: AssetImage('assets/doctor.png')),
-                        ),
+                          );
+                        },
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }

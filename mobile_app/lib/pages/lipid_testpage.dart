@@ -34,7 +34,7 @@ class LipTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
-                              Text('Test'),
+                              Text('Test\u00A0\u00A0\u00A0\u00A0\u00A0'),
                               Text('Result'),
                               Text('Unit'),
                               Text('Range'),
@@ -42,58 +42,59 @@ class LipTestpage extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(05, 15, 20, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'ALT(SGPT)\nserum',
                                 style: TextStyle(
-                                  color:
-                                      (lipid['alt'] < 10 || lipid['alt'] > 65)
-                                          ? Colors.red
-                                          : Colors.black,
+                                  color: (double.parse(lipid['alt']) < 10 ||
+                                          double.parse(lipid['alt']) > 65)
+                                      ? Colors.red
+                                      : Colors.black,
                                 ),
                               ),
                               Text(
                                 lipid['alt'].toString(),
                                 style: TextStyle(
-                                  color:
-                                      (lipid['alt'] < 10 || lipid['alt'] > 65)
-                                          ? Colors.red
-                                          : Colors.black,
+                                  color: (double.parse(lipid['alt']) < 10 ||
+                                          double.parse(lipid['alt']) > 65)
+                                      ? Colors.red
+                                      : Colors.black,
                                 ),
                               ),
                               Text(
                                 'U/L',
                                 style: TextStyle(
-                                  color:
-                                      (lipid['alt'] < 10 || lipid['alt'] > 65)
-                                          ? Colors.red
-                                          : Colors.black,
+                                  color: (double.parse(lipid['alt']) < 10 ||
+                                          double.parse(lipid['alt']) > 65)
+                                      ? Colors.red
+                                      : Colors.black,
                                 ),
                               ),
                               Text(
                                 '10-65',
                                 style: TextStyle(
-                                  color:
-                                      (lipid['alt'] < 10 || lipid['alt'] > 65)
-                                          ? Colors.red
-                                          : Colors.black,
+                                  color: (double.parse(lipid['alt']) < 10 ||
+                                          double.parse(lipid['alt']) > 65)
+                                      ? Colors.red
+                                      : Colors.black,
                                 ),
                               ),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(5, 15, 25, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'AST(SGOT)\nserum',
                                 style: TextStyle(
-                                  color: (lipid['ast'] < 0 || lipid['ast'] > 48)
+                                  color: (double.parse(lipid['ast']) < 0 ||
+                                          double.parse(lipid['ast']) > 48)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -101,7 +102,8 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 lipid['ast'].toString(),
                                 style: TextStyle(
-                                  color: (lipid['ast'] < 0 || lipid['ast'] > 48)
+                                  color: (double.parse(lipid['ast']) < 0 ||
+                                          double.parse(lipid['ast']) > 48)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -109,7 +111,8 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'U/L',
                                 style: TextStyle(
-                                  color: (lipid['ast'] < 0 || lipid['ast'] > 48)
+                                  color: (double.parse(lipid['ast']) < 0 ||
+                                          double.parse(lipid['ast']) > 48)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -117,7 +120,8 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 ' 0-48',
                                 style: TextStyle(
-                                  color: (lipid['ast'] < 0 || lipid['ast'] > 48)
+                                  color: (double.parse(lipid['ast']) < 0 ||
+                                          double.parse(lipid['ast']) > 48)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -126,15 +130,16 @@ class LipTestpage extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(5, 15, 20, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Albumin\nserum',
+                                'Albumin\nserum\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
-                                  color: (lipid['albumin'] < 3.5 ||
-                                          lipid['albumin'] > 5.2)
+                                  color: (double.parse(lipid['albumin']) <
+                                              3.5 ||
+                                          double.parse(lipid['albumin']) > 5.2)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -142,8 +147,9 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 lipid['albumin'].toString(),
                                 style: TextStyle(
-                                  color: (lipid['albumin'] < 3.5 ||
-                                          lipid['albumin'] > 5.2)
+                                  color: (double.parse(lipid['albumin']) <
+                                              3.5 ||
+                                          double.parse(lipid['albumin']) > 5.2)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -151,8 +157,9 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'g/dL',
                                 style: TextStyle(
-                                  color: (lipid['albumin'] < 3.5 ||
-                                          lipid['albumin'] > 5.2)
+                                  color: (double.parse(lipid['albumin']) <
+                                              3.5 ||
+                                          double.parse(lipid['albumin']) > 5.2)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -160,8 +167,9 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 '3.5-5.2',
                                 style: TextStyle(
-                                  color: (lipid['albumin'] < 3.5 ||
-                                          lipid['albumin'] > 5.2)
+                                  color: (double.parse(lipid['albumin']) <
+                                              3.5 ||
+                                          double.parse(lipid['albumin']) > 5.2)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -177,7 +185,8 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'Cholestrol\nTotal\nserum',
                                 style: TextStyle(
-                                  color: (lipid['cholesterol'] >= 240)
+                                  color: (double.parse(lipid['cholesterol']) >=
+                                          240)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -185,7 +194,8 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 lipid['cholesterol'].toString(),
                                 style: TextStyle(
-                                  color: (lipid['cholesterol'] >= 240)
+                                  color: (double.parse(lipid['cholesterol']) >=
+                                          240)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -193,7 +203,8 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'mg/dL',
                                 style: TextStyle(
-                                  color: (lipid['cholesterol'] >= 240)
+                                  color: (double.parse(lipid['cholesterol']) >=
+                                          240)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -201,7 +212,8 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'Desirable: < 200 mg/dL\nBorderline High: 200-239 mg/dl\nHigh: > or = 240 mg/dL ',
                                 style: TextStyle(
-                                  color: (lipid['cholesterol'] >= 240)
+                                  color: (double.parse(lipid['cholesterol']) >=
+                                          240)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -217,7 +229,7 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'HDL-C\nserum',
                                 style: TextStyle(
-                                  color: (lipid['hdl_c'] < 40)
+                                  color: (double.parse(lipid['hdl_c']) < 40)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -225,7 +237,7 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 lipid['hdl_c'].toString(),
                                 style: TextStyle(
-                                  color: (lipid['hdl_c'] < 40)
+                                  color: (double.parse(lipid['hdl_c']) < 40)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -233,7 +245,7 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'mg/dL',
                                 style: TextStyle(
-                                  color: (lipid['hdl_c'] < 40)
+                                  color: (double.parse(lipid['hdl_c']) < 40)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -241,7 +253,7 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'Low HDL: < 40 mg/dL\nBorderline Low: 40-60 mg/dL\nAcceptable: > 60 mg/dL',
                                 style: TextStyle(
-                                  color: (lipid['hdl_c'] < 40)
+                                  color: (double.parse(lipid['hdl_c']) < 40)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -257,7 +269,7 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'LDL-C\nserum',
                                 style: TextStyle(
-                                  color: (lipid['ldl_c'] >= 160)
+                                  color: (double.parse(lipid['ldl_c']) >= 160)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -265,7 +277,7 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 lipid['ldl_c'].toString(),
                                 style: TextStyle(
-                                  color: (lipid['ldl_c'] >= 160)
+                                  color: (double.parse(lipid['ldl_c']) >= 160)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -273,7 +285,7 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'mg/dL',
                                 style: TextStyle(
-                                  color: (lipid['ldl_c'] >= 160)
+                                  color: (double.parse(lipid['ldl_c']) >= 160)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -281,7 +293,7 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'Desirable: < 100 mg/dL\nAbove Desirable: 100-129 mg/dl\nBorderline High: 130-159 mg/dL\nHigh: 160-189 mg/dL\nVery High: > or =190 mg/dL',
                                 style: TextStyle(
-                                  color: (lipid['ldl_c'] >= 160)
+                                  color: (double.parse(lipid['ldl_c']) >= 160)
                                       ? Colors.red
                                       : Colors.black,
                                 ),
@@ -297,33 +309,41 @@ class LipTestpage extends StatelessWidget {
                               Text(
                                 'Triglycerides\nserum',
                                 style: TextStyle(
-                                  color: (lipid['triglycerides'] >= 150)
-                                      ? Colors.red
-                                      : Colors.black,
+                                  color:
+                                      (double.parse(lipid['triglycerides']) >=
+                                              150)
+                                          ? Colors.red
+                                          : Colors.black,
                                 ),
                               ),
                               Text(
                                 lipid['triglycerides'].toString(),
                                 style: TextStyle(
-                                  color: (lipid['triglycerides'] >= 150)
-                                      ? Colors.red
-                                      : Colors.black,
+                                  color:
+                                      (double.parse(lipid['triglycerides']) >=
+                                              150)
+                                          ? Colors.red
+                                          : Colors.black,
                                 ),
                               ),
                               Text(
                                 'mg/dL',
                                 style: TextStyle(
-                                  color: (lipid['triglycerides'] >= 150)
-                                      ? Colors.red
-                                      : Colors.black,
+                                  color:
+                                      (double.parse(lipid['triglycerides']) >=
+                                              150)
+                                          ? Colors.red
+                                          : Colors.black,
                                 ),
                               ),
                               Text(
                                 '< 150 Desirable 150-199\nBorder High Line 200-499 High\n>=500 Very High',
                                 style: TextStyle(
-                                  color: (lipid['triglycerides'] >= 150)
-                                      ? Colors.red
-                                      : Colors.black,
+                                  color:
+                                      (double.parse(lipid['triglycerides']) >=
+                                              150)
+                                          ? Colors.red
+                                          : Colors.black,
                                 ),
                               )
                             ],

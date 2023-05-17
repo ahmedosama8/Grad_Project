@@ -71,54 +71,62 @@ class _allLiverState extends State<allLiver> {
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),
-      body: Column(children: [
-        SingleChildScrollView(
-          child: ListView.builder(
-            shrinkWrap: true,
-            controller: ScrollController(),
-            itemCount: liverList.length,
-            itemBuilder: (context, index) {
-              final liver = liverList[index];
-              String dateTimeString = liver['updated_at'];
+      body: liverList.isEmpty
+          ? Center(
+              child: Text(
+              'You dont have any Results yet',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ))
+          : Column(children: [
+              SingleChildScrollView(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  controller: ScrollController(),
+                  itemCount: liverList.length,
+                  itemBuilder: (context, index) {
+                    final liver = liverList[index];
+                    String dateTimeString = liver['updated_at'];
 
-              DateTime dateTime = DateTime.parse(dateTimeString);
-              String date = DateFormat("dd-MM-yyyy").format(dateTime);
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 1.0, horizontal: 4.0),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(
-                      color: Colors.greenAccent,
-                    ),
-                    borderRadius: BorderRadius.circular(20.0), //<-- SEE HERE
-                  ),
-                  child: ListTile(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              LiverTestpage(liver: liverList[index])));
-                    },
-                    title: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text('Liver function test'),
-                        Text(
-                          date,
-                          style: TextStyle(fontSize: 14, color: Colors.black54),
+                    DateTime dateTime = DateTime.parse(dateTimeString);
+                    String date = DateFormat("dd-MM-yyyy").format(dateTime);
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 1.0, horizontal: 4.0),
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(
+                            color: Colors.greenAccent,
+                          ),
+                          borderRadius:
+                              BorderRadius.circular(20.0), //<-- SEE HERE
                         ),
-                      ],
-                    ),
-                    subtitle: Text(liver['entityName'] ?? ''),
-                    leading: CircleAvatar(
-                        backgroundImage: AssetImage('assets/lab.png')),
-                  ),
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    LiverTestpage(liver: liverList[index])));
+                          },
+                          title: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Liver function test'),
+                              Text(
+                                date,
+                                style: TextStyle(
+                                    fontSize: 14, color: Colors.black54),
+                              ),
+                            ],
+                          ),
+                          subtitle: Text(liver['entityName'] ?? ''),
+                          leading: CircleAvatar(
+                              backgroundImage: AssetImage('assets/lab.png')),
+                        ),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-        ),
-      ]),
+              ),
+            ]),
     );
   }
 }

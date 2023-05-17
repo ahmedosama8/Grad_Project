@@ -143,7 +143,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Red Cell Count',
+                                'Red Cell Count\u00A0',
                                 style: TextStyle(
                                   color: (double.parse(cbc['red_cell_count']) <
                                               4.5 ||
@@ -195,7 +195,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'MCV',
+                                'MCV\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (double.parse(cbc['mcv']) < 78 ||
                                           double.parse(cbc['mcv']) > 96)
@@ -239,7 +239,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'MCH',
+                                'MCH\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (double.parse(cbc['mch']) < 26 ||
                                           double.parse(cbc['mch']) > 32)
@@ -283,7 +283,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'MCHC',
+                                'MCHC\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (double.parse(cbc['mchc']) < 31 ||
                                           double.parse(cbc['mchc']) > 36)
@@ -327,7 +327,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'RDW',
+                                'RDW\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (double.parse(cbc['rdw']) < 11.5 ||
                                           double.parse(cbc['rdw']) > 14.5)
@@ -366,7 +366,7 @@ class CbcTestpage extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(0, 15, 15, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -423,7 +423,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'T.L.C',
+                                'T.L.C\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (double.parse(cbc['tlc']) < 4 ||
                                           double.parse(cbc['tlc']) > 11)
@@ -462,12 +462,12 @@ class CbcTestpage extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(5, 15, 15, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Basophils',
+                                'Basophils\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (double.parse(cbc['basophils']) < 0 ||
                                           double.parse(cbc['basophils']) > 1)
@@ -506,7 +506,7 @@ class CbcTestpage extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(5, 15, 25, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -559,7 +559,7 @@ class CbcTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'stab',
+                                'stab\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (double.parse(cbc['stab']) < 0 ||
                                           double.parse(cbc['stab']) > 7)
@@ -642,7 +642,7 @@ class CbcTestpage extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(5, 15, 25, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

@@ -72,53 +72,60 @@ class _allGlucoseState extends State<allGlucose> {
           shadowColor: Colors.greenAccent,
           elevation: 10,
         ),
-        body: Column(children: [
-          SingleChildScrollView(
-            child: ListView.builder(
-              shrinkWrap: true,
-              controller: ScrollController(),
-              itemCount: glucoseList.length,
-              itemBuilder: (context, index) {
-                final glucose = glucoseList[index];
-                String dateTimeString = glucose['created_at'];
-                DateTime dateTime = DateTime.parse(dateTimeString);
-                String date = DateFormat("dd-MM-yyyy").format(dateTime);
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 1.0, horizontal: 4.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: Colors.greenAccent,
-                      ),
-                      borderRadius: BorderRadius.circular(20.0), //<-- SEE HERE
-                    ),
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                GluTestpage(glucose: glucoseList[index])));
-                      },
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Glucose test'),
-                          Text(
-                            date,
-                            style:
-                                TextStyle(fontSize: 14, color: Colors.black54),
+        body: glucoseList.isEmpty
+            ? Center(
+                child: Text(
+                'You dont have any Results yet',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ))
+            : Column(children: [
+                SingleChildScrollView(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    controller: ScrollController(),
+                    itemCount: glucoseList.length,
+                    itemBuilder: (context, index) {
+                      final glucose = glucoseList[index];
+                      String dateTimeString = glucose['created_at'];
+                      DateTime dateTime = DateTime.parse(dateTimeString);
+                      String date = DateFormat("dd-MM-yyyy").format(dateTime);
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 1.0, horizontal: 4.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              color: Colors.greenAccent,
+                            ),
+                            borderRadius:
+                                BorderRadius.circular(20.0), //<-- SEE HERE
                           ),
-                        ],
-                      ),
-                      subtitle: Text(glucose['entityName'] ?? ''),
-                      leading: CircleAvatar(
-                          backgroundImage: AssetImage('assets/lab.png')),
-                    ),
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => GluTestpage(
+                                      glucose: glucoseList[index])));
+                            },
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Glucose test'),
+                                Text(
+                                  date,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.black54),
+                                ),
+                              ],
+                            ),
+                            subtitle: Text(glucose['entityName'] ?? ''),
+                            leading: CircleAvatar(
+                                backgroundImage: AssetImage('assets/lab.png')),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
-        ]));
+                ),
+              ]));
   }
 }

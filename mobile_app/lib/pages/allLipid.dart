@@ -70,57 +70,64 @@ class _allLipidState extends State<allLipid> {
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),
-      body: Column(
-        children: [
-          SingleChildScrollView(
-            child: ListView.builder(
-              shrinkWrap: true,
-              controller: ScrollController(),
-              itemCount: lipidList.length,
-              itemBuilder: (context, index) {
-                final lipid = lipidList[index];
-                String dateTimeString = lipid['updated_at'];
+      body: lipidList.isEmpty
+          ? Center(
+              child: Text(
+              'You dont have any Results yet',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ))
+          : Column(
+              children: [
+                SingleChildScrollView(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    controller: ScrollController(),
+                    itemCount: lipidList.length,
+                    itemBuilder: (context, index) {
+                      final lipid = lipidList[index];
+                      String dateTimeString = lipid['updated_at'];
 
-                DateTime dateTime = DateTime.parse(dateTimeString);
-                String date = DateFormat("dd-MM-yyyy").format(dateTime);
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 1.0, horizontal: 4.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: Colors.greenAccent,
-                      ),
-                      borderRadius: BorderRadius.circular(20.0), //<-- SEE HERE
-                    ),
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                LipTestpage(lipid: lipidList[index])));
-                      },
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Lipid profile test'),
-                          Text(
-                            date,
-                            style:
-                                TextStyle(fontSize: 14, color: Colors.black54),
+                      DateTime dateTime = DateTime.parse(dateTimeString);
+                      String date = DateFormat("dd-MM-yyyy").format(dateTime);
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 1.0, horizontal: 4.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              color: Colors.greenAccent,
+                            ),
+                            borderRadius:
+                                BorderRadius.circular(20.0), //<-- SEE HERE
                           ),
-                        ],
-                      ),
-                      subtitle: Text(lipid['entityName'] ?? 0),
-                      leading: CircleAvatar(
-                          backgroundImage: AssetImage('assets/lab.png')),
-                    ),
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      LipTestpage(lipid: lipidList[index])));
+                            },
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Lipid profile test'),
+                                Text(
+                                  date,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.black54),
+                                ),
+                              ],
+                            ),
+                            subtitle: Text(lipid['entityName'] ?? 0),
+                            leading: CircleAvatar(
+                                backgroundImage: AssetImage('assets/lab.png')),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }

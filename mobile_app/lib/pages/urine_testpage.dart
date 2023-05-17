@@ -34,7 +34,8 @@ class UriTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
-                              Text('Test'),
+                              Text(
+                                  'Test\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'),
                               Text('Result'),
                               Text('Unit'),
                               Text('Range'),
@@ -47,7 +48,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Color',
+                                'Color\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (urine['color'] != 'normal')
                                       ? Colors.red
@@ -82,12 +83,12 @@ class UriTestpage extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(5, 15, 30, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Clarity',
+                                'Clarity\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (urine['clarity'].toLowerCase() !=
                                           'clear')
@@ -131,7 +132,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Specific\nGravity',
+                                'Specific\nGravity\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (double.parse(
                                                   urine['specific_gravity']) <
@@ -191,7 +192,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'PH',
+                                'PH\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (double.parse(urine['ph']) < 4.5 ||
                                           double.parse(urine['ph']) > 6.5)
@@ -235,7 +236,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Protein',
+                                'Protein\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (urine['protein'] != 'Negative')
                                       ? Colors.red
@@ -315,7 +316,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Ketone',
+                                'Ketone\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (urine['ketone'] != 'Negative')
                                       ? Colors.red
@@ -350,7 +351,7 @@ class UriTestpage extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(1, 15, 30, 10),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -399,7 +400,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Bilirubin',
+                                'Bilirubin\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (urine['bilirubin'] != 'Negative')
                                       ? Colors.red
@@ -439,7 +440,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Nitrite',
+                                'Nitrite\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (urine['nitrite'] != 'Negative')
                                       ? Colors.red
@@ -559,7 +560,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Epithelial',
+                                'Epithelial\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color:
                                       (urine['epithelial_cells'] != 'Negative')
@@ -643,7 +644,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Crystals',
+                                'Crystals\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (urine['crystals'] != 'Negative')
                                       ? Colors.red
@@ -683,7 +684,7 @@ class UriTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                'Casts',
+                                'Casts\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                 style: TextStyle(
                                   color: (urine['casts'] != 'Negative')
                                       ? Colors.red

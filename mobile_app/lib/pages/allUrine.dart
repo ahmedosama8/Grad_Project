@@ -70,57 +70,64 @@ class _allUrineState extends State<allUrine> {
         shadowColor: Colors.greenAccent,
         elevation: 10,
       ),
-      body: Column(
-        children: [
-          SingleChildScrollView(
-            child: ListView.builder(
-              shrinkWrap: true,
-              controller: ScrollController(),
-              itemCount: urineList.length,
-              itemBuilder: (context, index) {
-                final urine = urineList[index];
-                String dateTimeString = urine['updated_at'];
+      body: urineList.isEmpty
+          ? Center(
+              child: Text(
+              'You dont have any Results yet',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ))
+          : Column(
+              children: [
+                SingleChildScrollView(
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    controller: ScrollController(),
+                    itemCount: urineList.length,
+                    itemBuilder: (context, index) {
+                      final urine = urineList[index];
+                      String dateTimeString = urine['updated_at'];
 
-                DateTime dateTime = DateTime.parse(dateTimeString);
-                String date = DateFormat("dd-MM-yyyy").format(dateTime);
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 1.0, horizontal: 4.0),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      side: BorderSide(
-                        color: Colors.greenAccent,
-                      ),
-                      borderRadius: BorderRadius.circular(20.0), //<-- SEE HERE
-                    ),
-                    child: ListTile(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                UriTestpage(urine: urineList[index])));
-                      },
-                      title: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Urine test'),
-                          Text(
-                            date,
-                            style:
-                                TextStyle(fontSize: 14, color: Colors.black54),
+                      DateTime dateTime = DateTime.parse(dateTimeString);
+                      String date = DateFormat("dd-MM-yyyy").format(dateTime);
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 1.0, horizontal: 4.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              color: Colors.greenAccent,
+                            ),
+                            borderRadius:
+                                BorderRadius.circular(20.0), //<-- SEE HERE
                           ),
-                        ],
-                      ),
-                      subtitle: Text(urine['entityName'] ?? 0),
-                      leading: CircleAvatar(
-                          backgroundImage: AssetImage('assets/lab.png')),
-                    ),
+                          child: ListTile(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      UriTestpage(urine: urineList[index])));
+                            },
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Urine test'),
+                                Text(
+                                  date,
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.black54),
+                                ),
+                              ],
+                            ),
+                            subtitle: Text(urine['entityName'] ?? 0),
+                            leading: CircleAvatar(
+                                backgroundImage: AssetImage('assets/lab.png')),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }

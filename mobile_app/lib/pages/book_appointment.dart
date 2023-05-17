@@ -7,6 +7,8 @@ import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
+import 'package:multi_select_flutter/util/multi_select_item.dart';
+import 'package:multiselect_formfield/multiselect_formfield.dart';
 import 'package:provider/provider.dart';
 import '../api/user.dart';
 import '../configure.dart';
@@ -30,6 +32,38 @@ class _BookappointState extends State<Bookappoint> {
     'Maternity or Prenatal Appointment',
     'Dental or Oral Health Appointment',
     'Physical Therapy Appointment',
+  ];
+  List<String> appointmentTypesLab = [
+    'CBC Test',
+    'Glucose Test',
+    'Urine Test',
+    'Lipid profile Test',
+    'Liver function Test',
+  ];
+  List<String> appointmentTypesRad = [
+    'MRI of the brain',
+    'CT scan of the head',
+    'PET scan of the brain',
+    'Ultrasound of the head',
+    'X-ray of the spine',
+    'MRI of the spine',
+    'CT scan of the spine',
+    'Chest X-ray',
+    'CT scan of the chest',
+    'PET-CT scan of the chest',
+    'Pulmonary function tests',
+    'Abdominal ultrasound',
+    'CT scan of the abdomen and pelvis',
+    'MRI of the abdomen and pelvis',
+    'X-ray of the abdomen',
+    'X-ray of bones and joints',
+    'MRI of joints and soft tissues',
+    'CT scan of bones and joints',
+    'Ultrasound of joints and soft tissues',
+    'Echocardiogram',
+    'Cardiac CT scan',
+    'Cardiac MRI',
+    'Angiography',
   ];
 
   Future<void> createAppointment(
@@ -65,6 +99,9 @@ class _BookappointState extends State<Bookappoint> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController dateinput = TextEditingController();
   late List<Doctor> facilities = [];
+  bool isDropdownEnabled = false;
+  List<String> selectedAppointmentTypes = [];
+
   Doctor? selectedfacility;
   @override
   void initState() {
@@ -75,6 +112,8 @@ class _BookappointState extends State<Bookappoint> {
       });
     });
   }
+
+  TextEditingController textFieldController = TextEditingController();
 
   String? selectedAppointmentType;
   void submitButton() {
@@ -99,6 +138,7 @@ class _BookappointState extends State<Bookappoint> {
                 Text('Type :$selectedAppointmentType'),
                 Text('Facility :${selectedfacility?.name}'),
                 Text('Date :${dateinput.text}'),
+
                 //Text('Data :$  )
                 TextButton(
                   onPressed: () {
@@ -141,6 +181,48 @@ class _BookappointState extends State<Bookappoint> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.02,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: DropdownButtonFormField<Doctor>(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.local_hospital_outlined),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: Colors.greenAccent),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        labelText: 'Healthcare facility',
+                        border: OutlineInputBorder(),
+                      ),
+                      isExpanded: true,
+                      items: facilities
+                          .map<DropdownMenuItem<Doctor>>((Doctor doctor) {
+                        return DropdownMenuItem<Doctor>(
+                          value: doctor,
+                          child: Text(doctor.name),
+                        );
+                      }).toList(),
+                      validator: (value) {
+                        if (value == null) {
+                          return 'Please select a facility';
+                        }
+                      },
+                      value: selectedfacility,
+                      onChanged: (Doctor? newValue) {
+                        setState(() {
+                          selectedfacility = newValue;
+                          isDropdownEnabled = true;
+                        });
+                      },
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: MediaQuery.of(context).size.width * 0.05,
@@ -159,62 +241,55 @@ class _BookappointState extends State<Bookappoint> {
                       }
                       return null;
                     },
-                    items: appointmentTypes.map((String appointmentType) {
-                      return DropdownMenuItem<String>(
-                        value: appointmentType,
-                        child: Text(appointmentType),
-                      );
-                    }).toList(),
+                    items: (selectedfacility?.type == 'clinic')
+                        ? appointmentTypes.map((String appointmentType) {
+                            return DropdownMenuItem<String>(
+                              value: appointmentType,
+                              child: Text(
+                                appointmentType,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            );
+                          }).toList()
+                        : (selectedfacility?.type == 'rad')
+                            ? appointmentTypesRad.map((String appointmentType) {
+                                return DropdownMenuItem<String>(
+                                  value: appointmentType,
+                                  child: Text(
+                                    appointmentType,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                );
+                              }).toList()
+                            : (selectedfacility?.type == 'lab')
+                                ? appointmentTypesLab
+                                    .map((String appointmentType) {
+                                    return DropdownMenuItem<String>(
+                                      value: appointmentType,
+                                      child: Text(
+                                        appointmentType,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    );
+                                  }).toList()
+                                : null,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.local_hospital_outlined),
+                      prefixIcon: Icon(Icons.edit_document),
                       enabledBorder: OutlineInputBorder(
                         borderSide:
                             BorderSide(width: 2, color: Colors.greenAccent),
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      enabled:
+                          isDropdownEnabled, // Set the enabled state based on the condition
+
                       labelText: 'Appointment Type',
                       border: OutlineInputBorder(),
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: MediaQuery.of(context).size.width * 0.05),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: DropdownButtonFormField<Doctor>(
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.local_hospital_outlined),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(width: 2, color: Colors.greenAccent),
-                            borderRadius: BorderRadius.circular(12),
-                          )),
-                      hint: Text('Facility'),
-                      isExpanded: true,
-                      items: facilities
-                          .map<DropdownMenuItem<Doctor>>((Doctor doctor) {
-                        return DropdownMenuItem<Doctor>(
-                          value: doctor,
-                          child: Text(doctor.name),
-                        );
-                      }).toList(),
-                      validator: (value) {
-                        if (value == null) {
-                          return 'Please select a facility';
-                        }
-                      },
-                      value: selectedfacility,
-                      onChanged: (Doctor? newValue) {
-                        setState(() {
-                          selectedfacility = newValue;
-                        });
-                      },
-                    ),
-                  ),
-                ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: MediaQuery.of(context).size.height * 0.003,
                 ),
                 dateBox(context),
                 Padding(
@@ -268,13 +343,14 @@ class _BookappointState extends State<Bookappoint> {
             },
             controller: dateinput,
             decoration: InputDecoration(
-                prefixIcon: Icon(Icons.calendar_month_outlined),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(width: 2, color: Colors.greenAccent),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                labelText: 'Book now',
-                border: InputBorder.none),
+              prefixIcon: Icon(Icons.date_range),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 2, color: Colors.greenAccent),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              labelText: 'Choose date',
+              border: OutlineInputBorder(),
+            ),
             readOnly: true,
             onTap: () async {
               DateTime? pickedDate = await showDatePicker(

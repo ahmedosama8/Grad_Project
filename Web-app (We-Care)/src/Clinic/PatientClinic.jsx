@@ -8,8 +8,6 @@ import "./patientclinic.css";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import cornerstone from "cornerstone-core";
-import dicomParser from "dicom-parser";
 // import CKEditor from "@ckeditor/ckeditor5-react";
 // import Editor from "@juniyadi/ckeditor5-custom-build";
 

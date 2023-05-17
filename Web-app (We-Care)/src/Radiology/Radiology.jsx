@@ -21,7 +21,7 @@ function Radiology() {
       <SidebarRad />
       <div
         className="App container"
-        style={{ position: "relative", bottom: 700, width: 1000 }} 
+        style={{ position: "relative",top:"50px", width: 1000 }} 
       >
         <div class="row">
           <div class="col-lg-6">
@@ -31,7 +31,7 @@ function Radiology() {
             </button>
             <button
               type="button"
-              class="btn btn-outline-secondary btn-lg download-button"
+              class="btn btn-dark btn-lg download-button"
             >
               <i class="fa-brands fa-google-play"></i> Download
             </button>

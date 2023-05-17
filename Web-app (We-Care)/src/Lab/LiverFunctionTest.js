@@ -3,6 +3,7 @@ import Topbar from "../Topbar/Topbar";
 import Sidebar from "../Sidebar/Sidebar";
 import "./CBCTest.css";
 import axios from "axios";
+import { useLocation, useParams } from "react-router-dom";
 
 const liverData = [
   { name: "ALT", unit: "U/L", range: "10 - 130" },
@@ -25,14 +26,24 @@ const liverData = [
   { name: "ALP", unit: "U/L", range: "24 - 147" },
 ];
 function LiverTest() {
-  const [formData, setFormData] = useState({ labname: "dosh" });
+  const { id } = useParams();
+  const location = useLocation();
+  const [formData, setFormData] = useState({
+    patient_id: id,
+    entity_id: "2",
+    appointment_id: "14",
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3001/medicalLabTests", formData)
+      .post("http://localhost:8080/api/liver/new", formData)
       .then((response) => {
         console.log("Data posted:", response.data);
+        if (response.status === 201) {
+          // Navigate to another page
+          window.location.href = `/allpatientspage/patientresultpage/${id}`;
+        }
         // Do something with the response, e.g. show a success message
       })
       .catch((error) => {
@@ -40,6 +51,7 @@ function LiverTest() {
         // Handle the error, e.g. show an error message
       });
   };
+  console.log(formData);
 
   const handleChange = (event) => {
     const fieldName = event.target.name.toLowerCase();
@@ -61,16 +73,16 @@ function LiverTest() {
         <form onSubmit={handleSubmit} noValidate>
           <div className="row mb-3">
             <div className="col-md-4">
-              <label htmlFor="firstName">First Name</label>
-              <p className="patientdata">Mahmoud </p>
+              <label htmlFor="firstName">Name</label>
+              <p className="patientdata">{location.state?.name} </p>
             </div>
             <div className="col-md-4">
-              <label htmlFor="lastName">Last Name</label>
-              <p className="patientdata">Ahmed </p>
+              <label htmlFor="lastName">Age</label>
+              <p className="patientdata">{location.state?.age} </p>
             </div>
             <div className="col md-4">
               <label htmlFor="email">Patient's ID</label>
-              <p className="patientdata">HOSP-12345</p>
+              <p className="patientdata">{id}</p>
             </div>
           </div>
           <div>
@@ -118,7 +130,7 @@ function LiverTest() {
             </div>
           ))}
           <div>
-            <label htmlFor="comments">Comments</label>
+            <label for="comments">Comments</label>
             <textarea
               className="commentbtn"
               id="comments"

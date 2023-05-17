@@ -28,7 +28,7 @@ const LiverResultPaper = () => {
   }, []);
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:3001/Livertest/${id}`);
+    const res = await axios.get(`http://localhost:8080/api/liver/${id}`);
     setSingleTest(res.data);
     console.log("Liver data", res);
   };

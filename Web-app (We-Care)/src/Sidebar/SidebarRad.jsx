@@ -7,6 +7,10 @@ import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import './sidebarrad.css';
 
 function SidebarRad() {
+  const handleLogout = () => {
+    // Remove item from sessionStorage
+    sessionStorage.removeItem("User");
+  };
     return(
       <div className="sidebarrad">
       <div className="sidebarradWrapper">
@@ -18,20 +22,14 @@ function SidebarRad() {
                 Home
               </a>
             </li>
-            <li className="sidebarradListItem" >
-              <a href="/addscan">
-                <ScienceIcon className="sidebarradIcon" />
-                Add Scan
-              </a>
-            </li>
             <li className="sidebarradListItem">
-              <a href="/">
+              <a href="/radiologypatients">
                 <LeaderboardIcon className="sidebarradIcon" />
-                My patients
+                My Patients
               </a>
             </li>
             <li className="sidebarradListItem" >
-              <a href="/">
+              <a href="/" onClick={handleLogout}>
                 <ScienceIcon className="sidebarradIcon" />
                 Logout           
               </a>

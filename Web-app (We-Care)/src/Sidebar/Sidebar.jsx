@@ -4,10 +4,16 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import ScienceIcon from "@mui/icons-material/Science";
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import LogoutIcon from '@mui/icons-material/Logout';
+import BookIcon from '@mui/icons-material/Book';
 
 import "./Sidebar.css";
 
 function Sidebar() {
+  const handleLogout = () => {
+    // Remove item from sessionStorage
+    sessionStorage.removeItem("User");
+    sessionStorage.removeItem("User_id");
+  };
   return (
     <div className="adminsidebar">
       <div className="adminsidebarWrapper">
@@ -19,30 +25,6 @@ function Sidebar() {
                 Home
               </a>
             </li>
-            {/* <li className="adminsidebarListItem">
-              <a href="/cbctest">
-                <ScienceIcon className="adminsidebarIcon" />
-                CBC
-              </a>
-            </li>
-            <li className="adminsidebarListItem">
-              <a href="/glucosetest">
-                <ScienceIcon className="adminsidebarIcon" />
-                Glucose
-              </a>
-            </li>
-            <li className="adminsidebarListItem">
-              <a href="/livertest">
-                <ScienceIcon className="adminsidebarIcon" />
-                Liver Function Test
-              </a>
-            </li>
-            <li className="adminsidebarListItem">
-              <a href="/clinicalchemistry">
-                <ScienceIcon className="adminsidebarIcon" />
-                Lipid Profile
-              </a>
-            </li> */}
             <li className="sidebarradListItem">
               <a href="/patientspage">
                 <LeaderboardIcon className="sidebarradIcon" />
@@ -50,7 +32,13 @@ function Sidebar() {
               </a>
             </li>
             <li className="sidebarradListItem">
-              <a href="/">
+              <a href="/appointments">
+                <BookIcon className="sidebarradIcon" />
+                Appointments
+              </a>
+            </li>
+            <li className="sidebarradListItem">
+              <a href="/" onClick={handleLogout}>
                 <LogoutIcon className="sidebarradIcon" />
                 Logout
               </a>

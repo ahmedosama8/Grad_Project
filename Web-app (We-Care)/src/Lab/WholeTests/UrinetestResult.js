@@ -27,7 +27,7 @@ const UrineTestPaper = () => {
   }, []);
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:3001/Urinetest/${id}`);
+    const res = await axios.get(`http://localhost:8080/api/urine/${id}`);
     setSingleTest(res.data);
   };
   return (
@@ -86,7 +86,7 @@ const UrineTestPaper = () => {
                 <label>PH</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.rbphc}</label>
+                <label>{singletest?.ph}</label>
               </div>
               <div className="col-md-3">
                 <label>--</label>
@@ -193,7 +193,7 @@ const UrineTestPaper = () => {
                 <label>Pus Cells</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.pus_Cells}</label>
+                <label>{singletest?.pus_cells}</label>
               </div>
               <div className="col-md-3">
                 <label className="col md-3">/HPF</label>
@@ -208,7 +208,7 @@ const UrineTestPaper = () => {
                 <label>Red Cells</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.red_Cells}</label>
+                <label>{singletest?.red_cells}</label>
               </div>
               <div className="col-md-3">
                 <label className="col md-3">/HPF</label>
@@ -224,7 +224,7 @@ const UrineTestPaper = () => {
                 <label>Epithelial Cells</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.epithelial_Cells}</label>
+                <label>{singletest?.epithelial_cells}</label>
               </div>
               <div className="col-md-3">
                 <label>/HPF</label>
@@ -285,7 +285,7 @@ const UrineTestPaper = () => {
                 <label>Others</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.rbc}</label>
+                <label>{singletest?.others}</label>
               </div>
               <label className="col md-3">/HPF</label>
               <label className="col md-3"></label>

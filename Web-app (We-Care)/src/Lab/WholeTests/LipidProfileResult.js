@@ -27,7 +27,7 @@ const LipidProfileResultPaper = () => {
   }, []);
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:3001/LipidTest/${id}`);
+    const res = await axios.get(`http://localhost:8080/api/lipid/${id}`);
     setSingleTest(res.data);
     console.log("Lipid data", res);
   };
@@ -105,7 +105,7 @@ const LipidProfileResultPaper = () => {
                 <label>Cholestrol Total, serum</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.cholestrolTotal}</label>
+                <label>{singletest?.cholesterol}</label>
               </div>
               <div className="col-md-3">
                 <label className="col md-3">mg/dL</label>
@@ -124,7 +124,7 @@ const LipidProfileResultPaper = () => {
                 <label>HDL-C, serum</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.hdl_C}</label>
+                <label>{singletest?.hdl_c}</label>
               </div>
 
               <div className="col-md-3">
@@ -144,7 +144,7 @@ const LipidProfileResultPaper = () => {
                 <label>LDL-C, serum</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.ldl_C}</label>
+                <label>{singletest?.ldl_c}</label>
               </div>
 
               <div className="col-md-3">

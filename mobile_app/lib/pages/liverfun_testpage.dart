@@ -46,10 +46,42 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('ALT'),
-                              Text(liver['alt'].toString()),
-                              Text('U/L'),
-                              Text('10-130'),
+                              Text(
+                                'ALT',
+                                style: TextStyle(
+                                  color:
+                                      (liver['alt'] < 10 || liver['alt'] > 130)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                liver['alt'].toString(),
+                                style: TextStyle(
+                                  color:
+                                      (liver['alt'] < 10 || liver['alt'] > 130)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'U/L',
+                                style: TextStyle(
+                                  color:
+                                      (liver['alt'] < 10 || liver['alt'] > 130)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '10-130',
+                                style: TextStyle(
+                                  color:
+                                      (liver['alt'] < 10 || liver['alt'] > 130)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -58,10 +90,42 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('AST'),
-                              Text(liver['ast'].toString()),
-                              Text('U/L'),
-                              Text('10-34'),
+                              Text(
+                                'AST',
+                                style: TextStyle(
+                                  color:
+                                      (liver['ast'] < 10 || liver['ast'] > 34)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                liver['ast'].toString(),
+                                style: TextStyle(
+                                  color:
+                                      (liver['ast'] < 10 || liver['ast'] > 34)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'U/L',
+                                style: TextStyle(
+                                  color:
+                                      (liver['ast'] < 10 || liver['ast'] > 34)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '10-34',
+                                style: TextStyle(
+                                  color:
+                                      (liver['ast'] < 10 || liver['ast'] > 34)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -70,10 +134,42 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('ALB'),
-                              Text(liver['alb'].toString()),
-                              Text('g/dL'),
-                              Text('3.4-5.4'),
+                              Text(
+                                'ALB',
+                                style: TextStyle(
+                                  color:
+                                      (liver['alb'] < 3.4 || liver['alb'] > 5.4)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                liver['alb'].toString(),
+                                style: TextStyle(
+                                  color:
+                                      (liver['alb'] < 3.4 || liver['alb'] > 5.4)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'g/dL',
+                                style: TextStyle(
+                                  color:
+                                      (liver['alb'] < 3.4 || liver['alb'] > 5.4)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '3.4-5.4',
+                                style: TextStyle(
+                                  color:
+                                      (liver['alb'] < 3.4 || liver['alb'] > 5.4)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -82,10 +178,42 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('DBIL'),
-                              Text(liver['dbil'].toString()),
-                              Text('mg/dL'),
-                              Text('0-0.4'),
+                              Text(
+                                'DBIL',
+                                style: TextStyle(
+                                  color:
+                                      (liver['dbil'] < 0 || liver['dbil'] > 0.4)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                liver['dbil'].toString(),
+                                style: TextStyle(
+                                  color:
+                                      (liver['dbil'] < 0 || liver['dbil'] > 0.4)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'mg/dL',
+                                style: TextStyle(
+                                  color:
+                                      (liver['dbil'] < 0 || liver['dbil'] > 0.4)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '0-0.4',
+                                style: TextStyle(
+                                  color:
+                                      (liver['dbil'] < 0 || liver['dbil'] > 0.4)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -94,10 +222,42 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('TBIL'),
-                              Text(liver['tbil'].toString()),
-                              Text('mg/dL'),
-                              Text('0.1-1.2'),
+                              Text(
+                                'TBIL',
+                                style: TextStyle(
+                                  color: (liver['tbil'] < 0.1 ||
+                                          liver['tbil'] > 1.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                liver['tbil'].toString(),
+                                style: TextStyle(
+                                  color: (liver['tbil'] < 0.1 ||
+                                          liver['tbil'] > 1.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'mg/dL',
+                                style: TextStyle(
+                                  color: (liver['tbil'] < 0.1 ||
+                                          liver['tbil'] > 1.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '0.1-1.2',
+                                style: TextStyle(
+                                  color: (liver['tbil'] < 0.1 ||
+                                          liver['tbil'] > 1.2)
+                                      ? Colors.red
+                                      : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -106,10 +266,42 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('ALP'),
-                              Text(liver['alp'].toString()),
-                              Text('U/L'),
-                              Text('24-147'),
+                              Text(
+                                'ALP',
+                                style: TextStyle(
+                                  color:
+                                      (liver['alp'] < 24 || liver['alp'] > 147)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                liver['alp'].toString(),
+                                style: TextStyle(
+                                  color:
+                                      (liver['alp'] < 24 || liver['alp'] > 147)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                'U/L',
+                                style: TextStyle(
+                                  color:
+                                      (liver['alp'] < 24 || liver['alp'] > 147)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
+                              Text(
+                                '24-147',
+                                style: TextStyle(
+                                  color:
+                                      (liver['alp'] < 24 || liver['alp'] > 147)
+                                          ? Colors.red
+                                          : Colors.black,
+                                ),
+                              ),
                             ],
                           ),
                         )
@@ -122,7 +314,14 @@ class LiverTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: Icon(Icons.note),
-                        title: Text('notes'),
+                        title: Text(
+                          'notes',
+                          style: TextStyle(
+                            color: liver['comments'] != null
+                                ? Colors.red
+                                : Colors.black,
+                          ),
+                        ),
                       ),
                       Padding(
                         padding: EdgeInsets.all(10.0),

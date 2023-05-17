@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import Topbar from "../Topbar/Topbar";
-import Sidebar from "../Sidebar/Sidebar";
 import axios from "axios";
-import "./newpatient.css";
+import "../newpatient.css";
+import Topbar from "../../Topbar/Topbar";
+import Sidebar from "../../Sidebar/Sidebar";
 
-export default function NewPatient() {
-  const [formData, setFormData] = useState({});
+export default function NewAppointment() {
+  const [formData, setFormData] = useState({
+    entity_id: sessionStorage.getItem("User_id"),
+  });
   const [firstNameError, setFirstNameError] = useState("");
   const [lastnameerror, setLastNameError] = useState("");
   const [passworderror, setPasswordError] = useState("");
@@ -23,11 +25,11 @@ export default function NewPatient() {
       ...formData,
       [fieldName]: event.target.value,
     });
-    if (fieldValue.trim() === "") {
-      setFirstNameError("Name is required");
-    } else {
-      setFirstNameError("");
-    }
+    // if (fieldValue.trim() === "") {
+    //   setFirstNameError("Name is required");
+    // } else {
+    //   setFirstNameError("");
+    // }
   };
   const handlePasswordChange = (event) => {
     const fieldName = event.target.name;
@@ -71,7 +73,7 @@ export default function NewPatient() {
       [fieldName]: event.target.value,
     });
   };
-  const handleGender = (event) => {
+  const handleTest = (event) => {
     const fieldName = event.target.name;
     setFormData({
       ...formData,
@@ -149,36 +151,30 @@ export default function NewPatient() {
     }
   };
 
-  const handleEmailChange = (event) => {
+  const handleScanType = (event) => {
     const fieldName = event.target.name;
     const fieldValue = event.target.value;
     setFormData({
       ...formData,
       [fieldName]: event.target.value,
     });
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(fieldValue)) {
-      setEmailError("Invalid email address");
-    } else {
-      setEmailError("");
-    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      firstNameError !== "" ||
-      lastnameerror !== "" ||
-      phoneNumberError !== "" ||
-      Emergency_phoneNumberError !== "" ||
-      emailError !== "" ||
-      nationaliderror !== "" ||
-      !formData.name
-    ) {
-      console.log("tex el dosh");
-      return; // Don't submit if there are validation errors
-    }
+    // if (
+    //   firstNameError !== "" ||
+    //   lastnameerror !== "" ||
+    //   phoneNumberError !== "" ||
+    //   Emergency_phoneNumberError !== "" ||
+    //   emailError !== "" ||
+    //   nationaliderror !== "" ||
+    //   !formData.name
+    // ) {
+    //   console.log("tex el dosh");
+    //   return; // Don't submit if there are validation errors
+    // }
     axios
       .post(`http://localhost:8080/api/patient/new`, formData)
       .then((response) => {
@@ -195,7 +191,27 @@ export default function NewPatient() {
         // Handle the error, e.g. show an error message
       });
   };
+  const enity_id = sessionStorage.getItem("User_id");
+  const bodyParts = [
+    "Back",
+    "Heart",
+    "Head",
+    "Abdomen",
+    "Chest",
+    "Pelvis",
+    "Spine",
+    "Shoulder",
+    "Neck",
+    "Knee",
+    "Hip",
+    "Arm",
+    "Leg",
+    "Hand",
+    "Foot",
+    // Add more body parts here...
+  ];
   console.log("form data", formData);
+
   return (
     <div>
       <Topbar />
@@ -208,64 +224,110 @@ export default function NewPatient() {
       >
         <div className="row">
           <div className="col-md-6 mb-3">
-            <label htmlFor="firstName">Full Name</label>
+            <label htmlFor="firstName">Patient ID</label>
             <input
               className="form-control"
-              placeholder="Full Name"
+              placeholder="ID"
               type="text"
-              name="name"
-              value={formData.name}
+              name="patient_id"
+              value={formData.patient_id}
               onChange={handleFirstNameChange}
             />
-            {firstNameError && (
+            {/* {firstNameError && (
               <p className="error" style={{ color: "red" }}>
                 {firstNameError}
               </p>
-            )}
+            )} */}
           </div>
-          <div className="col-md-6 mb-3">
-            <label htmlFor="lastName">Username</label>
-            <input
-              className="form-control"
-              placeholder="username"
-              type="text"
-              name="username"
-              noValidate
-              value={formData.username}
-              onChange={handleLastNameChange}
-            />
-            {lastnameerror && (
-              <p className="error" style={{ color: "red" }}>
-                {lastnameerror}
-              </p>
+          <div className="col md-6 mb-3">
+            {enity_id == 2 && (
+              <>
+                <label>Test Type</label>
+                <select
+                  className="form-control"
+                  name="appointment_type"
+                  value={formData.appointment_type}
+                  onChange={handleTest}
+                  noValidate
+                >
+                  <option value="">Select Test</option>
+                  <option value="CBC">CBC</option>
+                  <option value="female">Liver Function Test</option>
+                  <option value="Lipid Profile">Lipid Profile</option>
+                  <option value="Urine Test">Urine Test</option>
+                  <option value="Glucose Test">Glucose Test</option>
+                </select>
+              </>
+            )}
+            {enity_id == 1 && (
+              <div className="row">
+                <div className="col md-6">
+                  <label>Scan type</label>
+                  <select
+                    className="form-control "
+                    name="appointment_type"
+                    value={formData.appointment_type}
+                    onChange={handleScanType}
+                    noValidate
+                  >
+                    <option value="">Select Scan</option>
+                    <option value="CBC">MRI</option>
+                    <option value="CT-Scan">CT-Scan</option>
+                    <option value="X-ray">X-ray</option>
+                  </select>
+                </div>
+                <div className="col md-6">
+                  <label>Body Part</label>
+
+                  <select
+                    className="form-control col md-6"
+                    name="appointment_type"
+                    value={formData.appointment_type}
+                    onChange={handleScanType}
+                    noValidate
+                  >
+                    <label>Body Part</label>
+
+                    <option value="">Select Body Part</option>
+                    {bodyParts.map((bodyPart, index) => (
+                      <option key={index} value={bodyPart}>
+                        {bodyPart}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             )}
           </div>
         </div>
         <div className="row">
           <div className=" col md-6 mb-3">
-            <label htmlFor="dateOfBirth">Date of Birth</label>
+            <label htmlFor="dateOfBirth">Appointment Date</label>
             <input
               className="form-control"
               placeholder="MM/DD/YYYY"
               type="date"
-              name="birth_date"
-              onChange={handleBirthDate}
-              value={formData.birth_date}
+              name="appointment_date"
+              //   onChange={handleBirthDate}
+              value={formData.appointment_date}
               noValidate
             />
           </div>
           <div className="col-md-6 mb-3">
             <div>
-              <label htmlFor="email">Password</label>
-              <input
-                className="form-control"
-                placeholder="password"
-                name="password"
-                type="text"
+              <label>Payment Method</label>
+              <select
+                className="form-control "
+                name="payment_method"
+                value={formData.payment_method}
+                //   onChange={handleGender}
                 noValidate
-                value={formData.password}
-                onChange={handlePasswordChange}
-              />
+              >
+                <option value="">Select Method</option>
+                <option value="Cash">Cash</option>
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+              </select>
               {passworderror && (
                 <p className="error" style={{ color: "red" }}>
                   {passworderror}
@@ -275,22 +337,28 @@ export default function NewPatient() {
           </div>
           <div className="row">
             <div className="col md-6 mb-3">
-              <label htmlFor="phoneNumber">Phone Number</label>
-              <input
+              <label htmlFor="phoneNumber">Appointment Status</label>
+              <select
                 className="form-control"
-                placeholder="Phone Number"
+                placeholder="Status"
                 type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handlePhoneNumberChange}
-              />
-              {phoneNumberError && (
+                name="appointment_status"
+                value={formData.appointment_status}
+                // onChange={handlePhoneNumberChange}
+              >
+                <option value="">Select Status</option>
+                <option value="Done">Done</option>
+                <option value="Credit Card">Ongoing</option>
+              </select>
+
+              {/* <option value="Debit Card">Debit Card</option> */}
+              {/* {phoneNumberError && (
                 <p className="error" style={{ color: "red" }}>
                   {phoneNumberError}
                 </p>
-              )}
+              )} */}
             </div>
-            <div className="col md-6 mb-3">
+            {/* <div className="col md-6 mb-3">
               <label htmlFor="emergency_phoneNumber">
                 Emergency Phone Number
               </label>
@@ -307,74 +375,10 @@ export default function NewPatient() {
                   {Emergency_phoneNumberError}
                 </p>
               )}
-            </div>
+            </div> */}
           </div>
         </div>
-        <div className="row">
-          <div className="col md-6 mb-3">
-            <label htmlFor="address">Address</label>
-            <input
-              className="form-control"
-              placeholder="Address"
-              type="text"
-              name="address"
-              value={formData.address}
-              onChange={handleAddress}
-              noValidate
-            />
-          </div>
-          <div className="col md-6 mb-3">
-            <label htmlFor="gender">Gender</label>
-            <select
-              className="form-control"
-              name="gender"
-              value={formData.gender}
-              onChange={handleGender}
-              noValidate
-            >
-              <option value="">Select gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col md-6 mb-3">
-            <label htmlFor="address">National ID Number</label>
-            <input
-              className="form-control"
-              placeholder="National_id"
-              type="text"
-              name="national_id_number"
-              value={formData.national_id_number}
-              onChange={handleNationalIDNumber}
-              noValidate
-            />
-          </div>
-          <div className="col md-6 mb-3">
-            <label htmlFor="gender">Blood Type</label>
-            <select
-              className="form-control"
-              name="blood_type"
-              value={formData.blood_type}
-              onChange={handleBloodType}
-              noValidate
-            >
-              <option value="">Select type</option>
-              <option value="none">none</option>
-              <option value="AB+">AB+</option>
-              <option value="AB-">AB-</option>
-              <option value="A+">A+</option>
-              <option value="A-">A-</option>
-              <option value="B+">B+</option>
-              <option value="B-">B-</option>
-              <option value="O+">O+</option>
-              <option value="O-">O-</option>
-            </select>
-          </div>
-        </div>
-        <div className="row mb-3">
+        {/* <div className="row mb-3">
           <div className="col md-6">
             <label htmlFor="email">Email Address</label>
             <input
@@ -407,7 +411,7 @@ export default function NewPatient() {
               <option value="Widowed">Widowed</option>
             </select>
           </div>
-        </div>
+        </div> */}
 
         {/* <div className="mb-3">
           <label htmlFor="medicationsAllergies">

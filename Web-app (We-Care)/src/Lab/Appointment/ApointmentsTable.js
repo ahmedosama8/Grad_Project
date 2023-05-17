@@ -1,57 +1,44 @@
 import React, { useEffect, useState } from "react";
-import Topbar from "../Topbar/Topbar";
-import Sidebar from "../Sidebar/Sidebar";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Menu, MenuItem } from "@mui/material";
-import "./allpatientspage.css";
+import "../allpatientspage.css";
+import Topbar from "../../Topbar/Topbar";
+import Sidebar from "../../Sidebar/Sidebar";
 
 const columns = [
   {
-    field: "name",
-    headerName: "Name",
+    field: "patient_id",
+    headerName: "Patient ID",
     width: 200,
     headerClassName: "custom-header",
   },
   {
-    field: "username",
-    headerName: "Username",
-    width: 120,
-    headerClassName: "custom-header",
-  },
-  {
-    field: "phone",
-    headerName: "Phone Number",
+    field: "appointment_type",
+    headerName: "Appoinment Type",
     width: 180,
     headerClassName: "custom-header",
   },
   {
-    field: "emergency_contact",
-    headerName: " Emergency Phone Number",
+    field: "appointment_status",
+    headerName: "Appointment Status",
     width: 180,
     headerClassName: "custom-header",
   },
   {
-    field: "gender",
-    headerName: "Gender",
+    field: "appointment_date",
+    headerName: " Appointment Date",
+    width: 180,
+    headerClassName: "custom-header",
+  },
+  {
+    field: "price",
+    headerName: "Price",
     width: 100,
     headerClassName: "custom-header",
 
   },
-  {
-    field: "birth_date",
-    headerName: "Birth Date",
-    width: 150,
-    headerClassName: "custom-header",
-  },
-  {
-    field: "blood_type",
-    headerName: "Blood Type",
-    width: 100,
-    headerClassName: "custom-header",
-  },
-
   {
     field: "id",
     headerName: "Results",
@@ -64,27 +51,27 @@ const columns = [
           color="secondary"
           style={{ color: "#00000098" }}
         >
-          View
+          Add
         </Button>
       </Link>
     ),
     headerClassName: "custom-header",
   },
-  {
-    field: "actions",
-    headerName: "Tests",
-    sortable: false,
-    width: 120,
-    renderCell: (params) => (
-      <ResultsMenu
-        namePatient={params.row.name}
-        agePatient={params.row.age}
-        patientId={params.row.id}
-        row={params.row}
-      />
-    ),
-    headerClassName: "custom-header",
-  },
+//   {
+//     field: "actions",
+//     headerName: "Tests",
+//     sortable: false,
+//     width: 120,
+//     renderCell: (params) => (
+//       <ResultsMenu
+//         namePatient={params.row.name}
+//         agePatient={params.row.age}
+//         patientId={params.row.patient_id}
+//         row={params.row}
+//       />
+//     ),
+//     headerClassName: "custom-header",
+//   },
 ];
 
 function ResultsMenu({ patientId, namePatient, agePatient }) {
@@ -159,18 +146,20 @@ function ResultsMenu({ patientId, namePatient, agePatient }) {
     </div>
   );
 }
-export default function AllPatientsPage() {
+export default function ApointmentsTable() {
   const [rows, setRows] = useState([]);
-  const id=sessionStorage.getItem("user_id")
+  const id=sessionStorage.getItem("User_id")
 
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/api/patient/list`);
+      const response = await fetch(`http://localhost:8080/api/entity/${id}/appointments`);
       const data = await response.json();
       setRows(data);
     }
     fetchRows();
   }, []);
+
+  console.log("appointments",rows)
 
   return (
     <div>

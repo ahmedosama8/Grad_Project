@@ -1,55 +1,48 @@
 .sidebarrad {
-    flex: 1;
-    height: calc(107vh - 50px);
-    background-color: #66CA98;
-    position: sticky;
-    top: 50px;
-    width: 219.125px;
-    box-shadow: 2px 3px 5px #66D3FA;
-  
-  }
-  
-  .sidebarradWrapper {
-    padding: 20px;
-    color: #555;
-  }
-  
-  .sidebarradMenu {
-    margin-bottom: 10px;
-  }
-  
-  .sidebarradTitle {
-    font-size: 20px;
-    color: rgb(187, 186, 186) ;
-  }
-  
-  .sidebarradList {
-    list-style: none;
-    padding: 5px;
-  }
-  
-  .sidebarradListItem {
-    padding: 5px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
-    margin-top: 5%;
-    
-  
-  }
-  .sidebarrad ul li a{
-    color:white;
-    width: 100%;
-  }
-  
-  .sidebarradListItem:hover {
-    background-color:#051d10;
-    
-  }
-  
-  .sidebarradIcon{
-      margin-right: 5px;
-      font-size: 20px !important;
-  }
-  
+  height: 100vh;
+  background-color: #66ca98;
+  top: 50px;
+  position: fixed;
+  width: 219.13px;
+}
+
+.sidebarradWrapper {
+  padding: 20px;
+  color: #555;
+}
+
+.sidebarradMenu {
+  margin-bottom: 10px;
+}
+
+.sidebarradTitle {
+  font-size: 20px;
+  color: rgb(187, 186, 186);
+}
+
+.sidebarradList {
+  list-style: none;
+  padding: 5px;
+}
+
+.sidebarradListItem {
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: 5%;
+}
+.sidebarrad ul li a {
+  color: white;
+  width: 100%;
+}
+
+.sidebarradListItem:hover {
+  background-color: #051d10;
+}
+
+.sidebarradIcon {
+  margin-right: 5px;
+  font-size: 20px !important;
+}

@@ -27,6 +27,12 @@ import UrinetestResult from "./Lab/WholeTests/UrinetestResult";
 import CbcTestResult from "./Lab/WholeTests/CbcTestResult";
 import LiverTestResult from "./Lab/WholeTests/LiverTestResult";
 import GlucoseTestResult from "./Lab/WholeTests/GlucoseTestResult";
+import RadiologyPatients from "./Radiology/RadiologyPatients";
+import PatietnResultRad from "./Radiology/PatientResultsRad";
+import WholePaper from "./Radiology/ScanResultPage";
+import AppointmentPage from "./Lab/Appointment/AppointmentPage";
+import NewAppointment from "./Lab/Appointment/NewAppointment";
+import ApointmentsTable from "./Lab/Appointment/ApointmentsTable";
 function App() {
   return (
     <Router>
@@ -50,17 +56,28 @@ function App() {
             path="/allpatientspage/patientresultpage/:id"
             element={<PatientResultPage />}
           />
+          <Route path="/appointments" element={<AppointmentPage />} />
+          <Route path="/addappointment" element={<NewAppointment />} />
+          <Route path="/allapointments" element={<ApointmentsTable />} />
+
+
           <Route path="/selected-row/:id" element={<WholeTest />} />
           <Route path="/cbc-page/:id" element={<CbcTestResult />} />
           <Route path="/glucose-page/:id" element={<GlucoseTestResult />} />
-          <Route path="/lipid-profile-page/:id" element={<LipidProfileResult />} />
+          <Route
+            path="/lipid-profile-page/:id"
+            element={<LipidProfileResult />}
+          />
           <Route path="/liver-page/:id" element={<LiverTestResult />} />
           <Route path="/urine-page/:id" element={<UrinetestResult />} />
 
           {/* Routes for radiology center */}
 
           <Route path="/radhome" element={<Radiology />} />
-          <Route path="/addscan" element={<RadScan />} />
+          <Route path="/radiologypatients" element={<RadiologyPatients />} />
+          <Route path="/patientresultrad/:id" element={<PatietnResultRad />} />
+          <Route path="/addscan/:id" element={<RadScan />} />
+          <Route path="/wholereport/:id" element={<WholePaper />} />
 
           {/* Routes for clinic page */}
 

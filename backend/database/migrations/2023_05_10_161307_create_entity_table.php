@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('healthcare_entities', function (Blueprint $table) {
             $table->id();
             $table->string('phone')->nullable();
+            $table->string('type')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->string('name')->nullable();

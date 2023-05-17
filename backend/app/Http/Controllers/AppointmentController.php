@@ -7,6 +7,7 @@ use App\Models\cbc;
 use App\Models\glucose;
 use App\Models\lipidprofile;
 use App\Models\liverfunc;
+use App\Models\Patient;
 use App\Models\urinetest;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
-        $appointment = Appointments::updateOrCreate($request->all());
+        $appointment = Appointments::create($request->all());
         return response()->json($appointment, 201);
     }
 
@@ -85,7 +86,12 @@ class AppointmentController extends Controller
 
     public function show_entity_patients(string $id)
     {
-        return response()->json(Appointments::where('entity_id', $id)->get('patient_id'), 200);
+        $patients = Appointments::where('entity_id', $id)->distinct()->get('patient_id');
+        $arr = [];
+        foreach ($patients as $patient){
+            $arr[] = Patient::find($patient->patient_id);
+        }
+        return response()->json($arr, 200);
     }
 
 

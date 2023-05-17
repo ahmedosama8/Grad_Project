@@ -22,6 +22,7 @@ class Doctor {
   final String name;
   final String username;
   final String address;
+  final String type;
 
   Doctor({
     required this.doctorId,
@@ -30,6 +31,7 @@ class Doctor {
     required this.username,
     required this.name,
     required this.address,
+    required this.type,
   });
 
   factory Doctor.fromJson(Map<String, dynamic> json) {
@@ -40,6 +42,7 @@ class Doctor {
       username: json['username'] ?? '',
       name: json['name'] ?? '',
       address: json['address'] ?? '',
+      type: json['type'] ?? '',
     );
   }
 }

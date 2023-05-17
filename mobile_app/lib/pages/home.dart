@@ -17,7 +17,6 @@ import 'package:provider/provider.dart';
 import 'package:mobile_app/api/user.dart';
 import 'package:restart_app/restart_app.dart';
 
-
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
 
@@ -132,9 +131,9 @@ class _HomePageState extends State<HomePage> {
                   child: IconButton(
                     icon: Icon(Icons.logout),
                     onPressed: () {
-                                             Restart.restartApp();
-
-
+                      Navigator.of(context, rootNavigator: true)
+                          .pushReplacement(
+                              MaterialPageRoute(builder: (context) => Login()));
                     },
                   ),
                 )
@@ -212,8 +211,7 @@ class _HomePageState extends State<HomePage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          AppointmentDetailsPage()
-                                          ),
+                                          AppointmentDetailsPage()),
                                 );
                               },
                             ),

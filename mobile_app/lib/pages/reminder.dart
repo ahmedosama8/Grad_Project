@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/colors.dart';
 
+
 class Medicine {
   String name;
-  String time;
+  TimeOfDay time;
+  DateTime date;
 
-  Medicine({required this.name, required this.time});
+  Medicine({required this.name, required this.time, required this.date});
 }
 
 class MedicineReminderPage extends StatefulWidget {
@@ -16,14 +18,71 @@ class MedicineReminderPage extends StatefulWidget {
 class _MedicineReminderPageState extends State<MedicineReminderPage> {
   List<Medicine> medicines = [];
   TextEditingController medicineController = TextEditingController();
-  TextEditingController timeController = TextEditingController();
+  TimeOfDay? selectedTime;
+  DateTime? selectedDate;
+  String? validationMessage;
 
-  void addMedicine(String name, String time) {
-    setState(() {
-      medicines.add(Medicine(name: name, time: time));
-      medicineController.clear();
-      timeController.clear();
-    });
+  showAlertDialog(BuildContext context, String title, String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(title),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> selectTime(BuildContext context) async {
+    final TimeOfDay? time = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.now(),
+    );
+
+    if (time != null) {
+      setState(() {
+        selectedTime = time;
+      });
+    }
+  }
+
+  Future<void> selectDate(BuildContext context) async {
+    final DateTime? date = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (date != null) {
+      setState(() {
+        selectedDate = date;
+      });
+    }
+  }
+
+  void addMedicine(String name, TimeOfDay time, DateTime date) {
+    if (name.isEmpty) {
+      setState(() {
+        validationMessage = 'Please enter a medicine name.';
+      });
+    } else {
+      setState(() {
+        medicines.add(Medicine(name: name, time: time, date: date));
+        medicineController.clear();
+        selectedTime = null;
+        selectedDate = null;
+      });
+    }
   }
 
   void deleteMedicine(Medicine medicine) {
@@ -49,36 +108,81 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
             'Medicine Reminder',
             style: TextStyle(color: Colors.white),
           ),
+          backgroundColor: primary,
         ),
         body: Column(
           children: [
             Padding(
               padding: EdgeInsets.all(16.0),
-              child: Row(
+              child: Column(
                 children: [
-                  Expanded(
-                    child: TextFormField(
-                      controller: medicineController,
-                      decoration: InputDecoration(
-                        labelText: 'Medicine',
-                      ),
+                  TextFormField(
+                    controller: medicineController,
+                    decoration: InputDecoration(
+                      labelText: 'Medicine',
+                      errorText: validationMessage,
                     ),
                   ),
-                  SizedBox(width: 16.0),
-                  Expanded(
-                    child: TextFormField(
-                      controller: timeController,
-                      decoration: InputDecoration(
-                        labelText: 'Time',
+                  SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          selectTime(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: primary, // Background color
+                        ),
+                        child: Text(
+                          'Select Time',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          selectDate(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: primary, // Background color
+                        ),
+                        child: Text(
+                          'Select Date',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(width: 16.0),
+                  selectedTime != null
+                      ? Text('Selected Time: ${selectedTime!.format(context)}')
+                      : SizedBox(),
+                  selectedDate != null
+                      ? Text(
+                          'Selected Date: ${selectedDate!.toString().split(' ')[0]}')
+                      : SizedBox(),
                   ElevatedButton(
                     onPressed: () {
-                      addMedicine(medicineController.text, timeController.text);
+                      if (selectedTime != null && selectedDate != null) {
+                        addMedicine(
+                          medicineController.text,
+                          selectedTime!,
+                          selectedDate!,
+                        );
+                      } else {
+                        showAlertDialog(context, 'Failed to add',
+                            'Please enter a medicine name.');
+                      }
                     },
-                    child: Text('Add', style: TextStyle(color: Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primary, // Background color
+                    ),
+                    child: Text(
+                      'Add',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                 ],
               ),
@@ -90,7 +194,13 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
                   final medicine = medicines[index];
                   return ListTile(
                     title: Text(medicine.name),
-                    subtitle: Text('Time: ${medicine.time}'),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Time: ${medicine.time.format(context)}'),
+                        Text('Date: ${medicine.date.toString().split(' ')[0]}'),
+                      ],
+                    ),
                     trailing: IconButton(
                       icon: Icon(Icons.delete),
                       onPressed: () {

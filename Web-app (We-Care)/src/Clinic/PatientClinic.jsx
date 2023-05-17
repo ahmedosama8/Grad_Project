@@ -76,7 +76,7 @@ export default function PatientClinic() {
       <SidebarClinic />
       <div
         className="container col-6"
-        style={{ position: "relative", bottom: 950, right: 100, width: 1000 }}
+        style={{ position: "relative", top: "50px", width: 1000 }}
       >
         <h3>Patient Demoghraphics</h3>
         <form noValidate>

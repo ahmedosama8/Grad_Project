@@ -6,9 +6,11 @@ import axios from "axios";
 
 import "./patientresultrad.css";
 import SidebarRad from "../Sidebar/SidebarRad";
+import Sidebar from "../Sidebar/Sidebar";
 
 function PatietnResultRad({}) {
   const [radscans, setRadScans] = useState([]);
+  const entity_type = sessionStorage.getItem("User_type");
   const { id } = useParams();
 
   useEffect(() => {
@@ -24,6 +26,8 @@ function PatietnResultRad({}) {
   return (
     <div>
       <Topbar />
+      {entity_type === "Lab" && <Sidebar />}
+      {entity_type === "Rad" && <SidebarRad />}
       <SidebarRad />
       <div
         className="App container col-6"
@@ -36,7 +40,7 @@ function PatietnResultRad({}) {
               <th style={{ textAlign: "center" }}>Referring Doctor</th>
               <th style={{ textAlign: "center" }}>Examination Date</th>
               <th style={{ textAlign: "center" }}>Examination Part</th>
-              <th style={{ textAlign: "center" }}>Comments  </th>
+              <th style={{ textAlign: "center" }}>Comments </th>
 
               <th style={{ textAlign: "center" }}>Action</th>
               {/* Add other relevant columns as necessary */}

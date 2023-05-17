@@ -1,23 +1,27 @@
-import React from 'react';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import BiotechIcon from '@mui/icons-material/Biotech';
-import ScienceIcon from '@mui/icons-material/Science';
-import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import React from "react";
+import AcUnitIcon from "@mui/icons-material/AcUnit";
+import BiotechIcon from "@mui/icons-material/Biotech";
+import ScienceIcon from "@mui/icons-material/Science";
+import LeaderboardIcon from "@mui/icons-material/Leaderboard";
+import BookIcon from "@mui/icons-material/Book";
 
-import './sidebarrad.css';
+import "./sidebarrad.css";
 
 function SidebarRad() {
   const handleLogout = () => {
     // Remove item from sessionStorage
     sessionStorage.removeItem("User");
+    sessionStorage.removeItem("User_id");
+
+    sessionStorage.removeItem("User_type");
   };
-    return(
-      <div className="sidebarrad">
+  return (
+    <div className="sidebarrad">
       <div className="sidebarradWrapper">
         <div className="sidebarradMenu">
           <ul className="sidebarradList">
             <li className="sidebarradListItem">
-              <a href="/radhome" >
+              <a href="/radhome">
                 <BiotechIcon className="sidebarradIcon" />
                 Home
               </a>
@@ -28,18 +32,22 @@ function SidebarRad() {
                 My Patients
               </a>
             </li>
-            <li className="sidebarradListItem" >
+            <li className="sidebarradListItem">
+              <a href="/appointments">
+                <BookIcon className="sidebarradIcon" />
+                Appointments
+              </a>
+            </li>
+            <li className="sidebarradListItem">
               <a href="/" onClick={handleLogout}>
                 <ScienceIcon className="sidebarradIcon" />
-                Logout           
+                Logout
               </a>
             </li>
           </ul>
         </div>
       </div>
     </div>
-      
-    );
-
+  );
 }
 export default SidebarRad;

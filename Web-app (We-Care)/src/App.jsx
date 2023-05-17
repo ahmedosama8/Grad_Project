@@ -58,7 +58,7 @@ function App() {
           />
           <Route path="/appointments" element={<AppointmentPage />} />
           <Route path="/addappointment" element={<NewAppointment />} />
-          <Route path="/allapointments" element={<ApointmentsTable />} />
+          <Route path="/allapointments/:id" element={<ApointmentsTable />} />
 
 
           <Route path="/selected-row/:id" element={<WholeTest />} />

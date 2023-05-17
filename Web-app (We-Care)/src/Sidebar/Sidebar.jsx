@@ -13,6 +13,8 @@ function Sidebar() {
     // Remove item from sessionStorage
     sessionStorage.removeItem("User");
     sessionStorage.removeItem("User_id");
+    sessionStorage.removeItem("User_type");
+
   };
   return (
     <div className="adminsidebar">

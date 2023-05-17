@@ -37,7 +37,6 @@ const columns = [
     headerName: "Gender",
     width: 100,
     headerClassName: "custom-header",
-
   },
   {
     field: "birth_date",
@@ -161,11 +160,13 @@ function ResultsMenu({ patientId, namePatient, agePatient }) {
 }
 export default function AllPatientsPage() {
   const [rows, setRows] = useState([]);
-  const id=sessionStorage.getItem("user_id")
+  const entity_id = sessionStorage.getItem("User_id");
 
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/api/patient/list`);
+      const response = await fetch(
+        `http://localhost:8080/api/entity/${entity_id}/patients/list`
+      );
       const data = await response.json();
       setRows(data);
     }

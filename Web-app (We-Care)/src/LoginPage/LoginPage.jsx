@@ -72,13 +72,17 @@ function LoginPage() {
 
       if (response.ok) {
         const data = await response.json();
-        sessionStorage.setItem("User", data.name);
+        sessionStorage.setItem("User_type", data.type);
         sessionStorage.setItem("User_id", data.id);
+
+
         setEntityId(data.entityId);
-        if (data.name == "Cairo Scan") {
-          navigate("/radhome");
+        if (data.type == "Lab") {
+          navigate("/labhome");
+        } else if (data.type == "Rad") {
+          navigate("/radhome"); // Redirect to th e home page or perform other actions
         } else {
-          navigate("/labhome"); // Redirect to th e home page or perform other actions
+          navigate("/clinichome");
         }
       } else {
         console.error("Login Failed");

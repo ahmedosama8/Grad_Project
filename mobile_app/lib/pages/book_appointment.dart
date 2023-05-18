@@ -67,8 +67,6 @@ class _BookappointState extends State<Bookappoint> {
     });
   }
 
-  TextEditingController textFieldController = TextEditingController();
-
   void submitButton() {
     if (_formKey.currentState!.validate()) {
       int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
@@ -148,7 +146,7 @@ class _BookappointState extends State<Bookappoint> {
                         enabledBorder: OutlineInputBorder(
                           borderSide:
                               BorderSide(width: 2, color: Colors.greenAccent),
-                          borderRadius: BorderRadius.circular(0),
+                          borderRadius: BorderRadius.circular(12),
                         ),
                         labelText: 'Healthcare facility',
                         border: OutlineInputBorder(),
@@ -184,182 +182,174 @@ class _BookappointState extends State<Bookappoint> {
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color:
-                            Colors.greenAccent, // Set the desired border color
-                        width: 2.5, // Set the desired border width
-                      ),
-                      borderRadius: BorderRadius.circular(0.0),
+                      border: Border.all(color: Colors.greenAccent, width: 2),
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    child: MultiSelectFormField(
-                      border: InputBorder.none,
-                      chipBackGroundColor: primary,
-                      fillColor: Color.fromARGB(255, 255, 255, 255),
-                      dialogTextStyle: TextStyle(fontWeight: FontWeight.bold),
-                      checkBoxActiveColor: Colors.greenAccent,
-                      checkBoxCheckColor: Colors.white,
-                      dialogShapeBorder: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                      ),
-                      title: Row(
-                        children: const [
-                          Icon(
-                            Icons.edit_document,
-                            color: Colors.black54,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: MultiSelectFormField(
+                          border: InputBorder.none,
+                          chipBackGroundColor: primary,
+                          fillColor: Color.fromARGB(255, 252, 249, 249),
+                          dialogTextStyle:
+                              TextStyle(fontWeight: FontWeight.bold),
+                          checkBoxActiveColor: Colors.greenAccent,
+                          checkBoxCheckColor: Colors.white,
+                          dialogShapeBorder: RoundedRectangleBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
                           ),
-                          SizedBox(width: 8),
-                          Text('Select appointment Type'),
-                        ],
-                      ),
-                      dataSource: (selectedfacility != null &&
-                              selectedfacility?.type == 'clinic')
-                          ? [
-                              {
-                                'display': 'General Check-up',
-                              },
-                              {
-                                'display': 'Specialist Consultation',
-                              },
-                              {
-                                'display': 'Follow-up Appointment',
-                              },
-                              {
-                                'display': 'Diagnostic Test Appointment',
-                              },
-                              {
-                                'display': 'Vaccination Appointment',
-                              },
-                              {
-                                'display': 'Therapy or Counseling Session',
-                              },
-                              {
-                                'display': 'Surgical Procedure',
-                              },
-                              {
-                                'display': 'Maternity or Prenatal Appointment',
-                              },
-                              {
-                                'display': 'Dental or Oral Health Appointment',
-                              },
-                              {
-                                'display': 'Physical Therapy Appointment',
-                              },
-                            ]
-                          : (selectedfacility != null &&
-                                  selectedfacility?.type == 'lab')
+                          title: Row(
+                            children: const [
+                              Icon(
+                                Icons.edit_document,
+                                color: Colors.black54,
+                              ),
+                              SizedBox(width: 8),
+                              Text('Select appointment Type'),
+                            ],
+                          ),
+                          dataSource: (selectedfacility != null &&
+                                  selectedfacility?.type == 'clinic')
                               ? [
                                   {
-                                    'display': 'CBC Test',
+                                    'display': 'General Check-up',
                                   },
                                   {
-                                    'display': 'Glucose Test',
+                                    'display': 'Specialist Consultation',
                                   },
                                   {
-                                    'display': 'Urine Test',
+                                    'display': 'Follow-up Appointment',
                                   },
                                   {
-                                    'display': 'Lipid profile Test',
+                                    'display': 'Surgical Procedure',
                                   },
                                   {
-                                    'display': 'Liver function Test',
+                                    'display': 'Physical Therapy Appointment',
                                   },
                                 ]
                               : (selectedfacility != null &&
-                                      selectedfacility?.type == 'rad')
+                                      selectedfacility?.type == 'lab')
                                   ? [
                                       {
-                                        'display': 'MRI of the brain',
+                                        'display': 'CBC Test',
                                       },
                                       {
-                                        'display': 'CT scan of the head',
+                                        'display': 'Glucose Test',
                                       },
                                       {
-                                        'display': 'PET scan of the brain',
+                                        'display': 'Urine Test',
                                       },
                                       {
-                                        'display': 'Ultrasound of the head',
+                                        'display': 'Lipid profile Test',
                                       },
                                       {
-                                        'display': 'X-ray of the spine',
-                                      },
-                                      {
-                                        'display': 'MRI of the spine',
-                                      },
-                                      {
-                                        'display': 'CT scan of the spine',
-                                      },
-                                      {
-                                        'display': 'Chest X-ray',
-                                      },
-                                      {
-                                        'display': 'CT scan of the chest',
-                                      },
-                                      {
-                                        'display': 'PET-CT scan of the chest',
-                                      },
-                                      {
-                                        'display': 'Pulmonary function tests',
-                                      },
-                                      {
-                                        'display': 'Abdominal ultrasound',
-                                      },
-                                      {
-                                        'display':
-                                            'CT scan of the abdomen and pelvis',
-                                      },
-                                      {
-                                        'display':
-                                            'MRI of the abdomen and pelvis',
-                                      },
-                                      {
-                                        'display': 'X-ray of the abdomen',
-                                      },
-                                      {
-                                        'display': 'X-ray of bones and joints',
-                                      },
-                                      {
-                                        'display':
-                                            'MRI of joints and soft tissues',
-                                      },
-                                      {
-                                        'display':
-                                            'CT scan of bones and joints',
-                                      },
-                                      {
-                                        'display':
-                                            'Ultrasound of joints and soft tissues',
-                                      },
-                                      {
-                                        'display': 'Echocardiogram',
-                                      },
-                                      {
-                                        'display': 'Cardiac CT scan',
-                                      },
-                                      {
-                                        'display': 'Cardiac MRI',
-                                      },
-                                      {
-                                        'display': 'Angiography',
+                                        'display': 'Liver function Test',
                                       },
                                     ]
-                                  : [],
-                      validator: (value) {
-                        if (value == null || value.length == 0) {
-                          return 'Please select one or more options';
-                        }
-                        return null;
-                      },
-                      enabled: isDropdownEnabled,
-                      textField: 'display',
-                      valueField: 'display',
-                      okButtonLabel: 'OK',
-                      cancelButtonLabel: 'CANCEL',
-                      hintWidget: Text('Please select one or more option'),
-                      onSaved: (value) {
-                        setState(() {
-                          selectedAppointmentTypes = value;
-                        });
-                      },
+                                  : (selectedfacility != null &&
+                                          selectedfacility?.type == 'rad')
+                                      ? [
+                                          {
+                                            'display': 'MRI of the brain',
+                                          },
+                                          {
+                                            'display': 'CT scan of the head',
+                                          },
+                                          {
+                                            'display': 'PET scan of the brain',
+                                          },
+                                          {
+                                            'display': 'Ultrasound of the head',
+                                          },
+                                          {
+                                            'display': 'X-ray of the spine',
+                                          },
+                                          {
+                                            'display': 'MRI of the spine',
+                                          },
+                                          {
+                                            'display': 'CT scan of the spine',
+                                          },
+                                          {
+                                            'display': 'Chest X-ray',
+                                          },
+                                          {
+                                            'display': 'CT scan of the chest',
+                                          },
+                                          {
+                                            'display':
+                                                'PET-CT scan of the chest',
+                                          },
+                                          {
+                                            'display':
+                                                'Pulmonary function tests',
+                                          },
+                                          {
+                                            'display': 'Abdominal ultrasound',
+                                          },
+                                          {
+                                            'display':
+                                                'CT scan of the abdomen and pelvis',
+                                          },
+                                          {
+                                            'display':
+                                                'MRI of the abdomen and pelvis',
+                                          },
+                                          {
+                                            'display': 'X-ray of the abdomen',
+                                          },
+                                          {
+                                            'display':
+                                                'X-ray of bones and joints',
+                                          },
+                                          {
+                                            'display':
+                                                'MRI of joints and soft tissues',
+                                          },
+                                          {
+                                            'display':
+                                                'CT scan of bones and joints',
+                                          },
+                                          {
+                                            'display':
+                                                'Ultrasound of joints and soft tissues',
+                                          },
+                                          {
+                                            'display': 'Echocardiogram',
+                                          },
+                                          {
+                                            'display': 'Cardiac CT scan',
+                                          },
+                                          {
+                                            'display': 'Cardiac MRI',
+                                          },
+                                          {
+                                            'display': 'Angiography',
+                                          },
+                                        ]
+                                      : [],
+                          validator: (value) {
+                            if (value == null || value.length == 0) {
+                              return 'Please select one or more options';
+                            }
+                            return null;
+                          },
+                          enabled: isDropdownEnabled,
+                          textField: 'display',
+                          valueField: 'display',
+                          okButtonLabel: 'OK',
+                          cancelButtonLabel: 'CANCEL',
+                          hintWidget: Text('Please select one or more option'),
+                          onSaved: (value) {
+                            setState(() {
+                              selectedAppointmentTypes = value;
+                            });
+                          },
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -421,7 +411,7 @@ class _BookappointState extends State<Bookappoint> {
               prefixIcon: Icon(Icons.date_range),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.greenAccent),
-                borderRadius: BorderRadius.circular(0),
+                borderRadius: BorderRadius.circular(12),
               ),
               labelText: 'Choose date',
               border: OutlineInputBorder(),

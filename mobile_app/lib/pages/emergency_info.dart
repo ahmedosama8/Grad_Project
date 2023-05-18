@@ -392,6 +392,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                           child: SizedBox(
                             width: double.infinity,
                             child: MultiSelectFormField(
+                              chipBackGroundColor: primary,
                               border: InputBorder.none,
                               fillColor: Color.fromARGB(255, 255, 255, 255),
                               autovalidate: AutovalidateMode.disabled,
@@ -480,6 +481,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                           child: SizedBox(
                             width: double.infinity,
                             child: MultiSelectFormField(
+                              chipBackGroundColor: primary,
                               border: InputBorder.none,
                               fillColor: Color.fromARGB(255, 255, 255, 255),
                               autovalidate: AutovalidateMode.disabled,

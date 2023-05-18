@@ -208,7 +208,12 @@ class _BookappointState extends State<Bookappoint> {
                                 color: Colors.black54,
                               ),
                               SizedBox(width: 8),
-                              Text('Select appointment Type'),
+                              Text(
+                                'Select appointment Type',
+                                style: TextStyle(
+                                  color: Colors.black54,
+                                ),
+                              ),
                             ],
                           ),
                           dataSource: (selectedfacility != null &&
@@ -342,7 +347,12 @@ class _BookappointState extends State<Bookappoint> {
                           valueField: 'display',
                           okButtonLabel: 'OK',
                           cancelButtonLabel: 'CANCEL',
-                          hintWidget: Text('Please select one or more option'),
+                          hintWidget: Text(
+                            'Please select one or more option',
+                            style: TextStyle(
+                              color: Colors.black54,
+                            ),
+                          ),
                           onSaved: (value) {
                             setState(() {
                               selectedAppointmentTypes = value;

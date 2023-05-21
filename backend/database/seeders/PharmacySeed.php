@@ -25,8 +25,8 @@ class PharmacySeed extends Seeder
                 $data = $row->toArray();
 
                 Pharmacy::create([
-                    'name' => $data[0],
-                    'price' => $data[1],
+                    'name' => $data[1],
+                    'price' => $data[5],
                     // Add more columns as needed
                 ]);
             }

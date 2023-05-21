@@ -125,11 +125,16 @@ class _MedicineListPageState extends State<MedicineListPage> {
                         .toList();
                   });
                 },
+                cursorColor: primary,
                 decoration: InputDecoration(
                   hintText: 'Search',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
+                   focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide(color: primary), // Set the desired border color when focused
+                    ),
                   suffixIcon: IconButton(
                     onPressed: () {
                       _searchController.clear();
@@ -137,7 +142,7 @@ class _MedicineListPageState extends State<MedicineListPage> {
                         _filteredMedicines = List.from(_medicines);
                       });
                     },
-                    icon: Icon(Icons.clear),
+                    icon: Icon(Icons.clear,color: primary,),
                   ),
                 ),
               ),

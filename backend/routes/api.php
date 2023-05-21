@@ -12,6 +12,7 @@ use App\Http\Controllers\liverfuncController;
 use App\Http\Controllers\urinetestController;
 use App\Http\Controllers\radiologyreportController;
 use App\Http\Controllers\diagnosisController;
+use App\Http\Controllers\pharmacyController;
 use App\Http\Controllers\imageController;
 use App\Http\Controllers\doctorvisitController;
 
@@ -77,6 +78,7 @@ Route::get('/patient/{pid}/image/{id}', [imageController::class, 'show']);
 
 
 Route::get('/diagnosis/list', [diagnosisController::class, 'index']);
+Route::get('/medications/list', [pharmacyController::class, 'index']);
 Route::get('/patient/list',[PatientController::class,'index']);
 Route::get('/entity/list',[HealthcareEntityController::class,'index']);
 

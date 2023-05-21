@@ -14,7 +14,8 @@ class Appointments extends Model
 
 
     protected $casts = [
-        'diagnoses'=>'array'
+        'diagnoses'=>'array',
+        'appointment_type'=>'array'
     ];
 
     protected $fillable = [

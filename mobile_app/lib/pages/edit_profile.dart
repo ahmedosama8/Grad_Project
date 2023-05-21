@@ -7,6 +7,7 @@ import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
 import 'dart:io';
 import 'package:intl/intl.dart';
+import 'package:mobile_app/pages/login.dart';
 import 'package:provider/provider.dart';
 
 import '../api/user.dart';
@@ -71,9 +72,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
           content: Text(message),
           actions: <Widget>[
             TextButton(
-              child: Text('OK'),
+              child: Text('Logout'),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context, rootNavigator: true).pushReplacement(
+                    MaterialPageRoute(builder: (context) => Login()));
               },
             ),
           ],
@@ -110,7 +112,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
       // Handle the API response here
       if (response.statusCode == 200) {
         showAlertDialog(context, 'Profile updated successfully',
-            'Please restart to see the changes');
+            'Please login again to see the changes');
       } else {
         final responseBody = response.body;
         if (responseBody.isNotEmpty) {
@@ -140,8 +142,6 @@ class _EditProfilePageState extends State<EditProfilePage> {
       }
     }
   }
-
-  
 
   @override
   void initState() {

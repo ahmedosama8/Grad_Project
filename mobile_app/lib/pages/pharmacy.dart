@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 
 class Medicine {
-  String name;
-  String description;
-  double price;
+  final int id;
+  final String name;
+  final double price;
 
-  Medicine(
-      {required this.name, required this.description, required this.price});
+  Medicine({
+    required this.id,
+    required this.name,
+    required this.price,
+  });
+
+  factory Medicine.fromJson(Map<String, dynamic> json) {
+    return Medicine(
+      id: json['id'],
+      name: json['name'],
+      price: double.parse(json['price']),
+    );
+  }
 }
 
 class MedicineListPage extends StatefulWidget {
@@ -17,32 +31,32 @@ class MedicineListPage extends StatefulWidget {
 }
 
 class _MedicineListPageState extends State<MedicineListPage> {
-  final List<Medicine> _medicines = [
-    Medicine(name: 'Aspirin', description: 'Pain Reliever', price: 2.99),
-    Medicine(
-        name: 'Ibuprofen',
-        description: 'Pain Reliever/Fever Reducer',
-        price: 3.99),
-    Medicine(
-        name: 'Panadol',
-        description: 'Pain Reliever/Fever Reducer',
-        price: 1.99),
-    Medicine(
-        name: 'Antinal',
-        description: 'treatment of diarrhea & gastroenteritis.',
-        price: 4.99),
-    Medicine(name: 'Medicine 5', description: 'Allergy Relief', price: 5.99),
-  ];
-
-  List<Medicine> _cart = [];
+  List<Medicine> _medicines = [];
   List<Medicine> _filteredMedicines = [];
+  List<Medicine> _cart = []; // Added _cart variable
 
   TextEditingController _searchController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
-    // Initialize the filtered list with all medicines
-    _filteredMedicines = List.from(_medicines);
+    fetchMedicines();
+  }
+
+  Future<void> fetchMedicines() async {
+    final response =
+        await http.get(Uri.parse('http://10.0.2.2:8080/api/medications/list'));
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = jsonDecode(response.body);
+      setState(() {
+        _medicines = data.map((json) => Medicine.fromJson(json)).toList();
+        _filteredMedicines = List.from(_medicines);
+      });
+    } else {
+      // Handle error case
+      print('Failed to fetch medicines');
+    }
   }
 
   @override
@@ -58,7 +72,8 @@ class _MedicineListPageState extends State<MedicineListPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => CheckoutPage(cart: _cart)),
+                  builder: (context) => CheckoutPage(cart: _cart),
+                ),
               );
             },
             icon: Stack(
@@ -144,7 +159,8 @@ class _MedicineListPageState extends State<MedicineListPage> {
                     elevation: 0,
                     child: ListTile(
                       title: Text(_filteredMedicines[index].name),
-                      subtitle: Text(_filteredMedicines[index].description),
+                      subtitle: Text(
+                          'Price: ${_filteredMedicines[index].price.toString()} LE'),
                       trailing: IconButton(
                         onPressed: () {
                           setState(() {
@@ -164,6 +180,8 @@ class _MedicineListPageState extends State<MedicineListPage> {
     );
   }
 }
+
+// The CheckoutPage class remains the same
 
 class CheckoutPage extends StatelessWidget {
   final List<Medicine> cart;

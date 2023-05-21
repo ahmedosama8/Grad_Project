@@ -71,7 +71,7 @@ class _BookappointState extends State<Bookappoint> {
     if (_formKey.currentState!.validate()) {
       int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
       //print(selectedfacility?.doctorId);
-      //createAppointment(dateinput.text, selectedAppointmentTypes, userId);
+      createAppointment(dateinput.text, selectedAppointmentTypes, userId);
       showDialog(
         context: context,
         builder: (context) {

@@ -15,6 +15,7 @@ class AppointmentDetailsPage extends StatefulWidget {
 
 class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
   List<dynamic> appointmentdetails = [];
+  List<DataCell> appointmentTypeCells = [];
 
   Future<void> fetchData() async {
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
@@ -64,54 +65,59 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
         backgroundColor: primary,
       ),
       body: appointmentdetails.isEmpty
-          ? Center(child: Text('You dont have any appoinments',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),))
+          ? Center(
+              child: Text(
+              'You dont have any appoinments',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ))
           : ListView.builder(
-        itemCount: appointmentdetails.length,
-        itemBuilder: (context, index) {
-          final appointment = appointmentdetails[index];
-          final doctorName = appointment['entityName'] ?? '';
-          final appointmentDate = appointment['appointment_date'] ?? '';
-          final appointmentType = appointment['appointment_type'] ?? '';
-          final appointmentStatus = appointment['appointment_status'] ?? '';
+              itemCount: appointmentdetails.length,
+              itemBuilder: (context, index) {
+                final appointment = appointmentdetails[index];
+                final doctorName = appointment['entityName'] ?? '';
+                final appointmentDate = appointment['appointment_date'] ?? '';
+                final appointmentType = appointment['appointment_type'] ?? '';
+                final appointmentStatus =
+                    appointment['appointment_status'] ?? '';
 
-          return Padding(
-            padding: EdgeInsets.all(16.0),
-            child: DataTable(
-              columnSpacing: 16.0,
-              columns: [
-                DataColumn(label: Text('Details')),
-                DataColumn(label: Text('Data')),
-              ],
-              rows: [
-                DataRow(
-                  cells: [
-                    DataCell(Text('Doctor Name')),
-                    DataCell(Text(doctorName)),
-                  ],
-                ),
-                DataRow(
-                  cells: [
-                    DataCell(Text('Appointment Date')),
-                    DataCell(Text(appointmentDate)),
-                  ],
-                ),
-                DataRow(
-                  cells: [
-                    DataCell(Text('Appointment Type')),
-                    DataCell(Text(appointmentType)),
-                  ],
-                ),
-                DataRow(
-                  cells: [
-                    DataCell(Text('Appointment Status')),
-                    DataCell(Text(appointmentStatus)),
-                  ],
-                ),
-              ],
+                return Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: DataTable(
+                    columnSpacing: 16.0,
+                    columns: [
+                      DataColumn(label: Text('Details')),
+                      DataColumn(label: Text('Data')),
+                    ],
+                    rows: [
+                      DataRow(
+                        cells: [
+                          DataCell(Text('Doctor Name')),
+                          DataCell(Text(doctorName)),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text('Appointment Date')),
+                          DataCell(Text(appointmentDate)),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text('Appointment Type')),
+                          DataCell(Text(appointmentType[0])),
+                        ],
+                      ),
+                      DataRow(
+                        cells: [
+                          DataCell(Text('Appointment Status')),
+                          DataCell(Text(appointmentStatus)),
+                        ],
+                      ),
+                    ],
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }

@@ -77,9 +77,9 @@ function LoginPage() {
 
 
         setEntityId(data.entityId);
-        if (data.type == "Lab") {
+        if (data.type == "lab") {
           navigate("/labhome");
-        } else if (data.type == "Rad") {
+        } else if (data.type == "rad") {
           navigate("/radhome"); // Redirect to th e home page or perform other actions
         } else {
           navigate("/clinichome");

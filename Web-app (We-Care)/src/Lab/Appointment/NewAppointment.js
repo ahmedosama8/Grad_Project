@@ -4,6 +4,7 @@ import "../newpatient.css";
 import Topbar from "../../Topbar/Topbar";
 import Sidebar from "../../Sidebar/Sidebar";
 import SidebarRad from "../../Sidebar/SidebarRad";
+import SidebarClinic from "../../Sidebar/SidebarClinic";
 export default function NewAppointment() {
   const [patientID, setPatientID] = useState();
   const entity_id = sessionStorage.getItem("User_id");
@@ -32,9 +33,23 @@ export default function NewAppointment() {
 
   const handleTest = (event) => {
     const fieldName = event.target.name;
+    const fieldValue = event.target.value;
+    let price = 0;
+    if (fieldValue === "CBC") {
+      price = 50;
+    } else if (fieldValue === "Liver Test") {
+      price = 75;
+    } else if (fieldValue === "Lipid Profile") {
+      price = 60;
+    } else if (fieldValue === "Urine Test") {
+      price = 40;
+    } else if (fieldValue === "Glucose Test") {
+      price = 35;
+    }
     setFormData({
       ...formData,
-      [fieldName]: event.target.value,
+      [fieldName]: fieldValue,
+      price: price,
     });
   };
 
@@ -74,8 +89,8 @@ export default function NewAppointment() {
     axios
       .post(
         `http://localhost:8080/api/appointment/${patientID}/${entity_id}`,
-        formData,
-      )
+        formData
+      ) 
       .then((response) => {
         console.log("Data posted:", response.data);
         console.log("response", response);
@@ -112,9 +127,11 @@ export default function NewAppointment() {
 
   return (
     <div>
-    
-    {entity_type === "Lab" && <Sidebar />}
-      {entity_type === "Rad" && <SidebarRad />}
+      <Topbar />
+      {entity_type === "lab" && <Sidebar />}
+      {entity_type === "rad" && <SidebarRad />}
+      {entity_type === "clinic" && <SidebarClinic />}
+
 
       <form
         onSubmit={handleSubmit}
@@ -139,7 +156,7 @@ export default function NewAppointment() {
             )} */}
           </div>
           <div className="col md-6 mb-3">
-            {entity_type === "Lab" && (
+            {entity_type === "lab" && (
               <>
                 <label>Test Type</label>
                 <select
@@ -158,7 +175,23 @@ export default function NewAppointment() {
                 </select>
               </>
             )}
-            {entity_type === "Rad" && (
+            {entity_type === "clinic" && (
+              <>
+                <label>Visit Type</label>
+                <select
+                  className="form-control"
+                  name="appointment_type"
+                  value={formData.appointment_type}
+                  onChange={handleTest}
+                  noValidate
+                >
+                  <option value="">Select Visit Type</option>
+                  <option value="Follow-up">Follow-up</option>
+                  <option value="Initial Visit">Initial Visit</option>
+                </select>
+              </>
+            )}
+            {entity_type === "rad" && (
               <div className="row">
                 <div className="col md-6">
                   <label>Scan type</label>

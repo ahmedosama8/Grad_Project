@@ -1,0 +1,54 @@
+.testitem {
+  border-bottom: 1px solid #dddddd;
+  padding: 12px 15px;
+}
+.paperstyle {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  max-width: 800rem;
+  box-shadow: 0 0 20px rgba(216, 26, 26, 0.15);
+}
+.paper {
+  width: 600px;
+  padding: 20px;
+  margin: 20px auto;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header_visit {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.content_visit {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.left-section {
+  flex: 1;
+}
+
+.right-section {
+  flex: 1;
+}
+
+.footer {
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+.clinic-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo_clinic {
+  width: 50%; /* Adjust the width as needed */
+  border-radius: 70%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

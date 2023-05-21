@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import Topbar from "../Topbar/Topbar";
 import Sidebar from "../Sidebar/Sidebar";
@@ -5,9 +6,9 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Menu, MenuItem } from "@mui/material";
-import "./radiologypatients.css";
 import { GetUsersMock } from "../BackEndFunctions";
 import SidebarRad from "../Sidebar/SidebarRad";
+import SidebarClinic from "../Sidebar/SidebarClinic";
 
 const columns = [
   {
@@ -57,9 +58,8 @@ const columns = [
     headerName: "Results",
     width: 110,
     renderCell: (params) => (
-      console.log("params", params.value),
       (
-        <Link to={`/patientresultrad/${params.value}`}>
+        <Link to={`/allvisits/${params.value}`}>
           <Button
             variant="outlined"
             size="small"
@@ -81,7 +81,7 @@ const columns = [
     renderCell: (params) => (
       <ResultsMenu
         namePatient={params.row.name}
-        agePatient={params.row.age}
+        birthDatePatient={params.row.birth_date}
         patientId={params.row.id}
         row={params.row}
       />
@@ -90,11 +90,11 @@ const columns = [
   },
 ];
 
-function ResultsMenu({ patientId, namePatient, agePatient }) {
+function ResultsMenu({ patientId, namePatient, birthDatePatient }) {
   return (
     <Link
-      to={`/addscan/${patientId}`}
-      state={{ name: namePatient, age: agePatient }}
+      to={`/addpatient/${patientId}`}
+      state={{ name: namePatient, birthDate: birthDatePatient }}
     >
       <Button
         variant="outlined"
@@ -102,12 +102,12 @@ function ResultsMenu({ patientId, namePatient, agePatient }) {
         color="secondary"
         style={{ color: "#00000098" }}
       >
-        Add Scan
+        Add Visit
       </Button>
     </Link>
   );
 }
-export default function RadiologyPatients() {
+export default function AllPatientsClinic() {
   const [rows, setRows] = useState([]);
   const entity_id = sessionStorage.getItem("User_id");
 
@@ -126,7 +126,7 @@ export default function RadiologyPatients() {
   return (
     <div>
       <Topbar />
-      <SidebarRad />
+      <SidebarClinic />
       <div>
         <DataGrid
           style={{ position: "relative", top: "20px" }}

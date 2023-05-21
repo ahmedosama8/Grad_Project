@@ -27,7 +27,7 @@ function SidebarRad() {
               </a>
             </li>
             <li className="sidebarradListItem">
-              <a href="/radiologypatients">
+              <a href="/radpatientspage">
                 <LeaderboardIcon className="sidebarradIcon" />
                 My Patients
               </a>

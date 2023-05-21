@@ -13,7 +13,7 @@ import CBCTest from "./Lab/CBCTest";
 import GlucoseTest from "./Lab/GlucoseTest";
 import LiverTest from "./Lab/LiverFunctionTest";
 import RadScan from "./Radiology/RadScan";
-import PatientClinic from "./Clinic/PatientClinic";
+import PatientClinic from "./Clinic/AddPatientClinic";
 import ClinicalChemistryTest from "./Lab/ClinicalChemistryTest";
 import PatitentsPage from "./Lab/PatitentsPage";
 import AllPatientsPage from "./Lab/AllPatientsPage";
@@ -33,6 +33,12 @@ import WholePaper from "./Radiology/ScanResultPage";
 import AppointmentPage from "./Lab/Appointment/AppointmentPage";
 import NewAppointment from "./Lab/Appointment/NewAppointment";
 import ApointmentsTable from "./Lab/Appointment/ApointmentsTable";
+import RadiologyViewAddPatient from "./Radiology/RadiologyViewAddPatient";
+import ClinicViewAdd from "./Clinic/ClinicViewAdd";
+import AllPatientClinic from "./Clinic/AddPatientClinic";
+import AllPatientsClinic from "./Clinic/PatientsClinic";
+import AllVisitsTable from "./Clinic/AllVisitsTable";
+import VisitResult from "./Clinic/VisitResult";
 function App() {
   return (
     <Router>
@@ -78,11 +84,22 @@ function App() {
           <Route path="/patientresultrad/:id" element={<PatietnResultRad />} />
           <Route path="/addscan/:id" element={<RadScan />} />
           <Route path="/wholereport/:id" element={<WholePaper />} />
+          <Route path="/radpatientspage" element={<RadiologyViewAddPatient />} />
+
 
           {/* Routes for clinic page */}
 
           <Route path="/clinichome" element={<Clinic />} />
-          <Route path="/addpatient" element={<PatientClinic />} />
+          <Route path="/addpatient/:id" element={<PatientClinic />} />
+          <Route path="/clinicpatientspage" element={<ClinicViewAdd />} />
+          <Route path="/clinicpatients" element={<AllPatientsClinic />} />
+          <Route path="/allvisits/:id" element={<AllVisitsTable />} />
+          <Route path="/visitresult/:id" element={<VisitResult />} />
+
+
+
+
+
           {/*Route for the patient  */}
           <Route path="/patient-info/:id" element={<PatientInfo />} />
         </Routes>

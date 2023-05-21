@@ -7,6 +7,7 @@ import "../allpatientspage.css";
 import Topbar from "../../Topbar/Topbar";
 import Sidebar from "../../Sidebar/Sidebar";
 import SidebarRad from "../../Sidebar/SidebarRad";
+import SidebarClinic from "../../Sidebar/SidebarClinic";
 
 const columns = [
   {
@@ -44,7 +45,7 @@ const columns = [
     headerName: "Results",
     width: 110,
     renderCell: (params) => (
-      <Link to={`patientresultpage/${params.value}`}>
+      <Link to={`${params.row.appointment_type}test`}>
         <Button
           variant="outlined"
           size="small"
@@ -81,8 +82,10 @@ export default function ApointmentsTable() {
     <div>
       <Topbar />
       <div style={{ display: "flex" }}>
-        {entity_type === "Lab" && <Sidebar />}
-        {entity_type === "Rad" && <SidebarRad />}
+        {entity_type === "lab" && <Sidebar />}
+        {entity_type === "rad" && <SidebarRad />}
+        {entity_type === "clinic" && <SidebarClinic />}
+
         <div
           style={{
             flex: 1,

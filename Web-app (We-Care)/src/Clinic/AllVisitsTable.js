@@ -2,31 +2,30 @@ import React, { useState, useEffect } from "react";
 import Topbar from "../Topbar/Topbar";
 import { Link, useParams } from "react-router-dom";
 
-import "./patientresultrad.css";
-import SidebarRad from "../Sidebar/SidebarRad";
-import Sidebar from "../Sidebar/Sidebar";
+import SidebarClinic from "../Sidebar/SidebarClinic";
 
-function PatietnResultRad({}) {
-  const [radscans, setRadScans] = useState([]);
-  const entity_type = sessionStorage.getItem("User_type");
+function AllVisitsTable({}) {
+  const [visits, setVisits] = useState([]);
+  const entity_id = sessionStorage.getItem("User_id");
   const { id } = useParams();
 
   useEffect(() => {
     async function fetchRows() {
       const response = await fetch(
-        `http://localhost:8080/api/radiology/patient/${id}`
+        `http://localhost:8080/api/visit/${entity_id}/${id}`
       );
       const data = await response.json();
-      setRadScans(data);
+      setVisits(data);
     }
     fetchRows();
   }, []);
+  console.log("Visits",visits)
+  
   return (
     <div>
       <Topbar />
-      {entity_type === "Lab" && <Sidebar />}
-      {entity_type === "Rad" && <SidebarRad />}
-      <SidebarRad />
+      <SidebarClinic/>
+
       <div
         className="App container col-6"
         style={{ position: "relative", top: "50px", width: 1000 }}
@@ -34,27 +33,28 @@ function PatietnResultRad({}) {
         <table className="styled-table">
           <thead>
             <tr>
-              <th style={{ textAlign: "center" }}>Scan Type</th>
+              <th style={{ textAlign: "center" }}>Patient ID</th>
               <th style={{ textAlign: "center" }}>Referring Doctor</th>
               <th style={{ textAlign: "center" }}>Examination Date</th>
-              <th style={{ textAlign: "center" }}>Examination Part</th>
-              <th style={{ textAlign: "center" }}>Comments </th>
+              <th style={{ textAlign: "center" }}>Medications </th>
+
+
 
               <th style={{ textAlign: "center" }}>Action</th>
               {/* Add other relevant columns as necessary */}
             </tr>
           </thead>
           <tbody>
-            {radscans?.map((test) => (
+            {visits?.map((test) => (
               <tr key={test.id}>
-                <td>{test.name}</td>
+                <td>{test.patient_id}</td>
                 <td>{test.performer}</td>
-                <td>{test.created_at.slice(0, 10)}</td>
-                <td>{test.examined_part}</td>
-                <td>{test.comments}</td>
+                <td>{test.created_at?.slice(0, 10)}</td>
+                <td>{test.medications.length > 0 ? test.medications :""}</td>
+
 
                 <td>
-                  <Link to={`/wholereport/${test.id}`}>
+                  <Link to={`/visitresult/${test.id}`}>
                     <button className="btn btn-edit">View</button>
                   </Link>
                 </td>
@@ -68,4 +68,4 @@ function PatietnResultRad({}) {
   );
 }
 
-export default PatietnResultRad;
+export default AllVisitsTable;

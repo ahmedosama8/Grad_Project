@@ -7,17 +7,20 @@ import Topbar from "../../Topbar/Topbar";
 import Sidebar from "../../Sidebar/Sidebar";
 import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import SidebarRad from "../../Sidebar/SidebarRad";
+import SidebarClinic from "../../Sidebar/SidebarClinic";
 
 export default function AppointmentPage() {
   const entity_id = sessionStorage.getItem("User_id");
   const entity_type = sessionStorage.getItem("User_type");
 
-
   return (
     <div>
-    
-    {entity_type === "Lab" && <Sidebar />}
-      {entity_type === "Rad" && <SidebarRad />}
+      <Topbar />
+
+      {entity_type === "lab" && <Sidebar />}
+      {entity_type === "rad" && <SidebarRad />}
+      {entity_type === "clinic" && <SidebarClinic />}
+
       <div className="blocksWrapper">
         <Link to="/addappointment" className="block1">
           <div className="blockContent">

@@ -87,7 +87,6 @@ const columns = [
 ];
 
 function ResultsMenu({ patientId, namePatient, agePatient }) {
-  const [data, setData] = useState({ namePatient: "mahmoud" });
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuClick = (event) => {

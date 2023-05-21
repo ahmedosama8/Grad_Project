@@ -3,6 +3,8 @@ import Topbar from "../Topbar/Topbar";
 import Sidebar from "../Sidebar/Sidebar";
 import axios from "axios";
 import "./newpatient.css";
+import SidebarRad from "../Sidebar/SidebarRad";
+import SidebarClinic from "../Sidebar/SidebarClinic";
 
 export default function NewPatient() {
   const [formData, setFormData] = useState({});
@@ -166,7 +168,7 @@ export default function NewPatient() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    const entity_type = sessionStorage.getItem("User_type");
     if (
       firstNameError !== "" ||
       lastnameerror !== "" ||
@@ -184,9 +186,13 @@ export default function NewPatient() {
       .then((response) => {
         console.log("Data posted:", response.data);
         console.log("response", response);
-        if (response.status === 201) {
+        if (response.status === 201 && entity_type === "lab") {
           // Navigate to another page
           window.location.href = `/allpatientspage`;
+        } else if (response.status === 201 && entity_type === "rad") {
+          window.location.href = `/radpatientspage`;
+        }else if (response.status === 201 && entity_type === "clinic"){
+          window.location.href = `/clinicpatients`;
         }
         // Do something with the response, e.g. show a success message
       })
@@ -196,10 +202,14 @@ export default function NewPatient() {
       });
   };
   console.log("form data", formData);
+  const entity_type = sessionStorage.getItem("User_type");
+
   return (
     <div>
       <Topbar />
-      <Sidebar />
+      {entity_type === "lab" && <Sidebar />}
+      {entity_type === "rad" && <SidebarRad />}
+      {entity_type === "clinic" && <SidebarClinic />}
 
       <form
         onSubmit={handleSubmit}

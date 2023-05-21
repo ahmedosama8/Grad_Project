@@ -20,8 +20,8 @@ class Bookappoint extends StatefulWidget {
 }
 
 class _BookappointState extends State<Bookappoint> {
-  Future<void> createAppointment(
-      String appointmentDate, List appointmentType, int userId) async {
+  Future<void> createAppointment(String appointmentDate, List appointmentType,
+      int userId, String paymentMethod) async {
     final Uri apiUrl = Uri.parse(
         '${AppUrl.Base_Url}/appointment/$userId/${selectedfacility?.doctorId}');
 
@@ -35,7 +35,8 @@ class _BookappointState extends State<Bookappoint> {
       'appointment_type': appointmentType,
       'appointment_status': "on going",
       'patient_id': userId,
-      'entity_id': selectedfacility?.doctorId
+      'entity_id': selectedfacility?.doctorId,
+      'payment_method': paymentMethod,
     };
 
     final String body = json.encode(data);
@@ -55,6 +56,7 @@ class _BookappointState extends State<Bookappoint> {
   late List<Doctor> facilities = [];
   bool isDropdownEnabled = false;
   List<dynamic> selectedAppointmentTypes = [];
+  late String paymentMethod = '';
 
   Doctor? selectedfacility;
   @override
@@ -71,7 +73,8 @@ class _BookappointState extends State<Bookappoint> {
     if (_formKey.currentState!.validate()) {
       int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
       //print(selectedfacility?.doctorId);
-      createAppointment(dateinput.text, selectedAppointmentTypes, userId);
+      createAppointment(
+          dateinput.text, selectedAppointmentTypes, userId, paymentMethod);
       showDialog(
         context: context,
         builder: (context) {
@@ -89,6 +92,7 @@ class _BookappointState extends State<Bookappoint> {
                 Text('Type :$selectedAppointmentTypes'),
                 Text('Facility :${selectedfacility?.name}'),
                 Text('Date :${dateinput.text}'),
+                Text('Payment method :$paymentMethod'),
 
                 //Text('Data :$  )
                 TextButton(
@@ -370,7 +374,49 @@ class _BookappointState extends State<Bookappoint> {
                 Padding(
                   padding: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.05,
-                      vertical: MediaQuery.of(context).size.height * 0.02),
+                      vertical: MediaQuery.of(context).size.height * 0.01),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: MediaQuery.of(context).size.width * 0.05),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: DropdownButtonFormField(
+                      decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.payment_outlined),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 2, color: Colors.greenAccent),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        labelText: 'Payment method',
+                        border: OutlineInputBorder(),
+                      ),
+                      isExpanded: true,
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'Credit Card',
+                          child: Text('Credit Card'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Cash',
+                          child: Text('Cash'),
+                        ),
+                        // Add more payment method options as needed
+                      ],
+                      validator: (value) {
+                        if (value == null) {
+                          return 'Please select a Payment method';
+                        }
+                      },
+                      //value: paymentMethod,
+                      onChanged: (newValue) {
+                        setState(() {
+                          paymentMethod = newValue!;
+                        });
+                      },
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(

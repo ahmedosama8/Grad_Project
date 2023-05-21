@@ -22,6 +22,18 @@ class UriTestpage extends StatelessWidget {
           children: [
             Column(
               children: <Widget>[
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shadowColor: Colors.greenAccent,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.local_hospital),
+                        title: Text('Lab :${urine['entityName']}'),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(
                   height: 770,
                   child: Card(

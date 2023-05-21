@@ -22,6 +22,18 @@ class LipTestpage extends StatelessWidget {
           children: [
             Column(
               children: <Widget>[
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shadowColor: Colors.greenAccent,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.local_hospital),
+                        title: Text('Lab :${lipid['entityName']}'),
+                      ),
+                    ],
+                  ),
+                ),
                 SizedBox(
                   height: 560,
                   child: Card(

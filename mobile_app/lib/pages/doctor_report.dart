@@ -83,7 +83,7 @@ class dr_report extends StatelessWidget {
                           alignment: Alignment.centerLeft,
                           child: SingleChildScrollView(
                               child: Html(
-                            data: visit['comments'],
+                            data: visit['comments'] ?? '',
                             style: {
                               'p': Style(
                                 margin: EdgeInsets.symmetric(vertical: 8.0),

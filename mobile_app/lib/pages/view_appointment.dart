@@ -82,27 +82,100 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
 
                   return Padding(
                     padding: EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Doctor Name: $doctorName'),
-                        Text('Appointment Date: $appointmentDate'),
-                        Text('Appointment Type:'),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: appointmentType.length,
-                          itemBuilder: (context, typeIndex) {
-                            final type = appointmentType[typeIndex];
-                            return Padding(
-                              padding: EdgeInsets.only(left: 16.0),
-                              child: Text(type),
-                            );
-                          },
+                    child: Card(
+                      elevation: 4.0,
+                      shape: RoundedRectangleBorder(
+                        side: BorderSide(color: primary),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Center(
+                              child: Text(
+                                'Doctor/Lab Name: $doctorName',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16.0,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 8.0),
+                            Row(
+                              children: [
+                                Text(
+                                  'Appointment Date: ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                                Text('$appointmentDate')
+                              ],
+                            ),
+                            SizedBox(height: 8.0),
+                            Text(
+                              'Appointment Type:',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14.0,
+                              ),
+                            ),
+                            SizedBox(height: 8.0),
+                            Table(
+                              columnWidths: {
+                                0: FlexColumnWidth(2),
+                                1: FlexColumnWidth(3),
+                              },
+                              // border: TableBorder(
+                              //   horizontalInside: BorderSide(
+                              //     color: Colors.grey,
+                              //     width: 1.0,
+                              //   ),
+                              // ),
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
+                              children: appointmentType
+                                  .map<TableRow>((type) => TableRow(children: [
+                                        TableCell(
+                                          child: Text(type.toString()),
+                                        ),
+                                        TableCell(child: SizedBox()),
+                                      ]))
+                                  .toList(),
+                            ),
+                            SizedBox(height: 8.0),
+                            Row(
+                              children: [
+                                Text(
+                                  'Appointment Status: ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                                Text('$appointmentStatus')
+                              ],
+                            ),
+                            SizedBox(height: 8.0),
+                            Row(
+                              children: [
+                                Text(
+                                  'Payment method: ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 14.0,
+                                  ),
+                                ),
+                                Text('$paymentMethod')
+                              ],
+                            ),
+                          ],
                         ),
-                        Text('Appointment Status: $appointmentStatus'),
-                        Text('Payment method : $paymentMethod')
-                      ],
+                      ),
                     ),
                   );
                 },

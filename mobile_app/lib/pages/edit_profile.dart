@@ -7,6 +7,7 @@ import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
 import 'dart:io';
 import 'package:intl/intl.dart';
+import 'package:mobile_app/configure.dart';
 import 'package:mobile_app/pages/login.dart';
 import 'package:provider/provider.dart';
 
@@ -87,7 +88,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Future<void> _update() async {
     if (_formKey.currentState!.validate()) {
       int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-      final url = Uri.parse('http://10.0.2.2:8080/api/patient/$userId');
+      final url = Uri.parse('${AppUrl.Base_Url}/patient/$userId');
       final response = await http.put(url,
           headers: {
             'Content-Type': 'application/json',

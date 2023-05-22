@@ -19,7 +19,7 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
   Future<void> fetchData() async {
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
     final response = await http.get(
-        Uri.parse('http://10.0.2.2:8080/api/patient/$userId/appointments'));
+        Uri.parse('${AppUrl.Base_Url}/patient/$userId/appointments'));
     if (response.statusCode == 200) {
       final List<dynamic> appointmentJsondetails = jsonDecode(response.body);
       final List<Map<String, dynamic>> appointmentdetails = [];

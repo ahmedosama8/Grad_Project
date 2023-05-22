@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/configure.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 import 'package:http/http.dart' as http;
@@ -27,7 +28,7 @@ class _LoginState extends State<Login> {
 
   Future<void> _loginButton() async {
     if (_formKey.currentState!.validate()) {
-      final url = Uri.parse('http://10.0.2.2:8080/api/patient/login');
+      final url = Uri.parse('${AppUrl.Base_Url}/patient/login');
       final response = await http.post(
         url,
         headers: {

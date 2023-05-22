@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/configure.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 
 class Medicine {
@@ -45,7 +46,7 @@ class _MedicineListPageState extends State<MedicineListPage> {
 
   Future<void> fetchMedicines() async {
     final response =
-        await http.get(Uri.parse('http://10.0.2.2:8080/api/medications/list'));
+        await http.get(Uri.parse('${AppUrl.Base_Url}/medications/list'));
 
     if (response.statusCode == 200) {
       final List<dynamic> data = jsonDecode(response.body);

@@ -4,8 +4,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/configure.dart';
 import 'package:mobile_app/pages/pharmacy.dart';
+import 'package:provider/provider.dart';
 
 class MedicationsPage extends StatefulWidget {
   @override
@@ -17,8 +20,9 @@ class _MedicationsPageState extends State<MedicationsPage> {
   List<String> diagnoses = [];
 
   Future<void> fetchData() async {
+    int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
     final response =
-        await http.get(Uri.parse('http://10.0.2.2:8080/api/visit/patient/1'));
+        await http.get(Uri.parse('${AppUrl.Base_Url}/visit/patient/$userId'));
     if (response.statusCode == 200) {
       final data = json.decode(response.body) as List<dynamic>;
       setState(() {
@@ -58,7 +62,13 @@ class _MedicationsPageState extends State<MedicationsPage> {
           ),
           backgroundColor: primary,
         ),
-        body: SingleChildScrollView(
+        body: medications.isEmpty
+            ? Center(
+                child: Text(
+                'You dont have any medications',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ))
+            :SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(50, 20, 50, 50),
             child: Column(

@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:mobile_app/configure.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile_app/api/user.dart';
 import 'package:flutter/material.dart';
@@ -91,7 +92,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
       print(selectedDiseasesResult);
       print(selectedAllergyResult);
       print(selectedGender);
-      final url = Uri.parse('http://10.0.2.2:8080/api/patient/new');
+      final url = Uri.parse('${AppUrl.Base_Url}/api/patient/new');
       final response = await http.post(url,
           headers: {
             'Content-Type': 'application/json',

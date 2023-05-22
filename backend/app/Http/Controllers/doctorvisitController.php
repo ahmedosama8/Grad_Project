@@ -24,6 +24,7 @@ class doctorvisitController extends Controller
             'appointment_id'=>$request->get('appointment_id'),
             'patient_id'=>$request->get('patient_id'),
             'entity_id'=>$request->get('entity_id'),
+            'diagnosed_by'=>$request->get('diagnosed_by'),
             'diagnoses'=>json_encode($request->get('diagnoses')),
             'medications'=>json_encode($request->get('medications')),
             'comments'=>$request->get('comments')
@@ -49,6 +50,7 @@ class doctorvisitController extends Controller
         $visit->fill([
             'diagnoses'=>json_encode($request->get('diagnoses'), JSON_UNESCAPED_SLASHES),
             'medications'=>json_encode($request->get('medications'), JSON_UNESCAPED_SLASHES),
+            'diagnosed_by'=>$request->get('diagnosed_by'),
             'comments'=>$request->get('comments')
         ])->save();
         return response()->json($visit, 200);

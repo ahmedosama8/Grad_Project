@@ -25,6 +25,7 @@ class doctorvisit extends Model
         'patient_id',
         'entity_id',
         'appointment_id',
+        'diagnosed_by',
         'diagnoses',
         'medications',
         'comments',

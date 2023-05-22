@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('appointment_id')->nullable();
             $table->foreignId('patient_id')->nullable();
             $table->foreignId('entity_id')->nullable();
+            $table->string('diagnosed_by')->nullable();
             $table->json('medications')->nullable();
             $table->json('diagnoses')->nullable();
             $table->longText('comments')->nullable();

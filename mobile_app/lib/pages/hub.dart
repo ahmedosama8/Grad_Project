@@ -3,6 +3,8 @@ import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/login.dart';
 import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/reminder.dart';
+import 'package:mobile_app/pages/medications.dart';
+
 
 class Hub extends StatelessWidget {
   const Hub({super.key});
@@ -37,14 +39,22 @@ class Hub extends StatelessWidget {
                 color: primary,
               ),
             ),
-            CardWidget(
-              title: 'My medications',
-              description: 'View your medications written by your doctors',
-              icon: Icons.medical_services_outlined,
-              color: primary,
-            ),
             InkWell(
                               onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MedicationsPage()),
+                );
+              },
+              child: CardWidget(
+                title: 'My medications',
+                description: 'View your medications written by your doctors',
+                icon: Icons.medical_services_outlined,
+                color: primary,
+              ),
+            ),
+            InkWell(
+                onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => MedicineReminderPage()),

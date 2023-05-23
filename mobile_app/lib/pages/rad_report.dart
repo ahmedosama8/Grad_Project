@@ -31,68 +31,7 @@ class rad_report extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: Icon(Icons.local_hospital),
-                        title: Row(
-                          children: [
-                            Text(
-                              'Radiology Center: ',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(scans['entityName'] ?? '')
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shadowColor: Colors.greenAccent,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                          radius: 20,
-                          backgroundImage: AssetImage('assets/doctor.png'),
-                        ),
-                        title: Row(
-                          children: [
-                            Text(
-                              'perfromed by: ',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(scans['performer'] ?? '')
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shadowColor: Colors.greenAccent,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: Icon(Icons.note),
-                        title: Text('Comment'),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            scans['comments'] ?? '',
-                            style: TextStyle(
-                                color: Colors.black.withOpacity(0.6),
-                                fontSize: 20),
-                          ),
-                        ),
+                        title: Text('Radiology Center: ${scans['entityName']}'),
                       ),
                     ],
                   ),
@@ -110,9 +49,48 @@ class rad_report extends StatelessWidget {
                         padding: EdgeInsets.all(10.0),
                         child: Align(
                           alignment: Alignment.centerLeft,
+                          child: Text(
+                            scans['report'] ?? 'no report',
+                            style: TextStyle(
+                                color: Colors.black.withOpacity(0.6),
+                                fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shadowColor: Colors.greenAccent,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('assets/doctor.png'),
+                        ),
+                        title: Text('perfromed by: ${scans['performer']}'),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shadowColor: Colors.greenAccent,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.note),
+                        title: Text('Comments'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.all(10.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
                           child: SingleChildScrollView(
                               child: Html(
-                            data: scans['report'] ?? '',
+                            data: scans['comments'] ?? '',
                             style: {
                               'p': Style(
                                 margin: EdgeInsets.symmetric(vertical: 8.0),

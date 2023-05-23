@@ -35,19 +35,11 @@ class dr_report extends StatelessWidget {
                   child: Column(
                     children: [
                       ListTile(
-                        leading: Icon(Icons.local_hospital),
-                        title: Row(
-                          children: [
-                            Text(
-                              'Clinic Name: ',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(visit['entityName'] ?? '')
-                          ],
+                        leading: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('assets/doctor.png'),
                         ),
+                        title: Text('Doctor: ${visit['entityName']}'),
                       ),
                     ],
                   ),
@@ -71,18 +63,6 @@ class dr_report extends StatelessWidget {
                                 color: Colors.black.withOpacity(0.6),
                                 fontSize: 20),
                           ),
-                        ),
-                        title: Row(
-                          children: [
-                            Text(
-                              'Doctor Name: ',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(visit['referring_doctor'] ?? '')
-                          ],
                         ),
                       ),
                     ],

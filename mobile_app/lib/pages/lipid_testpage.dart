@@ -29,44 +29,7 @@ class LipTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: Icon(Icons.local_hospital),
-                        title: Row(
-                          children: [
-                            Text(
-                              'Lab :',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(lipid['entityName'] ?? '')
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shadowColor: Colors.greenAccent,
-                  child: Column(
-                    children: [
-                      ListTile(
-                        leading: CircleAvatar(
-                          radius: 20,
-                          backgroundImage: AssetImage('assets/doctor.png'),
-                        ),
-                        title: Row(
-                          children: [
-                            Text(
-                              'Doctor Name: ',
-                              style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(lipid['referring_doctor'] ?? '')
-                          ],
-                        ),
+                        title: Text('Lab :${lipid['entityName']}'),
                       ),
                     ],
                   ),

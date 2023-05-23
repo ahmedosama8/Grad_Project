@@ -73,7 +73,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
           content: Text(message),
           actions: <Widget>[
             TextButton(
-              child: Text('Logout'),
+              child: Text('Logout',style: TextStyle(color: primary),),
               onPressed: () {
                 Navigator.of(context, rootNavigator: true).pushReplacement(
                     MaterialPageRoute(builder: (context) => Login()));

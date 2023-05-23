@@ -28,7 +28,6 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
 // Fetch entity by ID and update the glucoseList with the entity name
         final entityData = await fetcEntityById(aptJson['entity_id']);
         final entityName = entityData['name'] ?? 'not specified';
-
         appointmentdetails.last['entityName'] = entityName;
       }
       setState(() {

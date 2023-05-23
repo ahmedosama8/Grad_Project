@@ -203,19 +203,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Expanded(
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          labelText: 'Martial Status',
-                          contentPadding: EdgeInsets.symmetric(vertical: 16.0),
-                        ),
-                        controller: TextEditingController(text: martialStatus),
-                        enabled: false,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    SizedBox(width: 10),
-                    Expanded(
+                   Expanded(
                       child: TextFormField(
                         decoration: InputDecoration(
                           labelText: 'Chronic Disease',
@@ -226,6 +214,19 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                         textAlign: TextAlign.center,
                       ),
                     ),
+                    SizedBox(width: 10),
+                                        Expanded(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: 'Martial Status',
+                          contentPadding: EdgeInsets.symmetric(vertical: 16.0),
+                        ),
+                        controller: TextEditingController(text: martialStatus),
+                        enabled: false,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    
                   ],
                 ),
                 SizedBox(height: 20),

@@ -89,10 +89,10 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
     if (_formKey.currentState!.validate()) {
       selectedDiseasesResult = selectedDiseases.toString();
       selectedAllergyResult = selectedAllergy.toString();
-      print(selectedDiseasesResult);
-      print(selectedAllergyResult);
+      print(selectedAllergy);
+      print(selectedDiseases);
       print(selectedGender);
-      final url = Uri.parse('${AppUrl.Base_Url}/api/patient/new');
+      final url = Uri.parse('${AppUrl.Base_Url}/patient/new');
       final response = await http.post(url,
           headers: {
             'Content-Type': 'application/json',
@@ -449,7 +449,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                                 return null;
                               },
                               textField: 'display',
-                              valueField: 'value',
+                              valueField: 'display',
                               okButtonLabel: 'OK',
                               cancelButtonLabel: 'CANCEL',
                               hintWidget:
@@ -514,7 +514,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                                 return null;
                               },
                               textField: 'display',
-                              valueField: 'value',
+                              valueField: 'display',
                               okButtonLabel: 'OK',
                               cancelButtonLabel: 'CANCEL',
                               hintWidget:

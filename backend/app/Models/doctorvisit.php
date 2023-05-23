@@ -26,6 +26,7 @@ class doctorvisit extends Model
         'entity_id',
         'appointment_id',
         'diagnosed_by',
+        'referring_doctor',
         'diagnoses',
         'medications',
         'comments',

@@ -41,11 +41,24 @@ class dr_report extends StatelessWidget {
                   child: Column(
                     children: [
                       ListTile(
+                        leading: Icon(Icons.local_hospital),
+                        title: Text('Clinic Name: ${visit['entityName']}'),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shadowColor: Colors.greenAccent,
+                  child: Column(
+                    children: [
+                      ListTile(
                         leading: CircleAvatar(
                           radius: 20,
                           backgroundImage: AssetImage('assets/doctor.png'),
                         ),
-                        title: Text('Doctor: ${visit['entityName']}'),
+                        title:
+                            Text('Doctor Name: ${visit['referring_doctor']}'),
                       ),
                     ],
                   ),

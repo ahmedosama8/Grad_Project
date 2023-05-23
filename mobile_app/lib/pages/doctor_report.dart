@@ -13,9 +13,9 @@ class dr_report extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(''
-            // visit['diagnoses'] ?? '',
-            // overflow: TextOverflow.ellipsis,
+        title: Text(
+             visit['diagnosed_by'] ?? '',
+            overflow: TextOverflow.ellipsis,
             ),
         centerTitle: true,
         backgroundColor: primary,

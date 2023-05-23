@@ -29,7 +29,44 @@ class GluTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: Icon(Icons.local_hospital),
-                        title: Text('Lab :${glucose['entityName']}'),
+                        title: Row(
+                          children: [
+                            Text(
+                              'Lab :',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(glucose['entityName'] ?? '')
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shadowColor: Colors.greenAccent,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('assets/doctor.png'),
+                        ),
+                        title: Row(
+                          children: [
+                            Text(
+                              'Doctor Name: ',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(glucose['referring_doctor'] ?? '')
+                          ],
+                        ),
                       ),
                     ],
                   ),

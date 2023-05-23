@@ -29,7 +29,44 @@ class CbcTestpage extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: Icon(Icons.local_hospital),
-                        title: Text('Lab :${cbc['entityName']}'),
+                        title: Row(
+                          children: [
+                            Text(
+                              'Lab :',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(cbc['entityName'] ?? '')
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shadowColor: Colors.greenAccent,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('assets/doctor.png'),
+                        ),
+                        title: Row(
+                          children: [
+                            Text(
+                              'Doctor Name: ',
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(cbc['referring_doctor'] ?? '')
+                          ],
+                        ),
                       ),
                     ],
                   ),

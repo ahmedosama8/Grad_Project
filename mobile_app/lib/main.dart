@@ -1,4 +1,5 @@
 // ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
@@ -48,6 +49,10 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: primary,
         ),
+
+        //home: const WelcomePage(),
+        //initialRoute: '/auth',
+
         routes: {
           '/': (context) => const AppScreen(),
           'login': (context) => Login(),

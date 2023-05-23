@@ -42,21 +42,6 @@ class rad_report extends StatelessWidget {
                   child: Column(
                     children: [
                       ListTile(
-                        leading: CircleAvatar(
-                          radius: 20,
-                          backgroundImage: AssetImage('assets/doctor.png'),
-                        ),
-                        title: Text('perfromed by: ${scans['performer']}'),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  clipBehavior: Clip.antiAlias,
-                  shadowColor: Colors.greenAccent,
-                  child: Column(
-                    children: [
-                      ListTile(
                         leading: Icon(Icons.note),
                         title: Text('Report'),
                       ),
@@ -71,6 +56,21 @@ class rad_report extends StatelessWidget {
                                 fontSize: 20),
                           ),
                         ),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  shadowColor: Colors.greenAccent,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        leading: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: AssetImage('assets/doctor.png'),
+                        ),
+                        title: Text('perfromed by: ${scans['performer']}'),
                       ),
                     ],
                   ),

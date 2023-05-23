@@ -15,7 +15,6 @@ class PatientProfilePage extends StatefulWidget {
 class _PatientProfilePageState extends State<PatientProfilePage> {
   File? _image;
   final _formKey = GlobalKey<FormState>();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +45,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
               children: [
                 CircleAvatar(
                   radius: 50.0,
-                  backgroundImage:AssetImage('assets/pp.png'),
+                  backgroundImage: AssetImage('assets/pp.png'),
                 ),
                 SizedBox(height: 20),
                 Row(
@@ -78,7 +77,6 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                   ],
                 ),
                 SizedBox(height: 10),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -108,7 +106,6 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                   ],
                 ),
                 SizedBox(height: 10),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -138,7 +135,6 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                   ],
                 ),
                 SizedBox(height: 10),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -148,8 +144,8 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Emergency Contact Number',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(
-                            text: emergencyNumber),
+                        controller:
+                            TextEditingController(text: emergencyNumber),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -161,8 +157,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Identity Number',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller:
-                            TextEditingController(text: identityNumber),
+                        controller: TextEditingController(text: identityNumber),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -191,8 +186,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Allergies',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller:
-                            TextEditingController(text: chronicDisease),
+                        controller: TextEditingController(text: chronicDisease),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -206,10 +200,10 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                     Expanded(
                       child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: 'Martial Status',
+                          labelText: 'Chronic Disease',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: martialStatus),
+                        controller: TextEditingController(text: allergies),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -218,10 +212,10 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                     Expanded(
                       child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: 'Chronic Disease',
+                          labelText: 'Martial Status',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: allergies),
+                        controller: TextEditingController(text: martialStatus),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -264,18 +258,16 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
     );
   }
 
-void pickImage() async {
-  // ignore: deprecated_member_use
-  PickedFile? pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
+  void pickImage() async {
+    // ignore: deprecated_member_use
+    PickedFile? pickedImage =
+        await ImagePicker().getImage(source: ImageSource.gallery);
 
-  if (pickedImage != null) {
-
-    setState(() {
-      _image = File(pickedImage.path);
-    });
-  print(_image);
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+      print(_image);
+    }
   }
-
 }
-}
-

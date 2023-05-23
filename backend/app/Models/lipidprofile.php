@@ -14,6 +14,7 @@ class lipidprofile extends Model
         'patient_id',
         'entity_id',
         'appointment_id',
+        'referring_doctor',
         'alt',
         'ast',
         'albumin',

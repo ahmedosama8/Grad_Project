@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('patient_id');
             $table->foreignId('entity_id');
             $table->foreignId('appointment_id');
+            $table->string('referring_doctor')->nullable();
             $table->string('rbc');
             $table->string('rbs');
             $table->longText('comments')->nullable();

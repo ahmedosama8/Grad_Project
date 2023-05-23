@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('patient_id')->nullable();
             $table->foreignId('entity_id')->nullable();
             $table->foreignId('appointment_id')->nullable();
+            $table->string('referring_doctor')->nullable();
             $table->string('alt')->nullable();
             $table->string('ast')->nullable();
             $table->string('alb')->nullable();

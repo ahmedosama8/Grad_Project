@@ -14,6 +14,7 @@ class cbc extends Model
         'appointment_id',
         'patient_id',
         'entity_id',
+        'referring_doctor',
         'haemoglobin',
         'hematocrit',
         'red_cell_count',

@@ -14,6 +14,7 @@ class urinetest extends Model
         'patient_id',
         'appointment_id',
         'entity_id',
+        'referring_doctor',
         'color',
         'clarity',
         'specific_gravity',

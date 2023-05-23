@@ -50,8 +50,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
     'B+',
     'B-',
     'O+',
-    'O-',
-    'None'
+    'O-'
   ];
   String? selectedBlood;
   void bloodCallBack(String? selectedBloodVal) {

@@ -104,41 +104,6 @@ class _HomePageState extends State<HomePage> {
         urlWeb: 'seif-online.com',
         phone: '19199'),
   ];
-  showAlertDialog(BuildContext context, String title, String message) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: Text(message),
-          actions: <Widget>[
-            Row(
-              children: [
-                SizedBox(width: 80,),
-                TextButton(
-                  child:
-                      Text('Sign out',style: TextStyle(color: primary),),
-                  onPressed: () {
-                    Navigator.of(context, rootNavigator: true).pushReplacement(
-                        MaterialPageRoute(builder: (context) => Login()));
-                  },
-                ),
-                SizedBox(width: 30,),
-
-                TextButton(
-                  child:
-                      Text('Cancel',style: TextStyle(color: primary),),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ),
-          ],
-        );
-      },
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -166,13 +131,15 @@ class _HomePageState extends State<HomePage> {
                   child: IconButton(
                     icon: Icon(Icons.logout),
                     onPressed: () {
-                      showAlertDialog(context, 'Sign out',
-                          'Sign out and return to the login screen?');
+                      Navigator.of(context, rootNavigator: true)
+                          .pushReplacement(
+                              MaterialPageRoute(builder: (context) => Login()));
                     },
                   ),
                 )
               ],
             ),
+
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

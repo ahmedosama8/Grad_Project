@@ -83,10 +83,10 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
-                              Text('Test'),
-                              Text('Result'),
-                              Text('Unit'),
-                              Text('Range'),
+                              Expanded(child: Text('Test')),
+                              Expanded(child: Text('Result')),
+                              Expanded(child: Text('Unit')),
+                              Expanded(child: Text('Range')),
                             ],
                           ),
                         ),
@@ -95,84 +95,48 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'ALT\u00A0\u00A0',
-                                style: TextStyle(
-                                  color: (double.parse(liver['alt']) < 10 ||
-                                          double.parse(liver['alt']) > 130)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'ALT',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alt']) < 10 ||
+                                            double.parse(liver['alt']) > 130)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                liver['alt'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(liver['alt']) < 10 ||
-                                          double.parse(liver['alt']) > 130)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  liver['alt'].toString(),
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alt']) < 10 ||
+                                            double.parse(liver['alt']) > 130)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                'U/L',
-                                style: TextStyle(
-                                  color: (double.parse(liver['alt']) < 10 ||
-                                          double.parse(liver['alt']) > 130)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'U/L',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alt']) < 10 ||
+                                            double.parse(liver['alt']) > 130)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                '10-130',
-                                style: TextStyle(
-                                  color: (double.parse(liver['alt']) < 10 ||
-                                          double.parse(liver['alt']) > 130)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'AST',
-                                style: TextStyle(
-                                  color: (double.parse(liver['ast']) < 10 ||
-                                          double.parse(liver['ast']) > 34)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                liver['ast'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(liver['ast']) < 10 ||
-                                          double.parse(liver['ast']) > 34)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                'U/L',
-                                style: TextStyle(
-                                  color: (double.parse(liver['ast']) < 10 ||
-                                          double.parse(liver['ast']) > 34)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                '10-34',
-                                style: TextStyle(
-                                  color: (double.parse(liver['ast']) < 10 ||
-                                          double.parse(liver['ast']) > 34)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  '10-130',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alt']) < 10 ||
+                                            double.parse(liver['alt']) > 130)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
                             ],
@@ -183,84 +147,48 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'ALB\u00A0\u00A0',
-                                style: TextStyle(
-                                  color: (double.parse(liver['alb']) < 3.4 ||
-                                          double.parse(liver['alb']) > 5.4)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'AST',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['ast']) < 10 ||
+                                            double.parse(liver['ast']) > 34)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                liver['alb'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(liver['alb']) < 3.4 ||
-                                          double.parse(liver['alb']) > 5.4)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  liver['ast'].toString(),
+                                  style: TextStyle(
+                                    color: (double.parse(liver['ast']) < 10 ||
+                                            double.parse(liver['ast']) > 34)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                'g/dL',
-                                style: TextStyle(
-                                  color: (double.parse(liver['alb']) < 3.4 ||
-                                          double.parse(liver['alb']) > 5.4)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'U/L',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['ast']) < 10 ||
+                                            double.parse(liver['ast']) > 34)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                '3.4-5.4',
-                                style: TextStyle(
-                                  color: (double.parse(liver['alb']) < 3.4 ||
-                                          double.parse(liver['alb']) > 5.4)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'DBIL\u00A0',
-                                style: TextStyle(
-                                  color: (double.parse(liver['dbil']) < 0 ||
-                                          double.parse(liver['dbil']) > 0.4)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                liver['dbil'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(liver['dbil']) < 0 ||
-                                          double.parse(liver['dbil']) > 0.4)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                'mg/dL',
-                                style: TextStyle(
-                                  color: (double.parse(liver['dbil']) < 0 ||
-                                          double.parse(liver['dbil']) > 0.4)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                '0-0.4',
-                                style: TextStyle(
-                                  color: (double.parse(liver['dbil']) < 0 ||
-                                          double.parse(liver['dbil']) > 0.4)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  '10-34',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['ast']) < 10 ||
+                                            double.parse(liver['ast']) > 34)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
                             ],
@@ -271,40 +199,48 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'TBIL\u00A0\u00A0\u00A0',
-                                style: TextStyle(
-                                  color: (double.parse(liver['tbil']) < 0.1 ||
-                                          double.parse(liver['tbil']) > 1.2)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'ALB',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alb']) < 3.4 ||
+                                            double.parse(liver['alb']) > 5.4)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                liver['tbil'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(liver['tbil']) < 0.1 ||
-                                          double.parse(liver['tbil']) > 1.2)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  liver['alb'].toString(),
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alb']) < 3.4 ||
+                                            double.parse(liver['alb']) > 5.4)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                'mg/dL',
-                                style: TextStyle(
-                                  color: (double.parse(liver['tbil']) < 0.1 ||
-                                          double.parse(liver['tbil']) > 1.2)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'g/dL',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alb']) < 3.4 ||
+                                            double.parse(liver['alb']) > 5.4)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                '0.1-1.2',
-                                style: TextStyle(
-                                  color: (double.parse(liver['tbil']) < 0.1 ||
-                                          double.parse(liver['tbil']) > 1.2)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  '3.4-5.4',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alb']) < 3.4 ||
+                                            double.parse(liver['alb']) > 5.4)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
                             ],
@@ -315,40 +251,152 @@ class LiverTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'ALP\u00A0\u00A0',
-                                style: TextStyle(
-                                  color: (double.parse(liver['alp']) < 24 ||
-                                          double.parse(liver['alp']) > 147)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'DBIL',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['dbil']) < 0 ||
+                                            double.parse(liver['dbil']) > 0.4)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                liver['alp'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(liver['alp']) < 24 ||
-                                          double.parse(liver['alp']) > 147)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  liver['dbil'].toString(),
+                                  style: TextStyle(
+                                    color: (double.parse(liver['dbil']) < 0 ||
+                                            double.parse(liver['dbil']) > 0.4)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                'U/L',
-                                style: TextStyle(
-                                  color: (double.parse(liver['alp']) < 24 ||
-                                          double.parse(liver['alp']) > 147)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'mg/dL',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['dbil']) < 0 ||
+                                            double.parse(liver['dbil']) > 0.4)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                '24-147',
-                                style: TextStyle(
-                                  color: (double.parse(liver['alp']) < 24 ||
-                                          double.parse(liver['alp']) > 147)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  '0-0.4',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['dbil']) < 0 ||
+                                            double.parse(liver['dbil']) > 0.4)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'TBIL',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['tbil']) < 0.1 ||
+                                            double.parse(liver['tbil']) > 1.2)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  liver['tbil'].toString(),
+                                  style: TextStyle(
+                                    color: (double.parse(liver['tbil']) < 0.1 ||
+                                            double.parse(liver['tbil']) > 1.2)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'mg/dL',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['tbil']) < 0.1 ||
+                                            double.parse(liver['tbil']) > 1.2)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  '0.1-1.2',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['tbil']) < 0.1 ||
+                                            double.parse(liver['tbil']) > 1.2)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  'ALP',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alp']) < 24 ||
+                                            double.parse(liver['alp']) > 147)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  liver['alp'].toString(),
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alp']) < 24 ||
+                                            double.parse(liver['alp']) > 147)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  'U/L',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alp']) < 24 ||
+                                            double.parse(liver['alp']) > 147)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  '24-147',
+                                  style: TextStyle(
+                                    color: (double.parse(liver['alp']) < 24 ||
+                                            double.parse(liver['alp']) > 147)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
                             ],

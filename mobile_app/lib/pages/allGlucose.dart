@@ -79,6 +79,9 @@ class _allGlucoseState extends State<allGlucose> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ))
             : Column(children: [
+                SizedBox(
+                  height: 20,
+                ),
                 SingleChildScrollView(
                   child: ListView.builder(
                     shrinkWrap: true,

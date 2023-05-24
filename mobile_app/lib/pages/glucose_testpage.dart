@@ -83,10 +83,10 @@ class GluTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: const [
-                              Text('Test'),
-                              Text('Result'),
-                              Text('Unit'),
-                              Text('Range'),
+                              Expanded(child: Text('Test')),
+                              Expanded(child: Text('Result')),
+                              Expanded(child: Text('Unit')),
+                              Expanded(child: Text('Range')),
                             ],
                           ),
                         ),
@@ -95,40 +95,48 @@ class GluTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'R B G',
-                                style: TextStyle(
-                                  color: (double.parse(glucose['rbc']) < 20 ||
-                                          double.parse(glucose['rbc']) > 45)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'R B G',
+                                  style: TextStyle(
+                                    color: (double.parse(glucose['rbc']) < 20 ||
+                                            double.parse(glucose['rbc']) > 45)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                glucose['rbc'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(glucose['rbc']) < 20 ||
-                                          double.parse(glucose['rbc']) > 45)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  glucose['rbc'].toString(),
+                                  style: TextStyle(
+                                    color: (double.parse(glucose['rbc']) < 20 ||
+                                            double.parse(glucose['rbc']) > 45)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                'mg/dL',
-                                style: TextStyle(
-                                  color: (double.parse(glucose['rbc']) < 20 ||
-                                          double.parse(glucose['rbc']) > 45)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'mg/dL',
+                                  style: TextStyle(
+                                    color: (double.parse(glucose['rbc']) < 20 ||
+                                            double.parse(glucose['rbc']) > 45)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                '--',
-                                style: TextStyle(
-                                  color: (double.parse(glucose['rbc']) < 20 ||
-                                          double.parse(glucose['rbc']) > 45)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  '--',
+                                  style: TextStyle(
+                                    color: (double.parse(glucose['rbc']) < 20 ||
+                                            double.parse(glucose['rbc']) > 45)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
                             ],
@@ -139,40 +147,48 @@ class GluTestpage extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                'R B S',
-                                style: TextStyle(
-                                  color: (double.parse(glucose['rbs']) < 20 ||
-                                          double.parse(glucose['rbs']) > 45)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'R B S',
+                                  style: TextStyle(
+                                    color: (double.parse(glucose['rbs']) < 20 ||
+                                            double.parse(glucose['rbs']) > 45)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                glucose['rbs'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(glucose['rbs']) < 20 ||
-                                          double.parse(glucose['rbs']) > 45)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  glucose['rbs'].toString(),
+                                  style: TextStyle(
+                                    color: (double.parse(glucose['rbs']) < 20 ||
+                                            double.parse(glucose['rbs']) > 45)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                'mg/dL',
-                                style: TextStyle(
-                                  color: (double.parse(glucose['rbs']) < 20 ||
-                                          double.parse(glucose['rbs']) > 45)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  'mg/dL',
+                                  style: TextStyle(
+                                    color: (double.parse(glucose['rbs']) < 20 ||
+                                            double.parse(glucose['rbs']) > 45)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
-                              Text(
-                                '--',
-                                style: TextStyle(
-                                  color: (double.parse(glucose['rbs']) < 20 ||
-                                          double.parse(glucose['rbs']) > 45)
-                                      ? Colors.red
-                                      : Colors.black,
+                              Expanded(
+                                child: Text(
+                                  '--',
+                                  style: TextStyle(
+                                    color: (double.parse(glucose['rbs']) < 20 ||
+                                            double.parse(glucose['rbs']) > 45)
+                                        ? Colors.red
+                                        : Colors.black,
+                                  ),
                                 ),
                               ),
                             ],

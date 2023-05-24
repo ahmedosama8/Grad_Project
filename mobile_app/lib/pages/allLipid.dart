@@ -78,6 +78,9 @@ class _allLipidState extends State<allLipid> {
             ))
           : Column(
               children: [
+                SizedBox(
+                  height: 20,
+                ),
                 SingleChildScrollView(
                   child: ListView.builder(
                     shrinkWrap: true,

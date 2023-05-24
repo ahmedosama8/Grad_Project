@@ -78,6 +78,9 @@ class _allUrineState extends State<allUrine> {
             ))
           : Column(
               children: [
+                SizedBox(
+                  height: 20,
+                ),
                 SingleChildScrollView(
                   child: ListView.builder(
                     shrinkWrap: true,

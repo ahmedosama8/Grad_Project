@@ -7,42 +7,6 @@ class LipTestpage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color getHDLColor(double hdl) {
-      if (hdl < 40) {
-        return Colors.red;
-      } else if (hdl >= 40 && hdl <= 60) {
-        return Color.fromARGB(255, 235, 187, 42);
-      } else {
-        return Colors.black;
-      }
-    }
-
-    Color getTriglyceridesColor(double triglycerides) {
-      if (triglycerides < 150) {
-        return Colors.black;
-      } else if (triglycerides >= 150 && triglycerides <= 199) {
-        return Color.fromARGB(255, 235, 187, 42);
-      } else if (triglycerides >= 200 && triglycerides <= 499) {
-        return Colors.orange;
-      } else {
-        return Colors.red;
-      }
-    }
-
-    Color getLDLColor(double ldl) {
-      if (ldl < 100) {
-        return Colors.black;
-      } else if (ldl >= 100 && ldl <= 129) {
-        return Colors.amber;
-      } else if (ldl >= 130 && ldl <= 159) {
-        return Colors.orange;
-      } else if (ldl >= 160 && ldl <= 189) {
-        return Colors.red;
-      } else {
-        return Colors.purple;
-      }
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Lipid Profile Test'),
@@ -318,7 +282,7 @@ class LipTestpage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                lipid['vldl_cholestrol'],
+                                lipid['vldl_cholestrol'] ?? '',
                                 style: TextStyle(
                                   color:
                                       double.parse(lipid['vldl_cholestrol']) >
@@ -365,7 +329,7 @@ class LipTestpage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                lipid['total_lipids'],
+                                lipid['total_lipids'] ?? '',
                                 style: TextStyle(
                                   color:
                                       double.parse(lipid['total_lipids']) > 750
@@ -409,7 +373,7 @@ class LipTestpage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                lipid['risk_ratio_1'],
+                                lipid['risk_ratio_1'] ?? '',
                                 style: TextStyle(
                                   color:
                                       double.parse(lipid['risk_ratio_1']) > 5.5
@@ -453,7 +417,7 @@ class LipTestpage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                lipid['oxidized_ldl'],
+                                lipid['oxidized_ldl'] ?? '',
                                 style: TextStyle(
                                   color:
                                       double.parse(lipid['oxidized_ldl']) > 117
@@ -495,7 +459,7 @@ class LipTestpage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                lipid['risk_ratio_2'],
+                                lipid['risk_ratio_2'] ?? '',
                                 style: TextStyle(
                                   color: _getRiskRatio2Color(
                                       double.parse(lipid['risk_ratio_2'])),
@@ -532,7 +496,7 @@ class LipTestpage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                lipid['h_crp'],
+                                lipid['h_crp'] ?? '',
                                 style: TextStyle(
                                   color: double.parse(lipid['h_crp']) <= 3.0
                                       ? Colors.black
@@ -571,7 +535,7 @@ class LipTestpage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                lipid['ratio'],
+                                lipid['ratio'] ?? '',
                                 style: TextStyle(
                                   color: _getRatioColor(
                                       double.parse(lipid['ratio'])),
@@ -608,7 +572,7 @@ class LipTestpage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                lipid['lipo_protein'],
+                                lipid['lipo_protein'] ?? '',
                                 style: TextStyle(
                                   color: _getLipoproteinColor(
                                       double.parse(lipid['lipo_protein'])),
@@ -646,7 +610,7 @@ class LipTestpage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                lipid['apoa'],
+                                lipid['apoa'] ?? '',
                                 style: TextStyle(
                                   color: (double.parse(lipid['apoa']) >= 1.08 &&
                                           double.parse(lipid['apoa']) <= 2.25)
@@ -690,7 +654,7 @@ class LipTestpage extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                lipid['apob'],
+                                lipid['apob'] ?? '',
                                 style: TextStyle(
                                   color: (double.parse(lipid['apob']) >= 0.5 &&
                                           double.parse(lipid['apob']) <= 1.3)
@@ -725,7 +689,7 @@ class LipTestpage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text('APOA/APOB'),
-                              Text(lipid['apoa_divided_apob']),
+                              Text(lipid['apoa_divided_apob'] ?? ''),
                               Text('--'),
                               Text('--'),
                             ],
@@ -806,5 +770,41 @@ Color _getLipoproteinColor(double value) {
     return Colors.orange;
   } else {
     return Colors.red;
+  }
+}
+
+Color getHDLColor(double hdl) {
+  if (hdl < 40) {
+    return Colors.red;
+  } else if (hdl >= 40 && hdl <= 60) {
+    return Color.fromARGB(255, 235, 187, 42);
+  } else {
+    return Colors.black;
+  }
+}
+
+Color getTriglyceridesColor(double triglycerides) {
+  if (triglycerides < 150) {
+    return Colors.black;
+  } else if (triglycerides >= 150 && triglycerides <= 199) {
+    return Color.fromARGB(255, 235, 187, 42);
+  } else if (triglycerides >= 200 && triglycerides <= 499) {
+    return Colors.orange;
+  } else {
+    return Colors.red;
+  }
+}
+
+Color getLDLColor(double ldl) {
+  if (ldl < 100) {
+    return Colors.black;
+  } else if (ldl >= 100 && ldl <= 129) {
+    return Colors.amber;
+  } else if (ldl >= 130 && ldl <= 159) {
+    return Colors.orange;
+  } else if (ldl >= 160 && ldl <= 189) {
+    return Colors.red;
+  } else {
+    return Colors.purple;
   }
 }

@@ -72,7 +72,7 @@ class GluTestpage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 140,
+                  height: 230,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
@@ -92,108 +92,187 @@ class GluTestpage extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
                             children: [
-                              Expanded(
-                                child: Text(
-                                  'R B G',
-                                  style: TextStyle(
-                                    color: (double.parse(glucose['rbc']) < 20 ||
-                                            double.parse(glucose['rbc']) > 45)
-                                        ? Colors.red
-                                        : Colors.black,
-                                  ),
+                              // ignore: unnecessary_null_comparison
+                              if (double.parse(glucose['rbg']) != 0)
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        'Random\nblood\nglucose',
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['rbg']) <
+                                                      60 ||
+                                                  double.parse(glucose['rbg']) >
+                                                      160)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        glucose['rbg'].toString(),
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['rbg']) <
+                                                      60 ||
+                                                  double.parse(glucose['rbg']) >
+                                                      160)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'mg/dL',
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['rbg']) <
+                                                      60 ||
+                                                  double.parse(glucose['rbg']) >
+                                                      160)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        '60 - 160',
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['rbg']) <
+                                                      60 ||
+                                                  double.parse(glucose['rbg']) >
+                                                      160)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
+                              SizedBox(
+                                height: 10,
                               ),
-                              Expanded(
-                                child: Text(
-                                  glucose['rbc'].toString(),
-                                  style: TextStyle(
-                                    color: (double.parse(glucose['rbc']) < 20 ||
-                                            double.parse(glucose['rbc']) > 45)
-                                        ? Colors.red
-                                        : Colors.black,
-                                  ),
+                              if (double.parse(glucose['fpg']) != 0)
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        'Fasting plasma glucose',
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['fpg']) <
+                                                      60 ||
+                                                  double.parse(glucose['fpg']) >
+                                                      110)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        glucose['fpg'].toString(),
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['fpg']) <
+                                                      60 ||
+                                                  double.parse(glucose['fpg']) >
+                                                      110)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'mg/dL',
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['fpg']) <
+                                                      60 ||
+                                                  double.parse(glucose['fpg']) >
+                                                      110)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        '60 - 110',
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['fpg']) <
+                                                      60 ||
+                                                  double.parse(glucose['fpg']) >
+                                                      110)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
+                              SizedBox(
+                                height: 10,
                               ),
-                              Expanded(
-                                child: Text(
-                                  'mg/dL',
-                                  style: TextStyle(
-                                    color: (double.parse(glucose['rbc']) < 20 ||
-                                            double.parse(glucose['rbc']) > 45)
-                                        ? Colors.red
-                                        : Colors.black,
-                                  ),
+                              if (double.parse(glucose['ppg']) != 0)
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Text(
+                                        'Postprandial glucose',
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['ppg']) >
+                                                  140)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        glucose['ppg'].toString(),
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['ppg']) >
+                                                  140)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'mg/dL',
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['ppg']) >
+                                                  140)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Text(
+                                        'less than 140',
+                                        style: TextStyle(
+                                          color: (double.parse(glucose['ppg']) >
+                                                  140)
+                                              ? Colors.red
+                                              : Colors.black,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  '--',
-                                  style: TextStyle(
-                                    color: (double.parse(glucose['rbc']) < 20 ||
-                                            double.parse(glucose['rbc']) > 45)
-                                        ? Colors.red
-                                        : Colors.black,
-                                  ),
-                                ),
-                              ),
                             ],
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  'R B S',
-                                  style: TextStyle(
-                                    color: (double.parse(glucose['rbs']) < 20 ||
-                                            double.parse(glucose['rbs']) > 45)
-                                        ? Colors.red
-                                        : Colors.black,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  glucose['rbs'].toString(),
-                                  style: TextStyle(
-                                    color: (double.parse(glucose['rbs']) < 20 ||
-                                            double.parse(glucose['rbs']) > 45)
-                                        ? Colors.red
-                                        : Colors.black,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  'mg/dL',
-                                  style: TextStyle(
-                                    color: (double.parse(glucose['rbs']) < 20 ||
-                                            double.parse(glucose['rbs']) > 45)
-                                        ? Colors.red
-                                        : Colors.black,
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Text(
-                                  '--',
-                                  style: TextStyle(
-                                    color: (double.parse(glucose['rbs']) < 20 ||
-                                            double.parse(glucose['rbs']) > 45)
-                                        ? Colors.red
-                                        : Colors.black,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
                       ],
                     ),
                   ),

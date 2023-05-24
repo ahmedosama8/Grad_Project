@@ -15,7 +15,6 @@ class PatientProfilePage extends StatefulWidget {
 class _PatientProfilePageState extends State<PatientProfilePage> {
   File? _image;
   final _formKey = GlobalKey<FormState>();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -148,8 +147,9 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Emergency Contact Number',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(
-                            text: emergencyNumber),
+                        controller: 
+
+                        TextEditingController(text: emergencyNumber),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -161,8 +161,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Identity Number',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller:
-                            TextEditingController(text: identityNumber),
+                        controller: TextEditingController(text: identityNumber),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -191,8 +190,7 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                           labelText: 'Allergies',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller:
-                            TextEditingController(text: chronicDisease),
+                        controller: TextEditingController(text: chronicDisease),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -206,10 +204,10 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                     Expanded(
                       child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: 'Martial Status',
+                          labelText: 'Chronic Disease',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: martialStatus),
+                        controller: TextEditingController(text: allergies),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -218,10 +216,10 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
                     Expanded(
                       child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: 'Chronic Disease',
+                          labelText: 'Martial Status',
                           contentPadding: EdgeInsets.symmetric(vertical: 16.0),
                         ),
-                        controller: TextEditingController(text: allergies),
+                        controller: TextEditingController(text:  martialStatus),
                         enabled: false,
                         textAlign: TextAlign.center,
                       ),
@@ -264,9 +262,10 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
     );
   }
 
-void pickImage() async {
-  // ignore: deprecated_member_use
-  PickedFile? pickedImage = await ImagePicker().getImage(source: ImageSource.gallery);
+  void pickImage() async {
+    // ignore: deprecated_member_use
+    PickedFile? pickedImage =
+        await ImagePicker().getImage(source: ImageSource.gallery);
 
   if (pickedImage != null) {
 

@@ -72,7 +72,7 @@ class LipTestpage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 560,
+                  height: 770,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
@@ -87,142 +87,6 @@ class LipTestpage extends StatelessWidget {
                               Text('Result'),
                               Text('Unit'),
                               Text('Range'),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(05, 15, 20, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'ALT(SGPT)\nserum',
-                                style: TextStyle(
-                                  color: (double.parse(lipid['alt']) < 10 ||
-                                          double.parse(lipid['alt']) > 65)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                lipid['alt'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(lipid['alt']) < 10 ||
-                                          double.parse(lipid['alt']) > 65)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                'U/L',
-                                style: TextStyle(
-                                  color: (double.parse(lipid['alt']) < 10 ||
-                                          double.parse(lipid['alt']) > 65)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                '10-65',
-                                style: TextStyle(
-                                  color: (double.parse(lipid['alt']) < 10 ||
-                                          double.parse(lipid['alt']) > 65)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 25, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'AST(SGOT)\nserum',
-                                style: TextStyle(
-                                  color: (double.parse(lipid['ast']) < 0 ||
-                                          double.parse(lipid['ast']) > 48)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                lipid['ast'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(lipid['ast']) < 0 ||
-                                          double.parse(lipid['ast']) > 48)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                'U/L',
-                                style: TextStyle(
-                                  color: (double.parse(lipid['ast']) < 0 ||
-                                          double.parse(lipid['ast']) > 48)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                ' 0-48',
-                                style: TextStyle(
-                                  color: (double.parse(lipid['ast']) < 0 ||
-                                          double.parse(lipid['ast']) > 48)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(5, 15, 20, 10),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Albumin\nserum\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
-                                style: TextStyle(
-                                  color: (double.parse(lipid['albumin']) <
-                                              3.5 ||
-                                          double.parse(lipid['albumin']) > 5.2)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                lipid['albumin'].toString(),
-                                style: TextStyle(
-                                  color: (double.parse(lipid['albumin']) <
-                                              3.5 ||
-                                          double.parse(lipid['albumin']) > 5.2)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                'g/dL',
-                                style: TextStyle(
-                                  color: (double.parse(lipid['albumin']) <
-                                              3.5 ||
-                                          double.parse(lipid['albumin']) > 5.2)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
-                              Text(
-                                '3.5-5.2',
-                                style: TextStyle(
-                                  color: (double.parse(lipid['albumin']) <
-                                              3.5 ||
-                                          double.parse(lipid['albumin']) > 5.2)
-                                      ? Colors.red
-                                      : Colors.black,
-                                ),
-                              ),
                             ],
                           ),
                         ),
@@ -397,7 +261,19 @@ class LipTestpage extends StatelessWidget {
                               )
                             ],
                           ),
-                        )
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(5, 15, 10, 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: const [
+                              Text('Test\u00A0\u00A0\u00A0\u00A0\u00A0'),
+                              Text('Result'),
+                              Text('Unit'),
+                              Text('Range'),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),

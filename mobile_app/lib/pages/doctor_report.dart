@@ -11,12 +11,18 @@ class dr_report extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String medicationsString = visit['medications'];
+    List<String> medications = medicationsString
+        .replaceAll('[', '')
+        .replaceAll(']', '')
+        .replaceAll('"', '')
+        .split(',');
     return Scaffold(
       appBar: AppBar(
-        title: Text(''
-            // visit['diagnoses'] ?? '',
-            // overflow: TextOverflow.ellipsis,
-            ),
+        title: Text(
+          visit['diagnosed_by'] ?? '',
+          overflow: TextOverflow.ellipsis,
+        ),
         centerTitle: true,
         backgroundColor: primary,
         shadowColor: Colors.greenAccent,
@@ -58,20 +64,7 @@ class dr_report extends StatelessWidget {
                   child: Column(
                     children: [
                       ListTile(
-                        leading: Icon(Icons.medication),
-                        title: Text('medications'),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.all(10.0),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            visit['medications'] ?? '',
-                            style: TextStyle(
-                                color: Colors.black.withOpacity(0.6),
-                                fontSize: 20),
-                          ),
-                        ),
+                        leading: Icon(Icons.local_hospital),
                         title: Row(
                           children: [
                             Text(
@@ -86,6 +79,31 @@ class dr_report extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ),
+                ),
+                SizedBox(
+                  width: double.infinity,
+                  child: Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Medications',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            medications.join(', '),
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 Card(

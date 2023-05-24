@@ -120,10 +120,10 @@ class _doctor_visitState extends State<doctor_visit> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Flexible(
-                                        child: Text(''
-                                            //   visit['diagnoses'] ?? '',
-                                            //   overflow: TextOverflow.ellipsis,
-                                            ),
+                                        child: Text(
+                                          visit['diagnosed_by'] ?? '',
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
                                       ),
                                       Text(
                                         date,

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('glucoses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('patient_id');
-            $table->foreignId('entity_id');
-            $table->foreignId('appointment_id');
+            $table->foreignId('patient_id')->nullable();
+            $table->foreignId('entity_id')->nullable();
+            $table->foreignId('appointment_id')->nullable();
             $table->string('referring_doctor')->nullable();
             $table->string('fpg')->nullable();
             $table->string('ppg')->nullable();

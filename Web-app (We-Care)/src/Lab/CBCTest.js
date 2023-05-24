@@ -5,6 +5,10 @@ import "./CBCTest.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { calculateAge } from "../configure";
+import { toast, ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 // function MouseOver(event) {
 //   event.target.style.background = "red";
@@ -15,7 +19,7 @@ const cbcData = [
   { name: "Red_Cell_Count", value: "12", unit: "x10⁶ /uL", range: "4.5-6.2" },
   { name: "MCV", value: "12", unit: "fL", range: "78-96" },
   { name: "MCH", value: "12", unit: "pg", range: "26-32" },
-  // { name: "MCHC ", value: "12", unit: "g/dL", range: "31-36" },
+  { name: "MCHC", value: "12", unit: "g/dL", range: "31-36" },
   { name: "RDW", value: "12", unit: "%", range: "11.5-14.5" },
   { name: "Platelet_Count", value: "12", unit: "x10³/uL", range: "150-450" },
   { name: "TLC", value: "12", unit: "x10³/uL", range: "4-11" },
@@ -25,19 +29,18 @@ const cbcData = [
   { name: "Segmented", value: "12", unit: "%", range: "40-75" },
   { name: "Lymphocytes", value: "12", unit: "%", range: "20-45" },
   { name: "Monocytes", value: "12", unit: "%", range: "1-10" },
-  
 ];
 
 function CBCTest() {
   const { id } = useParams();
   const location = useLocation();
+  const entity_id=sessionStorage.getItem("User_id")
 
   const [formData, setFormData] = useState({
     patient_id: id,
-    entity_id: "2",
-    appointment_id:"5"
+    entity_id: entity_id,
+    appointment_id: "5",
   });
-
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
@@ -52,8 +55,7 @@ function CBCTest() {
         // Do something with the response, e.g. show a success message
       })
       .catch((error) => {
-        console.error("Error posting data:", error);
-        // Handle the error, e.g. show an error message
+        
       });
   };
   console.log("cbc data", formData);
@@ -65,6 +67,14 @@ function CBCTest() {
       [fieldName]: event.target.value,
     });
   };
+  const handleInput = (event) => {
+    const fieldName = event.target.name;
+    setFormData({
+      ...formData,
+      [fieldName]: event.target.value,
+    });
+  };
+  const age = calculateAge(location.state?.age);
   return (
     <div>
       <Topbar />
@@ -82,33 +92,27 @@ function CBCTest() {
             </div>
             <div className="col-md-4">
               <label htmlFor="lastName">Age</label>
-              <p className="patientdata">{location.state?.age} </p>
+              <p className="patientdata">{age} </p>
             </div>
             <div className="col md-4">
               <label htmlFor="email">Patient's ID</label>
               <p className="patientdata">{id}</p>
             </div>
           </div>
-          <div>
-            <div className="row mb-4">
-              <div className="col-md-6">
-                <label>Examination Date</label>
-                <input
-                  className="form-control boxentry"
-                  type="date"
-                  noValidate
-                />
-              </div>
-              <div className="col-md-6">
-                <label>Doctor Name</label>
-                <input
-                  className="form-control boxentry"
-                  type="text"
-                  noValidate
-                />
-              </div>
+          <div className="row mb-4">
+            <div className="col-md-6">
+              <label>Referring Doctor</label>
+              <input
+                className="form-control"
+                type="text"
+                name="referring_doctor"
+                value={formData.referring_doctor}
+                onChange={handleInput}
+                noValidate
+              />
             </div>
           </div>
+          <div></div>
           <h3 className="mb-3">CBC Test</h3>
           <div className="row mb-3">
             <h6 className="col md-3"> </h6>
@@ -147,11 +151,14 @@ function CBCTest() {
             ></textarea>
           </div>
 
-          <div className="mb-5">
-            <button type="submit">Submit</button>
+          <div className="mb-9">
+            <button type="submit" className="submitform">
+              Submit
+            </button>
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }

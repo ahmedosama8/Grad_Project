@@ -13,7 +13,7 @@ const columns = [
   {
     field: "patient_id",
     headerName: "Patient ID",
-    width: 200,
+    width: 150,
     headerClassName: "custom-header",
   },
   {
@@ -41,21 +41,9 @@ const columns = [
     headerClassName: "custom-header",
   },
   {
-    field: "id",
-    headerName: "Results",
-    width: 110,
-    renderCell: (params) => (
-      <Link to={`${params.row.appointment_type}test`}>
-        <Button
-          variant="outlined"
-          size="small"
-          color="secondary"
-          style={{ color: "#00000098" }}
-        >
-          Add
-        </Button>
-      </Link>
-    ),
+    field: "payment_method",
+    headerName: "Payment Method",
+    width: 160.2,
     headerClassName: "custom-header",
   },
 ];

@@ -11,6 +11,7 @@ import "./visitresult.css";
 import SidebarRad from "../Sidebar/SidebarRad";
 import Topbar from "../Topbar/Topbar";
 import SidebarClinic from "../Sidebar/SidebarClinic";
+import { calculateAge } from "../configure";
 
 const ScanPaper = () => {
   const [singleReport, setSingleReport] = useState();
@@ -45,8 +46,11 @@ const ScanPaper = () => {
   const parsedMedications = singleReport?.medications
     ? JSON.parse(singleReport.medications)
     : [];
-  const parsedDoses = singleReport?.diagnoses ? JSON.parse(singleReport.diagnoses) : [];
+  const parsedDoses = singleReport?.diagnoses
+    ? JSON.parse(singleReport.diagnoses)
+    : [];
 
+    const age=calculateAge(patient?.birth_date)
   console.log("medicines Assigned", parsedMedications);
   return (
     <Paper elevation={3} className="paper">
@@ -62,7 +66,10 @@ const ScanPaper = () => {
             <strong>Patient Name:</strong> {patient?.name}
           </p>
           <p>
-            <strong>Doctor Name:</strong> {singleReport?.doctor_id}
+            <strong>Patient Age / Sex:</strong> {age} / {patient?.gender}
+          </p>
+          <p>
+            <strong>Doctor Name:</strong> {singleReport?.referring_doctor}
           </p>
           <p>
             <strong>Created At:</strong> {singleReport?.created_at.slice(0, 10)}
@@ -84,6 +91,9 @@ const ScanPaper = () => {
         </div>
       </div>
       <div className="footer">
+        <p>
+          <strong>Statement:</strong> {singleReport?.diagnosed_by}
+        </p>
         <p>
           <strong>Report:</strong>
           <div dangerouslySetInnerHTML={{ __html: singleReport?.comments }} />

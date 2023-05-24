@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   MDBBtn,
   MDBContainer,
@@ -13,7 +15,15 @@ import { useNavigate, Link } from "react-router-dom";
 import { backEndLogIn } from "../BackEndFunctions";
 
 function LoginPage() {
-  document.title = "Sign-in / Self-care";
+  const notify = (errorMsg) => {
+    toast.error(errorMsg, {
+      position: toast.POSITION.BOTTOM_CENTER, // Change the position to top-right
+      autoClose: 5000, // Close the toast after 5 seconds
+      hideProgressBar: true, // Hide the progress bar
+      className: 'custom-toast', // Apply custom CSS class for styling
+      bodyClassName: 'custom-toast-body' // Apply custom CSS class for the toast body
+    });
+  };  document.title = "Sign-in / We-care";
 
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -23,25 +33,7 @@ function LoginPage() {
   const getEmail = (val) => {
     setEmail(val.target.value);
   };
-  function signIn() {
-    if (sessionStorage.getItem("User") == "Lab") {
-      navigate("/labhome");
-    } else if (sessionStorage.getItem("User") == "Doctor") {
-      navigate("/clinichome");
-    } else if (sessionStorage.getItem("User") == "RadCenter") {
-      navigate("/radhome");
-    } else navigate("/");
-  }
 
-  function doctor() {
-    sessionStorage.setItem("User", "Doctor");
-  }
-  function lab() {
-    sessionStorage.setItem("User", "Lab");
-  }
-  function Rad_Center() {
-    sessionStorage.setItem("User", "RadCenter");
-  }
   const [username, setUsername] = useState("");
   const [name, setname] = useState("");
   const [password, setPassword] = useState("");
@@ -57,7 +49,7 @@ function LoginPage() {
 
   const handleLogin = async () => {
     if (!username || !password) {
-      console.error("Please Enter Username And Passwoord");
+      notify("Please Enter Username And Passwoord");
       return;
     }
     try {
@@ -75,16 +67,16 @@ function LoginPage() {
         sessionStorage.setItem("User_type", data.type);
         sessionStorage.setItem("User_id", data.id);
 
-
         setEntityId(data.entityId);
-        if (data.type == "lab") {
+        if (data.type === "lab") {
           navigate("/labhome");
-        } else if (data.type == "rad") {
+        } else if (data.type === "rad") {
           navigate("/radhome"); // Redirect to th e home page or perform other actions
-        } else {
+        } else if (data.type === "clinic") {
           navigate("/clinichome");
         }
       } else {
+        notify("Login Failed, Check Username And Password");
         console.error("Login Failed");
       }
     } catch (error) {
@@ -111,7 +103,7 @@ function LoginPage() {
 
             <MDBInput
               wrapperClass="mb-4"
-              label="Email address"
+              label="Username"
               id="email"
               type="email"
               onChange={handleUsernameChange}
@@ -125,11 +117,6 @@ function LoginPage() {
               onChange={handlePasswordChange}
             ></MDBInput>
 
-            <MDBBtnGroup aria-label="Basic example">
-              <MDBBtn onClick={() => doctor()}>Doctor</MDBBtn>
-              <MDBBtn onClick={() => lab()}>Lab</MDBBtn>
-              <MDBBtn onClick={() => Rad_Center()}>Rad-Center</MDBBtn>
-            </MDBBtnGroup>
             <br></br>
 
             <div className=" text-center pt-1 mb-5 pb-1">
@@ -143,6 +130,7 @@ function LoginPage() {
           </div>
         </MDBCol>
       </div>
+      <ToastContainer />
     </MDBContainer>
   );
 }

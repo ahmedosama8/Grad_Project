@@ -65,6 +65,7 @@ export default function AddPatientClinic() {
     medications: inputBoxes.filter(Boolean),
   };
   console.log("Doses", doses);
+  console.log("formData", formData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -80,7 +81,7 @@ export default function AddPatientClinic() {
         console.log("response", response);
         if (response.status === 201) {
           // Navigate to another page
-          window.location.href = `/clinicpatientspage`;
+          window.location.href = `/allvisits/${id}`;
           console.log("success");
         }
         // Do something with the response, e.g. show a success message
@@ -96,11 +97,6 @@ export default function AddPatientClinic() {
     setSelectValues(selectValues.slice(0, -1));
   };
   const [content, setContent] = useState("");
-  // const handleDoseChange = (event, index) => {
-  //   const updatedDoseValues = [...dose];
-  //   updatedDoseValues[index] = event.target.value;
-  //   setDoseValues(updatedDoseValues);
-  // };
   function handleChange(value) {
     setContent(value);
     setFormData({
@@ -108,6 +104,13 @@ export default function AddPatientClinic() {
       comments: value,
     });
   }
+  const handleInput = (event) => {
+    const fieldName = event.target.name;
+    setFormData({
+      ...formData,
+      [fieldName]: event.target.value,
+    });
+  };
 
   const modules = {
     toolbar: [
@@ -172,13 +175,6 @@ export default function AddPatientClinic() {
     return age;
   };
   const age = calculateAge(location.state?.birthDate);
-  const handleDose = (event) => {
-    const fieldName = event.target.name;
-    setFormData({
-      ...formData,
-      [fieldName]: event.target.value,
-    });
-  };
 
   return (
     <div>
@@ -207,6 +203,30 @@ export default function AddPatientClinic() {
             </div>
           </div>
           <h3>Visit Result</h3>
+          <div className="row">
+            <div className="col-md-6 mb-3">
+              <label htmlFor="firstName">Referring Doctor</label>
+              <input
+                className="form-control"
+                placeholder="Dr..."
+                type="text"
+                name="referring_doctor"
+                value={formData.referring_doctor}
+                onChange={handleInput}
+              />
+            </div>
+            <div className="col-md-6 mb-3">
+              <label htmlFor="firstName">Diagnos Statement</label>
+              <input
+                className="form-control"
+                placeholder=""
+                type="text"
+                name="diagnosed_by"
+                value={formData.diagnosed_by}
+                onChange={handleInput}
+              />
+            </div>
+          </div>
           <div>
             <label for="comments">Findings</label>
             <ReactQuill

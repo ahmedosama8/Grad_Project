@@ -19,12 +19,12 @@ function AllVisitsTable({}) {
     }
     fetchRows();
   }, []);
-  console.log("Visits",visits)
-  
+  console.log("Visits", visits);
+
   return (
     <div>
       <Topbar />
-      <SidebarClinic/>
+      <SidebarClinic />
 
       <div
         className="App container col-6"
@@ -36,9 +36,7 @@ function AllVisitsTable({}) {
               <th style={{ textAlign: "center" }}>Patient ID</th>
               <th style={{ textAlign: "center" }}>Referring Doctor</th>
               <th style={{ textAlign: "center" }}>Examination Date</th>
-              <th style={{ textAlign: "center" }}>Medications </th>
-
-
+              <th style={{ textAlign: "center" }}>Short Comment </th>
 
               <th style={{ textAlign: "center" }}>Action</th>
               {/* Add other relevant columns as necessary */}
@@ -48,11 +46,9 @@ function AllVisitsTable({}) {
             {visits?.map((test) => (
               <tr key={test.id}>
                 <td>{test.patient_id}</td>
-                <td>{test.performer}</td>
+                <td>{test.referring_doctor}</td>
                 <td>{test.created_at?.slice(0, 10)}</td>
-                <td>{test.medications.length > 0 ? test.medications :""}</td>
-
-
+                <td>{test.diagnosed_by}</td>
                 <td>
                   <Link to={`/visitresult/${test.id}`}>
                     <button className="btn btn-edit">View</button>

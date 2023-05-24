@@ -23,7 +23,7 @@ function SidebarRad() {
             <li className="sidebarradListItem">
               <a href="/radhome">
                 <BiotechIcon className="sidebarradIcon" />
-                Home
+                Home Rad-Center
               </a>
             </li>
             <li className="sidebarradListItem">

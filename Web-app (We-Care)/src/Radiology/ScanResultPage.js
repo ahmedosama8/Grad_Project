@@ -10,18 +10,11 @@ import axios from "axios";
 import "./scanresultpage.css";
 import SidebarRad from "../Sidebar/SidebarRad";
 import Topbar from "../Topbar/Topbar";
-const paperStyle = {
-  display: "flex",
-  justifyContent: "center",
-  padding: "8px",
-  marginBottom: "20px",
-  fontFamily: "Roboto",
-  fontSize: "32px",
-  fontWeight: "bold",
-};
 
 const ScanPaper = () => {
   const [singleReport, setSingleReport] = useState();
+  const [patient, setPatientData] = useState();
+
   const { id } = useParams();
   useEffect(() => {
     loadUser();
@@ -30,6 +23,13 @@ const ScanPaper = () => {
   const loadUser = async () => {
     const res = await axios.get(`http://localhost:8080/api/radiology/${id}`);
     setSingleReport(res.data);
+    const patientId = res.data.patient_id;
+
+    // Call the patient API using the extracted patient ID
+    const patientRes = await axios.get(
+      `http://localhost:8080/api/patient/${patientId}`
+    );
+    setPatientData(patientRes.data);
   };
   return (
     <Paper elevation={3} className="paper">
@@ -38,21 +38,48 @@ const ScanPaper = () => {
       </div>
       <div className="content">
         <div className="left-section">
-          <p><strong>ID:</strong> {id}</p>
-          <p><strong>Patient ID:</strong> {singleReport?.patient_id}</p>
-          <p><strong>Doctor ID:</strong> {singleReport?.doctor_id}</p>
-          <p><strong>Appointment ID:</strong> {singleReport?.appointment_id}</p>
+          <p>
+            <strong>Created At:</strong> {singleReport?.created_at.slice(0, 10)}{" "}
+            at {singleReport?.created_at.slice(11, 16)}
+          </p>
+
+          <p>
+            <strong>Patient ID:</strong> {singleReport?.patient_id}
+          </p>
+          <p>
+            <strong>Patient Name:</strong> {patient?.name}
+          </p>
+          <p>
+            <strong>Examination Type:</strong> {singleReport?.name}
+          </p>
+          <p>
+            <strong>Performer:</strong> {singleReport?.performer}
+          </p>
+          <p>
+            <strong>Examined Part:</strong> {singleReport?.examined_part}
+          </p>
         </div>
         <div className="right-section">
-          <p><strong>Name:</strong> {singleReport?.name}</p>
-          <p><strong>Performer:</strong> {singleReport?.performer}</p>
-          <p><strong>Report:</strong> {singleReport?.report}</p>
-          <p><strong>Examined Part:</strong> {singleReport?.examined_part}</p>
+          <p>
+            <div className="right-section">
+              <div className="clinic-logo">
+                <img
+                  className="logo_clinic"
+                  src="https://www.shutterstock.com/image-vector/nuclear-medicine-abstract-logo-sample-260nw-1657174591.jpg" // Replace with the actual image source
+                  alt="Clinic Logo"
+                />
+              </div>
+            </div>
+          </p>
         </div>
       </div>
       <div className="footer">
-        <p><strong>Created At:</strong> {singleReport?.created_at.slice(0, 10)}</p>
-        <p><strong>Updated At:</strong> {singleReport?.updated_at.slice(0, 10)}</p>
+        <p>
+          <strong>
+            Report: <br></br>
+          </strong>
+          <div dangerouslySetInnerHTML={{ __html: singleReport?.report }} />
+        </p>
       </div>
     </Paper>
   );

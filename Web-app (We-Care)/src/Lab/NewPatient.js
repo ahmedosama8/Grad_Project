@@ -5,9 +5,14 @@ import axios from "axios";
 import "./newpatient.css";
 import SidebarRad from "../Sidebar/SidebarRad";
 import SidebarClinic from "../Sidebar/SidebarClinic";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function NewPatient() {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    chronic: "No Chronic",
+    allergies: "No Allergies",
+  });
   const [firstNameError, setFirstNameError] = useState("");
   const [lastnameerror, setLastNameError] = useState("");
   const [passworderror, setPasswordError] = useState("");
@@ -107,6 +112,15 @@ export default function NewPatient() {
   //     setAlergiesError("");
   //   }
   // }
+  const notify = (message) => {
+    toast.error(message, {
+      position: toast.POSITION.BOTTOM_CENTER, // Change the position to top-right
+      autoClose: 5000, // Close the toast after 5 seconds
+      hideProgressBar: true, // Hide the progress bar
+      className: "custom-toast", // Apply custom CSS class for styling
+      bodyClassName: "custom-toast-body", // Apply custom CSS class for the toast body
+    });
+  };
   const handleBloodType = (event) => {
     const fieldName = event.target.name;
     setFormData({
@@ -178,7 +192,7 @@ export default function NewPatient() {
       nationaliderror !== "" ||
       !formData.name
     ) {
-      console.log("tex el dosh");
+      notify("Check All inputs Are filled With There Validation");
       return; // Don't submit if there are validation errors
     }
     axios
@@ -191,13 +205,13 @@ export default function NewPatient() {
           window.location.href = `/allpatientspage`;
         } else if (response.status === 201 && entity_type === "rad") {
           window.location.href = `/radpatientspage`;
-        }else if (response.status === 201 && entity_type === "clinic"){
+        } else if (response.status === 201 && entity_type === "clinic") {
           window.location.href = `/clinicpatients`;
         }
         // Do something with the response, e.g. show a success message
       })
       .catch((error) => {
-        console.error("Error posting data:", error);
+        toast("Error posting data:", error);
         // Handle the error, e.g. show an error message
       });
   };
@@ -361,6 +375,11 @@ export default function NewPatient() {
               onChange={handleNationalIDNumber}
               noValidate
             />
+            {nationaliderror && (
+              <p className="error" style={{ color: "red" }}>
+                {nationaliderror}
+              </p>
+            )}
           </div>
           <div className="col md-6 mb-3">
             <label htmlFor="gender">Blood Type</label>
@@ -436,6 +455,7 @@ export default function NewPatient() {
           </button>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 }

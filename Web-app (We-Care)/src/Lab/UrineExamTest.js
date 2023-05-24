@@ -3,9 +3,9 @@ import Topbar from "../Topbar/Topbar";
 import Sidebar from "../Sidebar/Sidebar";
 import "./CBCTest.css";
 import axios from "axios";
-import usePagination from "@mui/material/usePagination/usePagination";
 import { useLocation, useParams } from "react-router-dom";
 import { urinedata } from "../BackEndFunctions";
+import { calculateAge } from "../configure";
 
 export default function UrineExamTest() {
   const { id } = useParams();
@@ -39,6 +39,7 @@ export default function UrineExamTest() {
       [fieldName]: event.target.value,
     });
   };
+  const age = calculateAge(location.state?.age);
   return (
     <div>
       <Topbar />
@@ -56,7 +57,7 @@ export default function UrineExamTest() {
             </div>
             <div className="col-md-4">
               <label htmlFor="lastName">ِAge</label>
-              <p className="patientdata">{location.state?.age} </p>
+              <p className="patientdata">{age} </p>
             </div>
             <div className="col md-4">
               <label htmlFor="email">Patient's ID</label>
@@ -64,24 +65,19 @@ export default function UrineExamTest() {
             </div>
           </div>
           <div>
-            <div className="row mb-4">
-              <div className="col-md-6">
-                <label>Examination Date</label>
-                <input
-                  className="form-control boxentry"
-                  type="date"
-                  noValidate
-                />
-              </div>
-              <div className="col-md-6">
-                <label>Doctor Name</label>
-                <input
-                  className="form-control boxentry"
-                  type="text"
-                  noValidate
-                />
-              </div>
+          <div className="row mb-4">
+            <div className="col-md-6">
+              <label>Referring Doctor</label>
+              <input
+                className="form-control"
+                type="text"
+                name="referring_doctor"
+                value={formData.referring_doctor}
+                onChange={handleChange}
+                noValidate
+              />
             </div>
+          </div>
           </div>
           <h3 className="mb-4">Urine Test</h3>
 
@@ -108,27 +104,16 @@ export default function UrineExamTest() {
               <label className="col md-3">{item.unit}</label>
               <label className="col md-3 mb-4">{item.range}</label>
               {item.name === "Specific Gravity" && (
-                <h4 className="mb-4">Dipstick Chemical Estimition</h4>
+                <h4 className="mb-4 mt-4">Dipstick Chemical Estimition</h4>
               )}
               {item.name === "Nitrite" && (
-                <h4 className="mb-4">Microscopic Examination</h4>
+                <h4 className="mb-4 mt-4">Microscopic Examination</h4>
               )}
             </div>
           ))}
-          {/* <div>
-            <label htmlFor="comments">Comments</label>
-            <textarea
-              className="commentbtn"
-              id="comments"
-              name="comments"
-              value={formData.comments || ""}
-              onChange={handleChange}
-              placeholder="Write Comments.."
-            ></textarea>
-          </div> */}
 
-          <div className="mb-5">
-            <button type="submit">Submit</button>
+          <div className="mb-9">
+            <button type="submit" className="submitform">Submit</button>
           </div>
         </form>
       </div>

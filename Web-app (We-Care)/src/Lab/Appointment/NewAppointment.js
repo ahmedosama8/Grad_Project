@@ -71,26 +71,34 @@ export default function NewAppointment() {
     });
   };
 
+  const [selectedTests, setSelectedTests] = useState([]);
+
+  const HandleLabTest = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      setSelectedTests((prevSelectedTests) => [...prevSelectedTests, value]);
+    } else {
+      setSelectedTests((prevSelectedTests) =>
+        prevSelectedTests.filter((test) => test !== value)
+      );
+    }
+  };
+  let requestBody = {};
+
+  if (entity_type === "lab") {
+    requestBody = {
+      appointment_type: selectedTests,
+    };
+  }
+
+  console.log("Selected Tests", selectedTests);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // if (
-    //   firstNameError !== "" ||
-    //   lastnameerror !== "" ||
-    //   phoneNumberError !== "" ||
-    //   Emergency_phoneNumberError !== "" ||
-    //   emailError !== "" ||
-    //   nationaliderror !== "" ||
-    //   !formData.name
-    // ) {
-    //   console.log("tex el dosh");
-    //   return; // Don't submit if there are validation errors
-    // }
     axios
-      .post(
-        `http://localhost:8080/api/appointment/${patientID}/${entity_id}`,
-        formData
-      ) 
+      .post(`http://localhost:8080/api/appointment/${patientID}/${entity_id}`, {
+        ...formData,
+        ...requestBody,
+      })
       .then((response) => {
         console.log("Data posted:", response.data);
         console.log("response", response);
@@ -132,7 +140,6 @@ export default function NewAppointment() {
       {entity_type === "rad" && <SidebarRad />}
       {entity_type === "clinic" && <SidebarClinic />}
 
-
       <form
         onSubmit={handleSubmit}
         className="App container"
@@ -158,21 +165,65 @@ export default function NewAppointment() {
           <div className="col md-6 mb-3">
             {entity_type === "lab" && (
               <>
-                <label>Test Type</label>
-                <select
-                  className="form-control"
-                  name="appointment_type"
-                  value={formData.appointment_type}
-                  onChange={handleTest}
-                  noValidate
-                >
-                  <option value="">Select Test</option>
-                  <option value="CBC">CBC</option>
-                  <option value="Liver Test">Liver Function Test</option>
-                  <option value="Lipid Profile">Lipid Profile</option>
-                  <option value="Urine Test">Urine Test</option>
-                  <option value="Glucose Test">Glucose Test</option>
-                </select>
+                <div>
+                  <label>Test Type</label>
+                  <div className="form-control" noValidate>
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="appointment_type"
+                        value="CBC"
+                        checked={selectedTests.includes("CBC")}
+                        onChange={HandleLabTest}
+                      />
+                      CBC
+                    </label>
+                    <br />
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="appointment_type"
+                        value="Liver Test"
+                        checked={selectedTests.includes("Liver Test")}
+                        onChange={HandleLabTest}
+                      />
+                      Liver Function Test
+                    </label>
+                    <br />
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="appointment_type"
+                        value="Lipid Profile"
+                        checked={selectedTests.includes("Lipid Profile")}
+                        onChange={HandleLabTest}
+                      />
+                      Lipid Profile
+                    </label>
+                    <br />
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="appointment_type"
+                        value="Urine Test"
+                        checked={selectedTests.includes("Urine Test")}
+                        onChange={HandleLabTest}
+                      />
+                      Urine Test
+                    </label>
+                    <br />
+                    <label>
+                      <input
+                        type="checkbox"
+                        name="appointment_type"
+                        value="Glucose Test"
+                        checked={selectedTests.includes("Glucose Test")}
+                        onChange={HandleLabTest}
+                      />
+                      Glucose Test
+                    </label>
+                  </div>
+                </div>
               </>
             )}
             {entity_type === "clinic" && (
@@ -186,8 +237,17 @@ export default function NewAppointment() {
                   noValidate
                 >
                   <option value="">Select Visit Type</option>
-                  <option value="Follow-up">Follow-up</option>
-                  <option value="Initial Visit">Initial Visit</option>
+                  <option value="General Check-up">General Check-up</option>
+                  <option value="Specialist Consultation">
+                    Specialist Consultation
+                  </option>
+                  <option value="Follow-up Appointment">
+                    Follow-up Appointment
+                  </option>
+                  <option value="Surgical Procedure">Surgical Procedure</option>
+                  <option value="Physical Therapy Appointment">
+                    Physical Therapy Appointment
+                  </option>
                 </select>
               </>
             )}

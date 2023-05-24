@@ -10,6 +10,7 @@ import axios from "axios";
 import Topbar from "../../Topbar/Topbar";
 import Sidebar from "../../Sidebar/Sidebar";
 import "./cbctestresult.css";
+import { calculateAge } from "../../configure";
 const paperStyle = {
   display: "flex",
   justifyContent: "center",
@@ -22,6 +23,8 @@ const paperStyle = {
 
 const GlucoseTestPaper = () => {
   const [singletest, setSingleTest] = useState();
+  const [patient, setPatientData] = useState();
+
   const { id } = useParams();
   useEffect(() => {
     loadUser();
@@ -30,7 +33,16 @@ const GlucoseTestPaper = () => {
   const loadUser = async () => {
     const res = await axios.get(`http://localhost:8080/api/glucose/${id}`);
     setSingleTest(res.data);
+    const patientId = res.data.patient_id;
+
+    // Call the patient API using the extracted patient ID
+    const patientRes = await axios.get(
+      `http://localhost:8080/api/patient/${patientId}`
+    );
+    setPatientData(patientRes.data);
   };
+
+  const patientAge = calculateAge(patient?.birth_date);
   return (
     <Paper className="paperstyle" sx={{ p: 2 }}>
       <Typography variant="h2" sx={paperStyle}>
@@ -39,6 +51,26 @@ const GlucoseTestPaper = () => {
       <Grid container spacing={3}>
         <Grid className="gridtest" item xs={12}>
           <div>
+            <div className="left-section">
+              <p>
+                <strong>Patient ID:</strong> {patient?.id}
+              </p>
+              <p>
+                <strong>Patient Name:</strong> {patient?.name}
+              </p>
+              <p>
+                <strong>Age / Sex:</strong> {patientAge} Y / {patient?.gender}
+              </p>
+              <p>
+                <strong>Examination Date:</strong>
+                {singletest?.created_at.slice(0, 10)}
+              </p>
+              <p>
+                <strong>Referring Doctor:</strong>
+                {singletest?.referring_doctor}
+              </p>
+              {/* <p><strong>Appointment ID:</strong> {singleReport?.appointment_id}</p> */}
+            </div>
             <div className="row mb-4 testitem">
               <div className="col-md-3">
                 <h5>Test</h5>
@@ -53,34 +85,60 @@ const GlucoseTestPaper = () => {
                 <h5>Range</h5>
               </div>
             </div>
-            <div className="row mb-4 testitem">
+            <div
+              className={`row mb-4 testitem ${
+                singletest?.fpg < 60 || singletest?.fpg > 110 ? "text-red" : ""
+              }`}
+            >
               <div className="col-md-3">
-                <label>R B G</label>
+                <label>Fasting Plasma Glucose (FPG)</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.rbc}</label>
+                <label>{singletest?.fpg}</label>
               </div>
               <div className="col-md-3">
                 <label className="col md-3">mg/dL</label>
               </div>
 
               <div className="col-md-3">
-                <label className="col md-3"> -- </label>
+                <label className="col md-3"> 60-110 </label>
               </div>
             </div>
-            <div className="row mb-4 testitem">
+            <div
+              className={`row mb-4 testitem ${
+                singletest?.rbg < 60 || singletest?.rbg > 160 ? "text-red" : ""
+              }`}
+            >
               <div className="col-md-3">
-                <label>R B S</label>
+                <label>Random Blood Glucose (RBG)</label>
               </div>
               <div className="col-md-3">
-                <label>{singletest?.rbs}</label>
+                <label>{singletest?.rbg}</label>
               </div>
               <div className="col-md-3">
                 <label className="col md-3">mg/dL</label>
               </div>
-
               <div className="col-md-3">
-                <label className="col md-3"> -- </label>
+                <label className="col md-3">60-160</label>
+              </div>
+            </div>
+            <div
+              className={`row mb-4 testitem ${
+                singletest?.ppg > 140 ? "text-red" : ""
+              }`}
+            >
+              
+              <div className="col-md-3">
+                <label>Postprandial Glucose (PPG)</label>
+              </div>
+              <div className="col-md-3">
+                <label>{singletest?.ppg}</label>
+              </div>
+              <div className="col-md-3">
+                <label className="col md-3">mg/dL</label>
+              </div>
+              <div className="col-md-3">
+                <label className="col md-3">&gt;140</label>
               </div>
             </div>
 

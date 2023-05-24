@@ -1,5 +1,7 @@
-.cholestrolbox{
-    height: 35px;
-    width: 2rem;
-    
+.cholestrolbox {
+  height: 35px;
+  width: 2rem;
+}
+.display-linebreak {
+  white-space: pre-line;
 }

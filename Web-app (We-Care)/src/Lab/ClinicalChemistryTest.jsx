@@ -4,28 +4,9 @@ import Sidebar from "../Sidebar/Sidebar";
 import "./clinicalchemistry.css";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
+import { calculateAge } from "../configure";
 
 const lipidData = [
-  {
-    name: "ALT (SGPT), serum",
-    Attribute: "alt",
-    unit: "U/L",
-    range: "10-65",
-  },
-  {
-    name: "AST (SGOT), serum",
-    Attribute: "ast",
-
-    unit: "U/L",
-    range: "0-48",
-  },
-  {
-    name: "Albumin, serum",
-    Attribute: "albumin",
-
-    unit: "g/dL",
-    range: "3.5-5.2",
-  },
   {
     name: "Cholestrol Total, serum",
     Attribute: "cholesterol",
@@ -46,26 +27,86 @@ const lipidData = [
 
     unit: "mg/dL",
     range:
-      "Desirable: < 100 mg/dL\nAbove Desirable: 100-129 mg/dl\nBorderline High: 130-159 mg/dL\nHigh: 160-189 mg/dL\nVery High: >= 190 mg/dL",
+      "Desirable: < 100 mg/dL\nAbove Desirable:100-129 mg/dl\nBorderline High:130-159 mg/dL\nHigh: 160-189 mg/dL\nVery High: >= 190 mg/dL",
   },
   {
     name: "Triglycerides, serum",
     Attribute: "triglycerides",
-
     unit: "mg/dL",
     range:
       "< 150 Desirable\n150-199 Border High Line\n200-499 High\n>= 500 Very High",
+  },
+  {
+    name: "VLDL cholestrol",
+    Attribute: "vldl_cholestrol",
+    unit: "mg/dL",
+    range: "Up to: 32",
+  },
+  {
+    name: "Total Lipids",
+    Attribute: "total_lipids",
+    unit: "mg/dL",
+    range: "Up to: 750",
+  },
+  {
+    name: "Risk Ratio I",
+    Attribute: "risk_ratio_1",
+    unit: "",
+    range: "Up to: 5.5",
+  },
+  {
+    name: "Oxdized LDL",
+    Attribute: "oxidized_ldl",
+    unit: "U/L",
+    range: "26-117",
+  },
+  {
+    name: "Risk Ratio II",
+    Attribute: "risk_ratio_2",
+    unit: "",
+    range: "1/2 Average: <3.9 \n Average: <5.0 \n 2 Average: <9.6 \n 3 Averaege: <23.4",
+  },
+  {
+    name: "H-CRP",
+    Attribute: "h_crp",
+    unit: "mg/L",
+    range: "0 - 3 ",
+  },
+  {
+    name: "Ratio",
+    Attribute: "ratio",
+    unit: "",
+    range: "Non CAD  0.2\nStable Angina  >1.7\nUnstable Angina  >4.3\nMyocardial infarction  >7.5",
+  },
+  {
+    name: "Lipoprotein",
+    Attribute: "lipo_protein",
+    unit: "mg/dL",
+    range: "Desirable <20\nBorderline risk 20-30\nHigh risk 31-50\nVery high risk >50",
+  },
+  {
+    name: "APOA",
+    Attribute: "apoa",
+    unit: "g/L",
+    range: "1.08-2.25",
+  },
+  {
+    name: "APOB",
+    Attribute: "apob",
+    unit: "g/L",
+    range: "0.5-1.3",
   },
 ];
 
 export default function ClinicalChemistryTest() {
   const { id } = useParams();
   const location = useLocation();
+  const entity_id=sessionStorage.getItem("User_id");
 
 
   const [formData, setFormData] = useState({
     patient_id: id,
-    entity_id: "2",
+    entity_id: entity_id,
   });
 
   const handleSubmit = (event) => {
@@ -93,8 +134,17 @@ export default function ClinicalChemistryTest() {
       [fieldName]: event.target.value,
     });
   };
+  const handleInput = (event) => {
+    const fieldName = event.target.name;
+    setFormData({
+      ...formData,
+      [fieldName]: event.target.value,
+    });
+  };
 
   console.log(formData);
+  const age = calculateAge(location.state?.age);
+
   return (
     <div>
       <Topbar />
@@ -112,31 +162,24 @@ export default function ClinicalChemistryTest() {
             </div>
             <div className="col-md-4">
               <label htmlFor="lastName">Age</label>
-              <p className="patientdata">{location.state?.age} </p>
+              <p className="patientdata">{age} </p>
             </div>
             <div className="col md-4">
               <label htmlFor="email">Patient's ID</label>
               <p className="patientdata">{id}</p>
             </div>
           </div>
-          <div>
-            <div className="row mb-5">
-              <div className="col-md-6">
-                <label>Examination Date</label>
-                <input
-                  className="form-control boxentry"
-                  type="date"
-                  noValidate
-                />
-              </div>
-              <div className="col-md-6">
-                <label>Doctor Name</label>
-                <input
-                  className="form-control boxentry"
-                  type="text"
-                  noValidate
-                />
-              </div>
+          <div className="row mb-4">
+            <div className="col-md-6">
+              <label>Referring Doctor</label>
+              <input
+                className="form-control"
+                type="text"
+                name="referring_doctor"
+                // value={formData.referring_doctor}
+                onChange={handleInput}
+                noValidate
+              />
             </div>
           </div>
 
@@ -160,7 +203,7 @@ export default function ClinicalChemistryTest() {
                 onChange={handleChange}
               />
               <label className="col md-3">{item.unit}</label>
-              <label className="col md-3">{item.range}</label>
+              <label className="col md-3 display-linebreak">{item.range}</label>
               {item.name === "T.L.C" && <h4>Differential Count</h4>}
             </div>
           ))}
@@ -176,8 +219,10 @@ export default function ClinicalChemistryTest() {
             ></textarea>
           </div>
 
-          <div className="mb-5">
-            <button type="submit">Submit</button>
+          <div className="mb-9">
+            <button type="submit" className="submitform">
+              Submit
+            </button>
           </div>
         </form>
       </div>

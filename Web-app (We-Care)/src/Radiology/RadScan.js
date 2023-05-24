@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import SidebarRad from "../Sidebar/SidebarRad";
 import Topbar from "../Topbar/Topbar";
-import "./radscan.css";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
+import ReactQuill from "react-quill";
+import { calculateAge } from "../configure";
 
 export default function RadScan() {
   const { id } = useParams();
@@ -13,6 +14,7 @@ export default function RadScan() {
     patient_id: id,
     entity_id: "3",
   });
+  const [content,setContent]=useState()
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,6 +42,41 @@ export default function RadScan() {
       [fieldName]: event.target.value,
     });
   };
+  function handleBox(value) {
+    setContent(value);
+    setFormData({
+      ...formData,
+      report: value,
+    });
+  }
+
+  const modules = {
+    toolbar: [
+      ["bold", "italic", "underline", "strike"],
+      [{ header: 1 }, { header: 2 }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ align: [] }],
+      ["link", "image", "video"],
+      ["clean"],
+    ],
+  };
+  const formats = [
+    "header",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+    "video",
+    "align",
+  ];
+  const age = calculateAge(location.state?.age)
 
   return (
     <div>
@@ -58,7 +95,7 @@ export default function RadScan() {
             </div>
             <div className="col-md-4">
               <label htmlFor="lastName">Age</label>
-              <p className="patientdata">{location.state?.age} </p>
+              <p className="patientdata">{age} </p>
             </div>
             <div className="col md-4">
               <label htmlFor="email">Patient's ID</label>
@@ -119,17 +156,24 @@ export default function RadScan() {
           </div>
           <div>
             <label for="comments">Findings</label>
-            <textarea
+            {/* <textarea
               className="findingbox"
               name="report"
               value={formData.report || ""}
               onChange={handleChange}
               placeholder="Write The Report.."
-            ></textarea>
+            ></textarea> */}
+            <ReactQuill
+              value={content}
+              onChange={handleBox}
+              modules={modules}
+              formats={formats}
+              placeholder="Type something..."
+            />
           </div>
 
-          <div className="mb-5">
-            <button type="submit">Submit</button>
+          <div style={{paddingTop:"20px"}} >
+            <button type="submit" className="submitform">Submit</button>
           </div>
         </form>
       </div>

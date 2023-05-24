@@ -77,7 +77,7 @@ const columns = [
     renderCell: (params) => (
       <ResultsMenu
         namePatient={params.row.name}
-        agePatient={params.row.age}
+        agePatient={params.row.birth_date}
         patientId={params.row.id}
         row={params.row}
       />

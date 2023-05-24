@@ -15,8 +15,9 @@ class glucose extends Model
         'entity_id',
         'appointment_id',
         'referring_doctor',
-        'rbc',
-        'rbs',
+        'fpg',
+        'rbg',
+        'ppg',
         'comments'
     ];
 

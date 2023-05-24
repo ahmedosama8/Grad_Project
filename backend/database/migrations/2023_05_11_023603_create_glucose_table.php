@@ -17,8 +17,9 @@ return new class extends Migration
             $table->foreignId('entity_id');
             $table->foreignId('appointment_id');
             $table->string('referring_doctor')->nullable();
-            $table->string('rbc');
-            $table->string('rbs');
+            $table->string('fpg');
+            $table->string('ppg');
+            $table->string('rbg');
             $table->longText('comments')->nullable();
             $table->timestamps();
         });

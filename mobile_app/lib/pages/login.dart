@@ -80,7 +80,7 @@ class _LoginState extends State<Login> {
     if (responseBody.isNotEmpty) {
       try {
         final responseData = json.decode(responseBody);
-        final errorMessage = responseData['error'] ?? 'Something went wrong!';
+        final errorMessage = responseData['error'] ?? 'User not found';
         showDialog(
           context: context,
           builder: (_) => AlertDialog(
@@ -142,7 +142,7 @@ class _LoginState extends State<Login> {
 
                   // subtitle
                   Text(
-                    'Welocme back! Nice to see you again',
+                    'Welcome back! Nice to see you again',
                     style: GoogleFonts.robotoCondensed(
                       fontSize: 18,
                     ),

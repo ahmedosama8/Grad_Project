@@ -127,8 +127,8 @@ class _AppointmentDetailsPageState extends State<AppointmentDetailsPage> {
                             SizedBox(height: 8.0),
                             Table(
                               columnWidths: {
-                                0: FlexColumnWidth(2),
-                                1: FlexColumnWidth(3),
+                                0: FlexColumnWidth(14),
+                                1: FlexColumnWidth(7),
                               },
                               // border: TableBorder(
                               //   horizontalInside: BorderSide(

@@ -130,7 +130,7 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
           try {
             final responseData = json.decode(responseBody);
             final errorMessage =
-                responseData['error'] ?? 'Something went wrong!';
+                responseData['error'] ?? 'Username or Email exists';
             showDialog(
               context: context,
               builder: (_) => AlertDialog(
@@ -327,7 +327,6 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                             return null;
                           },
                           controller: addressController,
-                          keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Address',
@@ -339,7 +338,6 @@ class _EmergencyInfoPage extends State<EmergencyInfoPage> {
                   SizedBox(
                     height: 10,
                   ),
-
                   //Blood type text field
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25),

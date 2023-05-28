@@ -8,7 +8,7 @@ import Topbar from "../../Topbar/Topbar";
 import Sidebar from "../../Sidebar/Sidebar";
 import SidebarRad from "../../Sidebar/SidebarRad";
 import SidebarClinic from "../../Sidebar/SidebarClinic";
-
+import configure from "../../configure";
 const columns = [
   {
     field: "patient_id",
@@ -56,7 +56,7 @@ export default function ApointmentsTable() {
   useEffect(() => {
     async function fetchRows() {
       const response = await fetch(
-        `http://localhost:8080/api/entity/${id}/appointments`
+        `${configure.backURL}entity/${id}/appointments`
       );
       const data = await response.json();
       setRows(data);

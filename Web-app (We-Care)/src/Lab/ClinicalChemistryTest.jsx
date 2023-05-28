@@ -5,7 +5,7 @@ import "./clinicalchemistry.css";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import { calculateAge } from "../configure";
-
+import configure from "../configure";
 const lipidData = [
   {
     name: "Cholestrol Total, serum",
@@ -112,7 +112,7 @@ export default function ClinicalChemistryTest() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`http://localhost:8080/api/lipid/new`, formData)
+      .post(`${configure.backURL}lipid/new`, formData)
       .then((response) => {
         console.log("Data posted:", response.data);
         if (response.status === 201) {

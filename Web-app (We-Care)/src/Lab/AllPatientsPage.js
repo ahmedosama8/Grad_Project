@@ -5,6 +5,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Menu, MenuItem } from "@mui/material";
+import configure from "../configure";
 import "./allpatientspage.css";
 
 const columns = [
@@ -164,7 +165,7 @@ export default function AllPatientsPage() {
   useEffect(() => {
     async function fetchRows() {
       const response = await fetch(
-        `http://localhost:8080/api/entity/${entity_id}/patients/list`
+        `${configure.backURL}entity/${entity_id}/patients/list`
       );
       const data = await response.json();
       setRows(data);

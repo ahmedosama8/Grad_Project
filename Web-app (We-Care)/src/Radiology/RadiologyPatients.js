@@ -8,6 +8,7 @@ import { Menu, MenuItem } from "@mui/material";
 import "./radiologypatients.css";
 import { GetUsersMock } from "../BackEndFunctions";
 import SidebarRad from "../Sidebar/SidebarRad";
+import configure from "../configure";
 
 const columns = [
   {
@@ -114,7 +115,7 @@ export default function RadiologyPatients() {
   useEffect(() => {
     async function fetchRows() {
       const response = await fetch(
-        `http://localhost:8080/api/entity/${entity_id}/patients/list`
+        `${configure.backURL}entity/${entity_id}/patients/list`
       );
       const data = await response.json();
       setRows(data);

@@ -1,9 +1,7 @@
 .styled-table {
-  border-collapse: collapse;
   margin: auto;
   font-size: 0.9rem;
   font-family: sans-serif;
-  max-width: 800rem;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 .styled-table thead tr {
@@ -37,4 +35,13 @@
 
 .btn-edit {
   background-color: #327f87;
+}
+.header-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-column span {
+  margin-bottom: 5px;
 }

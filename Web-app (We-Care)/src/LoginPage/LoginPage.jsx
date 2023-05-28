@@ -11,7 +11,7 @@ import {
   MDBBtnGroup,
 } from "mdb-react-ui-kit";
 import { useNavigate, Link } from "react-router-dom";
-
+import configure from "../configure";
 import { backEndLogIn } from "../BackEndFunctions";
 
 function LoginPage() {
@@ -53,7 +53,7 @@ function LoginPage() {
       return;
     }
     try {
-      const response = await fetch("http://localhost:8080/api/entity/login", {
+      const response = await fetch(`${configure.backURL}entity/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

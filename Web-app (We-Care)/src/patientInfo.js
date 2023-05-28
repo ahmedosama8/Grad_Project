@@ -37,8 +37,6 @@ export default  function PatientInfo() {
       }, []);
     const loadData_patient = async () => {
         const res = await axios.get(`${configure.backURL}patient/${id}`);
-       //const res = await axios.get(`http://localhost:3001/medicalLabTests/${id}`);
- 
        setInfo(res.data);
         console.log(res.data);
       };

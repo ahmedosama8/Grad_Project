@@ -5,6 +5,7 @@ import "./CBCTest.css";
 import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import { calculateAge, notify } from "../configure";
+import configure from "../configure";
 
 // function MouseOver(event) {
 //   event.target.style.background = "red";
@@ -43,7 +44,7 @@ function GlucoseTest() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:8080/api/glucose/new", formData)
+      .post(`${configure.backURL}glucose/new`, formData)
       .then((response) => {
         console.log("Data posted:", response.data);
         console.log("response", response);

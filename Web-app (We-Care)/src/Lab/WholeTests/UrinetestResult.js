@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
-
+import configure from "../../configure";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
@@ -30,17 +30,17 @@ const UrineTestPaper = () => {
   }, []);
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:8080/api/urine/${id}`);
+    const res = await axios.get(`${configure.backURL}urine/${id}`);
     setSingleTest(res.data);
     const patientId = res.data.patient_id;
 
     // Call the patient API using the extracted patient ID
     const patientRes = await axios.get(
-      `http://localhost:8080/api/patient/${patientId}`
+      `${configure.backURL}patient/${patientId}`
     );
     setPatientData(patientRes.data);
   };
-  const patientAge=calculateAge(patient?.birth_date)
+  const patientAge=calculateAge(patient?.birth_date);
   return (
     <Paper className="paperstyle" sx={{ p: 2 }}>
       <Typography variant="h2" sx={paperStyle}>

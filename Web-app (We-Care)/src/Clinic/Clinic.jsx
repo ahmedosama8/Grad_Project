@@ -14,6 +14,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import Topbar from "../Topbar/Topbar";
 import SidebarClinic from "../Sidebar/SidebarClinic";
 import "./Clinic.css"
+
 function Clinic() {
   return (
     <div>

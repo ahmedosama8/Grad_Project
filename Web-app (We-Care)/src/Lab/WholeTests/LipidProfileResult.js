@@ -2,9 +2,8 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
-
+import configure from "../../configure";
 import { useParams } from "react-router-dom";
-
 import axios from "axios";
 import Topbar from "../../Topbar/Topbar";
 import Sidebar from "../../Sidebar/Sidebar";
@@ -30,19 +29,19 @@ const LipidProfileResultPaper = () => {
   }, []);
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:8080/api/lipid/${id}`);
+    const res = await axios.get(`${configure.backURL}lipid/${id}`);
     setSingleTest(res.data);
     console.log("Lipid data", res);
     const patientId = res.data.patient_id;
 
     // Call the patient API using the extracted patient ID
     const patientRes = await axios.get(
-      `http://localhost:8080/api/patient/${patientId}`
+      `${configure.backURL}patient/${patientId}`
     );
     setPatientData(patientRes.data);
   };
-  
-  const patientAge=calculateAge(patient?.birth_date);
+
+  const patientAge = calculateAge(patient?.birth_date);
   return (
     <Paper className="paperstyle" sx={{ p: 2 }}>
       <Typography variant="h2" sx={paperStyle}>
@@ -59,7 +58,7 @@ const LipidProfileResultPaper = () => {
                 <strong>Patient Name:</strong> {patient?.name}
               </p>
               <p>
-                <strong>Age / Sex:</strong> {patientAge} Y / {patient?.gender} 
+                <strong>Age / Sex:</strong> {patientAge} Y / {patient?.gender}
               </p>
               <p>
                 <strong>Examination Date:</strong>{" "}
@@ -372,7 +371,7 @@ const LipidProfileResultPaper = () => {
             </div>
             <div
               className={`row mb-4 testitem ${
-                singletest?.apoa > 1.08 || singletest?.apoa < 2.25
+                singletest?.apoa < 1.08 || singletest?.apoa > 2.25
                   ? "text-red"
                   : ""
               }`}
@@ -392,7 +391,7 @@ const LipidProfileResultPaper = () => {
             </div>
             <div
               className={`row mb-4 testitem ${
-                singletest?.apob > 0.5 || singletest?.apob < 1.3
+                singletest?.apob < 0.5 || singletest?.apob > 1.3
                   ? "text-red"
                   : ""
               }`}

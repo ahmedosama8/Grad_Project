@@ -3,7 +3,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
+import configure, { calculateAge } from "../configure";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
@@ -21,16 +21,18 @@ const ScanPaper = () => {
   }, []);
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:8080/api/radiology/${id}`);
+    const res = await axios.get(`${configure.backURL}radiology/${id}`);
     setSingleReport(res.data);
     const patientId = res.data.patient_id;
 
     // Call the patient API using the extracted patient ID
     const patientRes = await axios.get(
-      `http://localhost:8080/api/patient/${patientId}`
+      `${configure.backURL}patient/${patientId}`
     );
     setPatientData(patientRes.data);
   };
+  const patientAge=calculateAge (patient?.birth_date);
+
   return (
     <Paper elevation={3} className="paper">
       <div className="header">
@@ -42,7 +44,6 @@ const ScanPaper = () => {
             <strong>Created At:</strong> {singleReport?.created_at.slice(0, 10)}{" "}
             at {singleReport?.created_at.slice(11, 16)}
           </p>
-
           <p>
             <strong>Patient ID:</strong> {singleReport?.patient_id}
           </p>
@@ -50,13 +51,16 @@ const ScanPaper = () => {
             <strong>Patient Name:</strong> {patient?.name}
           </p>
           <p>
+            <strong>Age / Sex:</strong> {patientAge} Y / {patient?.gender}
+          </p>
+          <p>
             <strong>Examination Type:</strong> {singleReport?.name}
           </p>
           <p>
-            <strong>Performer:</strong> {singleReport?.performer}
+            <strong>Examined Part:</strong> {singleReport?.examined_part}
           </p>
           <p>
-            <strong>Examined Part:</strong> {singleReport?.examined_part}
+            <strong>Performer:</strong> {singleReport?.performer}
           </p>
         </div>
         <div className="right-section">

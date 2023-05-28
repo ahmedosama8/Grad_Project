@@ -6,7 +6,7 @@ import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import { urinedata } from "../BackEndFunctions";
 import { calculateAge } from "../configure";
-
+import configure from "../configure";
 export default function UrineExamTest() {
   const { id } = useParams();
   const location = useLocation();
@@ -19,7 +19,7 @@ export default function UrineExamTest() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:8080/api/urine/new", formData)
+      .post(`${configure.backURL}urine/new`, formData)
       .then((response) => {
         console.log("Data posted:", response.data);
         window.location.href = `/allpatientspage/patientresultpage/${id}`;

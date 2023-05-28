@@ -5,65 +5,9 @@ import Topbar from "../Topbar/Topbar";
 import { Link, useParams } from "react-router-dom";
 import { Button } from "@mui/material";
 import axios from "axios";
+import configure from "../configure";
 
 import "./patientresultpage.css";
-
-// function RadiologyScans() {
-//   const [rows, setRows] = useState([]);
-
-//   const columns = [
-//     { field: "testType", headerName: "Test Type", width: 150 },
-//     { field: "date", headerName: "Date", width: 120 },
-//     { field: "referringDoctor", headerName: "Referring Doctor", width: 150 },
-//     { field: "branch", headerName: "Branch", width: 150 },
-//     { field: "testID", headerName: "Test ID", width: 150 },
-//     { field: "result", headerName: "Result", width: 300 },
-//     {
-//       headerName: "Whole Test",
-//       width: 140,
-//       renderCell: (params) => (
-//         <Link to={`/selected-row/${params.row.id}`}>
-//           <Button
-//             variant="outlined"
-//             size="small"
-//             color="secondary"
-//             style={{ color: "#00000098" }}
-//           >
-//             View
-//           </Button>
-//         </Link>
-//       ),
-//     },
-//   ];
-
-//   useEffect(() => {
-//     async function fetchRows() {
-//       const response = await fetch("http://localhost:3001/medicalLabTests");
-//       const data = await response.json();
-//       setRows(data);
-//     }
-//     fetchRows();
-//   }, []);
-
-//   return (
-//     <div>
-//       <Topbar />
-//       <Sidebar />
-//       <div style={{ height: 600, width: "100%" }}>
-//         <DataGrid
-//           style={{ position: "relative", top: "20px" }}
-//           rows={rows}
-//           columns={columns}
-//           pageSize={5}
-//           rowsPerPageOptions={[5, 10, 20]}
-//         />
-//       </div>
-//     </div>
-//   );
-// }
-// import React, { useState } from "react";
-// import Topbar from "../Topbar/Topbar";
-// import Sidebar from "../Sidebar/Sidebar";
 
 function TestResultsTable({}) {
   const [cbctests, setcbcTests] = useState([]);
@@ -71,12 +15,24 @@ function TestResultsTable({}) {
   const [lipidtests, setLipidTests] = useState([]);
   const [urinetests, setUrineTests] = useState([]);
   const [glucosetests, setGlucoseTests] = useState([]);
-  const { id } = useParams();
+  const [searchDate, setSearchDate] = useState("");
+  const [searchtesttype, setSearchTestType] = useState("");
+  const [searchdoctor, setSearchDoctor] = useState("");
+  const testTypes = [
+    { id: 1, name: "CBC Test" },
+    { id: 2, name: "Lipid Profile Test" },
+    { id: 3, name: "Liver Function Test" },
+    { id: 4, name: "Urine Test" },
+    { id: 5, name: "Glucose Test" },
+  ];
 
+  const [selectedTestType, setSelectedTestType] = useState("");
+
+  const { id } = useParams();
 
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/api/cbc/patient/${id}`);
+      const response = await fetch(`${configure.backURL}cbc/patient/${id}`);
       const data = await response.json();
       setcbcTests(data);
     }
@@ -84,7 +40,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/api/liver/patient/${id}`);
+      const response = await fetch(`${configure.backURL}liver/patient/${id}`);
       const data = await response.json();
       setLiverTests(data);
     }
@@ -92,7 +48,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/api/urine/patient/${id}`);
+      const response = await fetch(`${configure.backURL}urine/patient/${id}`);
       const data = await response.json();
       setUrineTests(data);
     }
@@ -100,7 +56,7 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/api/glucose/patient/${id}`);
+      const response = await fetch(`${configure.backURL}glucose/patient/${id}`);
       const data = await response.json();
       setGlucoseTests(data);
     }
@@ -108,21 +64,12 @@ function TestResultsTable({}) {
   }, []);
   useEffect(() => {
     async function fetchRows() {
-      const response = await fetch(`http://localhost:8080/api/lipid/patient/${id}`);
+      const response = await fetch(`${configure.backURL}lipid/patient/${id}`);
       const data = await response.json();
       setLipidTests(data);
     }
     fetchRows();
   }, []);
-  // const loadUser = async () => {
-  //   const res = await axios.get(`http://localhost:8080/CBC/patient/1`);
-  //   setCBCBackend(res.data);
-  //   console.log("CBC Backend", res.data);
-  // };
-
-  // useEffect(() => {
-  //   loadUser();
-  // }, []);
 
   return (
     <div>
@@ -135,99 +82,179 @@ function TestResultsTable({}) {
         <table className="styled-table">
           <thead>
             <tr>
-              <th style={{ textAlign: "center" }}>Test Type</th>
-              <th style={{ textAlign: "center" }}>Lab Name</th>
-              <th style={{ textAlign: "center" }}>Examination Date</th>
-              <th style={{ textAlign: "center" }}>Referring Doctor</th>
-
+              <th style={{ textAlign: "center" }}>
+                <div className="header-column">
+                  <span>Test Type</span>
+                  <select
+                    value={selectedTestType}
+                    style={{ width: "124px" }}
+                    onChange={(e) => setSelectedTestType(e.target.value)}
+                    className="dropdown-select"
+                  >
+                    <option value="">All Tests</option>
+                    {testTypes.map((type) => (
+                      <option key={type.id} value={type.name}>
+                        {type.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </th>{" "}
+              <th>
+                <div className="header-column">
+                  <span>Examination Date</span>
+                  <input
+                    type="date"
+                    value={searchDate}
+                    onChange={(e) => setSearchDate(e.target.value)}
+                    className="date-input"
+                  />
+                </div>
+              </th>
+              <th style={{ textAlign: "center" }}>
+                <div className="header-column">
+                  <span>Referring Doctor</span>
+                  <input
+                    style={{ width: "124px" }}
+                    type="text"
+                    value={searchdoctor}
+                    onChange={(e) => setSearchDoctor(e.target.value)}
+                    className="date-input"
+                  />
+                </div>
+              </th>
               <th style={{ textAlign: "center" }}>Comments</th>
-              
               <th style={{ textAlign: "center" }}>Action</th>
               {/* Add other relevant columns as necessary */}
             </tr>
           </thead>
           <tbody>
-            {cbctests?.map((test) => (
-              <tr key={test.id}>
-                <td>CBC Test</td>
-                <td>{sessionStorage.getItem("User")}</td>
-                <td>{test.created_at.slice(0, 10)}</td>
-                <td>{test.referring_doctor}</td>
+            {cbctests
+              .filter((test) => {
+                // Check if the search date is empty or matches the examination date
+                return (
+                  (searchDate === "" || test.created_at.includes(searchDate)) &&
+                  (searchdoctor === "" ||
+                    test.referring_doctor.includes(searchdoctor)) &&
+                  (selectedTestType === "" || selectedTestType === "CBC Test")
+                );
+              })
+              .map((test) => (
+                <tr key={test.id}>
+                  <td>CBC Test</td>
+                  <td>{test.created_at.slice(0, 10)}</td>
+                  <td>{test.referring_doctor}</td>
 
-                <td>{test.comments}</td>
-                <td>
-                  <Link to={`/cbc-page/${test.id}`}>
-                    <button className="btn btn-edit">View</button>
-                  </Link>
-                </td>
-                {/* Add other relevant columns as necessary */}
-              </tr>
-            ))}
+                  <td>{test.comments}</td>
+                  <td>
+                    <Link to={`/cbc-page/${test.id}`}>
+                      <button className="btn btn-edit">View</button>
+                    </Link>
+                  </td>
+                  {/* Add other relevant columns as necessary */}
+                </tr>
+              ))}
 
-            {lipidtests?.map((test) => (
-              <tr key={test.id}>
-                <td>Lipid Profile Test</td>
-                <td>{sessionStorage.getItem("User")}</td>
-                <td>{test.created_at.slice(0, 10)}</td>
-                <td>{test.referring_doctor}</td>
+            {lipidtests
+              .filter((test) => {
+                // Check if the search date is empty or matches the examination date
+                return (
+                  (searchDate === "" || test.created_at.includes(searchDate)) &&
+                  (searchdoctor === "" ||
+                    test.referring_doctor.includes(searchdoctor))&&
+                  (selectedTestType === "" || selectedTestType === "Lipid Profile Test")
+                );
+              })
+              .map((test) => (
+                <tr key={test.id}>
+                  <td>Lipid Profile Test</td>
+                  <td>{test.created_at.slice(0, 10)}</td>
+                  <td>{test.referring_doctor}</td>
 
-                <td>{test.comments}</td>
-                <td>
-                  <Link to={`/lipid-profile-page/${test.id}`}>
-                    <button className="btn btn-edit">View</button>
-                  </Link>
-                </td>
-                {/* Add other relevant columns as necessary */}
-              </tr>
-            ))}
-            {livertests?.map((test) => (
-              <tr key={test.id}>
-                <td>Liver Function Test</td>
-                <td>{sessionStorage.getItem("User")}</td>
-                <td>{test.created_at.slice(0, 10)}</td>
-                <td>{test.referring_doctor}</td>
+                  <td>{test.comments}</td>
+                  <td>
+                    <Link to={`/lipid-profile-page/${test.id}`}>
+                      <button className="btn btn-edit">View</button>
+                    </Link>
+                  </td>
+                  {/* Add other relevant columns as necessary */}
+                </tr>
+              ))}
+            {livertests
+              .filter((test) => {
+                // Check if the search date is empty or matches the examination date
+                return (
+                  (searchDate === "" || test.created_at.includes(searchDate)) &&
+                  (searchdoctor === "" ||
+                    test.referring_doctor.includes(searchdoctor))&&
+                  (selectedTestType === "" || selectedTestType === "Liver Function Test")
+                );
+              })
+              .map((test) => (
+                <tr key={test.id}>
+                  <td>Liver Function Test</td>
+                  <td>{test.created_at.slice(0, 10)}</td>
+                  <td>{test.referring_doctor}</td>
 
-                <td>{test.comments}</td>
-                <td>
-                  <Link to={`/liver-page/${test.id}`}>
-                    <button className="btn btn-edit">View</button>
-                  </Link>
-                </td>
-                {/* Add other relevant columns as necessary */}
-              </tr>
-            ))}
-            {urinetests?.map((test) => (
-              <tr key={test.id}>
-                <td>Urine Test</td>
-                <td>{sessionStorage.getItem("User")}</td>
-                <td>{test.created_at.slice(0, 10)}</td>
-                <td>{test.referring_doctor}</td>
+                  <td>{test.comments}</td>
+                  <td>
+                    <Link to={`/liver-page/${test.id}`}>
+                      <button className="btn btn-edit">View</button>
+                    </Link>
+                  </td>
+                  {/* Add other relevant columns as necessary */}
+                </tr>
+              ))}
+            {urinetests
+              .filter((test) => {
+                // Check if the search date is empty or matches the examination date
+                return (
+                  (searchDate === "" || test.created_at.includes(searchDate)) &&
+                  (searchdoctor === "" ||
+                    test.referring_doctor.includes(searchdoctor))&&
+                  (selectedTestType === "" || selectedTestType === "Urine Test")
+                );
+              })
+              .map((test) => (
+                <tr key={test.id}>
+                  <td>Urine Test</td>
+                  <td>{test.created_at.slice(0, 10)}</td>
+                  <td>{test.referring_doctor}</td>
 
-                <td>{test.comments}</td>
-                <td>
-                  <Link to={`/urine-page/${test.id}`}>
-                    <button className="btn btn-edit">View</button>
-                  </Link>
-                </td>
-                {/* Add other relevant columns as necessary */}
-              </tr>
-            ))}
-            {glucosetests?.map((test) => (
-              <tr key={test.id}>
-                <td>Glucose Test</td>
-                <td>{sessionStorage.getItem("User")}</td>
-                <td>{test.created_at.slice(0, 10)}</td>
-                <td>{test.referring_doctor}</td>
+                  <td>{test.comments}</td>
+                  <td>
+                    <Link to={`/urine-page/${test.id}`}>
+                      <button className="btn btn-edit">View</button>
+                    </Link>
+                  </td>
+                  {/* Add other relevant columns as necessary */}
+                </tr>
+              ))}
+            {glucosetests
+              .filter((test) => {
+                // Check if the search date is empty or matches the examination date
+                return (
+                  (searchDate === "" || test.created_at.includes(searchDate)) &&
+                  (searchdoctor === "" ||
+                    test.referring_doctor.includes(searchdoctor))&&
+                  (selectedTestType === "" || selectedTestType === "Glucose Test")
+                );
+              })
+              .map((test) => (
+                <tr key={test.id}>
+                  <td>Glucose Test</td>
+                  <td>{test.created_at.slice(0, 10)}</td>
+                  <td>{test.referring_doctor}</td>
 
-                <td>{test.comments}</td>
-                <td>
-                  <Link to={`/glucose-page/${test.id}`}>
-                    <button className="btn btn-edit">View</button>
-                  </Link>
-                </td>
-                {/* Add other relevant columns as necessary */}
-              </tr>
-            ))}
+                  <td>{test.comments}</td>
+                  <td>
+                    <Link to={`/glucose-page/${test.id}`}>
+                      <button className="btn btn-edit">View</button>
+                    </Link>
+                  </td>
+                  {/* Add other relevant columns as necessary */}
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

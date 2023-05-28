@@ -3,7 +3,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
+import configure from "../../configure";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
@@ -31,14 +31,14 @@ const LiverResultPaper = () => {
   }, []);
 
   const loadUser = async () => {
-    const res = await axios.get(`http://localhost:8080/api/liver/${id}`);
+    const res = await axios.get(`${configure.backURL}liver/${id}`);
     setSingleTest(res.data);
     console.log("Liver data", res);
     const patientId = res.data.patient_id;
 
     // Call the patient API using the extracted patient ID
     const patientRes = await axios.get(
-      `http://localhost:8080/api/patient/${patientId}`
+      `${configure.backURL}patient/${patientId}`
     );
     setPatientData(patientRes.data);
   };

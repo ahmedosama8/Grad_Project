@@ -5,6 +5,8 @@ import "./CBCTest.css";
 import axios from "axios";
 import { useLocation, useParams } from "react-router-dom";
 import { calculateAge } from "../configure";
+import configure from "../configure";
+
 
 const liverData = [
   { name: "ALT", unit: "U/L", range: "10 - 130" },
@@ -38,7 +40,7 @@ function LiverTest() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:8080/api/liver/new", formData)
+      .post(`${configure.backURL}liver/new`, formData)
       .then((response) => {
         console.log("Data posted:", response.data);
         if (response.status === 201) {

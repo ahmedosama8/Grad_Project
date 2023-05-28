@@ -7,6 +7,8 @@ import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { calculateAge } from "../configure";
 import { toast, ToastContainer } from "react-toastify";
+import configure from "../configure";
+
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -44,7 +46,7 @@ function CBCTest() {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post(`http://localhost:8080/api/cbc/new`, formData)
+      .post(`${configure.backURL}cbc/new`, formData)
       .then((response) => {
         console.log("Data posted:", response.data);
         console.log("response", response);

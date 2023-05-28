@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Topbar from "../Topbar/Topbar";
 import { Link, useParams } from "react-router-dom";
+import configure from "../configure";
 
 import SidebarClinic from "../Sidebar/SidebarClinic";
 
@@ -12,7 +13,7 @@ function AllVisitsTable({}) {
   useEffect(() => {
     async function fetchRows() {
       const response = await fetch(
-        `http://localhost:8080/api/visit/${entity_id}/${id}`
+        `${configure.backURL}visit/${entity_id}/${id}`
       );
       const data = await response.json();
       setVisits(data);

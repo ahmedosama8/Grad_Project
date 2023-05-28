@@ -7,6 +7,7 @@ import SidebarRad from "../Sidebar/SidebarRad";
 import SidebarClinic from "../Sidebar/SidebarClinic";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import configure from "../configure";
 
 export default function NewPatient() {
   const [formData, setFormData] = useState({
@@ -196,7 +197,7 @@ export default function NewPatient() {
       return; // Don't submit if there are validation errors
     }
     axios
-      .post(`http://localhost:8080/api/patient/new`, formData)
+      .post(`${configure.backURL}patient/new`, formData)
       .then((response) => {
         console.log("Data posted:", response.data);
         console.log("response", response);

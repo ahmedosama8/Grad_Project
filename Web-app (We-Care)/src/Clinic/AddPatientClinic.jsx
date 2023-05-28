@@ -11,6 +11,7 @@ import "react-quill/dist/quill.snow.css";
 import { useLocation, useParams } from "react-router-dom";
 import Select from "react-select";
 import axios from "axios";
+import configure from "../configure";
 
 // import CKEditor from "@ckeditor/ckeditor5-react";
 // import Editor from "@juniyadi/ckeditor5-custom-build";
@@ -72,7 +73,7 @@ export default function AddPatientClinic() {
     // Do something with the input values
     console.log("Dosh");
     axios
-      .post(`http://localhost:8080/api/visit/new`, {
+      .post(`${configure.backURL}visit/new`, {
         ...formData,
         ...requestBody,
       })

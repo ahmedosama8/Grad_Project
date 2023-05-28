@@ -5,6 +5,7 @@ import Topbar from "../../Topbar/Topbar";
 import Sidebar from "../../Sidebar/Sidebar";
 import SidebarRad from "../../Sidebar/SidebarRad";
 import SidebarClinic from "../../Sidebar/SidebarClinic";
+import configure from "../../configure";
 export default function NewAppointment() {
   const [patientID, setPatientID] = useState();
   const entity_id = sessionStorage.getItem("User_id");
@@ -95,7 +96,7 @@ export default function NewAppointment() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     axios
-      .post(`http://localhost:8080/api/appointment/${patientID}/${entity_id}`, {
+      .post(`${configure.backURL}appointment/${patientID}/${entity_id}`, {
         ...formData,
         ...requestBody,
       })

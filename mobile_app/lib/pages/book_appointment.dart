@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:mobile_app/api/doctor.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/notifications_service.dart';
 // ignore: unused_import
 import 'package:mobile_app/pages/welcome_page.dart';
 // ignore: depend_on_referenced_packages
@@ -47,6 +48,9 @@ class _BookappointState extends State<Bookappoint> {
     if (response.statusCode != 201) {
       throw Exception('Failed to create appointment.');
     } else {
+        await NotficationService.showNotification(
+        title: 'Appointment Reminder',
+        body: 'You have an appoinment',);
       print(body);
     }
   }

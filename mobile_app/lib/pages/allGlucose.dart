@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
+import 'package:mobile_app/notifications_service.dart';
 import 'package:mobile_app/pages/glucose_testpage.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -18,48 +19,24 @@ class allGlucose extends StatefulWidget {
 }
 
 class _allGlucoseState extends State<allGlucose> {
-  List<dynamic> glucoseList = [];
+  List<Map<String, dynamic>> glucoseList = [];
+
+  void getGlucoseList(int patientId) {
+    fetchGlucoseList(patientId).then((list) {
+      setState(() {
+        glucoseList = list;
+      });
+    }).catchError((error) {
+      // Handle error
+      print('Error: $error');
+    });
+  }
 
   @override
   void initState() {
     super.initState();
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-    fetchGlucoseList(userId);
-  }
-
-  Future<void> fetchGlucoseList(int patientId) async {
-    final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/glucose/patient/$patientId'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> glucoseJsonList = jsonDecode(response.body);
-      final List<Map<String, dynamic>> glucoseList = [];
-
-      for (final glucoseJson in glucoseJsonList) {
-        glucoseList.add(Map<String, dynamic>.from(glucoseJson));
-
-        // Fetch entity by ID and update the glucoseList with the entity name
-        final entityData = await fetcEntityById(glucoseJson['entity_id'] ?? 0);
-        final entityName = entityData['name'] ?? 'not specified';
-        glucoseList.last['entityName'] = entityName;
-      }
-      setState(() {
-        this.glucoseList = glucoseList;
-      });
-    } else {
-      throw Exception('Failed to fetch glucose list');
-    }
-  }
-
-  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
-    final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
-      return data;
-    } else {
-      throw Exception('Failed to fetch entity');
-    }
+    getGlucoseList(userId);
   }
 
   @override
@@ -130,5 +107,44 @@ class _allGlucoseState extends State<allGlucose> {
                   ),
                 ),
               ]));
+  }
+}
+
+Future<List<Map<String, dynamic>>> fetchGlucoseList(int patientId) async {
+  final response = await http
+      .get(Uri.parse('${AppUrl.Base_Url}/glucose/patient/$patientId'));
+
+  if (response.statusCode == 200) {
+    final List<dynamic> glucoseJsonList = jsonDecode(response.body);
+    final List<Map<String, dynamic>> glucoseList = [];
+
+    for (final glucoseJson in glucoseJsonList) {
+      final glucoseData = Map<String, dynamic>.from(glucoseJson);
+      final entityData = await fetcEntityById(glucoseJson['entity_id'] ?? 0);
+      final entityName = entityData['name'] ?? 'not specified';
+      glucoseData['entityName'] = entityName;
+      glucoseList.add(glucoseData);
+    }
+    await NotficationService.showNotification(
+      title: 'New medical record',
+      body: 'Its a Glucose test from ${glucoseList.last['entityName']}.',
+      scheduled: true,
+      interval: 10, // Single notification, not repeating
+      // Date in "2023-05-26" format
+    );
+    return glucoseList;
+  } else {
+    throw Exception('Failed to fetch glucose list');
+  }
+}
+
+Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
+  final response =
+      await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    return data;
+  } else {
+    throw Exception('Failed to fetch entity');
   }
 }

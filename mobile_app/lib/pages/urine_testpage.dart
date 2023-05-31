@@ -107,7 +107,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['color'],
+                                  urine['color'] ?? '',
                                   style: TextStyle(
                                     color: (urine['color'] != 'normal')
                                         ? Colors.red
@@ -147,8 +147,8 @@ class UriTestpage extends StatelessWidget {
                                 child: Text(
                                   'Clarity',
                                   style: TextStyle(
-                                    color: (urine['clarity'].toLowerCase() !=
-                                            'clear')
+                                    color: (urine['clarity'] ??
+                                            ''.toLowerCase() != 'clear')
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -156,10 +156,10 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['clarity'],
+                                  urine['clarity'] ?? '',
                                   style: TextStyle(
-                                    color: (urine['clarity'].toLowerCase() !=
-                                            'clear')
+                                    color: (urine['clarity'] ??
+                                            ''.toLowerCase() != 'clear')
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -169,8 +169,8 @@ class UriTestpage extends StatelessWidget {
                                 child: Text(
                                   '--',
                                   style: TextStyle(
-                                    color: (urine['clarity'].toLowerCase() !=
-                                            'clear')
+                                    color: (urine['clarity'] ??
+                                            ''.toLowerCase() != 'clear')
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -180,8 +180,8 @@ class UriTestpage extends StatelessWidget {
                                 child: Text(
                                   'Clear',
                                   style: TextStyle(
-                                    color: (urine['clarity'].toLowerCase() !=
-                                            'clear')
+                                    color: (urine['clarity'] ??
+                                            ''.toLowerCase() != 'clear')
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -200,10 +200,12 @@ class UriTestpage extends StatelessWidget {
                                   'Specific\nGravity',
                                   style: TextStyle(
                                     color: (double.parse(
-                                                    urine['specific_gravity']) <
+                                                    urine['specific_gravity'] ??
+                                                        '0') <
                                                 1.015 ||
                                             double.parse(
-                                                    urine['specific_gravity']) >
+                                                    urine['specific_gravity'] ??
+                                                        '0') >
                                                 1.025)
                                         ? Colors.red
                                         : Colors.black,
@@ -212,13 +214,15 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['specific_gravity'].toString(),
+                                  urine['specific_gravity'] ?? ''.toString(),
                                   style: TextStyle(
                                     color: (double.parse(
-                                                    urine['specific_gravity']) <
+                                                    urine['specific_gravity'] ??
+                                                        '0') <
                                                 1.015 ||
                                             double.parse(
-                                                    urine['specific_gravity']) >
+                                                    urine['specific_gravity'] ??
+                                                        '0') >
                                                 1.025)
                                         ? Colors.red
                                         : Colors.black,
@@ -230,10 +234,12 @@ class UriTestpage extends StatelessWidget {
                                   '--',
                                   style: TextStyle(
                                     color: (double.parse(
-                                                    urine['specific_gravity']) <
+                                                    urine['specific_gravity'] ??
+                                                        "0") <
                                                 1.015 ||
                                             double.parse(
-                                                    urine['specific_gravity']) >
+                                                    urine['specific_gravity'] ??
+                                                        "0") >
                                                 1.025)
                                         ? Colors.red
                                         : Colors.black,
@@ -245,10 +251,12 @@ class UriTestpage extends StatelessWidget {
                                   '1.015-1.025',
                                   style: TextStyle(
                                     color: (double.parse(
-                                                    urine['specific_gravity']) <
+                                                    urine['specific_gravity'] ??
+                                                        "0") <
                                                 1.015 ||
                                             double.parse(
-                                                    urine['specific_gravity']) >
+                                                    urine['specific_gravity'] ??
+                                                        "0") >
                                                 1.025)
                                         ? Colors.red
                                         : Colors.black,
@@ -267,8 +275,10 @@ class UriTestpage extends StatelessWidget {
                                 child: Text(
                                   'PH',
                                   style: TextStyle(
-                                    color: (double.parse(urine['ph']) < 4.5 ||
-                                            double.parse(urine['ph']) > 6.5)
+                                    color: (double.parse(urine['ph'] ?? "0") <
+                                                4.5 ||
+                                            double.parse(urine['ph'] ?? "0") >
+                                                6.5)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -278,8 +288,10 @@ class UriTestpage extends StatelessWidget {
                                 child: Text(
                                   urine['ph'].toString(),
                                   style: TextStyle(
-                                    color: (double.parse(urine['ph']) < 4.5 ||
-                                            double.parse(urine['ph']) > 6.5)
+                                    color: (double.parse(urine['ph'] ?? "0") <
+                                                4.5 ||
+                                            double.parse(urine['ph'] ?? "0") >
+                                                6.5)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -289,8 +301,10 @@ class UriTestpage extends StatelessWidget {
                                 child: Text(
                                   '--',
                                   style: TextStyle(
-                                    color: (double.parse(urine['ph']) < 4.5 ||
-                                            double.parse(urine['ph']) > 6.5)
+                                    color: (double.parse(urine['ph'] ?? "0") <
+                                                4.5 ||
+                                            double.parse(urine['ph'] ?? "0") >
+                                                6.5)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -300,8 +314,10 @@ class UriTestpage extends StatelessWidget {
                                 child: Text(
                                   '4.5-6.5',
                                   style: TextStyle(
-                                    color: (double.parse(urine['ph']) < 4.5 ||
-                                            double.parse(urine['ph']) > 6.5)
+                                    color: (double.parse(urine['ph'] ?? "0") <
+                                                4.5 ||
+                                            double.parse(urine['ph'] ?? "0") >
+                                                6.5)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -327,7 +343,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['protein'],
+                                  urine['protein'] ?? "",
                                   style: TextStyle(
                                     color: (urine['protein'] != 'Negative')
                                         ? Colors.red
@@ -375,7 +391,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['glucose'],
+                                  urine['glucose'] ?? " ",
                                   style: TextStyle(
                                     color: (urine['glucose'] != 'Negative')
                                         ? Colors.red
@@ -423,7 +439,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['ketone'],
+                                  urine['ketone'] ?? " ",
                                   style: TextStyle(
                                     color: (urine['ketone'] != 'Negative')
                                         ? Colors.red
@@ -472,7 +488,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['urobilinogen'],
+                                  urine['urobilinogen'] ?? " ",
                                   style: TextStyle(
                                     color: (urine['urobilinogen'] !=
                                             'Normal Trace')
@@ -523,7 +539,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['bilirubin'],
+                                  urine['bilirubin'] ?? '',
                                   style: TextStyle(
                                     color: (urine['bilirubin'] != 'Negative')
                                         ? Colors.red
@@ -571,7 +587,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['nitrite'],
+                                  urine['nitrite'] ?? '',
                                   style: TextStyle(
                                     color: (urine['nitrite'] != 'Negative')
                                         ? Colors.red
@@ -716,7 +732,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['epithelial_cells'],
+                                  urine['epithelial_cells'] ?? '',
                                   style: TextStyle(
                                     color: (urine['epithelial_cells'] !=
                                             'Negative')
@@ -767,7 +783,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['amorphous'],
+                                  urine['amorphous'] ?? '',
                                   style: TextStyle(
                                     color: (urine['amorphous'] != 'Negative')
                                         ? Colors.red
@@ -815,7 +831,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['crystals'],
+                                  urine['crystals'] ?? '',
                                   style: TextStyle(
                                     color: (urine['crystals'] != 'Negative')
                                         ? Colors.red
@@ -863,7 +879,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['casts'],
+                                  urine['casts'] ?? '',
                                   style: TextStyle(
                                     color: (urine['casts'] != 'Negative')
                                         ? Colors.red
@@ -911,7 +927,7 @@ class UriTestpage extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Text(
-                                  urine['others'],
+                                  urine['others'] ?? '',
                                   style: TextStyle(
                                     color: (urine['others'] != 'Negative')
                                         ? Colors.red

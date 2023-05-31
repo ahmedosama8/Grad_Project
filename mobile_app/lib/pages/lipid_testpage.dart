@@ -72,7 +72,7 @@ class LipTestpage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 2000,
+                  height: 1500,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
                     shadowColor: Colors.greenAccent,
@@ -99,13 +99,16 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'Cholesterol',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['cholesterol']) <
+                                    color: (double.parse(
+                                                lipid['cholesterol'] ?? '0') <
                                             200)
                                         ? Colors.black
-                                        : (double.parse(lipid['cholesterol']) >=
+                                        : (double.parse(lipid['cholesterol'] ??
+                                                        '0') >=
                                                     200 &&
                                                 double.parse(
-                                                        lipid['cholesterol']) <
+                                                        lipid['cholesterol'] ??
+                                                            '0') <
                                                     240)
                                             ? Colors.orange
                                             : Colors.red,
@@ -116,13 +119,16 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['cholesterol'].toString(),
                                   style: TextStyle(
-                                    color: (double.parse(lipid['cholesterol']) <
+                                    color: (double.parse(
+                                                lipid['cholesterol'] ?? '0') <
                                             200)
                                         ? Colors.black
-                                        : (double.parse(lipid['cholesterol']) >=
+                                        : (double.parse(lipid['cholesterol'] ??
+                                                        '0') >=
                                                     200 &&
                                                 double.parse(
-                                                        lipid['cholesterol']) <
+                                                        lipid['cholesterol'] ??
+                                                            '0') <
                                                     240)
                                             ? Colors.orange
                                             : Colors.red,
@@ -133,13 +139,15 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'mg/dL',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['cholesterol']) <
+                                    color: (double.parse(
+                                                lipid['cholesterol'] ?? '0') <
                                             200)
                                         ? Colors.black
                                         : (double.parse(lipid['cholesterol']) >=
                                                     200 &&
                                                 double.parse(
-                                                        lipid['cholesterol']) <
+                                                        lipid['cholesterol'] ??
+                                                            '0') <
                                                     240)
                                             ? Colors.orange
                                             : Colors.red,
@@ -150,13 +158,16 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'Desirable: < 200 mg/dL\nBorderline High: 200-239 mg/dl\nHigh: >= 240 mg/dL',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['cholesterol']) <
+                                    color: (double.parse(
+                                                lipid['cholesterol'] ?? '0') <
                                             200)
                                         ? Colors.black
-                                        : (double.parse(lipid['cholesterol']) >=
+                                        : (double.parse(lipid['cholesterol'] ??
+                                                        '0') >=
                                                     200 &&
                                                 double.parse(
-                                                        lipid['cholesterol']) <
+                                                        lipid['cholesterol'] ??
+                                                            '0') <
                                                     240)
                                             ? Colors.orange
                                             : Colors.red,
@@ -176,7 +187,7 @@ class LipTestpage extends StatelessWidget {
                                   'HDL-C',
                                   style: TextStyle(
                                     color: getHDLColor(
-                                        double.parse(lipid['hdl_c'])),
+                                        double.parse(lipid['hdl_c'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -185,7 +196,7 @@ class LipTestpage extends StatelessWidget {
                                   lipid['hdl_c'].toString(),
                                   style: TextStyle(
                                     color: getHDLColor(
-                                        double.parse(lipid['hdl_c'])),
+                                        double.parse(lipid['hdl_c'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -194,7 +205,7 @@ class LipTestpage extends StatelessWidget {
                                   'mg/dL',
                                   style: TextStyle(
                                     color: getHDLColor(
-                                        double.parse(lipid['hdl_c'])),
+                                        double.parse(lipid['hdl_c'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -203,7 +214,7 @@ class LipTestpage extends StatelessWidget {
                                   'Low HDL: < 40 mg/dL\nBorderline Low: 40-60 mg/dL\nAcceptable: > 60 mg/dL\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0',
                                   style: TextStyle(
                                     color: getHDLColor(
-                                        double.parse(lipid['hdl_c'])),
+                                        double.parse(lipid['hdl_c'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -220,7 +231,7 @@ class LipTestpage extends StatelessWidget {
                                   'LDL-C',
                                   style: TextStyle(
                                     color: getLDLColor(
-                                        double.parse(lipid['ldl_c'])),
+                                        double.parse(lipid['ldl_c'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -229,7 +240,7 @@ class LipTestpage extends StatelessWidget {
                                   lipid['ldl_c'].toString(),
                                   style: TextStyle(
                                     color: getLDLColor(
-                                        double.parse(lipid['ldl_c'])),
+                                        double.parse(lipid['ldl_c'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -238,7 +249,7 @@ class LipTestpage extends StatelessWidget {
                                   'mg/dL',
                                   style: TextStyle(
                                     color: getLDLColor(
-                                        double.parse(lipid['ldl_c'])),
+                                        double.parse(lipid['ldl_c'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -247,7 +258,7 @@ class LipTestpage extends StatelessWidget {
                                   'Desirable: < 100 mg/dL\nAbove Desirable: 100-129 mg/dL\nBorderline High: 130-159 mg/dL\nHigh: 160-189 mg/dL\nVery High: >= 190 mg/dL',
                                   style: TextStyle(
                                     color: getLDLColor(
-                                        double.parse(lipid['ldl_c'])),
+                                        double.parse(lipid['ldl_c'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -263,8 +274,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'Triglycerides',
                                   style: TextStyle(
-                                    color: getTriglyceridesColor(
-                                        double.parse(lipid['triglycerides'])),
+                                    color: getTriglyceridesColor(double.parse(
+                                        lipid['triglycerides'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -272,8 +283,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['triglycerides'].toString(),
                                   style: TextStyle(
-                                    color: getTriglyceridesColor(
-                                        double.parse(lipid['triglycerides'])),
+                                    color: getTriglyceridesColor(double.parse(
+                                        lipid['triglycerides'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -281,8 +292,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'mg/dL',
                                   style: TextStyle(
-                                    color: getTriglyceridesColor(
-                                        double.parse(lipid['triglycerides'])),
+                                    color: getTriglyceridesColor(double.parse(
+                                        lipid['triglycerides'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -290,8 +301,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   '< 150: Desirable\n150-199: Border High Line\n200-499: High\n>= 500: Very High',
                                   style: TextStyle(
-                                    color: getTriglyceridesColor(
-                                        double.parse(lipid['triglycerides'])),
+                                    color: getTriglyceridesColor(double.parse(
+                                        lipid['triglycerides'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -307,11 +318,12 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'VLDL\ncholesterol',
                                   style: TextStyle(
-                                    color:
-                                        double.parse(lipid['vldl_cholestrol']) >
-                                                32
-                                            ? Colors.red
-                                            : Colors.black,
+                                    color: double.parse(
+                                                lipid['vldl_cholestrol'] ??
+                                                    '0') >
+                                            32
+                                        ? Colors.red
+                                        : Colors.black,
                                   ),
                                 ),
                               ),
@@ -319,11 +331,12 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['vldl_cholestrol'] ?? '',
                                   style: TextStyle(
-                                    color:
-                                        double.parse(lipid['vldl_cholestrol']) >
-                                                32
-                                            ? Colors.red
-                                            : Colors.black,
+                                    color: double.parse(
+                                                lipid['vldl_cholestrol'] ??
+                                                    '0') >
+                                            32
+                                        ? Colors.red
+                                        : Colors.black,
                                   ),
                                 ),
                               ),
@@ -331,11 +344,12 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'mg/dL',
                                   style: TextStyle(
-                                    color:
-                                        double.parse(lipid['vldl_cholestrol']) >
-                                                32
-                                            ? Colors.red
-                                            : Colors.black,
+                                    color: double.parse(
+                                                lipid['vldl_cholestrol'] ??
+                                                    '0') >
+                                            32
+                                        ? Colors.red
+                                        : Colors.black,
                                   ),
                                 ),
                               ),
@@ -343,11 +357,12 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'up to: 32',
                                   style: TextStyle(
-                                    color:
-                                        double.parse(lipid['vldl_cholestrol']) >
-                                                32
-                                            ? Colors.red
-                                            : Colors.black,
+                                    color: double.parse(
+                                                lipid['vldl_cholestrol'] ??
+                                                    '0') >
+                                            32
+                                        ? Colors.red
+                                        : Colors.black,
                                   ),
                                 ),
                               ),
@@ -363,7 +378,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'Total lipids',
                                   style: TextStyle(
-                                    color: double.parse(lipid['total_lipids']) >
+                                    color: double.parse(
+                                                lipid['total_lipids'] ?? '0') >
                                             750
                                         ? Colors.red
                                         : Colors.black,
@@ -374,7 +390,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['total_lipids'] ?? '',
                                   style: TextStyle(
-                                    color: double.parse(lipid['total_lipids']) >
+                                    color: double.parse(
+                                                lipid['total_lipids'] ?? '0') >
                                             750
                                         ? Colors.red
                                         : Colors.black,
@@ -385,7 +402,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'mg/dL',
                                   style: TextStyle(
-                                    color: double.parse(lipid['total_lipids']) >
+                                    color: double.parse(
+                                                lipid['total_lipids'] ?? '0') >
                                             750
                                         ? Colors.red
                                         : Colors.black,
@@ -396,7 +414,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'up to: 750',
                                   style: TextStyle(
-                                    color: double.parse(lipid['total_lipids']) >
+                                    color: double.parse(
+                                                lipid['total_lipids'] ?? '0') >
                                             750
                                         ? Colors.red
                                         : Colors.black,
@@ -415,7 +434,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'Risk Ratio 1',
                                   style: TextStyle(
-                                    color: double.parse(lipid['risk_ratio_1']) >
+                                    color: double.parse(
+                                                lipid['risk_ratio_1'] ?? '0') >
                                             5.5
                                         ? Colors.red
                                         : Colors.black,
@@ -426,7 +446,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['risk_ratio_1'] ?? '',
                                   style: TextStyle(
-                                    color: double.parse(lipid['risk_ratio_1']) >
+                                    color: double.parse(
+                                                lipid['risk_ratio_1'] ?? '0') >
                                             5.5
                                         ? Colors.red
                                         : Colors.black,
@@ -437,7 +458,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   '--',
                                   style: TextStyle(
-                                    color: double.parse(lipid['risk_ratio_1']) >
+                                    color: double.parse(
+                                                lipid['risk_ratio_1'] ?? '0') >
                                             5.5
                                         ? Colors.red
                                         : Colors.black,
@@ -448,7 +470,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'up to: 5.5',
                                   style: TextStyle(
-                                    color: double.parse(lipid['risk_ratio_1']) >
+                                    color: double.parse(
+                                                lipid['risk_ratio_1'] ?? '0') >
                                             5.5
                                         ? Colors.red
                                         : Colors.black,
@@ -467,7 +490,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'Oxidized LDL',
                                   style: TextStyle(
-                                    color: double.parse(lipid['oxidized_ldl']) >
+                                    color: double.parse(
+                                                lipid['oxidized_ldl'] ?? '0') >
                                             117
                                         ? Colors.red
                                         : Colors.black,
@@ -478,7 +502,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['oxidized_ldl'] ?? '',
                                   style: TextStyle(
-                                    color: double.parse(lipid['oxidized_ldl']) >
+                                    color: double.parse(
+                                                lipid['oxidized_ldl'] ?? '0') >
                                             117
                                         ? Colors.red
                                         : Colors.black,
@@ -489,7 +514,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'U/L',
                                   style: TextStyle(
-                                    color: double.parse(lipid['oxidized_ldl']) >
+                                    color: double.parse(
+                                                lipid['oxidized_ldl'] ?? '0') >
                                             117
                                         ? Colors.red
                                         : Colors.black,
@@ -500,7 +526,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   '26 - 117',
                                   style: TextStyle(
-                                    color: double.parse(lipid['oxidized_ldl']) >
+                                    color: double.parse(
+                                                lipid['oxidized_ldl'] ?? '0') >
                                             117
                                         ? Colors.red
                                         : Colors.black,
@@ -519,8 +546,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'Risk Ratio II',
                                   style: TextStyle(
-                                    color: _getRiskRatio2Color(
-                                        double.parse(lipid['risk_ratio_2'])),
+                                    color: _getRiskRatio2Color(double.parse(
+                                        lipid['risk_ratio_2'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -528,8 +555,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['risk_ratio_2'] ?? '',
                                   style: TextStyle(
-                                    color: _getRiskRatio2Color(
-                                        double.parse(lipid['risk_ratio_2'])),
+                                    color: _getRiskRatio2Color(double.parse(
+                                        lipid['risk_ratio_2'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -537,8 +564,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   '--',
                                   style: TextStyle(
-                                    color: _getRiskRatio2Color(
-                                        double.parse(lipid['risk_ratio_2'])),
+                                    color: _getRiskRatio2Color(double.parse(
+                                        lipid['risk_ratio_2'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -546,8 +573,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   '1/2 Average: < 3.9\nAverage: < 5.0\n2 Average: < 9.6\n3 Average: - < 23.4',
                                   style: TextStyle(
-                                    color: _getRiskRatio2Color(
-                                        double.parse(lipid['risk_ratio_2'])),
+                                    color: _getRiskRatio2Color(double.parse(
+                                        lipid['risk_ratio_2'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -563,9 +590,11 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'H-CRP',
                                   style: TextStyle(
-                                    color: double.parse(lipid['h_crp']) <= 3.0
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        double.parse(lipid['h_crp'] ?? '0') <=
+                                                3.0
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -573,9 +602,11 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['h_crp'] ?? '',
                                   style: TextStyle(
-                                    color: double.parse(lipid['h_crp']) <= 3.0
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        double.parse(lipid['h_crp'] ?? '0') <=
+                                                3.0
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -583,9 +614,11 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'mg/L',
                                   style: TextStyle(
-                                    color: double.parse(lipid['h_crp']) <= 3.0
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        double.parse(lipid['h_crp'] ?? '0') <=
+                                                3.0
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -593,9 +626,11 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   '0 - 3',
                                   style: TextStyle(
-                                    color: double.parse(lipid['h_crp']) <= 3.0
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        double.parse(lipid['h_crp'] ?? '0') <=
+                                                3.0
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -612,7 +647,7 @@ class LipTestpage extends StatelessWidget {
                                   'Ratio',
                                   style: TextStyle(
                                     color: _getRatioColor(
-                                        double.parse(lipid['ratio'])),
+                                        double.parse(lipid['ratio'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -621,7 +656,7 @@ class LipTestpage extends StatelessWidget {
                                   lipid['ratio'] ?? '',
                                   style: TextStyle(
                                     color: _getRatioColor(
-                                        double.parse(lipid['ratio'])),
+                                        double.parse(lipid['ratio'] ?? '0')),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -631,7 +666,7 @@ class LipTestpage extends StatelessWidget {
                                   '--',
                                   style: TextStyle(
                                     color: _getRatioColor(
-                                        double.parse(lipid['ratio'])),
+                                        double.parse(lipid['ratio'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -640,7 +675,7 @@ class LipTestpage extends StatelessWidget {
                                   'Non CAD: 0.2\nStable Angina > 0.7\nUnstable Angina > 4.3\nMyocardial Infarction > 7.5',
                                   style: TextStyle(
                                     color: _getRatioColor(
-                                        double.parse(lipid['ratio'])),
+                                        double.parse(lipid['ratio'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -656,8 +691,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'Lipoprotein(a)',
                                   style: TextStyle(
-                                    color: _getLipoproteinColor(
-                                        double.parse(lipid['lipo_protein'])),
+                                    color: _getLipoproteinColor(double.parse(
+                                        lipid['lipo_protein'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -665,8 +700,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['lipo_protein'] ?? '',
                                   style: TextStyle(
-                                    color: _getLipoproteinColor(
-                                        double.parse(lipid['lipo_protein'])),
+                                    color: _getLipoproteinColor(double.parse(
+                                        lipid['lipo_protein'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -674,8 +709,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'mg/dL',
                                   style: TextStyle(
-                                    color: _getLipoproteinColor(
-                                        double.parse(lipid['lipo_protein'])),
+                                    color: _getLipoproteinColor(double.parse(
+                                        lipid['lipo_protein'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -683,8 +718,8 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'Desirable < 20\nBorderline: 20-30\nHigh risk: 31-50\nVery high risk > 50',
                                   style: TextStyle(
-                                    color: _getLipoproteinColor(
-                                        double.parse(lipid['lipo_protein'])),
+                                    color: _getLipoproteinColor(double.parse(
+                                        lipid['lipo_protein'] ?? '0')),
                                   ),
                                 ),
                               ),
@@ -700,11 +735,14 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'APOA',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['apoa']) >=
-                                                1.08 &&
-                                            double.parse(lipid['apoa']) <= 2.25)
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        (double.parse(lipid['apoa'] ?? '0') >=
+                                                    1.08 &&
+                                                double.parse(
+                                                        lipid['apoa'] ?? '0') <=
+                                                    2.25)
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -712,11 +750,14 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['apoa'] ?? '',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['apoa']) >=
-                                                1.08 &&
-                                            double.parse(lipid['apoa']) <= 2.25)
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        (double.parse(lipid['apoa'] ?? '0') >=
+                                                    1.08 &&
+                                                double.parse(
+                                                        lipid['apoa'] ?? '0') <=
+                                                    2.25)
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -724,11 +765,14 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'g/L',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['apoa']) >=
-                                                1.08 &&
-                                            double.parse(lipid['apoa']) <= 2.25)
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        (double.parse(lipid['apoa'] ?? '0') >=
+                                                    1.08 &&
+                                                double.parse(
+                                                        lipid['apoa'] ?? '0') <=
+                                                    2.25)
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -736,11 +780,14 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   '1.08 - 2.25',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['apoa']) >=
-                                                1.08 &&
-                                            double.parse(lipid['apoa']) <= 2.25)
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        (double.parse(lipid['apoa'] ?? '0') >=
+                                                    1.08 &&
+                                                double.parse(
+                                                        lipid['apoa'] ?? '0') <=
+                                                    2.25)
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -756,11 +803,14 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'APOB',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['apob']) >=
-                                                0.5 &&
-                                            double.parse(lipid['apob']) <= 1.3)
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        (double.parse(lipid['apob'] ?? '0') >=
+                                                    0.5 &&
+                                                double.parse(
+                                                        lipid['apob'] ?? '0') <=
+                                                    1.3)
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -768,11 +818,14 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   lipid['apob'] ?? '',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['apob']) >=
-                                                0.5 &&
-                                            double.parse(lipid['apob']) <= 1.3)
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        (double.parse(lipid['apob'] ?? '0') >=
+                                                    0.5 &&
+                                                double.parse(
+                                                        lipid['apob'] ?? '0') <=
+                                                    1.3)
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -780,11 +833,14 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   'g/L',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['apob']) >=
-                                                0.5 &&
-                                            double.parse(lipid['apob']) <= 1.3)
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        (double.parse(lipid['apob'] ?? '0') >=
+                                                    0.5 &&
+                                                double.parse(
+                                                        lipid['apob'] ?? '0') <=
+                                                    1.3)
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),
@@ -792,11 +848,14 @@ class LipTestpage extends StatelessWidget {
                                 child: Text(
                                   '0.5 - 1.3',
                                   style: TextStyle(
-                                    color: (double.parse(lipid['apob']) >=
-                                                0.5 &&
-                                            double.parse(lipid['apob']) <= 1.3)
-                                        ? Colors.black
-                                        : Colors.red,
+                                    color:
+                                        (double.parse(lipid['apob'] ?? '0') >=
+                                                    0.5 &&
+                                                double.parse(
+                                                        lipid['apob'] ?? '0') <=
+                                                    1.3)
+                                            ? Colors.black
+                                            : Colors.red,
                                   ),
                                 ),
                               ),

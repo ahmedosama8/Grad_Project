@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:mobile_app/notifications_service.dart';
 import 'package:mobile_app/pages/urine_testpage.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -18,46 +19,23 @@ class allUrine extends StatefulWidget {
 }
 
 class _allUrineState extends State<allUrine> {
-  List<dynamic> urineList = [];
+  List<Map<String, dynamic>> urineList = [];
+  void getUrinelist(int patientId) {
+    fetchUrineList(patientId).then((list) {
+      setState(() {
+        urineList = list;
+      });
+    }).catchError((error) {
+      // Handle error
+      print('Error: $error');
+    });
+  }
 
   @override
   void initState() {
     super.initState();
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-    fetchUrineList(userId);
-  }
-
-  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
-    final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
-      return data;
-    } else {
-      throw Exception('Failed to fetch entity');
-    }
-  }
-
-  Future<void> fetchUrineList(int patientId) async {
-    final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/urine/patient/$patientId'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> urineJsonList = jsonDecode(response.body);
-      final List<Map<String, dynamic>> urineList = [];
-      for (final urineJson in urineJsonList) {
-        urineList.add(Map<String, dynamic>.from(urineJson));
-// Fetch entity by ID and update the glucoseList with the entity name
-        final entityData = await fetcEntityById(urineJson['entity_id'] ?? 0);
-        final entityName = entityData['name'] ?? 'not specified';
-        urineList.last['entityName'] = entityName;
-      }
-      setState(() {
-        this.urineList = urineList;
-      });
-    } else {
-      throw Exception('Failed to fetch urine list');
-    }
+    getUrinelist(userId);
   }
 
   @override
@@ -132,5 +110,44 @@ class _allUrineState extends State<allUrine> {
               ],
             ),
     );
+  }
+}
+
+Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
+  final response =
+      await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    return data;
+  } else {
+    throw Exception('Failed to fetch entity');
+  }
+}
+
+Future<List<Map<String, dynamic>>> fetchUrineList(int patientId) async {
+  final response =
+      await http.get(Uri.parse('${AppUrl.Base_Url}/urine/patient/$patientId'));
+
+  if (response.statusCode == 200) {
+    final List<dynamic> urineJsonList = jsonDecode(response.body);
+    final List<Map<String, dynamic>> urineList = [];
+    for (final urineJson in urineJsonList) {
+      final urineData = Map<String, dynamic>.from(urineJson);
+      final entityData = await fetcEntityById(urineJson['entity_id'] ?? 0);
+      final entityName = entityData['name'] ?? 'not specified';
+      urineData['entityName'] = entityName;
+      urineList.add(urineData);
+    }
+    await NotficationService.showNotification(
+      title: 'New medical record',
+      body: 'Its a urine test from ${urineList.last['entityName']}.',
+      scheduled: true,
+      interval: 10, // Single notification, not repeating
+      // Date in "2023-05-26" format
+    );
+
+    return urineList;
+  } else {
+    throw Exception('Failed to fetch urine list');
   }
 }

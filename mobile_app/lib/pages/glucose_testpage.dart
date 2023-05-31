@@ -95,7 +95,8 @@ class GluTestpage extends StatelessWidget {
                           child: Column(
                             children: [
                               // ignore: unnecessary_null_comparison
-                              if (double.parse(glucose['rbg']) != 0)
+                              if (glucose['rbg'] != null &&
+                                  double.parse(glucose['rbg']) != 0)
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -157,7 +158,8 @@ class GluTestpage extends StatelessWidget {
                               SizedBox(
                                 height: 10,
                               ),
-                              if (double.parse(glucose['fpg']) != 0)
+                              if (glucose['fpg'] != null &&
+                                  double.parse(glucose['fpg']) != 0)
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -219,7 +221,8 @@ class GluTestpage extends StatelessWidget {
                               SizedBox(
                                 height: 10,
                               ),
-                              if (double.parse(glucose['ppg']) != 0)
+                              if (glucose['ppg'] != null &&
+                                  double.parse(glucose['ppg']) != 0)
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,

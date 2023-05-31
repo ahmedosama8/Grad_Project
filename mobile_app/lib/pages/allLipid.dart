@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/configure.dart';
+import 'package:mobile_app/notifications_service.dart';
 import 'package:mobile_app/pages/lipid_testpage.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -18,46 +19,23 @@ class allLipid extends StatefulWidget {
 }
 
 class _allLipidState extends State<allLipid> {
-  List<dynamic> lipidList = [];
+  List<Map<String, dynamic>> lipidList = [];
+  void getLipidList(int patientId) {
+    fetchLipidList(patientId).then((list) {
+      setState(() {
+        lipidList = list;
+      });
+    }).catchError((error) {
+      // Handle error
+      print('Error: $error');
+    });
+  }
 
   @override
   void initState() {
     super.initState();
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-    fetchLipidList(userId);
-  }
-
-  Future<void> fetchLipidList(int patientId) async {
-    final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/lipid/patient/$patientId'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> lipidJsonList = jsonDecode(response.body);
-      final List<Map<String, dynamic>> lipidList = [];
-      for (final lipidJson in lipidJsonList) {
-        lipidList.add(Map<String, dynamic>.from(lipidJson));
-
-        final entityData = await fetcEntityById(lipidJson['entity_id'] ?? 0);
-        final entityName = entityData['name'] ?? 'not specified';
-        lipidList.last['entityName'] = entityName;
-      }
-      setState(() {
-        this.lipidList = lipidList;
-      });
-    } else {
-      throw Exception('Failed to fetch lipid profile list');
-    }
-  }
-
-  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
-    final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
-      return data;
-    } else {
-      throw Exception('Failed to fetch entity');
-    }
+    getLipidList(userId);
   }
 
   @override
@@ -132,5 +110,43 @@ class _allLipidState extends State<allLipid> {
               ],
             ),
     );
+  }
+}
+
+Future<List<Map<String, dynamic>>> fetchLipidList(int patientId) async {
+  final response =
+      await http.get(Uri.parse('${AppUrl.Base_Url}/lipid/patient/$patientId'));
+
+  if (response.statusCode == 200) {
+    final List<dynamic> lipidJsonList = jsonDecode(response.body);
+    final List<Map<String, dynamic>> lipidList = [];
+    for (final lipidJson in lipidJsonList) {
+      final lipidData = Map<String, dynamic>.from(lipidJson);
+      final entityData = await fetcEntityById(lipidJson['entity_id'] ?? 0);
+      final entityName = entityData['name'] ?? 'not specified';
+      lipidData['entityName'] = entityName;
+      lipidList.add(lipidData);
+    }
+    await NotficationService.showNotification(
+      title: 'New medical record',
+      body: 'Its a Lipid test from ${lipidList.last['entityName']}.',
+      scheduled: true,
+      interval: 10, // Single notification, not repeating
+      // Date in "2023-05-26" format
+    );
+    return lipidList;
+  } else {
+    throw Exception('Failed to fetch lipid profile list');
+  }
+}
+
+Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
+  final response =
+      await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    return data;
+  } else {
+    throw Exception('Failed to fetch entity');
   }
 }

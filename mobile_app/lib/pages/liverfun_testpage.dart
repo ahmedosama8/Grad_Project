@@ -99,8 +99,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'ALT',
                                   style: TextStyle(
-                                    color: (double.parse(liver['alt']) < 10 ||
-                                            double.parse(liver['alt']) > 130)
+                                    color: (double.parse(liver['alt'] ?? '0') <
+                                                10 ||
+                                            double.parse(liver['alt'] ?? '0') >
+                                                130)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -110,8 +112,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   liver['alt'].toString(),
                                   style: TextStyle(
-                                    color: (double.parse(liver['alt']) < 10 ||
-                                            double.parse(liver['alt']) > 130)
+                                    color: (double.parse(liver['alt'] ?? '0') <
+                                                10 ||
+                                            double.parse(liver['alt'] ?? '0') >
+                                                130)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -121,8 +125,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'U/L',
                                   style: TextStyle(
-                                    color: (double.parse(liver['alt']) < 10 ||
-                                            double.parse(liver['alt']) > 130)
+                                    color: (double.parse(liver['alt'] ?? '0') <
+                                                10 ||
+                                            double.parse(liver['alt'] ?? '0') >
+                                                130)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -132,8 +138,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   '10-130',
                                   style: TextStyle(
-                                    color: (double.parse(liver['alt']) < 10 ||
-                                            double.parse(liver['alt']) > 130)
+                                    color: (double.parse(liver['alt'] ?? '0') <
+                                                10 ||
+                                            double.parse(liver['alt'] ?? '0') >
+                                                130)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -151,8 +159,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'AST',
                                   style: TextStyle(
-                                    color: (double.parse(liver['ast']) < 10 ||
-                                            double.parse(liver['ast']) > 34)
+                                    color: (double.parse(liver['ast'] ?? '0') <
+                                                10 ||
+                                            double.parse(liver['ast'] ?? '0') >
+                                                34)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -162,8 +172,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   liver['ast'].toString(),
                                   style: TextStyle(
-                                    color: (double.parse(liver['ast']) < 10 ||
-                                            double.parse(liver['ast']) > 34)
+                                    color: (double.parse(liver['ast'] ?? '0') <
+                                                10 ||
+                                            double.parse(liver['ast'] ?? '0') >
+                                                34)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -173,8 +185,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'U/L',
                                   style: TextStyle(
-                                    color: (double.parse(liver['ast']) < 10 ||
-                                            double.parse(liver['ast']) > 34)
+                                    color: (double.parse(liver['ast'] ?? '0') <
+                                                10 ||
+                                            double.parse(liver['ast'] ?? '0') >
+                                                34)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -184,8 +198,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   '10-34',
                                   style: TextStyle(
-                                    color: (double.parse(liver['ast']) < 10 ||
-                                            double.parse(liver['ast']) > 34)
+                                    color: (double.parse(liver['ast'] ?? '0') <
+                                                10 ||
+                                            double.parse(liver['ast'] ?? '0') >
+                                                34)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -203,8 +219,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'ALB',
                                   style: TextStyle(
-                                    color: (double.parse(liver['alb']) < 3.4 ||
-                                            double.parse(liver['alb']) > 5.4)
+                                    color: (double.parse(liver['alb'] ?? '0') <
+                                                3.4 ||
+                                            double.parse(liver['alb'] ?? '0') >
+                                                5.4)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -214,8 +232,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   liver['alb'].toString(),
                                   style: TextStyle(
-                                    color: (double.parse(liver['alb']) < 3.4 ||
-                                            double.parse(liver['alb']) > 5.4)
+                                    color: (double.parse(liver['alb'] ?? '0') <
+                                                3.4 ||
+                                            double.parse(liver['alb'] ?? '0') >
+                                                5.4)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -225,8 +245,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'g/dL',
                                   style: TextStyle(
-                                    color: (double.parse(liver['alb']) < 3.4 ||
-                                            double.parse(liver['alb']) > 5.4)
+                                    color: (double.parse(liver['alb'] ?? '0') <
+                                                3.4 ||
+                                            double.parse(liver['alb'] ?? '0') >
+                                                5.4)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -236,8 +258,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   '3.4-5.4',
                                   style: TextStyle(
-                                    color: (double.parse(liver['alb']) < 3.4 ||
-                                            double.parse(liver['alb']) > 5.4)
+                                    color: (double.parse(liver['alb'] ?? '0') <
+                                                3.4 ||
+                                            double.parse(liver['alb'] ?? '0') >
+                                                5.4)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -255,8 +279,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'DBIL',
                                   style: TextStyle(
-                                    color: (double.parse(liver['dbil']) < 0 ||
-                                            double.parse(liver['dbil']) > 0.4)
+                                    color: (double.parse(liver['dbil'] ?? '0') <
+                                                0 ||
+                                            double.parse(liver['dbil'] ?? '0') >
+                                                0.4)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -266,8 +292,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   liver['dbil'].toString(),
                                   style: TextStyle(
-                                    color: (double.parse(liver['dbil']) < 0 ||
-                                            double.parse(liver['dbil']) > 0.4)
+                                    color: (double.parse(liver['dbil'] ?? '0') <
+                                                0 ||
+                                            double.parse(liver['dbil'] ?? '0') >
+                                                0.4)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -277,8 +305,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'mg/dL',
                                   style: TextStyle(
-                                    color: (double.parse(liver['dbil']) < 0 ||
-                                            double.parse(liver['dbil']) > 0.4)
+                                    color: (double.parse(liver['dbil'] ?? '0') <
+                                                0 ||
+                                            double.parse(liver['dbil'] ?? '0') >
+                                                0.4)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -288,8 +318,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   '0-0.4',
                                   style: TextStyle(
-                                    color: (double.parse(liver['dbil']) < 0 ||
-                                            double.parse(liver['dbil']) > 0.4)
+                                    color: (double.parse(liver['dbil'] ?? '0') <
+                                                0 ||
+                                            double.parse(liver['dbil'] ?? '0') >
+                                                0.4)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -307,8 +339,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'TBIL',
                                   style: TextStyle(
-                                    color: (double.parse(liver['tbil']) < 0.1 ||
-                                            double.parse(liver['tbil']) > 1.2)
+                                    color: (double.parse(liver['tbil'] ?? '0') <
+                                                0.1 ||
+                                            double.parse(liver['tbil'] ?? '0') >
+                                                1.2)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -318,8 +352,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   liver['tbil'].toString(),
                                   style: TextStyle(
-                                    color: (double.parse(liver['tbil']) < 0.1 ||
-                                            double.parse(liver['tbil']) > 1.2)
+                                    color: (double.parse(liver['tbil'] ?? '0') <
+                                                0.1 ||
+                                            double.parse(liver['tbil'] ?? '0') >
+                                                1.2)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -329,8 +365,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'mg/dL',
                                   style: TextStyle(
-                                    color: (double.parse(liver['tbil']) < 0.1 ||
-                                            double.parse(liver['tbil']) > 1.2)
+                                    color: (double.parse(liver['tbil'] ?? '0') <
+                                                0.1 ||
+                                            double.parse(liver['tbil'] ?? '0') >
+                                                1.2)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -340,8 +378,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   '0.1-1.2',
                                   style: TextStyle(
-                                    color: (double.parse(liver['tbil']) < 0.1 ||
-                                            double.parse(liver['tbil']) > 1.2)
+                                    color: (double.parse(liver['tbil'] ?? '0') <
+                                                0.1 ||
+                                            double.parse(liver['tbil'] ?? '0') >
+                                                1.2)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -359,8 +399,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'ALP',
                                   style: TextStyle(
-                                    color: (double.parse(liver['alp']) < 24 ||
-                                            double.parse(liver['alp']) > 147)
+                                    color: (double.parse(liver['alp'] ?? '0') <
+                                                24 ||
+                                            double.parse(liver['alp'] ?? '0') >
+                                                147)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -370,8 +412,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   liver['alp'].toString(),
                                   style: TextStyle(
-                                    color: (double.parse(liver['alp']) < 24 ||
-                                            double.parse(liver['alp']) > 147)
+                                    color: (double.parse(liver['alp'] ?? '0') <
+                                                24 ||
+                                            double.parse(liver['alp'] ?? '0') >
+                                                147)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -381,8 +425,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   'U/L',
                                   style: TextStyle(
-                                    color: (double.parse(liver['alp']) < 24 ||
-                                            double.parse(liver['alp']) > 147)
+                                    color: (double.parse(liver['alp'] ?? '0') <
+                                                24 ||
+                                            double.parse(liver['alp'] ?? '0') >
+                                                147)
                                         ? Colors.red
                                         : Colors.black,
                                   ),
@@ -392,8 +438,10 @@ class LiverTestpage extends StatelessWidget {
                                 child: Text(
                                   '24-147',
                                   style: TextStyle(
-                                    color: (double.parse(liver['alp']) < 24 ||
-                                            double.parse(liver['alp']) > 147)
+                                    color: (double.parse(liver['alp'] ?? '0') <
+                                                24 ||
+                                            double.parse(liver['alp'] ?? '0') >
+                                                147)
                                         ? Colors.red
                                         : Colors.black,
                                   ),

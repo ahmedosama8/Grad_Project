@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/labs_data_model.dart';
+import 'package:mobile_app/pages/allCbc.dart';
 import 'package:mobile_app/pages/book_appointment.dart';
 import 'package:mobile_app/pages/labList.dart';
 import 'package:mobile_app/pages/labs_detail.dart';
@@ -114,20 +115,27 @@ class _HomePageState extends State<HomePage> {
           actions: <Widget>[
             Row(
               children: [
-                SizedBox(width: 80,),
+                SizedBox(
+                  width: 80,
+                ),
                 TextButton(
-                  child:
-                      Text('Sign out',style: TextStyle(color: primary),),
+                  child: Text(
+                    'Sign out',
+                    style: TextStyle(color: primary),
+                  ),
                   onPressed: () {
                     Navigator.of(context, rootNavigator: true).pushReplacement(
                         MaterialPageRoute(builder: (context) => Login()));
                   },
                 ),
-                SizedBox(width: 30,),
-
+                SizedBox(
+                  width: 30,
+                ),
                 TextButton(
-                  child:
-                      Text('Cancel',style: TextStyle(color: primary),),
+                  child: Text(
+                    'Cancel',
+                    style: TextStyle(color: primary),
+                  ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -143,8 +151,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final userIdProvider = Provider.of<UserIdProvider>(context);
-    final id = userIdProvider.id;
-    final username = userIdProvider.username;
+    // int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
+    // fetchCbcList(userId);
     final fullname = userIdProvider.fullname;
     return MaterialApp(
       debugShowCheckedModeBanner: false,

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/configure.dart';
+import 'package:mobile_app/notifications_service.dart';
 import 'package:mobile_app/pages/liverfun_testpage.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -18,47 +19,23 @@ class allLiver extends StatefulWidget {
 }
 
 class _allLiverState extends State<allLiver> {
-  List<dynamic> liverList = [];
+  List<Map<String, dynamic>> liverList = [];
+  void getLiverlist(int patientId) {
+    fetchLiverList(patientId).then((list) {
+      setState(() {
+        liverList = list;
+      });
+    }).catchError((error) {
+      // Handle error
+      print('Error: $error');
+    });
+  }
 
   @override
   void initState() {
     super.initState();
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-    fetchLiverList(userId);
-  }
-
-  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
-    final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
-      return data;
-    } else {
-      throw Exception('Failed to fetch entity');
-    }
-  }
-
-  Future<void> fetchLiverList(int patientId) async {
-    final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/liver/patient/$patientId'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> liverJsonList = jsonDecode(response.body);
-      final List<Map<String, dynamic>> liverList = [];
-      for (final liverJson in liverJsonList) {
-        liverList.add(Map<String, dynamic>.from(liverJson));
-        // Fetch entity by ID and update the glucoseList with the entity name
-        final entityData = await fetcEntityById(liverJson['entity_id'] ?? 0);
-        final entityName = entityData['name'] ?? 'not specified';
-
-        liverList.last['entityName'] = entityName;
-      }
-      setState(() {
-        this.liverList = liverList;
-      });
-    } else {
-      throw Exception('Failed to fetch liver list');
-    }
+    getLiverlist(userId);
   }
 
   @override
@@ -131,5 +108,43 @@ class _allLiverState extends State<allLiver> {
               ),
             ]),
     );
+  }
+}
+
+Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
+  final response =
+      await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    return data;
+  } else {
+    throw Exception('Failed to fetch entity');
+  }
+}
+
+Future<List<Map<String, dynamic>>> fetchLiverList(int patientId) async {
+  final response =
+      await http.get(Uri.parse('${AppUrl.Base_Url}/liver/patient/$patientId'));
+
+  if (response.statusCode == 200) {
+    final List<dynamic> liverJsonList = jsonDecode(response.body);
+    final List<Map<String, dynamic>> liverList = [];
+    for (final liverJson in liverJsonList) {
+      final liverData = Map<String, dynamic>.from(liverJson);
+      final entityData = await fetcEntityById(liverJson['entity_id'] ?? 0);
+      final entityName = entityData['name'] ?? 'not specified';
+      liverData['entityName'] = entityName;
+      liverList.add(liverData);
+    }
+    await NotficationService.showNotification(
+      title: 'New medical record',
+      body: 'Its a Liver test from ${liverList.last['entityName']}.',
+      scheduled: true,
+      interval: 10, // Single notification, not repeating
+      // Date in "2023-05-26" format
+    );
+    return liverList;
+  } else {
+    throw Exception('Failed to fetch liver list');
   }
 }

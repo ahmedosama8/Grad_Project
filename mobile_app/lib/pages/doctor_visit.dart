@@ -1,3 +1,4 @@
+import 'package:mobile_app/notifications_service.dart';
 import 'package:mobile_app/pages/doctor_report.dart';
 import 'dart:convert';
 
@@ -19,46 +20,24 @@ class doctor_visit extends StatefulWidget {
 }
 
 class _doctor_visitState extends State<doctor_visit> {
-  List<dynamic> visitList = [];
-  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
-    final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
-      return data;
-    } else {
-      throw Exception('Failed to fetch entity');
-    }
-  }
+  List<Map<String, dynamic>> visitList = [];
 
-  Future<void> fetchVisitList(int patientId) async {
-    final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/visit/patient/$patientId'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> visitJsonList = jsonDecode(response.body);
-      final List<Map<String, dynamic>> visitList = [];
-
-      for (final visitJson in visitJsonList) {
-        visitList.add(Map<String, dynamic>.from(visitJson));
-        final entityData = await fetcEntityById(visitJson['entity_id'] ?? 0);
-        final entityName = entityData['name'] ?? 'not specified';
-        visitList.last['entityName'] = entityName;
-      }
-
+  void getDrvisit(int patientId) {
+    fetchVisitList(patientId).then((list) {
       setState(() {
-        this.visitList = visitList;
+        visitList = list;
       });
-    } else {
-      throw Exception('Failed to fetch visits');
-    }
+    }).catchError((error) {
+      // Handle error
+      print('Error: $error');
+    });
   }
 
   @override
   void initState() {
     super.initState();
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-    fetchVisitList(userId);
+    getDrvisit(userId);
   }
 
   @override
@@ -150,5 +129,43 @@ class _doctor_visitState extends State<doctor_visit> {
               ),
             ),
     );
+  }
+}
+
+Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
+  final response =
+      await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    return data;
+  } else {
+    throw Exception('Failed to fetch entity');
+  }
+}
+
+Future<List<Map<String, dynamic>>> fetchVisitList(int patientId) async {
+  final response =
+      await http.get(Uri.parse('${AppUrl.Base_Url}/visit/patient/$patientId'));
+
+  if (response.statusCode == 200) {
+    final List<dynamic> visitJsonList = jsonDecode(response.body);
+    final List<Map<String, dynamic>> visitList = [];
+
+    for (final visitJson in visitJsonList) {
+      visitList.add(Map<String, dynamic>.from(visitJson));
+      final entityData = await fetcEntityById(visitJson['entity_id'] ?? 0);
+      final entityName = entityData['name'] ?? 'not specified';
+      visitList.last['entityName'] = entityName;
+    }
+    await NotficationService.showNotification(
+      title: 'New medical record',
+      body: 'Its a report from ${visitList.last['entityName']}.',
+      scheduled: true,
+      interval: 10, // Single notification, not repeating
+      // Date in "2023-05-26" format
+    );
+    return visitList;
+  } else {
+    throw Exception('Failed to fetch visits');
   }
 }

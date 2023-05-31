@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/notifications_service.dart';
 import 'package:mobile_app/pages/rad_report.dart';
 import 'dart:convert';
 import 'package:provider/provider.dart';
@@ -16,46 +17,24 @@ class rad_scans extends StatefulWidget {
 }
 
 class _rad_scansState extends State<rad_scans> {
-  List<dynamic> scansList = [];
-  Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
-    final response =
-        await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> data = jsonDecode(response.body);
-      return data;
-    } else {
-      throw Exception('Failed to fetch entity');
-    }
-  }
+  List<Map<String, dynamic>> scansList = [];
 
-  Future<void> fetchScansList(int patientId) async {
-    final response = await http
-        .get(Uri.parse('${AppUrl.Base_Url}/radiology/patient/$patientId'));
-
-    if (response.statusCode == 200) {
-      final List<dynamic> scansJsonList = jsonDecode(response.body);
-      final List<Map<String, dynamic>> scansList = [];
-
-      for (final scansJson in scansJsonList) {
-        scansList.add(Map<String, dynamic>.from(scansJson));
-        final entityData = await fetcEntityById(scansJson['entity_id'] ?? 0);
-        final entityName = entityData['name'] ?? 'not specified';
-        scansList.last['entityName'] = entityName;
-      }
-
+  void getReportlist(int patientId) {
+    fetchScansList(patientId).then((list) {
       setState(() {
-        this.scansList = scansList;
+        scansList = list;
       });
-    } else {
-      throw Exception('Failed to fetch Scans list');
-    }
+    }).catchError((error) {
+      // Handle error
+      print('Error: $error');
+    });
   }
 
   @override
   void initState() {
     super.initState();
     int userId = Provider.of<UserIdProvider>(context, listen: false).id!;
-    fetchScansList(userId);
+    getReportlist(userId);
   }
 
   @override
@@ -135,5 +114,43 @@ class _rad_scansState extends State<rad_scans> {
               ),
             ),
     );
+  }
+}
+
+Future<Map<String, dynamic>> fetcEntityById(int entityId) async {
+  final response =
+      await http.get(Uri.parse('${AppUrl.Base_Url}/entity/$entityId'));
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    return data;
+  } else {
+    throw Exception('Failed to fetch entity');
+  }
+}
+
+Future<List<Map<String, dynamic>>> fetchScansList(int patientId) async {
+  final response = await http
+      .get(Uri.parse('${AppUrl.Base_Url}/radiology/patient/$patientId'));
+
+  if (response.statusCode == 200) {
+    final List<dynamic> scansJsonList = jsonDecode(response.body);
+    final List<Map<String, dynamic>> scansList = [];
+
+    for (final scansJson in scansJsonList) {
+      scansList.add(Map<String, dynamic>.from(scansJson));
+      final entityData = await fetcEntityById(scansJson['entity_id'] ?? 0);
+      final entityName = entityData['name'] ?? 'not specified';
+      scansList.last['entityName'] = entityName;
+    }
+    await NotficationService.showNotification(
+      title: 'New medical record',
+      body: 'Its Radiology report from ${scansList.last['entityName']}.',
+      scheduled: true,
+      interval: 10, // Single notification, not repeating
+      // Date in "2023-05-26" format
+    );
+    return scansList;
+  } else {
+    throw Exception('Failed to fetch Scans list');
   }
 }

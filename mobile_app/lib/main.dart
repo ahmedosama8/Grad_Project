@@ -3,14 +3,18 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/notifications_service.dart';
 import 'package:mobile_app/pages/app_screen.dart';
 import 'package:mobile_app/pages/barcode.dart';
+import 'package:mobile_app/pages/book_appointment.dart';
 import 'package:mobile_app/pages/doctor_report.dart';
 import 'package:mobile_app/pages/doctor_visit.dart';
+import 'package:mobile_app/pages/edit_profile.dart';
 import 'package:mobile_app/pages/emergency_info.dart';
 import 'package:mobile_app/pages/home.dart';
 import 'package:mobile_app/pages/pharmacy.dart';
 import 'package:mobile_app/pages/rad_report.dart';
+import 'package:mobile_app/pages/reminder.dart';
 import 'package:mobile_app/pages/welcome_page.dart';
 import 'package:mobile_app/pages/rad_scans.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +29,7 @@ import 'api/logintest.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await NotficationService.initializeNotification();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
@@ -56,6 +61,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const AppScreen(),
           'login': (context) => Login(),
+          'reminder': (context) => MedicineReminderPage(),
           'signup': (context) => SignUp(),
           'home': (context) => WelcomePage(),
           //'emrsignup': (context) => EmergencyInfoPage(),
@@ -65,6 +71,7 @@ class MyApp extends StatelessWidget {
           'doctor_visit': (context) => const doctor_visit(),
           'pharmacy': (context) => MedicineListPage(),
           'barcode': (context) => BarCode(),
+          'appointment': (context) => Bookappoint(),
         });
   }
 }

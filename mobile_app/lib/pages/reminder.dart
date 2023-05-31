@@ -1,6 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:mobile_app/colors.dart';
+// ignore_for_file: use_build_context_synchronously
 
+import 'package:flutter/material.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:mobile_app/colors.dart';
+import 'package:mobile_app/notifications_service.dart';
 
 class Medicine {
   String name;
@@ -96,7 +99,7 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: primary,
+        primarySwatch: Colors.blue,
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -120,8 +123,17 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
                     controller: medicineController,
                     decoration: InputDecoration(
                       labelText: 'Medicine',
+                      labelStyle: TextStyle(color:primary),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color:primary),
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color:primary),
+                      ),
                       errorText: validationMessage,
+                      errorStyle: TextStyle(color: Colors.red),
                     ),
+                    cursorColor:primary,
                   ),
                   SizedBox(height: 16.0),
                   Row(
@@ -164,7 +176,21 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
                           'Selected Date: ${selectedDate!.toString().split(' ')[0]}')
                       : SizedBox(),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
+                      print(selectedTime!.format(context));
+                      print(selectedDate!.toString().split(' ')[0]);
+                      await NotficationService.showNotification(
+                        title: 'Medicine Reminder',
+                        body:
+                            'Its a reminder to take ${medicineController.text}.',
+                        scheduled: true,
+                        interval: 10, // Single notification, not repeating
+                        scheduledTime: selectedTime!
+                            .format(context), // Time in "1:40 PM" format
+                        scheduledDate: selectedDate!
+                            .toString()
+                            .split(' ')[0], // Date in "2023-05-26" format
+                      );
                       if (selectedTime != null && selectedDate != null) {
                         addMedicine(
                           medicineController.text,

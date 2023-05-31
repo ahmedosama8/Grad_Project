@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/api/user.dart';
 import 'package:mobile_app/colors.dart';
 import 'package:mobile_app/pages/edit_profile.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 import 'package:provider/provider.dart';
@@ -264,16 +263,16 @@ class _PatientProfilePageState extends State<PatientProfilePage> {
 
   void pickImage() async {
     // ignore: deprecated_member_use
-    PickedFile? pickedImage =
-        await ImagePicker().getImage(source: ImageSource.gallery);
+  //   PickedFile? pickedImage =
+  //       await ImagePicker().getImage(source: ImageSource.gallery);
 
-  if (pickedImage != null) {
+  // if (pickedImage != null) {
 
-    setState(() {
-      _image = File(pickedImage.path);
-    });
-  print(_image);
-  }
+  //   setState(() {
+  //     _image = File(pickedImage.path);
+  //   });
+  // print(_image);
+  // }
 
 }
 }

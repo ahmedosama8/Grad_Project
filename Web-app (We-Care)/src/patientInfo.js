@@ -143,7 +143,7 @@ export default  function PatientInfo() {
                     <MDBCardText>Allergies</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{info?.allergies}</MDBCardText>
+                    <MDBCardText className="text-muted">{info?.allergies?.replace(/[\[\]"]/g, "").replace(/,/g, ", ")}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -152,7 +152,7 @@ export default  function PatientInfo() {
                     <MDBCardText>Chronic</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">{info?.chronic}</MDBCardText>
+                    <MDBCardText className="text-muted">{info?.chronic?.replace(/[\[\]"]/g, "").replace(/,/g, ", ")}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                           

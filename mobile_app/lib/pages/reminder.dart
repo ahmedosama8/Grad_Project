@@ -4,6 +4,76 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:mobile_app/colors.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path/path.dart' as path;
+
+
+class MedicineDatabase {
+  static Future<Database> open() async {
+    final databasePath = await getDatabasesPath();
+    final dbPath = path.join(databasePath, 'medicinee.db');
+
+    return openDatabase(
+      dbPath,
+      version: 1,
+      onCreate: (db, version) {
+        return db.execute('''
+          CREATE TABLE medicine(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            dose INTEGER,
+            time TEXT
+          )
+        ''');
+      },
+    );
+  }
+
+    static Future<void> deleteMedicine(Medicine medicine) async {
+    final db = await open();
+    await db.delete(
+      'medicine',
+      where: 'name = ? AND dose = ?',
+      whereArgs: [medicine.name, medicine.dose],
+    );
+  }
+
+  static Future<int> insertMedicine(Medicine medicine) async {
+    final db = await open();
+    final timeValues =
+        medicine.times.map((time) => time.toIso8601String()).join(',');
+
+    final result = await db.insert(
+      'medicine',
+      {
+        'name': medicine.name,
+        'dose': medicine.dose,
+        'time': timeValues,
+      },
+    );
+
+    return result;
+  }
+
+  static Future<List<Medicine>> getAllMedicines() async {
+    final db = await open();
+
+    final queryResult = await db.query('medicine');
+
+    return queryResult.map((row) {
+      final times = (row['time'] as String)
+          .split(',')
+          .map((value) => DateTime.parse(value))
+          .toList();
+
+      return Medicine(
+        name: row['name'] as String,
+        dose: row['dose'] as int,
+        times: times,
+      );
+    }).toList();
+  }
+}
 
 class Medicine {
   String name;
@@ -23,7 +93,8 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
   final nameController = TextEditingController();
   final doseController = TextEditingController();
 
-  Future<void> _showNotification(String title, String body, DateTime scheduledDateTime) async {
+  Future<void> _showNotification(
+      String title, String body, DateTime scheduledDateTime) async {
     await AwesomeNotifications().createNotification(
       content: NotificationContent(
         id: -1,
@@ -38,55 +109,59 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
     );
   }
 
-void _addMedicineTime() {
-  final name = nameController.text;
-  final dose = int.tryParse(doseController.text);
+  void _addMedicineTime() async {
+    final name = nameController.text;
+    final dose = int.tryParse(doseController.text);
 
-  if (name.isEmpty || dose == null) {
-    return;
-  }
+    if (name.isEmpty || dose == null) {
+      return;
+    }
 
-  DatePicker.showTimePicker(
-    context,
-    showSecondsColumn: false,
-    onConfirm: (time) async {
-      setState(() {
-        final existingMedicine = medicines.firstWhere(
-          (medicine) => medicine.name == name && medicine.dose == dose,
-          orElse: () => Medicine(name: name, dose: dose, times: []),
+    DatePicker.showTimePicker(
+      context,
+      showSecondsColumn: false,
+      onConfirm: (time) async {
+        setState(() {
+          final existingMedicine = medicines.firstWhere(
+            (medicine) => medicine.name == name && medicine.dose == dose,
+            orElse: () => Medicine(name: name, dose: dose, times: []),
+          );
+
+          if (existingMedicine.times.any((existingTime) =>
+              existingTime.hour == time.hour &&
+              existingTime.minute == time.minute)) {
+            // Do not add duplicate time for the same medicine and dose
+            return;
+          }
+
+          existingMedicine.times.add(time);
+          if (!medicines.contains(existingMedicine)) {
+            medicines.add(existingMedicine);
+          }
+        });
+
+        final scheduledDateTime = DateTime(
+          DateTime.now().year,
+          DateTime.now().month,
+          DateTime.now().day,
+          time.hour,
+          time.minute,
         );
-
-        if (existingMedicine.times.any(
-            (existingTime) => existingTime.hour == time.hour && existingTime.minute == time.minute)) {
-          // Do not add duplicate time for the same medicine and dose
-          return;
-        }
-
-        existingMedicine.times.add(time);
-        if (!medicines.contains(existingMedicine)) {
-          medicines.add(existingMedicine);
-        }
-      });
-
-      final scheduledDateTime = DateTime(
-        DateTime.now().year,
-        DateTime.now().month,
-        DateTime.now().day,
-        time.hour,
-        time.minute,
-      );
 
       await _showNotification(
         'Medication Reminder',
         'A Reminder to take your $name dose',
         scheduledDateTime,
       );
-    },
-  );
-}
 
+        final newMedicine =
+            Medicine(name: name, dose: dose, times: [scheduledDateTime]);
+        await MedicineDatabase.insertMedicine(newMedicine);
+      },
+    );
+  }
 
-  void _removeMedicineTime(Medicine medicine, int index) {
+  Future<void> _removeMedicineTime(Medicine medicine, int index) async {
     setState(() {
       medicine.times.removeAt(index);
 
@@ -94,7 +169,25 @@ void _addMedicineTime() {
         medicines.remove(medicine);
       }
     });
+      await MedicineDatabase.deleteMedicine(medicine);
+
   }
+
+
+  @override
+  void initState() {
+    super.initState();
+    _loadMedicines();
+  }
+
+  Future<void> _loadMedicines() async {
+    final storedMedicines = await MedicineDatabase.getAllMedicines();
+
+    setState(() {
+      medicines = storedMedicines;
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {

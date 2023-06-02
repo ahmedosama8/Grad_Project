@@ -46,6 +46,17 @@ class MedicineDatabase {
     return result;
   }
 
+    static Future<void> deleteMedicine(Medicine medicine) async {
+    final db = await open();
+    await db.delete(
+      'medicines',
+      where: 'name = ? AND dose = ?',
+      whereArgs: [medicine.name, medicine.dose],
+    );
+  }
+
+  
+
   static Future<List<Medicine>> getAllMedicines() async {
     final db = await open();
 
@@ -102,24 +113,24 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
     final name = nameController.text;
     final dose = int.tryParse(doseController.text);
 
-  if (name.isEmpty) {
-    _showValidationMessage('Please enter a medicine name');
-    return;
-  }
+    if (name.isEmpty) {
+      _showValidationMessage('Please enter a medicine name');
+      return;
+    }
 
-  if (dose == null || dose <= 0) {
-    _showValidationMessage('Please enter a valid dose');
-    return;
-  }
+    if (dose == null || dose <= 0) {
+      _showValidationMessage('Please enter a valid dose');
+      return;
+    }
     final existingMedicine = medicines.firstWhere(
-    (medicine) => medicine.name == name && medicine.dose == dose,
-    orElse: () => Medicine(name: name, dose: dose, times: []),
-  );
+      (medicine) => medicine.name == name && medicine.dose == dose,
+      orElse: () => Medicine(name: name, dose: dose, times: []),
+    );
 
-  if (existingMedicine.times.length >= dose) {
-    _showValidationMessage('You cannot add more times than the dose');
-    return;
-  }
+    if (existingMedicine.times.length >= dose) {
+      _showValidationMessage('You cannot add more times than the dose');
+      return;
+    }
 
     DatePicker.showTimePicker(
       context,
@@ -165,7 +176,7 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
     );
   }
 
-  void _removeMedicineTime(Medicine medicine, int index) {
+  Future<void> _removeMedicineTime(Medicine medicine, int index) async {
     setState(() {
       medicine.times.removeAt(index);
 
@@ -173,28 +184,29 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
         medicines.remove(medicine);
       }
     });
+      await MedicineDatabase.deleteMedicine(medicine);
+
   }
+
   void _showValidationMessage(String message) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text('Input Error'),
-        content: Text(message),
-        actions: <Widget>[
-          TextButton(
-            child: Text('OK'),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}     
-
-
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Input Error'),
+          content: Text(message),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   void initState() {
@@ -202,28 +214,27 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
     _loadMedicines();
   }
 
-Future<void> _loadMedicines() async {
-  final storedMedicines = await MedicineDatabase.getAllMedicines();
+  Future<void> _loadMedicines() async {
+    final storedMedicines = await MedicineDatabase.getAllMedicines();
 
-  setState(() {
-    medicines = [];
+    setState(() {
+      medicines = [];
 
-    for (final storedMedicine in storedMedicines) {
-      final existingMedicineIndex = medicines.indexWhere(
-          (medicine) =>
-              medicine.name == storedMedicine.name &&
-              medicine.dose == storedMedicine.dose);
+      for (final storedMedicine in storedMedicines) {
+        final existingMedicineIndex = medicines.indexWhere((medicine) =>
+            medicine.name == storedMedicine.name &&
+            medicine.dose == storedMedicine.dose);
 
-      if (existingMedicineIndex != -1) {
-        // Medicine with the same name and dose already exists
-        medicines[existingMedicineIndex].times.addAll(storedMedicine.times);
-      } else {
-        // New medicine, add it to the list
-        medicines.add(storedMedicine);
+        if (existingMedicineIndex != -1) {
+          // Medicine with the same name and dose already exists
+          medicines[existingMedicineIndex].times.addAll(storedMedicine.times);
+        } else {
+          // New medicine, add it to the list
+          medicines.add(storedMedicine);
+        }
       }
-    }
-  });
-}
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -261,7 +272,10 @@ Future<void> _loadMedicines() async {
             ),
           ),
           ElevatedButton(
-            child: Text('Add Time',style: TextStyle(color: Colors.white),),
+            child: Text(
+              'Add Time',
+              style: TextStyle(color: Colors.white),
+            ),
             onPressed: _addMedicineTime,
           ),
           Expanded(

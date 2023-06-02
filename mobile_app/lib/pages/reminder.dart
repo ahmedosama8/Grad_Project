@@ -7,18 +7,17 @@ import 'package:mobile_app/colors.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart' as path;
 
-
 class MedicineDatabase {
   static Future<Database> open() async {
     final databasePath = await getDatabasesPath();
-    final dbPath = path.join(databasePath, 'medicinee.db');
+    final dbPath = path.join(databasePath, 'medicine.db');
 
     return openDatabase(
       dbPath,
       version: 1,
       onCreate: (db, version) {
         return db.execute('''
-          CREATE TABLE medicine(
+          CREATE TABLE medicines(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             dose INTEGER,
@@ -29,27 +28,19 @@ class MedicineDatabase {
     );
   }
 
-    static Future<void> deleteMedicine(Medicine medicine) async {
-    final db = await open();
-    await db.delete(
-      'medicine',
-      where: 'name = ? AND dose = ?',
-      whereArgs: [medicine.name, medicine.dose],
-    );
-  }
-
   static Future<int> insertMedicine(Medicine medicine) async {
     final db = await open();
     final timeValues =
         medicine.times.map((time) => time.toIso8601String()).join(',');
 
     final result = await db.insert(
-      'medicine',
+      'medicines',
       {
         'name': medicine.name,
         'dose': medicine.dose,
         'time': timeValues,
       },
+      conflictAlgorithm: ConflictAlgorithm.replace,
     );
 
     return result;
@@ -58,7 +49,7 @@ class MedicineDatabase {
   static Future<List<Medicine>> getAllMedicines() async {
     final db = await open();
 
-    final queryResult = await db.query('medicine');
+    final queryResult = await db.query('medicines');
 
     return queryResult.map((row) {
       final times = (row['time'] as String)
@@ -103,9 +94,7 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
         body: body,
       ),
       schedule: NotificationCalendar.fromDate(
-        date: scheduledDateTime,
-        allowWhileIdle: true,
-      ),
+          date: scheduledDateTime, allowWhileIdle: true, repeats: true),
     );
   }
 
@@ -113,9 +102,24 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
     final name = nameController.text;
     final dose = int.tryParse(doseController.text);
 
-    if (name.isEmpty || dose == null) {
-      return;
-    }
+  if (name.isEmpty) {
+    _showValidationMessage('Please enter a medicine name');
+    return;
+  }
+
+  if (dose == null || dose <= 0) {
+    _showValidationMessage('Please enter a valid dose');
+    return;
+  }
+    final existingMedicine = medicines.firstWhere(
+    (medicine) => medicine.name == name && medicine.dose == dose,
+    orElse: () => Medicine(name: name, dose: dose, times: []),
+  );
+
+  if (existingMedicine.times.length >= dose) {
+    _showValidationMessage('You cannot add more times than the dose');
+    return;
+  }
 
     DatePicker.showTimePicker(
       context,
@@ -148,11 +152,11 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
           time.minute,
         );
 
-      await _showNotification(
-        'Medication Reminder',
-        'A Reminder to take your $name dose',
-        scheduledDateTime,
-      );
+        await _showNotification(
+          'Medication Reminder',
+          'A Reminder to take your $name dose',
+          scheduledDateTime,
+        );
 
         final newMedicine =
             Medicine(name: name, dose: dose, times: [scheduledDateTime]);
@@ -161,7 +165,7 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
     );
   }
 
-  Future<void> _removeMedicineTime(Medicine medicine, int index) async {
+  void _removeMedicineTime(Medicine medicine, int index) {
     setState(() {
       medicine.times.removeAt(index);
 
@@ -169,9 +173,27 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
         medicines.remove(medicine);
       }
     });
-      await MedicineDatabase.deleteMedicine(medicine);
-
   }
+  void _showValidationMessage(String message) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text('Input Error'),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}     
+
 
 
   @override
@@ -180,33 +202,47 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
     _loadMedicines();
   }
 
-  Future<void> _loadMedicines() async {
-    final storedMedicines = await MedicineDatabase.getAllMedicines();
+Future<void> _loadMedicines() async {
+  final storedMedicines = await MedicineDatabase.getAllMedicines();
 
-    setState(() {
-      medicines = storedMedicines;
-    });
-  }
+  setState(() {
+    medicines = [];
 
+    for (final storedMedicine in storedMedicines) {
+      final existingMedicineIndex = medicines.indexWhere(
+          (medicine) =>
+              medicine.name == storedMedicine.name &&
+              medicine.dose == storedMedicine.dose);
+
+      if (existingMedicineIndex != -1) {
+        // Medicine with the same name and dose already exists
+        medicines[existingMedicineIndex].times.addAll(storedMedicine.times);
+      } else {
+        // New medicine, add it to the list
+        medicines.add(storedMedicine);
+      }
+    }
+  });
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: BackButton(
-            onPressed: () => Navigator.of(context).pop(),
-            color: Colors.white,
-          ),
-          title: Text(
-            'Medicine Reminder',
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: primary,
+      appBar: AppBar(
+        leading: BackButton(
+          onPressed: () => Navigator.of(context).pop(),
+          color: Colors.white,
         ),
+        title: Text(
+          'Medicine Reminder',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: primary,
+      ),
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(12.0),
             child: TextFormField(
               controller: nameController,
               decoration: InputDecoration(
@@ -215,7 +251,7 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(12.0),
             child: TextFormField(
               controller: doseController,
               keyboardType: TextInputType.number,
@@ -225,7 +261,7 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
             ),
           ),
           ElevatedButton(
-            child: Text('Add Time',style:TextStyle(color: Colors.white)),
+            child: Text('Add Time',style: TextStyle(color: Colors.white),),
             onPressed: _addMedicineTime,
           ),
           Expanded(
@@ -258,8 +294,6 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
     );
   }
 }
-
-
 
 
 // // ignore_for_file: use_build_context_synchronously

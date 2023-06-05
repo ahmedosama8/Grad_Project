@@ -13,25 +13,25 @@ services:
     ports:
       - "5432:5432"
 
-  # mydb:
-  #   image: postgres:13
-  #   environment:
-  #     - POSTGRES_DB=postgres
-  #     - POSTGRES_PASSWORD=myodoo
-  #     - POSTGRES_USER=odoo
-  #   ports:
-  #     - "5433:5432"
+  mydb:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=myodoo
+      - POSTGRES_USER=odoo
+    ports:
+      - "5433:5432"
 
-  # web:
-  #     image: odoo:14.0
-  #     depends_on:
-  #       - mydb
-  #     ports:
-  #       - "8069:8069"
-  #     environment:
-  #       - HOST=mydb
-  #       - USER=odoo
-  #       - PASSWORD=myodoo
+  web:
+      image: odoo:14.0
+      depends_on:
+        - mydb
+      ports:
+        - "8069:8069"
+      environment:
+        - HOST=mydb
+        - USER=odoo
+        - PASSWORD=myodoo
 
 
   # backend:
@@ -65,18 +65,18 @@ services:
       DB_DATABASE: habib
       DB_USERNAME: habib
       DB_PASSWORD: habib
-    command: sh -c "composer install && php artisan migrate:fresh --seed && php artisan serve --host=0.0.0.0 --port=8080"
+    command: sh -c "composer install && php artisan migrate:fresh --seed --force && php artisan serve --host=0.0.0.0 --port=8080"
 
 
 
-  # webapp-fe:
-  #   build: ./Web-app (We-Care)
-  #   ports:
-  #     - "80:80"
-  #   container_name: webapp-frontend
-  #   restart: always
-  #   links:
-  #     - backend
+  webapp-fe:
+    build: ./Web-app (We-Care)
+    ports:
+      - "80:80"
+    container_name: webapp-frontend
+    restart: always
+    links:
+      - backend
 
 
 

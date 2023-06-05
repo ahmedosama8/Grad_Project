@@ -21,7 +21,7 @@ jobs:
 
 
       - name: Build Backend Docker Image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/backend2 -f ./backend2/Dockerfile  ./backen2
+        run: pwd && ls && docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/backend2 -f ./backend2/Dockerfile  ./backen2
 
       - name: Tag Backend Image
         run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/backend ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest

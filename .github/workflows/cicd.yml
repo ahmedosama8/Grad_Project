@@ -21,13 +21,13 @@ jobs:
 
 
       - name: Build Backend Docker Image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/backend2 -f ./backend2/Dockerfile  ./backend2
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/backend -f ./backend/Dockerfile  ./backend
 
       - name: Tag Backend Image
-        run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/backend2 ${{ secrets.DOCKERHUB_USERNAME }}/backend2:latest
+        run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/backend ${{ secrets.DOCKERHUB_USERNAME }}/backend:latest
 
       - name: Push Backend to DockerHub
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend2
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/backend
 
 
       - name: Build FrontEnd Docker Image

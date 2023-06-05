@@ -95,42 +95,50 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
   final nameController = TextEditingController();
   final doseController = TextEditingController();
 
-  Future<void> _showNotification(
-      String title, String body, DateTime scheduledDateTime) async {
-    await AwesomeNotifications().createNotification(
-      content: NotificationContent(
-        id: -1,
-        channelKey: 'high_importance_channel',
-        title: title,
-        body: body,
-      ),
-      schedule: NotificationCalendar.fromDate(
-          date: scheduledDateTime, allowWhileIdle: true, repeats: true),
-    );
+Future<void> _showNotification(
+  String title, String body, DateTime scheduledDateTime) async {
+  await AwesomeNotifications().createNotification(
+    content: NotificationContent(
+      id: -1,
+      channelKey: 'high_importance_channel',
+      title: title,
+      body: body,
+    ),
+    schedule: NotificationCalendar.fromDate(
+      date: scheduledDateTime,
+      allowWhileIdle: true,
+      repeats: true,
+    ),
+  );
+}
+
+
+
+void _addMedicineTime() async {
+  final name = nameController.text;
+  final dose = int.tryParse(doseController.text);
+  
+  if (name.isEmpty) {
+    _showValidationMessage('Please enter a medicine name');
+    return;
+  }
+  
+  if (dose == null || dose <= 0) {
+    _showValidationMessage('Please enter a valid dose');
+    return;
+  }
+  
+  final existingMedicine = medicines.firstWhere(
+    (medicine) => medicine.name == name && medicine.dose == dose,
+    orElse: () => Medicine(name: name, dose: dose, times: []),
+  );
+  
+  if (existingMedicine.times.length >= dose) {
+    _showValidationMessage('You have reached the maximum dose');
+    return;
   }
 
-  void _addMedicineTime() async {
-    final name = nameController.text;
-    final dose = int.tryParse(doseController.text);
-
-    if (name.isEmpty) {
-      _showValidationMessage('Please enter a medicine name');
-      return;
-    }
-
-    if (dose == null || dose <= 0) {
-      _showValidationMessage('Please enter a valid dose');
-      return;
-    }
-    final existingMedicine = medicines.firstWhere(
-      (medicine) => medicine.name == name && medicine.dose == dose,
-      orElse: () => Medicine(name: name, dose: dose, times: []),
-    );
-
-    if (existingMedicine.times.length >= dose) {
-      _showValidationMessage('You cannot add more times than the dose');
-      return;
-    }
+  
 
     DatePicker.showTimePicker(
       context,
@@ -238,72 +246,78 @@ class _MedicineReminderPageState extends State<MedicineReminderPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: BackButton(
-          onPressed: () => Navigator.of(context).pop(),
-          color: Colors.white,
-        ),
-        title: Text(
-          'Medicine Reminder',
-          style: TextStyle(color: Colors.white),
-        ),
-        backgroundColor: primary,
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: primary
       ),
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextFormField(
-              controller: nameController,
-              decoration: InputDecoration(
-                labelText: 'Medicine Name',
+      home: Scaffold(
+        appBar: AppBar(
+          leading: BackButton(
+            onPressed: () => Navigator.of(context).pop(),
+            color: Colors.white,
+          ),
+          title: Text(
+            'Medicine Reminder',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: primary,
+        ),
+        body: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextFormField(
+                controller: nameController,
+                decoration: InputDecoration(
+                  labelText: 'Medicine Name',
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: TextFormField(
-              controller: doseController,
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Dose',
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: TextFormField(
+                controller: doseController,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                  labelText: 'Dose',
+                ),
               ),
             ),
-          ),
-          ElevatedButton(
-            child: Text(
-              'Add Time',
-              style: TextStyle(color: Colors.white),
+            ElevatedButton(
+              child: Text(
+                'Add Time',
+                style: TextStyle(color: Colors.white),
+              ),
+              onPressed: _addMedicineTime,
             ),
-            onPressed: _addMedicineTime,
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: medicines.length,
-              itemBuilder: (context, medicineIndex) {
-                final medicine = medicines[medicineIndex];
-
-                return ExpansionTile(
-                  title: Text(medicine.name),
-                  subtitle: Text('Dose: ${medicine.dose}'),
-                  children: medicine.times.map((time) {
-                    final timeIndex = medicine.times.indexOf(time);
-
-                    return ListTile(
-                      title: Text('Time: ${time.hour}:${time.minute}'),
-                      trailing: IconButton(
-                        icon: Icon(Icons.delete),
-                        onPressed: () =>
-                            _removeMedicineTime(medicine, timeIndex),
-                      ),
-                    );
-                  }).toList(),
-                );
-              },
+            Expanded(
+              child: ListView.builder(
+                itemCount: medicines.length,
+                itemBuilder: (context, medicineIndex) {
+                  final medicine = medicines[medicineIndex];
+    
+                  return ExpansionTile(
+                    title: Text(medicine.name),
+                    subtitle: Text('Dose: ${medicine.dose}'),
+                    children: medicine.times.map((time) {
+                      final timeIndex = medicine.times.indexOf(time);
+    
+                      return ListTile(
+                        title: Text('Time: ${time.hour}:${time.minute}'),
+                        trailing: IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () =>
+                              _removeMedicineTime(medicine, timeIndex),
+                        ),
+                      );
+                    }).toList(),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

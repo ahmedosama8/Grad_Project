@@ -167,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),
                     child: Text('Welcome Back, $fullname!',
                         style: GoogleFonts.robotoCondensed(
-                            fontSize: 20, fontWeight: FontWeight.bold))),
+                            fontSize: 18, fontWeight: FontWeight.bold))),
                 Spacer(),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(25, 30, 20, 5),

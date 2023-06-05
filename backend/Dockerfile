@@ -14,10 +14,7 @@ COPY . .
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod 664 /var/www/html/composer.json
 
-RUN composer install --no-interaction --no-dev --prefer-dist
-
 EXPOSE 8080
 
 
-
-CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8080"]
+CMD ["php-fpm"]

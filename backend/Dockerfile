@@ -15,7 +15,6 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 RUN chmod 664 /var/www/html/composer.json
 
 RUN composer install --no-interaction --no-dev --prefer-dist
-RUN php artisan migrate:fresh --seed --force
 
 EXPOSE 8080
 

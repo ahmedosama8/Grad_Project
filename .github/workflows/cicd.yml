@@ -31,7 +31,7 @@ jobs:
 
 
       - name: Build FrontEnd Docker Image
-        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/Web-app (We-Care) -f ./Web-app (We-Care)/Dockerfile ./Web-app (We-Care)
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/"Web-app (We-Care)" -f ./"Web-app (We-Care)"/Dockerfile ./"Web-app (We-Care)"
 
       - name: Tag FrontEnd Image
         run: docker tag ${{ secrets.DOCKERHUB_USERNAME }}/frontend ${{ secrets.DOCKERHUB_USERNAME }}/frontend:latest

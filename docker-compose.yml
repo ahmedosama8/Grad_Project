@@ -13,25 +13,25 @@ services:
     ports:
       - "5432:5432"
 
-  mydb:
-    image: postgres:13
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_PASSWORD=myodoo
-      - POSTGRES_USER=odoo
-    ports:
-      - "5433:5432"
+#   mydb:
+#     image: postgres:13
+#     environment:
+#       - POSTGRES_DB=postgres
+#       - POSTGRES_PASSWORD=myodoo
+#       - POSTGRES_USER=odoo
+#     ports:
+#       - "5433:5432"
 
-  web:
-      image: odoo:14.0
-      depends_on:
-        - mydb
-      ports:
-        - "8069:8069"
-      environment:
-        - HOST=mydb
-        - USER=odoo
-        - PASSWORD=myodoo
+#   web:
+#       image: odoo:14.0
+#       depends_on:
+#         - mydb
+#       ports:
+#         - "8069:8069"
+#       environment:
+#         - HOST=mydb
+#         - USER=odoo
+#         - PASSWORD=myodoo
 
 
   # backend:

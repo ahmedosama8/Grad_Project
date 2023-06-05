@@ -3,7 +3,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import configure from "../../configure";
+import configure, { handleDownload } from "../../configure";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
@@ -24,6 +24,7 @@ const paperStyle = {
 const GlucoseTestPaper = () => {
   const [singletest, setSingleTest] = useState();
   const [patient, setPatientData] = useState();
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const { id } = useParams();
   useEffect(() => {
@@ -40,6 +41,11 @@ const GlucoseTestPaper = () => {
       `${configure.backURL}patient/${patientId}`
     );
     setPatientData(patientRes.data);
+  };
+  const handlePDF = () => {
+    // Use the handleDownload function from pdfUtils.js
+    handleDownload(`Glucose_${patient?.name}_${patientAge}.pdf`, "pdf-content");
+    setIsDownloading(true);
   };
 
   const patientAge = calculateAge(patient?.birth_date);
@@ -106,7 +112,7 @@ const GlucoseTestPaper = () => {
             </div>
             <div
               className={`row mb-4 testitem ${
-                singletest?.rbg < 60 || singletest?.rbg > 160 ? "text-red" : ""
+                singletest?.rbg > 160 ? "text-red" : ""
               }`}
             >
               <div className="col-md-3">
@@ -127,7 +133,6 @@ const GlucoseTestPaper = () => {
                 singletest?.ppg > 140 ? "text-red" : ""
               }`}
             >
-              
               <div className="col-md-3">
                 <label>Postprandial Glucose (PPG)</label>
               </div>
@@ -144,6 +149,16 @@ const GlucoseTestPaper = () => {
 
             <h5>Comments</h5>
             <p>{singletest?.comments}</p>
+            <div data-html2canvas-ignore="true">
+              <button
+                className="submitform"
+                variant="contained"
+                onClick={handlePDF} // Use the imported handleDownload function
+                disabled={isDownloading}
+              >
+                {isDownloading ? "Downloading..." : "Download PDF"}
+              </button>
+            </div>
           </div>
         </Grid>
       </Grid>
@@ -169,7 +184,9 @@ export default function GlucoseTestResult() {
           className="app__container"
         >
           <Grid item xs={12}>
-            <GlucoseTestPaper />
+            <div id="pdf-content">
+              <GlucoseTestPaper />
+            </div>
           </Grid>
           <Grid item xs={12}></Grid>
         </Grid>

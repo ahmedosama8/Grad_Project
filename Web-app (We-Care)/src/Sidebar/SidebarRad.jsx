@@ -4,6 +4,8 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import ScienceIcon from "@mui/icons-material/Science";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import BookIcon from "@mui/icons-material/Book";
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 import "./sidebarrad.css";
 
@@ -40,7 +42,7 @@ function SidebarRad() {
             </li>
             <li className="sidebarradListItem">
               <a href="/" onClick={handleLogout}>
-                <ScienceIcon className="sidebarradIcon" />
+              <LogoutIcon className="sidebarradIcon" />
                 Logout
               </a>
             </li>

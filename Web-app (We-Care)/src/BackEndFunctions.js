@@ -110,68 +110,68 @@ export const urinedata = [
   },
 ];
 
-export async function GetFakeUSers() {
-  let response = "";
-  try {
-    response = await axios
-      .get("http://localhost:3001/fakeusers")
-      .then((res) => res.data);
-    console.log(response);
-    return response;
-  } catch (error) {
-    if (error.response) {
-      /*
-       * The request was made and the server responded with a
-       * status code that falls out of the range of 2xx
-       */
-      return error.response;
-    }
-  }
-  return response;
-}
-// export async function GetAdminUserList() {
-//   const dashBoard = await axios.get(`${Configure.backURL}admin/showUsers`, {
-//     headers: {
-//       "Content-Type": "application/json; charset=utf-8",
-//       "x-access-token": `${localStorage.getItem("token")}`,
-//     },
-//   });
+// export async function GetFakeUSers() {
+//   let response = "";
+//   try {
+//     response = await axios
+//       .get("http://localhost:3001/fakeusers")
+//       .then((res) => res.data);
+//     console.log(response);
+//     return response;
+//   } catch (error) {
+//     if (error.response) {
+//       /*
+//        * The request was made and the server responded with a
+//        * status code that falls out of the range of 2xx
+//        */
+//       return error.response;
+//     }
+//   }
+//   return response;
+// }
+// // export async function GetAdminUserList() {
+// //   const dashBoard = await axios.get(`${Configure.backURL}admin/showUsers`, {
+// //     headers: {
+// //       "Content-Type": "application/json; charset=utf-8",
+// //       "x-access-token": `${localStorage.getItem("token")}`,
+// //     },
+// //   });
+// //   return dashBoard;
+// // }
+
+// export function GetDashBoardstat() {
+//   const [dashBoard, setDashBoard] = React.useState([]);
+
+//   useEffect(() => {
+//     const fetchProduct = async () => {
+//       const dashBoard = await axios.get(`admin/dashBoard`, {
+//         headers: {
+//           "Content-Type": "application/json; charset=utf-8",
+//           "x-access-token": `${localStorage.getItem("token")}`,
+//         },
+//       });
+//       setDashBoard(dashBoard.data);
+//     };
+//     fetchProduct();
+//   }, []);
+
+//   if (!dashBoard) return null;
+//   console.log("dashboard", dashBoard);
 //   return dashBoard;
 // }
 
-export function GetDashBoardstat() {
-  const [dashBoard, setDashBoard] = React.useState([]);
+// export function GetUsersMock() {
+//   const [userpermonth, setUserPerMonth] = React.useState([]);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      const dashBoard = await axios.get(`admin/dashBoard`, {
-        headers: {
-          "Content-Type": "application/json; charset=utf-8",
-          "x-access-token": `${localStorage.getItem("token")}`,
-        },
-      });
-      setDashBoard(dashBoard.data);
-    };
-    fetchProduct();
-  }, []);
-
-  if (!dashBoard) return null;
-  console.log("dashboard", dashBoard);
-  return dashBoard;
-}
-
-export function GetUsersMock() {
-  const [userpermonth, setUserPerMonth] = React.useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3001/fakeusers")
-      .then((res) => res.json())
-      .then((result) => {
-        setUserPerMonth(result);
-      });
-  }, []);
-  return userpermonth;
-}
+//   useEffect(() => {
+//     fetch("http://localhost:3001/fakeusers")
+//       .then((res) => res.json())
+//       .then((result) => {
+//         setUserPerMonth(result);
+//       });
+//   }, []);
+//   return userpermonth;
+// }
 export const backEndLogIn = async (payload) => {
   var message;
   const {data, password} = payload;

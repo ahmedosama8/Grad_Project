@@ -21,6 +21,7 @@
     "cornerstone-core": "^2.6.1",
     "cors": "^2.8.5",
     "dicom-parser": "^1.8.21",
+    "html2pdf.js": "^0.10.1",
     "mdb-react-ui-kit": "^5.1.0",
     "react": "^18.2.0",
     "react-bootstrap-sidebar-menu": "^2.0.3",

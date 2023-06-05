@@ -5,7 +5,7 @@ services:
   db:
     image: postgres:13-alpine
     volumes:
-      - dev-db-data2:/var/lib/postgresql/data
+      - dev-db-data4:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=habib
       - POSTGRES_PASSWORD=habib
@@ -65,8 +65,7 @@ services:
       DB_DATABASE: habib
       DB_USERNAME: habib
       DB_PASSWORD: habib
-    command: sh -c "composer install && php artisan migrate:fresh --seed && php artisan serve --host=0.0.0.0 --port=8080"
-
+    command: sh -c "composer install && php artisan migrate:fresh --seed  --force && php artisan serve --host=0.0.0.0 --port=8080"  
 
 
   # webapp-fe:
@@ -89,4 +88,4 @@ services:
       - "5050:80"
 
 volumes:
-  dev-db-data2:
+  dev-db-data4:

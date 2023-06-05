@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import configure from "../../configure";
 import { useParams } from "react-router-dom";
-
+import html2pdf from "html2pdf.js";
 import axios from "axios";
 import Topbar from "../../Topbar/Topbar";
 import Sidebar from "../../Sidebar/Sidebar";
@@ -24,6 +24,7 @@ const paperStyle = {
 const CbcTestResult = () => {
   const [singletest, setSingleTest] = useState();
   const [patient, setPatientData] = useState();
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const { id } = useParams();
   useEffect(() => {
@@ -42,8 +43,24 @@ const CbcTestResult = () => {
     );
     setPatientData(patientRes.data);
   };
-  
-  const patientAge=calculateAge (patient?.birth_date);
+  const handleDownload = (filename) => {
+    setIsDownloading(true);
+
+    const element = document.getElementById("pdf-content");
+    const opt = {
+      margin: 5,
+      filename: filename, // Use the provided filename variable
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    };
+
+    html2pdf().set(opt).from(element).save();
+
+    setIsDownloading(false);
+  };
+
+  const patientAge = calculateAge(patient?.birth_date);
   return (
     <Paper className="paperstyle" sx={{ p: 2 }}>
       <Typography variant="h2" sx={paperStyle}>
@@ -60,7 +77,7 @@ const CbcTestResult = () => {
                 <strong>Patient Name:</strong> {patient?.name}
               </p>
               <p>
-                <strong>Age / Sex:</strong> {patientAge} Y / {patient?.gender} 
+                <strong>Age / Sex:</strong> {patientAge} Y / {patient?.gender}
               </p>
               <p>
                 <strong>Examination Date:</strong>{" "}
@@ -244,10 +261,7 @@ const CbcTestResult = () => {
             </div>
             <div
               className={`row mb-4 testitem ${
-                singletest?.tlc < 4 ||
-                singletest?.tlc > 11
-                  ? "text-red"
-                  : ""
+                singletest?.tlc < 4 || singletest?.tlc > 11 ? "text-red" : ""
               }`}
             >
               <div className="col-md-3">
@@ -383,6 +397,18 @@ const CbcTestResult = () => {
             </div>
             <h5>Comments</h5>
             <p>{singletest?.comments}</p>
+            <div data-html2canvas-ignore="true">
+              <button
+                className="submitform"
+                variant="contained"
+                onClick={() =>
+                  handleDownload(`CBC_${patient?.name}_${patientAge}.pdf`)
+                } // Fix: wrap in an arrow function
+                disabled={isDownloading}
+              >
+                {isDownloading ? "Downloading..." : "Download PDF"}
+              </button>
+            </div>
           </div>
         </Grid>
       </Grid>
@@ -409,7 +435,9 @@ export default function CbcTest() {
           className="app__container"
         >
           <Grid item xs={12}>
-            <CbcTestResult />
+            <div id="pdf-content">
+              <CbcTestResult />
+            </div>
           </Grid>
           <Grid item xs={12}></Grid>
         </Grid>

@@ -3,7 +3,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import configure from "../configure";
+import configure, { handleDownload } from "../configure";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
@@ -16,6 +16,7 @@ import { calculateAge } from "../configure";
 const ScanPaper = () => {
   const [singleReport, setSingleReport] = useState();
   const [patient, setPatientData] = useState();
+  const patientAge = calculateAge(patient?.birth_date);
 
   const { id } = useParams();
   const entity_id = sessionStorage.getItem("User_id");
@@ -50,7 +51,7 @@ const ScanPaper = () => {
     ? JSON.parse(singleReport.diagnoses)
     : [];
 
-    const age=calculateAge(patient?.birth_date)
+  const age = calculateAge(patient?.birth_date);
   console.log("medicines Assigned", parsedMedications);
   return (
     <Paper elevation={3} className="paper">
@@ -112,6 +113,20 @@ const ScanPaper = () => {
             <p>No medications available</p>
           )}
         </div>
+        <div data-html2canvas-ignore="true">
+          <button
+            className="submitform"
+            variant="contained"
+            onClick={() =>
+              handleDownload(
+                `Liver_${patient?.name}_${patientAge}.pdf`,
+                "pdf-content"
+              )
+            } // Use the imported handleDownload function
+          >
+            Download PDF
+          </button>
+        </div>
       </div>
     </Paper>
   );
@@ -135,7 +150,9 @@ export default function VisitResult() {
           className="app__container"
         >
           <Grid item xs={12}>
-            <ScanPaper />
+            <div id="pdf-content">
+              <ScanPaper />
+            </div>
           </Grid>
           <Grid item xs={12}></Grid>
         </Grid>

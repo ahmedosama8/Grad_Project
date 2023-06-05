@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
-import configure from "../../configure";
+import configure, { handleDownload } from "../../configure";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Topbar from "../../Topbar/Topbar";
@@ -22,6 +22,7 @@ const paperStyle = {
 const LipidProfileResultPaper = () => {
   const [singletest, setSingleTest] = useState();
   const [patient, setPatientData] = useState();
+  const [isDownloading, setIsDownloading] = useState(false);
 
   const { id } = useParams();
   useEffect(() => {
@@ -42,6 +43,13 @@ const LipidProfileResultPaper = () => {
   };
 
   const patientAge = calculateAge(patient?.birth_date);
+  const handlePDF = () => {
+    // Use the handleDownload function from pdfUtils.js
+    handleDownload(
+      `Lipid-Profile_${patient?.name}_${patientAge}.pdf`,
+      "pdf-content"
+    );
+  };
   return (
     <Paper className="paperstyle" sx={{ p: 2 }}>
       <Typography variant="h2" sx={paperStyle}>
@@ -412,6 +420,15 @@ const LipidProfileResultPaper = () => {
 
             <h5>Comments</h5>
             <p>{singletest?.comments}</p>
+            <div data-html2canvas-ignore="true">
+              <button
+                className="submitform"
+                variant="contained"
+                onClick={handlePDF} // Use the imported handleDownload function
+              >
+                Download PDF
+              </button>
+            </div>
           </div>
         </Grid>
       </Grid>
@@ -438,8 +455,11 @@ export default function LipidProfileResult() {
           className="app__container"
         >
           <Grid item xs={12}>
-            <LipidProfileResultPaper />
+            <div id="pdf-content">
+              <LipidProfileResultPaper />
+            </div>
           </Grid>
+
           <Grid item xs={12}></Grid>
         </Grid>
       </div>

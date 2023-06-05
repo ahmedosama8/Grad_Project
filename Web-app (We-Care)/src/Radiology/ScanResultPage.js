@@ -5,15 +5,19 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import configure, { calculateAge } from "../configure";
 import { useParams } from "react-router-dom";
-
+import html2pdf from "html2pdf.js";
+import Button from "@mui/material/Button";
 import axios from "axios";
 import "./scanresultpage.css";
 import SidebarRad from "../Sidebar/SidebarRad";
 import Topbar from "../Topbar/Topbar";
+import PrintIcon from "@mui/icons-material/Print";
 
 const ScanPaper = () => {
   const [singleReport, setSingleReport] = useState();
   const [patient, setPatientData] = useState();
+  const [isDownloading, setIsDownloading] = useState(false);
+  const patientAge = calculateAge(patient?.birth_date);
 
   const { id } = useParams();
   useEffect(() => {
@@ -31,8 +35,23 @@ const ScanPaper = () => {
     );
     setPatientData(patientRes.data);
   };
-  const patientAge=calculateAge (patient?.birth_date);
+  const handleDownload = (filename) => {
+    setIsDownloading(true);
 
+    const element = document.getElementById("pdf-content");
+    const opt = {
+      margin: 5,
+      filename: filename, // Use the provided filename variable
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+    };
+
+    html2pdf().set(opt).from(element).save();
+
+    setIsDownloading(false);
+  };
+  
   return (
     <Paper elevation={3} className="paper">
       <div className="header">
@@ -85,6 +104,16 @@ const ScanPaper = () => {
           <div dangerouslySetInnerHTML={{ __html: singleReport?.report }} />
         </p>
       </div>
+      <div data-html2canvas-ignore="true">
+        <button
+          className="submitform"
+          variant="contained"
+          onClick={() => handleDownload("custom_filename.pdf")} // Fix: wrap in an arrow function
+          disabled={isDownloading}
+        >
+          {isDownloading ? "Downloading..." : "Download PDF"}
+        </button>
+      </div>
     </Paper>
   );
 };
@@ -107,7 +136,9 @@ export default function WholePaper() {
           className="app__container"
         >
           <Grid item xs={12}>
-            <ScanPaper />
+            <div id="pdf-content">
+              <ScanPaper />
+            </div>
           </Grid>
           <Grid item xs={12}></Grid>
         </Grid>

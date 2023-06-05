@@ -2,7 +2,7 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
-import configure from "../../configure";
+import configure, { handleDownload } from "../../configure";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
@@ -40,7 +40,7 @@ const UrineTestPaper = () => {
     );
     setPatientData(patientRes.data);
   };
-  const patientAge=calculateAge(patient?.birth_date);
+  const patientAge = calculateAge(patient?.birth_date);
   return (
     <Paper className="paperstyle" sx={{ p: 2 }}>
       <Typography variant="h2" sx={paperStyle}>
@@ -57,7 +57,7 @@ const UrineTestPaper = () => {
                 <strong>Patient Name:</strong> {patient?.name}
               </p>
               <p>
-                <strong>Age / Sex:</strong> {patientAge} Y / {patient?.gender} 
+                <strong>Age / Sex:</strong> {patientAge} Y / {patient?.gender}
               </p>
               <p>
                 <strong>Examination Date:</strong>{" "}
@@ -323,6 +323,20 @@ const UrineTestPaper = () => {
             </div>
             <h5>Comments</h5>
             <p>{singletest?.comments}</p>
+            <div data-html2canvas-ignore="true">
+              <button
+                className="submitform"
+                variant="contained"
+                onClick={() =>
+                  handleDownload(
+                    `Urine_Test_${patient?.name}_${patientAge}.pdf`,
+                    "pdf-content"
+                  )
+                } // Use the imported handleDownload function
+              >
+                Download PDF
+              </button>
+            </div>
           </div>
         </Grid>
       </Grid>
@@ -348,7 +362,9 @@ export default function UrinetestResult() {
           className="app__container"
         >
           <Grid item xs={12}>
-            <UrineTestPaper />
+            <div id="pdf-content">
+              <UrineTestPaper />
+            </div>
           </Grid>
           <Grid item xs={12}></Grid>
         </Grid>

@@ -4,6 +4,8 @@ import BiotechIcon from "@mui/icons-material/Biotech";
 import ScienceIcon from "@mui/icons-material/Science";
 import PersonIcon from "@mui/icons-material/Person";
 import BookIcon from "@mui/icons-material/Book";
+import LogoutIcon from '@mui/icons-material/Logout';
+
 
 import "./sidebarrad.css";
 export default function SidebarClinic() {
@@ -43,7 +45,7 @@ export default function SidebarClinic() {
             </li>
             <li className="sidebarradListItem" onClick={handleLogout}>
               <a href="/">
-                <ScienceIcon className="sidebarradIcon" />
+                <LogoutIcon className="sidebarradIcon" />
                 Logout
               </a>
             </li>

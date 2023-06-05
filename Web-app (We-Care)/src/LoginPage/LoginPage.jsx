@@ -81,7 +81,7 @@ function LoginPage() {
       }
     } catch (error) {
       // Handle network error
-      console.error("Network error:", error);
+      notify(`"Network error: ${error}`);
     }
   };
   backEndLogIn();

@@ -1,5 +1,6 @@
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import html2pdf from "html2pdf.js";
 
 export default {
   backURL: "http://localhost:8080/api/",
@@ -30,4 +31,17 @@ export const notify = (errorMsg) => {
     className: "custom-toast", // Apply custom CSS class for styling
     bodyClassName: "custom-toast-body", // Apply custom CSS class for the toast body
   });
+};
+
+export const handleDownload = (filename, elementId) => {
+  const element = document.getElementById(elementId);
+  const opt = {
+    margin: 5,
+    filename: filename,
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+  };
+
+  html2pdf().set(opt).from(element).save();
 };

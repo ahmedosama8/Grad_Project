@@ -3,7 +3,7 @@ import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import configure from "../../configure";
+import configure, { handleDownload } from "../../configure";
 import { useParams } from "react-router-dom";
 
 import axios from "axios";
@@ -42,8 +42,7 @@ const LiverResultPaper = () => {
     );
     setPatientData(patientRes.data);
   };
-  
-  const patientAge=calculateAge(patient?.birth_date);
+  const patientAge = calculateAge(patient?.birth_date);
   return (
     <Paper className="paperstyle" sx={{ p: 2 }}>
       <Typography variant="h2" sx={paperStyle}>
@@ -60,7 +59,7 @@ const LiverResultPaper = () => {
                 <strong>Patient Name:</strong> {patient?.name}
               </p>
               <p>
-                <strong>Age / Sex:</strong> {patientAge} Y / {patient?.gender} 
+                <strong>Age / Sex:</strong> {patientAge} Y / {patient?.gender}
               </p>
               <p>
                 <strong>Examination Date:</strong>
@@ -127,7 +126,6 @@ const LiverResultPaper = () => {
                 singletest?.alb < 3.4 || singletest?.alb > 5.4 ? "text-red" : ""
               }`}
             >
-              
               <div className="col-md-3">
                 <label>ALB</label>
               </div>
@@ -146,7 +144,6 @@ const LiverResultPaper = () => {
                 singletest?.dbil < 0 || singletest?.dbil > 0.3 ? "text-red" : ""
               }`}
             >
-              
               <div className="col-md-3">
                 <label>DBIL</label>
               </div>
@@ -167,7 +164,6 @@ const LiverResultPaper = () => {
                   : ""
               }`}
             >
-              
               <div className="col-md-3">
                 <label>TBIL</label>
               </div>
@@ -186,7 +182,6 @@ const LiverResultPaper = () => {
                 singletest?.alp < 24 || singletest?.alp > 147 ? "text-red" : ""
               }`}
             >
-              
               <div className="col-md-3">
                 <label>ALP</label>
               </div>
@@ -203,6 +198,20 @@ const LiverResultPaper = () => {
 
             <h5>Comments</h5>
             <p>{singletest?.comments}</p>
+            <div data-html2canvas-ignore="true">
+              <button
+                className="submitform"
+                variant="contained"
+                onClick={() =>
+                  handleDownload(
+                    `Liver_${patient?.name}_${patientAge}.pdf`,
+                    "pdf-content"
+                  )
+                } // Use the imported handleDownload function
+              >
+                Download PDF
+              </button>
+            </div>
           </div>
         </Grid>
       </Grid>
@@ -228,7 +237,9 @@ export default function LiverTestResult() {
           className="app__container"
         >
           <Grid item xs={12}>
-            <LiverResultPaper />
+            <div id="pdf-content">
+              <LiverResultPaper />
+            </div>
           </Grid>
           <Grid item xs={12}></Grid>
         </Grid>

@@ -35,9 +35,9 @@ const columns = [
     headerClassName: "custom-header",
   },
   {
-    field: "price",
-    headerName: "Price",
-    width: 100,
+    field: "notes",
+    headerName: "Notes",
+    width: 130,
     headerClassName: "custom-header",
   },
   {
@@ -82,7 +82,7 @@ export default function ApointmentsTable() {
             alignItems: "center",
           }}
         >
-          <div style={{ maxWidth: "1221.8px", width: "100%" }}>
+          <div style={{ maxWidth: "1251.8px", width: "100%" }}>
             {" "}
             <DataGrid
               rows={rows}

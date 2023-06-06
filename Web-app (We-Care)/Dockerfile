@@ -1,4 +1,4 @@
-FROM node:16-alpine3.14 as base
+FROM node:18-alpine3.14 as base
 
 RUN mkdir -p /usr/src/app
 RUN mkdir -p /usr/src/app/frontend

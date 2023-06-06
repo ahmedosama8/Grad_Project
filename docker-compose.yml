@@ -12,40 +12,8 @@ services:
       - POSTGRES_DB=habib
     ports:
       - "5432:5432"
-
-#   mydb:
-#     image: postgres:13
-#     environment:
-#       - POSTGRES_DB=postgres
-#       - POSTGRES_PASSWORD=myodoo
-#       - POSTGRES_USER=odoo
-#     ports:
-#       - "5433:5432"
-
-#   web:
-#       image: odoo:14.0
-#       depends_on:
-#         - mydb
-#       ports:
-#         - "8069:8069"
-#       environment:
-#         - HOST=mydb
-#         - USER=odoo
-#         - PASSWORD=myodoo
-
-
-  # backend:
-  #   build: ./backend2/
-  #   ports:
-  #     - "8080:8080"
-  #   container_name: backend
-  #   environment:
-  #     - excel.path=./diagnoses.xlsx
-  #   restart: always
-  #   volumes:
-  #     - ./data:/app/data
-  #   links:
-  #     - db
+    container_name: db
+    restart: always
 
   backend:
     build:
@@ -57,15 +25,10 @@ services:
 
     ports:
       - "8080:8080"
-    depends_on:
+    links:
       - db
-#     environment:
-#       DB_HOST: db
-#       DB_PORT: 5432
-#       DB_DATABASE: habib
-#       DB_USERNAME: habib
-#       DB_PASSWORD: habib
-    command: sh -c "php artisan serve --host=0.0.0.0 --port=8080"
+    restart: always
+    container_name: backend-docker
 
 
 
@@ -78,15 +41,6 @@ services:
     links:
       - backend
 
-
-
-#   pgadmin:
-#     image: dpage/pgadmin4
-#     environment:
-#       - PGADMIN_DEFAULT_EMAIL=ahmed7abib007@gmail.com
-#       - PGADMIN_DEFAULT_PASSWORD=habib
-#     ports:
-#       - "5050:80"
 
 volumes:
   dev-db-data2:

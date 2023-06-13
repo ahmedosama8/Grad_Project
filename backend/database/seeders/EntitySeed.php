@@ -4,7 +4,7 @@
 namespace Database\Seeders;
 
 use App\Models\diagnosis;
-use App\Models\Pharmacy;
+use App\Models\HealthcareEntity;
 use Illuminate\Database\Seeder;
 use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
@@ -24,7 +24,7 @@ class EntitySeed extends Seeder
             foreach ($sheet->getRowIterator() as $row) {
                 $data = $row->toArray();
 
-                Pharmacy::create([
+                HealthcareEntity::create([
                     'name' => $data[1],
                     'type' => $data[2],
                     'phone' => $data[3],

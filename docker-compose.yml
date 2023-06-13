@@ -2,16 +2,16 @@ version: "3.9"
 
 services:
 
-  db:
-    image: postgres:13-alpine
-    volumes:
-      - dev-db-data2:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=habib
-      - POSTGRES_PASSWORD=habib
-      - POSTGRES_DB=habib
-    ports:
-      - "5432:5432"
+  # db:
+  #   image: postgres:13-alpine
+  #   volumes:
+  #     - dev-db-data2:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_USER=habib
+  #     - POSTGRES_PASSWORD=habib
+  #     - POSTGRES_DB=habib
+  #   ports:
+  #     - "5432:5432"
 
   # mydb:
   #   image: postgres:13
@@ -34,14 +34,14 @@ services:
 
     ports:
       - "8080:8080"
-    links:
-      - db
-    environment:
-      DB_HOST: db
-      DB_PORT: 5432
-      DB_DATABASE: habib
-      DB_USERNAME: habib
-      DB_PASSWORD: habib
+    # links:
+    #   - db
+    # environment:
+    #   DB_HOST: db
+    #   DB_PORT: 5432
+    #   DB_DATABASE: habib
+    #   DB_USERNAME: habib
+    #   DB_PASSWORD: habib
     command: sh -c "composer install && php artisan migrate:fresh --seed && php artisan serve --host=0.0.0.0 --port=8080"
 
 

@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(DiagnosisSeed::class);
         $this->call(PharmacySeed::class);
-        $this->call(EntitySeed::class)
+        $this->call(EntitySeed::class);
         
         // \App\Models\User::factory(10)->create();
 
